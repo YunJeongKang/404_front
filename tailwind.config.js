@@ -13,9 +13,6 @@ module.exports = {
         main_grad:
           "linear-gradient(185.11deg, #EBD3F8 2.45%, rgba(249, 236, 255, 0) 97.16%);",
         "sub-contra": "#FFFFFF",
-        // CART
-        cart: "#9FC131",
-        "cart-contra": "#FFFFFF",
         // BASIC
         basic: "#F0F0F0",
         "basic-active": "#F0F0F0",
@@ -60,22 +57,6 @@ module.exports = {
         dark: "#262626",
         "dark-active": "#131313",
         "dark-contra": "#FBFBFB",
-        // Back
-        Back: "#d4d4d4",
-        "Back-active": "#131313",
-        "Back-contra": "#FBFBFB",
-        // Order State
-        todo: "#FFA900",
-        "todo-contra": "#ffffff",
-        doing: "#39C0ED",
-        "doing-contra": "#ffffff",
-        // done: "",
-        // rejected: "",
-        canceled: "#F93154",
-        "canceled-contra": "#ffffff",
-        // noshow: "",
-        bell: "#FFD700",
-        "bell-off": "#d3d3d3",
         // SuperLight
         mainShadow: "#fafafa",
         //Kakao btn

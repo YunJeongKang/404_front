@@ -1,11 +1,11 @@
-interface ValidationInputInterface {
+interface TextInputTemplateInterface {
   query: string;
   pattern: string;
   name: string;
   dangerText?: string;
   type?: string;
   placeholder?: string;
-  value: string;
+  value: any;
 
   onChange: (evt: any) => void;
 }
@@ -19,7 +19,7 @@ export const TextInputTemplate = ({
   type,
   placeholder,
   onChange,
-}: ValidationInputInterface) => {
+}: TextInputTemplateInterface) => {
   return (
     <fieldset className="flex gap-2 p-[3px]">
       <span>{query} :</span>

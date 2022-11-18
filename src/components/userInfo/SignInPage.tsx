@@ -3,7 +3,7 @@ import { TextInputTemplate } from "@utils/common/props/userInfo/TotalFormTemplat
 import { useState } from "react";
 
 const SignInPage = () => {
-  const [values, setValues] = useState<object>([
+  const [values, setValues] = useState<any>([
     {
       nickName: "",
       email: "",
@@ -38,7 +38,7 @@ const SignInPage = () => {
       />
       <TextInputTemplate
         onChange={onChange}
-        value={}
+        value={values.email}
         query="이메일 주소"
         pattern="([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
         name="성별"
@@ -47,7 +47,7 @@ const SignInPage = () => {
       />
       <TextInputTemplate
         onChange={onChange}
-        value={}
+        value={values.password}
         query="비밀번호"
         pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
         name="성별"

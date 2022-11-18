@@ -1,6 +1,5 @@
-import { RadioInput } from "@styles/indexInput";
+import { RadioInputTemplate, RadioInput } from "@styles/indexInput";
 import { RadioLabelTemplate } from "@styles/indexLabel";
-import { RadioInputTemplate } from "@utils/common/props/userInfo/TotalFormTemplate";
 
 const GyungkiInfoRegion = () => {
   const GyungkiInfoList = [

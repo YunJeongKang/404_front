@@ -14,19 +14,33 @@ const LabelInput: FC<CommonLabelProps> = (props) => {
 };
 
 interface RadioInputInterface {
-  radioInput: any;
+  value: string;
+  name: string;
+  inputID: string;
   labelChild: string;
   htmlFor: string;
+
+  onChange?: (evt: any) => void;
 }
 
 export const RadioLabelTemplate = ({
-  radioInput,
-  labelChild,
+  value,
+  name,
+  inputID,
   htmlFor,
+  labelChild,
+  onChange,
 }: RadioInputInterface) => {
   return (
     <>
-      {radioInput}
+      <input
+        className="hidden"
+        type="radio"
+        value={value}
+        name={name}
+        id={inputID}
+        onChange={onChange}
+      />
       <LabelInput htmlFor={htmlFor}>{labelChild}</LabelInput>
     </>
   );

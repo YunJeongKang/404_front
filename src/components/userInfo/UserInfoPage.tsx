@@ -5,24 +5,47 @@ import Married from "./ClientProfileData/Married";
 import Region from "./ClientProfileData/Region";
 import GyungkiInfoRegion from "./ClientProfileData/region_info/GyungkiInfo";
 import SeoulInfoRegion from "./ClientProfileData/region_info/SeoulInfo";
+import { useState } from "react";
+import H2 from "@styles/indexHeading";
+import PATH from "@utils/routes/PATH";
+import axios from "axios";
+
+const { UI, URL } = PATH;
 
 const UserInfoPage = () => {
+  const [info, setInfo] = useState<any>({
+    gender: "",
+    birth: "",
+    region: "",
+    gyungkiInfo: "",
+    seoulInfo: "",
+    married: "",
+  });
+
+  function onSubmit(evt: any) {
+    const { value, name } = evt.target.contact;
+    setInfo({
+      ...info,
+      [name]: value,
+    });
+    axios.post(`${URL}${UI}`, { ...info });
+    console.log({ ...info });
+  }
+
   return (
-    <UserInfoForm>
-      <h1 className="text-3xl font-bold bg-cyan-200 inline-block">성별</h1>
+    <UserInfoForm onSubmit={onSubmit}>
+      <H2>성별</H2>
       <Gender />
-      <h1 className="text-3xl font-bold bg-cyan-200 inline-block">생년월일</h1>
+      <H2>생년월일</H2>
       <Age />
-      <h1 className="text-3xl font-bold bg-cyan-200 inline-block">지역</h1>
+      <H2>지역</H2>
       <Region />
       <>
-        <h1 className="text-3xl font-bold bg-cyan-200 inline-block">
-          지역상세
-        </h1>
+        <H2>지역상세</H2>
         <SeoulInfoRegion />
         <GyungkiInfoRegion />
       </>
-      <h1 className="text-3xl font-bold bg-cyan-200 inline-block">결혼유무</h1>
+      <H2>결혼유무</H2>
       <Married />
       <button
         type="submit"

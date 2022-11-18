@@ -1,4 +1,4 @@
-import { RadioInputTemplate, RadioInput } from "@styles/indexInput";
+import { RadioInputTemplate } from "@styles/indexInput";
 import { RadioLabelTemplate } from "@styles/indexLabel";
 
 const GyungkiInfoRegion = () => {
@@ -50,22 +50,17 @@ const GyungkiInfoRegion = () => {
   return (
     <section>
       <RadioInputTemplate
-        query="경기도 지역 상세"
+        query="경기도 상세지역을 선택하세요"
         RadioLabelTemplate={
           <>
             {GyungkiInfoList.map(({ htmlFor, labelName, value }) => (
               <RadioLabelTemplate
                 key={htmlFor}
+                inputID={htmlFor}
+                name="gyungkiInfo"
+                value={value}
                 labelChild={labelName}
                 htmlFor={htmlFor}
-                radioInput={
-                  <RadioInput
-                    key={value}
-                    name="경기지역상세"
-                    value={value}
-                    inputID={htmlFor}
-                  />
-                }
               />
             ))}
           </>

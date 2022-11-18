@@ -1,4 +1,4 @@
-import { RadioInputTemplate, RadioInput } from "@styles/indexInput";
+import { RadioInputTemplate } from "@styles/indexInput";
 import { RadioLabelTemplate } from "@styles/indexLabel";
 
 const Gender = () => {
@@ -15,16 +15,11 @@ const Gender = () => {
             {genderList.map(({ htmlFor, labelName, value }) => (
               <RadioLabelTemplate
                 key={htmlFor}
+                inputID={htmlFor}
+                name="gender"
+                value={value}
                 labelChild={labelName}
                 htmlFor={htmlFor}
-                radioInput={
-                  <RadioInput
-                    key={value}
-                    name="성별"
-                    value={value}
-                    inputID={htmlFor}
-                  />
-                }
               />
             ))}
           </>

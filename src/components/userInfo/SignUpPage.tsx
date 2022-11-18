@@ -1,7 +1,7 @@
 import UserInfoForm from "@styles/indexForm";
 import { TextInputTemplate } from "@utils/common/props/userInfo/TotalFormTemplate";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PATH from "@utils/routes/PATH";
 
 const SignInPage = () => {
@@ -21,9 +21,7 @@ const SignInPage = () => {
     });
   };
 
-  const { URL, SIGNIN } = PATH;
-
-  useEffect;
+  const { URL, SIGNUP: SIGNIN } = PATH;
 
   function onSubmit() {
     axios.post(`${URL}${SIGNIN}`, { ...values });
@@ -44,9 +42,9 @@ const SignInPage = () => {
         onChange={onChange}
         value={values.nickName}
         query="닉네임"
-        pattern="[ㄱ-ㅎ가-힣A-Za-z0-9]{3,8}$"
+        pattern="[가-힣A-Za-z0-9]{3,8}$"
         name="nickname"
-        dangerText="3~8자의 닉네임을 입력하세요"
+        dangerText="3~8자의 올바른 닉네임을 입력하세요(자모음소X)"
         placeholder="닉네임을 입력하세요"
       />
       <TextInputTemplate

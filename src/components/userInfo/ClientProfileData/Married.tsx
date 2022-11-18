@@ -1,4 +1,4 @@
-import { RadioInputTemplate, RadioInput } from "@styles/indexInput";
+import { RadioInputTemplate } from "@styles/indexInput";
 import { RadioLabelTemplate } from "@styles/indexLabel";
 
 const Married = () => {
@@ -15,16 +15,11 @@ const Married = () => {
             {marriedList.map(({ htmlFor, labelName, value }) => (
               <RadioLabelTemplate
                 key={htmlFor}
+                inputID={htmlFor}
+                name="married"
+                value={value}
                 labelChild={labelName}
                 htmlFor={htmlFor}
-                radioInput={
-                  <RadioInput
-                    key={value}
-                    name="결혼유무"
-                    value={value}
-                    inputID={htmlFor}
-                  />
-                }
               />
             ))}
           </>

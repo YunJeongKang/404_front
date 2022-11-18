@@ -17,21 +17,3 @@ export const RadioInputTemplate = ({
     </>
   );
 };
-
-interface RadioInputInterface {
-  value: string;
-  name: string;
-  inputID: string;
-}
-
-export const RadioInput = ({ value, name, inputID }: RadioInputInterface) => {
-  return (
-    <input
-      className="hidden"
-      type="radio"
-      value={value}
-      name={name}
-      id={inputID}
-    />
-  );
-};

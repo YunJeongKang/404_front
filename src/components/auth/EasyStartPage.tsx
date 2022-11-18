@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const EasyStartPage = () => {
   // const KAKAO_CODE = new URL(document.location).searchParams.get("code");
-  const { LOGIN, SIGNIN } = PATH;
+  const { LOGIN, SIGNUP: SIGNIN } = PATH;
   return (
     <div className="flex flex-col items-center gap-2">
       <KakaoAPI />

@@ -5,7 +5,7 @@ const PATH = {
   UI: "/ui",
   LOGIN: "/login",
   EASY_AUTH: "/login/easy_auth",
-  SIGNIN: "/login/easy_auth/signin",
+  SIGNIN: "/login/easy-auth/signin",
   USER: "/input_info",
 };
 

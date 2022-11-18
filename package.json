@@ -1,10 +1,10 @@
 {
   "name": "frontend-vite-tsx",
   "private": true,
-  "version": "0.0.0",
   "proxy": "http://localhost:8000",
+  "version": "0.0.0",
   "scripts": {
-    "dev": "vite --host 0.0.0.0 --port 3050",
+    "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },

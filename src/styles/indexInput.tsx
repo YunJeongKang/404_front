@@ -1,4 +1,4 @@
-interface RadioInputInterface {
+interface RadioInputTemplateInterface {
   query: string;
   RadioLabelTemplate: any;
 }
@@ -6,7 +6,7 @@ interface RadioInputInterface {
 export const RadioInputTemplate = ({
   query,
   RadioLabelTemplate,
-}: RadioInputInterface) => {
+}: RadioInputTemplateInterface) => {
   return (
     <>
       <fieldset className="flex flex-wrap flex-raw justify-start items-center gap-2 p-[3px]">

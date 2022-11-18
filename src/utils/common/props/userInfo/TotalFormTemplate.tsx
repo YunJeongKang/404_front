@@ -33,6 +33,7 @@ export const TextInputTemplate = ({
           placeholder={placeholder}
           required
           onChange={onChange}
+          autoComplete="true"
         />
         <span className="hidden peer-invalid:block">
           <span className="text-danger text-sm">

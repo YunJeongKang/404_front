@@ -19,8 +19,9 @@ interface RadioInputInterface {
   inputID: string;
   labelChild: string;
   htmlFor: string;
+  checked: boolean;
 
-  onChange?: (evt: any) => void;
+  onChange: (evt: any) => void;
 }
 
 export const RadioLabelTemplate = ({
@@ -30,6 +31,7 @@ export const RadioLabelTemplate = ({
   htmlFor,
   labelChild,
   onChange,
+  checked,
 }: RadioInputInterface) => {
   return (
     <>
@@ -40,6 +42,7 @@ export const RadioLabelTemplate = ({
         name={name}
         id={inputID}
         onChange={onChange}
+        checked={checked}
       />
       <LabelInput htmlFor={htmlFor}>{labelChild}</LabelInput>
     </>

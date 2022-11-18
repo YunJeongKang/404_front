@@ -22,12 +22,15 @@ const UserInfoPage = () => {
     married: "",
   });
 
-  function onSubmit(evt: any) {
-    const { value, name } = evt.target.contact;
+  const onChange = (evt: any) => {
+    const { value, name } = evt.target;
     setInfo({
       ...info,
       [name]: value,
     });
+  };
+
+  function onSubmit() {
     axios.post(`${URL}${UI}`, { ...info });
     console.log({ ...info });
   }
@@ -35,9 +38,9 @@ const UserInfoPage = () => {
   return (
     <UserInfoForm onSubmit={onSubmit}>
       <H2>성별</H2>
-      <Gender />
+      <Gender onChange={onChange} />
       <H2>생년월일</H2>
-      <Age />
+      <Age onChange={onChange} value={info.birth} />
       <H2>지역</H2>
       <Region />
       <>

@@ -26,8 +26,6 @@ function App() {
     setCurrentRoutes(currentRoutes);
   }, [auth.isAuthenticated]);
 
-  console.log(WebSocket);
-
   return (
     <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide">
       <div className="h-screen w-[28rem] z-10 scrollbar-hide">

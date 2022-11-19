@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide">
-      <div className="h-screen w-[28rem] z-10 scrollbar-hide">
+      <div className="h-screen max-w-[28rem] z-10 scrollbar-hide">
         <header>
           <nav className="flex flex-row justify-center gap-4 py-2">
             <Link to={HOME}>홈</Link>

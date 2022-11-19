@@ -13,7 +13,7 @@ const SignInPage = () => {
     },
   ]);
 
-  const onChange = (evt: any) => {
+  const onChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     const { value, name } = evt.target;
     setValues({
       ...values,

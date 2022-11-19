@@ -44,7 +44,9 @@ export const RadioLabelTemplate = ({
         onChange={onChange}
         checked={checked}
       />
-      <LabelInput htmlFor={htmlFor}>{labelChild}</LabelInput>
+      <LabelInput htmlFor={htmlFor}>
+        <>{labelChild}</>
+      </LabelInput>
     </>
   );
 };

@@ -9,4 +9,6 @@ const PATH = {
   USER: "/input_info",
 };
 
+Object.freeze(PATH);
+
 export default PATH;

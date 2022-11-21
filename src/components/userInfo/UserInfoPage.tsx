@@ -12,8 +12,8 @@ import { seoulList } from "@data/region_info/seoul";
 import { gyungkiList } from "@data/region_info/gyungki";
 import { marriedList } from "@data/main_info/married";
 import {
-  mainInfoInterface,
-  regionInfoInterface,
+  MainInfoInterface,
+  RegionInfoInterface,
 } from "@models/user/UserDetail";
 import { SelectInput, SelectInputTypeProto } from "@styles/indexSelect";
 import { OptionInput } from "@styles/indexOption";
@@ -23,7 +23,7 @@ const { UI, URL } = PATH;
 
 const UserInfoPage = () => {
   // 메인 프로파일 데이터
-  const [mainInfo, setMainInfo] = useState<mainInfoInterface>({
+  const [mainInfo, setMainInfo] = useState<MainInfoInterface>({
     gender: "",
     birth: "",
     region: "",
@@ -32,7 +32,7 @@ const UserInfoPage = () => {
   });
 
   // 지역 상세 데이터
-  const [regionInfo, setRegionInfo] = useState<regionInfoInterface>({
+  const [regionInfo, setRegionInfo] = useState<RegionInfoInterface>({
     region_kangwon: "",
     region_gyungki: "",
     region_gyungnam: "",

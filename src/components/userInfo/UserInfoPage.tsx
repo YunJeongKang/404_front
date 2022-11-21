@@ -11,14 +11,23 @@ import { regionList } from "@data/main_info/region";
 import { seoulList } from "@data/region_info/seoul";
 import { gyungkiList } from "@data/region_info/gyungki";
 import { marriedList } from "@data/main_info/married";
+import {
+  mainInfoInterface,
+  regionInfoInterface,
+} from "@models/user/UserDetail";
 
 const { UI, URL } = PATH;
 
 const UserInfoPage = () => {
-  const [info, setInfo] = useState<any>({
+  const [mainInfo, setMainInfo] = useState<mainInfoInterface>({
     gender: "",
     birth: "",
     region: "",
+    married: "",
+    sisBro: "",
+  });
+
+  const [regionInfo, setRegionInfo] = useState<regionInfoInterface>({
     kangwon: "",
     gyungki: "",
     gyungnam: "",
@@ -37,21 +46,29 @@ const UserInfoPage = () => {
     chungnam: "",
     chungbuk: "",
     foreign: "",
-    married: "",
-    sisBro: "",
   });
 
-  const onChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
+  const mainInfoChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     const { value, name } = evt.target;
-    setInfo({
-      ...info,
+    setMainInfo({
+      ...mainInfo,
+      [name]: value,
+    });
+  };
+
+  const regionInfoChange: React.ChangeEventHandler<HTMLInputElement> = (
+    evt
+  ) => {
+    const { value, name } = evt.target;
+    setRegionInfo({
+      ...regionInfo,
       [name]: value,
     });
   };
 
   function onSubmit() {
-    axios.post(`${URL}${UI}`, { ...info });
-    console.log({ ...info });
+    axios.post(`${URL}${UI}`, { ...mainInfo, ...regionInfo });
+    console.log({ ...mainInfo, ...regionInfo });
   }
 
   return (
@@ -63,8 +80,8 @@ const UserInfoPage = () => {
           <>
             {genderList.map(({ htmlFor, labelName, value }) => (
               <RadioLabelTemplate
-                checked={value === info.gender}
-                onChange={onChange}
+                checked={value === mainInfo.gender}
+                onChange={mainInfoChange}
                 key={htmlFor}
                 inputID={htmlFor}
                 name="gender"
@@ -77,7 +94,7 @@ const UserInfoPage = () => {
         }
       />
       <H2>생년월일</H2>
-      <Age onChange={onChange} value={info.birth} />
+      <Age onChange={mainInfoChange} value={mainInfo.birth} />
       <H2>지역</H2>
       <RadioInputTemplate
         query="지역을 선택 하세요"
@@ -85,8 +102,8 @@ const UserInfoPage = () => {
           <>
             {regionList.map(({ htmlFor, labelName, value }) => (
               <RadioLabelTemplate
-                checked={value === info.region}
-                onChange={onChange}
+                checked={value === mainInfo.region}
+                onChange={mainInfoChange}
                 key={htmlFor}
                 inputID={htmlFor}
                 name="region"
@@ -107,11 +124,11 @@ const UserInfoPage = () => {
             <>
               {seoulList.map(({ htmlFor, labelName, value }) => (
                 <RadioLabelTemplate
-                  checked={value === info.seoulInfo}
-                  onChange={onChange}
+                  checked={value === regionInfo.seoul}
+                  onChange={regionInfoChange}
                   key={htmlFor}
                   inputID={htmlFor}
-                  name="seoulInfo"
+                  name="seoul"
                   value={value}
                   labelChild={labelName}
                   htmlFor={htmlFor}
@@ -127,11 +144,11 @@ const UserInfoPage = () => {
             <>
               {gyungkiList.map(({ htmlFor, labelName, value }) => (
                 <RadioLabelTemplate
-                  checked={value === info.gyungkiInfo}
-                  onChange={onChange}
+                  checked={value === regionInfo.gyungki}
+                  onChange={regionInfoChange}
                   key={htmlFor}
                   inputID={htmlFor}
-                  name="gyungkiInfo"
+                  name="gyungki"
                   value={value}
                   labelChild={labelName}
                   htmlFor={htmlFor}
@@ -148,8 +165,8 @@ const UserInfoPage = () => {
           <>
             {marriedList.map(({ htmlFor, labelName, value }) => (
               <RadioLabelTemplate
-                checked={value === info.married}
-                onChange={onChange}
+                checked={value === mainInfo.married}
+                onChange={mainInfoChange}
                 key={htmlFor}
                 inputID={htmlFor}
                 name="married"

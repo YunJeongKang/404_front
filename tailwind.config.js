@@ -61,6 +61,7 @@ module.exports = {
         mainShadow: "#fafafa",
         //Kakao btn
         kakao: "#ffff00",
+        facebook: "#3D5AFE",
         ...defaultColors,
       },
     },

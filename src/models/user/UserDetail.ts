@@ -24,5 +24,5 @@ export interface regionInfoInterface {
   jeju: string;
   chungnam: string;
   chungbuk: string;
-  foreign: string;
+  global: string;
 }

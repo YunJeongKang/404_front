@@ -1,4 +1,10 @@
-export interface mainInfoInterface {
+export interface AuthInterface {
+  nickName: string;
+  email: string;
+  password: string;
+}
+
+export interface MainInfoInterface {
   gender: string;
   birth: string;
   married: string;
@@ -6,7 +12,7 @@ export interface mainInfoInterface {
   region: string;
 }
 
-export interface regionInfoInterface {
+export interface RegionInfoInterface {
   region_kangwon: string;
   region_gyungki: string;
   region_gyungnam: string;

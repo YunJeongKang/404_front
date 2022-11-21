@@ -3,15 +3,14 @@ import { TextInputTemplate } from "@utils/common/props/userInfo/TotalFormTemplat
 import axios from "axios";
 import { useState } from "react";
 import PATH from "@utils/routes/PATH";
+import { AuthInterface } from "@models/user/UserDetail";
 
 const SignInPage = () => {
-  const [values, setValues] = useState<any>([
-    {
-      nickName: "",
-      email: "",
-      password: "",
-    },
-  ]);
+  const [values, setValues] = useState<AuthInterface>({
+    nickName: "",
+    email: "",
+    password: "",
+  });
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     const { value, name } = evt.target;
@@ -20,6 +19,8 @@ const SignInPage = () => {
       [name]: value,
     });
   };
+
+  const [checkPW, setCheckPW] = useState<string>("");
 
   const { URL, SIGNUP: SIGNIN } = PATH;
 
@@ -65,6 +66,18 @@ const SignInPage = () => {
         type="password"
         dangerText="숫자, 영문, 특수문자를 각 1개 이상 포함한 8자리 이상의 비밀번호를 입력하세요"
         placeholder="비밀번호를 입력하세요"
+      />
+      <TextInputTemplate
+        onChange={(evt) => {
+          setCheckPW(evt.target.value);
+        }}
+        value={checkPW || ""}
+        query="비밀번호 확인"
+        pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
+        name="password"
+        type="password"
+        dangerText="앞의 비밀번호와 동일한 비밀번호를 입력하세요"
+        placeholder="비밀번호 재입력"
       />
       <button
         type="submit"

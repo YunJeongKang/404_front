@@ -3,14 +3,27 @@ import useAuth from "@store/useAuth";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import PATH from "@utils/routes/PATH";
+import axios from "axios";
 
-const { EASY_AUTH } = PATH;
+const { EASY_AUTH, URL, LOGIN } = PATH;
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
   const { username, password, setUserName, setPassword, login } = auth;
+  const [loginInfo, setLoginInfo] = useState({
+    email: "",
+    password: "",
+  });
+  const onChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
+    const { name, value } = evt.target;
+    name === "email" ? setUserName(value) : setPassword(value);
+    setLoginInfo({
+      ...loginInfo,
+      [name]: value,
+    });
+  };
 
   useEffect(() => {
     if (usernameRef.current === null) {
@@ -28,33 +41,30 @@ function LoginPage() {
           className="flex flex-col gap-y-2 "
           onSubmit={(evt) => {
             evt.preventDefault();
+            axios.post(`${URL}${LOGIN}`, { ...loginInfo });
+            console.log({ ...loginInfo });
             login();
           }}
         >
           <fieldset className="flex justify-between gap-2">
             <span>ID</span>
             <input
-              name="username"
-              value={username}
+              name="email"
+              value={loginInfo.email}
               ref={usernameRef}
               autoComplete="on"
               className="w-4/5 border px-2 py-1 rounded-md"
-              onChange={(evt) => {
-                setUserName(evt.target.value);
-              }}
+              onChange={onChange}
             />
           </fieldset>
           <fieldset className="relative flex justify-between gap-2">
             <span>PW</span>
             <input
-              value={password}
-              autoComplete="on"
+              value={loginInfo.password}
               type={showPassword ? "text" : "password"}
               name="password"
               className="w-4/5 border px-2 py-1 rounded-md"
-              onChange={(evt) => {
-                setPassword(evt.target.value);
-              }}
+              onChange={onChange}
             />
             <div
               onClick={(evt) => evt.preventDefault()}
@@ -66,11 +76,12 @@ function LoginPage() {
             </div>
           </fieldset>
           <div className="flex flex-col">
-            <input
-              value="LOGIN"
+            <button
               type="submit"
               className="border bg-primary text-main-contra font-bold rounded-md duration-150 active:scale-95 px-2 py-1"
-            />
+            >
+              LOGIN
+            </button>
           </div>
         </form>
         <div className="py-2">

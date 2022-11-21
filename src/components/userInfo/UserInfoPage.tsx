@@ -45,7 +45,7 @@ const UserInfoPage = () => {
     jeju: "",
     chungnam: "",
     chungbuk: "",
-    foreign: "",
+    global: "",
   });
 
   const mainInfoChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {

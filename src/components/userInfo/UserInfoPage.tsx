@@ -39,7 +39,6 @@ const UserInfoPage = () => {
     foreign: "",
     married: "",
     sisBro: "",
-    none: null,
   });
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {

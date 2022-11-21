@@ -7,6 +7,8 @@ export type CommonFormProps = Omit<Props<HTMLFormElement>, "classID">;
 export type CommonAnchorProps = Omit<Props<HTMLAnchorElement>, "classID">;
 export type CommonParagraphProps = Omit<Props<HTMLParagraphElement>, "classID">;
 export type CommonHeadingProps = Omit<Props<HTMLHeadingElement>, "classID">;
+export type CommonSelectProps = Omit<Props<HTMLSelectElement>, "classID">;
+export type CommonOptionProps = Omit<Props<HTMLOptionElement>, "classID">;
 
 export type CommonButtonProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,

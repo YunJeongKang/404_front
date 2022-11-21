@@ -1,24 +1,24 @@
-import { CPType } from "@models/CPType";
+import { SelectType } from "@models/CPType";
 
-export const regionList: CPType[] = [
-  { labelName: "강원도", htmlFor: "kangwon", value: "a" },
-  { labelName: "경기도", htmlFor: "gyungki", value: "b" },
-  { labelName: "경상남도", htmlFor: "gyungnam", value: "c" },
-  { labelName: "경상북도", htmlFor: "gyungbuk", value: "d" },
-  { labelName: "광주", htmlFor: "gwangju", value: "e" },
-  { labelName: "대구", htmlFor: "daegu", value: "f" },
-  { labelName: "대전", htmlFor: "daejeon", value: "g" },
-  { labelName: "부산", htmlFor: "busan", value: "h" },
-  { labelName: "서울", htmlFor: "seoul", value: "i" },
-  { labelName: "세종", htmlFor: "sejong", value: "z" },
-  { labelName: "울산", htmlFor: "ulsan", value: "j" },
-  { labelName: "인천", htmlFor: "incheon", value: "k" },
-  { labelName: "전라남도", htmlFor: "jeonnam", value: "l" },
-  { labelName: "전라북도", htmlFor: "jeonbuk", value: "n" },
-  { labelName: "제주도", htmlFor: "jeju", value: "m" },
-  { labelName: "충청남도", htmlFor: "chungnam", value: "o" },
-  { labelName: "충청북도", htmlFor: "chungbuk", value: "p" },
-  { labelName: "해외", htmlFor: "foreign", value: "q" },
+export const regionList: SelectType[] = [
+  { regionInfoName: "강원도", value: "a" },
+  { regionInfoName: "경기도", value: "b" },
+  { regionInfoName: "경상남도", value: "c" },
+  { regionInfoName: "경상북도", value: "d" },
+  { regionInfoName: "광주", value: "e" },
+  { regionInfoName: "대구", value: "f" },
+  { regionInfoName: "대전", value: "g" },
+  { regionInfoName: "부산", value: "h" },
+  { regionInfoName: "서울", value: "i" },
+  { regionInfoName: "세종", value: "z" },
+  { regionInfoName: "울산", value: "j" },
+  { regionInfoName: "인천", value: "k" },
+  { regionInfoName: "전라남도", value: "l" },
+  { regionInfoName: "전라북도", value: "n" },
+  { regionInfoName: "제주도", value: "m" },
+  { regionInfoName: "충청남도", value: "o" },
+  { regionInfoName: "충청북도", value: "p" },
+  { regionInfoName: "해외", value: "q" },
 ];
 
 // 내용을 한 단계 depth 동결 시키는 것 -> 불변성 조금 보장 -> value 바뀔 수 있음.

@@ -1,12 +1,12 @@
-import { CPType } from "@models/CPType";
+import { SelectType } from "@models/CPType";
 
-export const gwangjuList: CPType[] = [
-  { labelName: "광산구", htmlFor: "gwangsan", value: "e01" },
-  { labelName: "남구", htmlFor: "gj-namgu", value: "e02" },
-  { labelName: "동구", htmlFor: "gj-donggu", value: "e03" },
-  { labelName: "북구", htmlFor: "gj-bukgu", value: "e04" },
-  { labelName: "서구", htmlFor: "gj-seogu", value: "e05" },
-  { labelName: "기타", htmlFor: "other", value: "e00" },
+export const gwangjuList: SelectType[] = [
+  { regionInfoName: "광산구", value: "e01" },
+  { regionInfoName: "남구", value: "e02" },
+  { regionInfoName: "동구", value: "e03" },
+  { regionInfoName: "북구", value: "e04" },
+  { regionInfoName: "서구", value: "e05" },
+  { regionInfoName: "기타", value: "e00" },
 ];
 
 Object.freeze(gwangjuList);

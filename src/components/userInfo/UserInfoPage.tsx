@@ -15,10 +15,14 @@ import {
   mainInfoInterface,
   regionInfoInterface,
 } from "@models/user/UserDetail";
+import { SelectInput, SelectInputTypeProto } from "@styles/indexSelect";
+import { OptionInput } from "@styles/indexOption";
+import { kangwonList } from "@data/region_info/kangwon";
 
 const { UI, URL } = PATH;
 
 const UserInfoPage = () => {
+  // 메인 프로파일 데이터
   const [mainInfo, setMainInfo] = useState<mainInfoInterface>({
     gender: "",
     birth: "",
@@ -27,25 +31,26 @@ const UserInfoPage = () => {
     sisBro: "",
   });
 
+  // 지역 상세 데이터
   const [regionInfo, setRegionInfo] = useState<regionInfoInterface>({
-    kangwon: "",
-    gyungki: "",
-    gyungnam: "",
-    gyungbuk: "",
-    gwangju: "",
-    daegu: "",
-    daejeon: "",
-    busan: "",
-    seoul: "",
-    sejong: "",
-    ulsan: "",
-    incheon: "",
-    jeonnam: "",
-    jeonbuk: "",
-    jeju: "",
-    chungnam: "",
-    chungbuk: "",
-    global: "",
+    region_kangwon: "",
+    region_gyungki: "",
+    region_gyungnam: "",
+    region_gyungbuk: "",
+    region_gwangju: "",
+    region_daegu: "",
+    region_daejeon: "",
+    region_busan: "",
+    region_seoul: "",
+    region_sejong: "",
+    region_ulsan: "",
+    region_incheon: "",
+    region_jeonnam: "",
+    region_jeonbuk: "",
+    region_jeju: "",
+    region_chungnam: "",
+    region_chungbuk: "",
+    region_global: "",
   });
 
   const mainInfoChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -67,7 +72,10 @@ const UserInfoPage = () => {
   };
 
   function onSubmit() {
-    axios.post(`${URL}${UI}`, { ...mainInfo, ...regionInfo });
+    axios.post(`${URL}${UI}`, {
+      ...mainInfo,
+      ...regionInfo,
+    });
     console.log({ ...mainInfo, ...regionInfo });
   }
 
@@ -96,67 +104,67 @@ const UserInfoPage = () => {
       <H2>생년월일</H2>
       <Age onChange={mainInfoChange} value={mainInfo.birth} />
       <H2>지역</H2>
-      <RadioInputTemplate
-        query="지역을 선택 하세요"
-        RadioLabelTemplate={
-          <>
-            {regionList.map(({ htmlFor, labelName, value }) => (
-              <RadioLabelTemplate
-                checked={value === mainInfo.region}
-                onChange={mainInfoChange}
-                key={htmlFor}
-                inputID={htmlFor}
-                name="region"
-                value={value}
-                labelChild={labelName}
-                htmlFor={htmlFor}
-              />
-            ))}
-          </>
-        }
-      />
+      <>
+        <SelectInput
+          labelQuery="지역을 선택하세요"
+          name="region"
+          value={mainInfo.region}
+          onChange={mainInfoChange}
+        >
+          {regionList.map(({ value, regionInfoName }) => (
+            <OptionInput value={value} key={value}>
+              {regionInfoName}
+            </OptionInput>
+          ))}
+        </SelectInput>
+      </>
       <article>
         <H2>지역상세</H2>
         {/* 서울 */}
-        <RadioInputTemplate
-          query="서울 상세지역을 선택하세요"
-          RadioLabelTemplate={
-            <>
-              {seoulList.map(({ htmlFor, labelName, value }) => (
-                <RadioLabelTemplate
-                  checked={value === regionInfo.seoul}
-                  onChange={regionInfoChange}
-                  key={htmlFor}
-                  inputID={htmlFor}
-                  name="seoul"
-                  value={value}
-                  labelChild={labelName}
-                  htmlFor={htmlFor}
-                />
-              ))}
-            </>
-          }
-        />
+        <>
+          <SelectInput
+            labelQuery="서울 상세지역을 선택하세요"
+            name="region_seoul"
+            value={regionInfo.region_seoul}
+            onChange={regionInfoChange}
+          >
+            {seoulList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
         {/* 경기 */}
-        <RadioInputTemplate
-          query="경기도 상세지역을 선택하세요"
-          RadioLabelTemplate={
-            <>
-              {gyungkiList.map(({ htmlFor, labelName, value }) => (
-                <RadioLabelTemplate
-                  checked={value === regionInfo.gyungki}
-                  onChange={regionInfoChange}
-                  key={htmlFor}
-                  inputID={htmlFor}
-                  name="gyungki"
-                  value={value}
-                  labelChild={labelName}
-                  htmlFor={htmlFor}
-                />
-              ))}
-            </>
-          }
-        />
+        <>
+          <SelectInput
+            labelQuery="경기 상세지역을 선택하세요"
+            name="region_gyungki"
+            value={regionInfo.region_gyungki}
+            onChange={regionInfoChange}
+          >
+            {gyungkiList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 강원 */}
+        <>
+          <SelectInput
+            labelQuery="강원 상세지역을 선택하세요"
+            name="region_kangwon"
+            value={regionInfo.region_kangwon}
+            onChange={regionInfoChange}
+          >
+            {kangwonList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
       </article>
       <H2>결혼유무</H2>
       <RadioInputTemplate

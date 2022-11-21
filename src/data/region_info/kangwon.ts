@@ -1,25 +1,25 @@
-import { CPType } from "@models/CPType";
+import { SelectType } from "@models/CPType";
 
-export const kangwonList: CPType[] = [
-  { labelName: "강릉시", htmlFor: "kangreung", value: "a01" },
-  { labelName: "고성군", htmlFor: "gosung", value: "a02" },
-  { labelName: "동해시", htmlFor: "donghae", value: "a03" },
-  { labelName: "삼척시", htmlFor: "samcheok", value: "a04" },
-  { labelName: "속초시", htmlFor: "sokcho", value: "a05" },
-  { labelName: "양구군", htmlFor: "yanggu", value: "a06" },
-  { labelName: "양양군", htmlFor: "yangyang", value: "a07" },
-  { labelName: "영월군", htmlFor: "youngwol", value: "a08" },
-  { labelName: "원주시", htmlFor: "wonju", value: "a09" },
-  { labelName: "인제군", htmlFor: "inje", value: "a10" },
-  { labelName: "정선군", htmlFor: "jeongseon", value: "a11" },
-  { labelName: "철원군", htmlFor: "cheolwon", value: "a12" },
-  { labelName: "춘천시", htmlFor: "chuncheon", value: "a13" },
-  { labelName: "태백시", htmlFor: "taebak", value: "a14" },
-  { labelName: "평창군", htmlFor: "pyeongchang", value: "a15" },
-  { labelName: "홍천군", htmlFor: "hongcheon", value: "a16" },
-  { labelName: "화천군", htmlFor: "hwacheon", value: "a17" },
-  { labelName: "횡성군", htmlFor: "hoengseong", value: "a18" },
-  { labelName: "기타", htmlFor: "other", value: "a00" },
+export const kangwonList: SelectType[] = [
+  { regionInfoName: "강릉시", value: "a01" },
+  { regionInfoName: "고성군", value: "a02" },
+  { regionInfoName: "동해시", value: "a03" },
+  { regionInfoName: "삼척시", value: "a04" },
+  { regionInfoName: "속초시", value: "a05" },
+  { regionInfoName: "양구군", value: "a06" },
+  { regionInfoName: "양양군", value: "a07" },
+  { regionInfoName: "영월군", value: "a08" },
+  { regionInfoName: "원주시", value: "a09" },
+  { regionInfoName: "인제군", value: "a10" },
+  { regionInfoName: "정선군", value: "a11" },
+  { regionInfoName: "철원군", value: "a12" },
+  { regionInfoName: "춘천시", value: "a13" },
+  { regionInfoName: "태백시", value: "a14" },
+  { regionInfoName: "평창군", value: "a15" },
+  { regionInfoName: "홍천군", value: "a16" },
+  { regionInfoName: "화천군", value: "a17" },
+  { regionInfoName: "횡성군", value: "a18" },
+  { regionInfoName: "기타", value: "a00" },
 ];
 
 Object.freeze(kangwonList);

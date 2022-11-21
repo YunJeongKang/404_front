@@ -22,10 +22,10 @@ export const KakaoBtn: FC<CommonButtonProps> = (props) => {
   );
 };
 
-export const GoogleBtn: FC<CommonButtonProps> = (props) => {
+export const FacebookBtn: FC<CommonButtonProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
-    <SigninBtnInterface className={`bg-white ${className}`} {...restProps}>
+    <SigninBtnInterface className={`bg-facebook ${className}`} {...restProps}>
       {children}
     </SigninBtnInterface>
   );

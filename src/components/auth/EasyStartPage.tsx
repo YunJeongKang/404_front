@@ -1,4 +1,5 @@
 import AppleAPI from "@utils/common/props/auth/AppleAPI";
+import FacebookAPI from "@utils/common/props/auth/FacebookAPI";
 import KakaoAPI from "@utils/common/props/auth/KakaoAPI";
 import PATH from "@utils/routes/PATH";
 import { Link } from "react-router-dom";
@@ -9,6 +10,7 @@ const EasyStartPage = () => {
   return (
     <div className="flex flex-col items-center gap-2">
       <KakaoAPI />
+      <FacebookAPI />
       <AppleAPI />
       <div className="flex flex-raw items-center justify-around w-full">
         <Link to={SIGNIN} className="w-[35%]">

@@ -1,0 +1,34 @@
+{
+  "name": "frontend-vite-tsx",
+  "private": true,
+  "proxy": "http://localhost:8000",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.1.3",
+    "react": "^18.0.0",
+    "react-apple-login": "^1.1.6",
+    "react-dom": "^18.0.0",
+    "react-icons": "^4.6.0",
+    "react-router-dom": "^6.4.3",
+    "zustand": "^4.1.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^1.3.0",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.18",
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "tailwindcss": "^3.2.2",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.15"
+  }
+}

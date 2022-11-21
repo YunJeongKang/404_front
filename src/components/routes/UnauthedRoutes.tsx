@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import PATH from "@utils/routes/PATH";
 import LoginPage from "@components/auth/LoginPage";
 import EasyStartPage from "@components/auth/EasyStartPage";
-import SignInPage from "@components/userInfo/SignUpPage";
+import SignInPage from "@components/auth/SignUpPage";
 import UserInfoPage from "@components/userInfo/UserInfoPage";
 
 const { TEST, UI, LOGIN, EASY_AUTH, SIGNUP } = PATH;

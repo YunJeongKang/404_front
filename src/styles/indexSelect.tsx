@@ -17,8 +17,6 @@ interface SelectInputInterface {
   name: string;
   value: string;
   children: any;
-  labelQuery: string;
-  className?: string;
 
   onChange: (evt: any) => void;
 }
@@ -28,21 +26,12 @@ export const SelectInput = ({
   onChange,
   children,
   name,
-  labelQuery,
-  className,
 }: SelectInputInterface) => {
   return (
     <fieldset className="flex flex-raw gap-2">
-      <label>{labelQuery}</label>
-      <SelectInputTypeProto
-        name={name}
-        onChange={onChange}
-        value={value}
-        className={className}
-      >
+      <SelectInputTypeProto name={name} onChange={onChange} value={value}>
         {children}
       </SelectInputTypeProto>
-      <hr className="py-0.5 my-1" />
     </fieldset>
   );
 };

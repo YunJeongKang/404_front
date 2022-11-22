@@ -223,6 +223,22 @@ const UserInfoPage = () => {
           {/* 대구 */}
           {mainInfo.region === "f" ? (
             <SelectInput
+              name="region_daegu"
+              value={regionInfo.region_daegu}
+              onChange={regionInfoChange}
+            >
+              {daeguList.map(({ value, regionInfoName }) => (
+                <OptionInput value={value} key={value}>
+                  {regionInfoName}
+                </OptionInput>
+              ))}
+            </SelectInput>
+          ) : (
+            <></>
+          )}
+          {/* 대전 */}
+          {mainInfo.region === "g" ? (
+            <SelectInput
               name="region_daejeon"
               value={regionInfo.region_daejeon}
               onChange={regionInfoChange}

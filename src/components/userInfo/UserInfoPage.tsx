@@ -48,7 +48,7 @@ const UserInfoPage = () => {
   });
 
   // 지역 상세 데이터
-  const [regionInfo, setRegionInfo] = useState<RegionInfoInterface | any>({
+  const [regionInfo, setRegionInfo] = useState<RegionInfoInterface>({
     region_kangwon: "",
     region_gyungki: "",
     region_gyungnam: "",
@@ -98,11 +98,9 @@ const UserInfoPage = () => {
   }
 
   useEffect(() => {
-    const regionInfo =
-      mainInfo.region === ""
-        ? (mainInfo.region = "i")
-        : (mainInfo.region = "a");
-    setRegionInfo(regionInfo);
+    mainInfo.region === ""
+      ? ((mainInfo.region = "a"), (regionInfo.region_kangwon = "a01"))
+      : (mainInfo.region = "");
   }, []);
 
   const [...props] = regionList.map((value) => mainInfo.region === `${value}`);
@@ -468,7 +466,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       <button
         type="submit"
-        className="border shadow rounded-md px-2.5 py-1 active:scale-95"
+        className="border shadow rounded-md px-2.5 py-1 active:scale-95 "
       >
         제출
       </button>

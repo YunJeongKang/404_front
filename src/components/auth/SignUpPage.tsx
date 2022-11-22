@@ -7,7 +7,7 @@ import { AuthInterface } from "@models/user/UserDetail";
 
 const SignInPage = () => {
   const [values, setValues] = useState<AuthInterface>({
-    nickName: "",
+    nickname: "",
     email: "",
     password: "",
   });
@@ -26,7 +26,7 @@ const SignInPage = () => {
 
   function onSubmit() {
     axios.post(`${URL}${SIGNUP}`, { ...values });
-    console.log({ ...values });
+    console.log({ ...values, checkPW });
   }
 
   return (
@@ -41,7 +41,7 @@ const SignInPage = () => {
     <UserInfoForm className="py-4 px-12 gap-2" onSubmit={onSubmit}>
       <TextInputTemplate
         onChange={onChange}
-        value={values.nickName}
+        value={values.nickname || ""}
         query="닉네임"
         pattern="[가-힣A-Za-z0-9]{3,8}$"
         name="nickname"
@@ -67,6 +67,34 @@ const SignInPage = () => {
         dangerText="숫자, 영문, 특수문자를 각 1개 이상 포함한 8자리 이상의 비밀번호를 입력하세요"
         placeholder="비밀번호를 입력하세요"
       />
+      <fieldset className="flex gap-2 p-[3px]">
+        <span>비밀번호 재입력</span>
+        <div className="flex flex-col items-start gap-1">
+          <input
+            className="border peer dark:text-dark px-1"
+            type="password"
+            value={checkPW}
+            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
+            name="checked-password"
+            placeholder="비밀번호 재입력"
+            required
+            onChange={(evt) => {
+              setCheckPW(evt.target.value);
+              console.log("password", values.password);
+              console.log("checkPW", checkPW);
+            }}
+          />
+          <span className="hidden peer-invalid:block">
+            {values.password === checkPW ? (
+              <></>
+            ) : (
+              <span className="text-danger text-sm">
+                위의 비밀번호를 똑같이 입력하세요
+              </span>
+            )}
+          </span>
+        </div>
+      </fieldset>
       <button
         type="submit"
         className="border px-3 py-1 rounded-md shadow-md duration-150 active:scale-95"

@@ -1,6 +1,6 @@
 import UserInfoForm from "@styles/indexForm";
 import Age from "./ClientProfileData/main_info/Age";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import H2 from "@styles/indexHeading";
 import PATH from "@utils/routes/PATH";
 import axios from "axios";
@@ -48,7 +48,7 @@ const UserInfoPage = () => {
   });
 
   // 지역 상세 데이터
-  const [regionInfo, setRegionInfo] = useState<RegionInfoInterface>({
+  const [regionInfo, setRegionInfo] = useState<RegionInfoInterface | any>({
     region_kangwon: "",
     region_gyungki: "",
     region_gyungnam: "",
@@ -70,7 +70,6 @@ const UserInfoPage = () => {
   });
 
   // 지역 선택에 따라 달라지는 지역상세 컬럼
-  const [selectRegion, setSelectRegion] = useState<React.ReactNode | null>();
 
   const mainInfoChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     const { value, name } = evt.target;
@@ -98,10 +97,19 @@ const UserInfoPage = () => {
     console.log({ ...mainInfo, regionInfo: { ...regionInfo } });
   }
 
+  useEffect(() => {
+    const regionInfo =
+      mainInfo.region === ""
+        ? (mainInfo.region = "i")
+        : (mainInfo.region = "a");
+    setRegionInfo(regionInfo);
+  }, []);
+
   const [...props] = regionList.map((value) => mainInfo.region === `${value}`);
 
   return (
     <UserInfoForm onSubmit={onSubmit}>
+      {/* 성별 */}
       <SectionTemplate>
         <H2>성별</H2>
         <RadioInputTemplate
@@ -123,8 +131,12 @@ const UserInfoPage = () => {
           }
         />
       </SectionTemplate>
-      <H2>생년월일</H2>
-      <Age onChange={mainInfoChange} value={mainInfo.birth} />
+      {/* 생년월일 */}
+      <SectionTemplate>
+        <H2>생년월일</H2>
+        <Age onChange={mainInfoChange} value={mainInfo.birth} />
+      </SectionTemplate>
+      {/* 지역 */}
       <SectionTemplate>
         <H2>지역</H2>
         <>
@@ -432,6 +444,7 @@ const UserInfoPage = () => {
           )}
         </>
       </SectionTemplate>
+      {/* 결혼유무 */}
       <SectionTemplate>
         <H2>결혼유무</H2>
         <RadioInputTemplate

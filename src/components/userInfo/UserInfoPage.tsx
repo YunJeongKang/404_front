@@ -33,6 +33,7 @@ import { globalList } from "@data/region_info/global";
 import { sejongList } from "@data/region_info/sejong";
 import { ulsanList } from "@data/region_info/ulsan";
 import { jejuList } from "@data/region_info/jeju";
+import SectionTemplate from "@styles/indexSection";
 
 const { UI, URL } = PATH;
 
@@ -101,28 +102,30 @@ const UserInfoPage = () => {
 
   return (
     <UserInfoForm onSubmit={onSubmit}>
-      <H2>성별</H2>
-      <RadioInputTemplate
-        RadioLabelTemplate={
-          <>
-            {genderList.map(({ htmlFor, labelName, value }) => (
-              <RadioLabelTemplate
-                checked={value === mainInfo.gender}
-                onChange={mainInfoChange}
-                key={htmlFor}
-                inputID={htmlFor}
-                name="gender"
-                value={value}
-                labelChild={labelName}
-                htmlFor={htmlFor}
-              />
-            ))}
-          </>
-        }
-      />
+      <SectionTemplate>
+        <H2>성별</H2>
+        <RadioInputTemplate
+          RadioLabelTemplate={
+            <>
+              {genderList.map(({ htmlFor, labelName, value }) => (
+                <RadioLabelTemplate
+                  checked={value === mainInfo.gender}
+                  onChange={mainInfoChange}
+                  key={htmlFor}
+                  inputID={htmlFor}
+                  name="gender"
+                  value={value}
+                  labelChild={labelName}
+                  htmlFor={htmlFor}
+                />
+              ))}
+            </>
+          }
+        />
+      </SectionTemplate>
       <H2>생년월일</H2>
       <Age onChange={mainInfoChange} value={mainInfo.birth} />
-      <section className="flex flex-raw items-center w-[445px] gap-2">
+      <SectionTemplate>
         <H2>지역</H2>
         <>
           <SelectInput
@@ -428,27 +431,28 @@ const UserInfoPage = () => {
             <></>
           )}
         </>
-      </section>
-      <hr className="py-0.5 my-1" />
-      <H2>결혼유무</H2>
-      <RadioInputTemplate
-        RadioLabelTemplate={
-          <>
-            {marriedList.map(({ htmlFor, labelName, value }) => (
-              <RadioLabelTemplate
-                checked={value === mainInfo.married}
-                onChange={mainInfoChange}
-                key={htmlFor}
-                inputID={htmlFor}
-                name="married"
-                value={value}
-                labelChild={labelName}
-                htmlFor={htmlFor}
-              />
-            ))}
-          </>
-        }
-      />
+      </SectionTemplate>
+      <SectionTemplate>
+        <H2>결혼유무</H2>
+        <RadioInputTemplate
+          RadioLabelTemplate={
+            <>
+              {marriedList.map(({ htmlFor, labelName, value }) => (
+                <RadioLabelTemplate
+                  checked={value === mainInfo.married}
+                  onChange={mainInfoChange}
+                  key={htmlFor}
+                  inputID={htmlFor}
+                  name="married"
+                  value={value}
+                  labelChild={labelName}
+                  htmlFor={htmlFor}
+                />
+              ))}
+            </>
+          }
+        />
+      </SectionTemplate>
       <button
         type="submit"
         className="border shadow rounded-md px-2.5 py-1 active:scale-95"

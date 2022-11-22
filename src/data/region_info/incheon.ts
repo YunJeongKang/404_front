@@ -1,6 +1,6 @@
-import { SelectType } from "@models/CPType";
+import { RegionSelectType } from "@models/CPType";
 
-export const incheonList: SelectType[] = [
+export const incheonList: RegionSelectType[] = [
   { regionInfoName: "강화군", value: "k01" },
   { regionInfoName: "계양구", value: "k02" },
   { regionInfoName: "미추홀구", value: "k03" },

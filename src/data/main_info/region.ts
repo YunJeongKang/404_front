@@ -1,6 +1,6 @@
-import { SelectType } from "@models/CPType";
+import { RegionSelectType } from "@models/CPType";
 
-export const regionList: SelectType[] = [
+export const regionList: RegionSelectType[] = [
   { regionInfoName: "강원도", value: "a" },
   { regionInfoName: "경기도", value: "b" },
   { regionInfoName: "경상남도", value: "c" },

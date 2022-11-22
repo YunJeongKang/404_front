@@ -4,7 +4,11 @@ export interface RadioType {
   value: string;
 }
 
-export interface SelectType {
+export interface RegionSelectType {
   regionInfoName: string;
   value: string;
+}
+
+export interface JobSelectType {
+  jobName: string;
 }

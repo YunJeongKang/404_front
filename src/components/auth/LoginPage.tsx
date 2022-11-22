@@ -11,7 +11,7 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
-  const { username, password, setUserName, setPassword, login } = auth;
+  const { setUserName, setPassword, login } = auth;
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",

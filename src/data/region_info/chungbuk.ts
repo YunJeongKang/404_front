@@ -1,6 +1,6 @@
-import { SelectType } from "@models/CPType";
+import { RegionSelectType } from "@models/CPType";
 
-export const chungbukList: SelectType[] = [
+export const chungbukList: RegionSelectType[] = [
   { regionInfoName: "괴산군", value: "p01" },
   { regionInfoName: "단양군", value: "p02" },
   { regionInfoName: "보은군", value: "p03" },

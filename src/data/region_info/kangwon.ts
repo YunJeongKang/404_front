@@ -1,6 +1,6 @@
-import { SelectType } from "@models/CPType";
+import { RegionSelectType } from "@models/CPType";
 
-export const kangwonList: SelectType[] = [
+export const kangwonList: RegionSelectType[] = [
   { regionInfoName: "강릉시", value: "a01" },
   { regionInfoName: "고성군", value: "a02" },
   { regionInfoName: "동해시", value: "a03" },

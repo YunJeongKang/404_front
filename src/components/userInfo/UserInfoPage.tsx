@@ -74,9 +74,9 @@ const UserInfoPage = () => {
   function onSubmit() {
     axios.post(`${URL}${UI}`, {
       ...mainInfo,
-      ...regionInfo,
+      regionInfo: { ...regionInfo },
     });
-    console.log({ ...mainInfo, ...regionInfo });
+    console.log({ ...mainInfo, regionInfo: { ...regionInfo } });
   }
 
   return (

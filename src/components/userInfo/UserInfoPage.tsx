@@ -103,7 +103,6 @@ const UserInfoPage = () => {
     <UserInfoForm onSubmit={onSubmit}>
       <H2>성별</H2>
       <RadioInputTemplate
-        query="성별을 입력하세요"
         RadioLabelTemplate={
           <>
             {genderList.map(({ htmlFor, labelName, value }) => (
@@ -433,7 +432,6 @@ const UserInfoPage = () => {
       <hr className="py-0.5 my-1" />
       <H2>결혼유무</H2>
       <RadioInputTemplate
-        query="결혼유무를 선택해주세요"
         RadioLabelTemplate={
           <>
             {marriedList.map(({ htmlFor, labelName, value }) => (

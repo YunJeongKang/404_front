@@ -5,7 +5,7 @@ const UserInfoForm: FC<CommonFormProps> = (props) => {
   const { children, className, onSubmit, ...restProps } = props;
   return (
     <form
-      className={`flex flex-col justify-center checked-bg:bg-gray-200 border rounded-lg shadow-md gap-2 ${className}`}
+      className={`flex flex-col justify-center checked-bg:bg-gray-200 rounded-lg gap-2 ${className}`}
       {...restProps}
       onSubmit={(evt) => {
         evt.preventDefault();

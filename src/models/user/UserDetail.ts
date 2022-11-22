@@ -1,5 +1,5 @@
 export interface AuthInterface {
-  nickName: string;
+  nickname: string;
   email: string;
   password: string;
 }

@@ -18,6 +18,19 @@ import {
 import { SelectInput, SelectInputTypeProto } from "@styles/indexSelect";
 import { OptionInput } from "@styles/indexOption";
 import { kangwonList } from "@data/region_info/kangwon";
+import { gwangjuList } from "@data/region_info/gwangju";
+import { daejeonList } from "@data/region_info/daejeon";
+import { daeguList } from "@data/region_info/daegu";
+import { incheonList } from "@data/region_info/incheon";
+import { busanList } from "@data/region_info/busan";
+import { jeonbukList } from "@data/region_info/jeonbuk";
+import { jeonnamList } from "@data/region_info/jeonnam";
+import { chungnamList } from "@data/region_info/chungnam";
+import { chungbukList } from "@data/region_info/chungbuk";
+import { gyungnamList } from "@data/region_info/gyungnam";
+import { gyungbukList } from "@data/region_info/gyungbuk";
+import { globalList } from "@data/region_info/global";
+import { sejongList } from "@data/region_info/sejong";
 
 const { UI, URL } = PATH;
 
@@ -117,7 +130,9 @@ const UserInfoPage = () => {
             </OptionInput>
           ))}
         </SelectInput>
+        <hr className="py-0.5 my-1" />
       </>
+      {/* 지역상세 */}
       <article>
         <H2>지역상세</H2>
         {/* 서울 */}
@@ -165,6 +180,202 @@ const UserInfoPage = () => {
             ))}
           </SelectInput>
         </>
+        {/* 광주 */}
+        <>
+          <SelectInput
+            labelQuery="광주 상세지역을 선택하세요"
+            name="region_gwangju"
+            value={regionInfo.region_gwangju}
+            onChange={regionInfoChange}
+          >
+            {gwangjuList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 대전 */}
+        <>
+          <SelectInput
+            labelQuery="대전 상세지역을 선택하세요"
+            name="region_daejeon"
+            value={regionInfo.region_daejeon}
+            onChange={regionInfoChange}
+          >
+            {daejeonList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 대구 */}
+        <>
+          <SelectInput
+            labelQuery="대구 상세지역을 선택하세요"
+            name="region_daegu"
+            value={regionInfo.region_daegu}
+            onChange={regionInfoChange}
+          >
+            {daeguList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 인천 */}
+        <>
+          <SelectInput
+            labelQuery="인천 상세지역을 선택하세요"
+            name="region_incheon"
+            value={regionInfo.region_incheon}
+            onChange={regionInfoChange}
+          >
+            {incheonList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 부산 */}
+        <>
+          <SelectInput
+            labelQuery="부산 상세지역을 선택하세요"
+            name="region_busan"
+            value={regionInfo.region_busan}
+            onChange={regionInfoChange}
+          >
+            {busanList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 세종 */}
+        <>
+          <SelectInput
+            labelQuery="세종 상세지역을 선택하세요"
+            name="region_sejong"
+            value={regionInfo.region_sejong}
+            onChange={regionInfoChange}
+          >
+            {sejongList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 전남 */}
+        <>
+          <SelectInput
+            labelQuery="전남 상세지역을 선택하세요"
+            name="region_jeonnam"
+            value={regionInfo.region_jeonnam}
+            onChange={regionInfoChange}
+          >
+            {jeonnamList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 전북 */}
+        <>
+          <SelectInput
+            labelQuery="전북 상세지역을 선택하세요"
+            name="region_jeonbuk"
+            value={regionInfo.region_jeonbuk}
+            onChange={regionInfoChange}
+          >
+            {jeonbukList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 충남 */}
+        <>
+          <SelectInput
+            labelQuery="충남 상세지역을 선택하세요"
+            name="region_chungnam"
+            value={regionInfo.region_chungnam}
+            onChange={regionInfoChange}
+          >
+            {chungnamList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 충북 */}
+        <>
+          <SelectInput
+            labelQuery="충북 상세지역을 선택하세요"
+            name="region_chungbuk"
+            value={regionInfo.region_chungbuk}
+            onChange={regionInfoChange}
+          >
+            {chungbukList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 경남 */}
+        <>
+          <SelectInput
+            labelQuery="경남 상세지역을 선택하세요"
+            name="region_gyungnam"
+            value={regionInfo.region_gyungnam}
+            onChange={regionInfoChange}
+          >
+            {gyungnamList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 경북 */}
+        <>
+          <SelectInput
+            labelQuery="경북 상세지역을 선택하세요"
+            name="region_gyungbuk"
+            value={regionInfo.region_gyungbuk}
+            onChange={regionInfoChange}
+          >
+            {gyungbukList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        {/* 해외 */}
+        <>
+          <SelectInput
+            labelQuery="해외 상세지역을 선택하세요"
+            name="region_global"
+            value={regionInfo.region_global}
+            onChange={regionInfoChange}
+          >
+            {globalList.map(({ value, regionInfoName }) => (
+              <OptionInput value={value} key={value}>
+                {regionInfoName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </>
+        <hr className="py-0.5 my-1" />
       </article>
       <H2>결혼유무</H2>
       <RadioInputTemplate

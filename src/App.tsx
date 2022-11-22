@@ -36,7 +36,7 @@ function App() {
             <Link to={UI}>UI</Link>
           </nav>
         </header>
-        <main className="flex flex-col items-center border shadow-md rounded-lg">
+        <main className="flex flex-col items-center w-[28rem] border shadow-md rounded-lg">
           {currentRoutes}
         </main>
       </div>

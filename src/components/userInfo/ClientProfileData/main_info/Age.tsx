@@ -17,7 +17,6 @@ const Age = ({ onChange, value }: AgeInterface) => {
         value={value}
         required
       />
-      <hr className="py-0.5 my-1" />
     </section>
   );
 };

@@ -16,7 +16,7 @@ export const SelectInputTypeProto: FC<CommonSelectProps> = (props) => {
 interface SelectInputInterface {
   name: string;
   value: string;
-  children: any;
+  children: React.ReactNode;
 
   onChange: (evt: any) => void;
 }

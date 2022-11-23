@@ -1,7 +1,7 @@
 import { CommonDivProps } from "@utils/common/props";
 import { FunctionComponent as FC } from "react";
 
-const SelectDiv: FC<CommonDivProps> = (props) => {
+const ModalEmptyDiv: FC<CommonDivProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <div
@@ -13,4 +13,8 @@ const SelectDiv: FC<CommonDivProps> = (props) => {
   );
 };
 
-export default SelectDiv;
+export const HrDiv = () => {
+  return <hr className="w-[26rem] h-4 mt-5" />;
+};
+
+export default ModalEmptyDiv;

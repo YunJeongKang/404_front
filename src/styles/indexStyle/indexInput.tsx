@@ -1,5 +1,5 @@
 interface RadioInputTemplateInterface {
-  RadioLabelTemplate: any;
+  RadioLabelTemplate: React.ReactNode;
 }
 
 export const RadioInputTemplate = ({

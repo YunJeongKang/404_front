@@ -39,8 +39,9 @@ import { alcoholList } from "@data/main_info/alcohol";
 import { smokeList } from "@data/main_info/smoke";
 import { educationList } from "@data/main_info/educational";
 import { salaryList } from "@data/main_info/salary";
-import SelectDiv from "./../../styles/indexStyle/indexDiv";
 import { assetList } from "@data/main_info/asset";
+import Modal from "@styles/modal/Modal";
+import ModalEmptyDiv, { HrDiv } from "@styles/indexStyle/indexDiv";
 
 const { UI, URL } = PATH;
 
@@ -126,36 +127,52 @@ const UserInfoPage = () => {
   }
 
   useEffect(() => {
+    mainInfo.weight === "" ? (mainInfo.weight = "50") : null;
+    mainInfo.height === "" ? (mainInfo.height = "160") : null;
     mainInfo.region === ""
       ? ((mainInfo.region = "a"), (regionInfo.region_kangwon = "a01"))
-      : (mainInfo.region = "");
-  }, []);
+      : null;
+  }, [mainInfo.region, regionInfo.region_kangwon, mainInfo.weight]);
 
   const arrayRange = [...Array(120).keys()];
+
+  const [isOpen, setOpen] = useState<boolean>(false);
 
   return (
     <UserInfoForm onSubmit={onSubmit}>
       {/* 성별 */}
       <SectionTemplate>
         <H2>성별</H2>
-        <RadioInputTemplate
-          RadioLabelTemplate={
-            <>
-              {genderList.map(({ htmlFor, labelName, value }) => (
-                <RadioLabelTemplate
-                  checked={value === mainInfo.gender}
-                  onChange={mainInfoChange}
-                  key={htmlFor}
-                  inputID={htmlFor}
-                  name="gender"
-                  value={value}
-                  labelChild={labelName}
-                  htmlFor={htmlFor}
-                />
-              ))}
-            </>
-          }
-        />
+        {mainInfo.gender !== "" ? (
+          <ModalEmptyDiv onClick={() => setOpen(true)}>
+            {mainInfo.gender === "m" ? "남자" : "여자"}
+          </ModalEmptyDiv>
+        ) : (
+          <ModalEmptyDiv onClick={() => setOpen(true)}>isClick</ModalEmptyDiv>
+        )}
+        <Modal isOpen={isOpen}>
+          <H2>성별</H2>
+          <HrDiv />
+          <RadioInputTemplate
+            RadioLabelTemplate={
+              <>
+                {genderList.map(({ htmlFor, labelName, value }) => (
+                  <RadioLabelTemplate
+                    checked={value === mainInfo.gender}
+                    onChange={mainInfoChange}
+                    key={htmlFor}
+                    inputID={htmlFor}
+                    name="gender"
+                    value={value}
+                    labelChild={labelName}
+                    htmlFor={htmlFor}
+                  />
+                ))}
+              </>
+            }
+          />
+          <button onClick={() => setOpen(false)}>X</button>
+        </Modal>
       </SectionTemplate>
       {/* 생년월일 */}
       <SectionTemplate>
@@ -202,7 +219,7 @@ const UserInfoPage = () => {
       {/* 지역 */}
       <SectionTemplate>
         <H2>지역</H2>
-        <SelectDiv>
+        <ModalEmptyDiv>
           <>
             <SelectInput
               name="region"
@@ -507,7 +524,7 @@ const UserInfoPage = () => {
               <></>
             )}
           </>
-        </SelectDiv>
+        </ModalEmptyDiv>
       </SectionTemplate>
       {/* 결혼유무 */}
       <SectionTemplate>

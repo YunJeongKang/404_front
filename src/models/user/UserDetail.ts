@@ -8,8 +8,19 @@ export interface MainInfoInterface {
   gender: string;
   birth: string;
   married: string;
-  sisBro: string;
+  job: string;
   region: string;
+  asset: string;
+  blood: string;
+  alcohol: string;
+  smoke: string;
+  health: string;
+  marriagePlan: string;
+  religion: string;
+  vehicle: string;
+  wantedFood: string;
+  education: string;
+  salary: string;
 }
 
 export interface RegionInfoInterface {
@@ -31,4 +42,13 @@ export interface RegionInfoInterface {
   region_chungnam: string;
   region_chungbuk: string;
   region_global: string;
+}
+
+export interface StyleInfoInterface {
+  manAppearance: string;
+  manPersonality: string;
+  manFashion: string;
+  womanAppearance: string;
+  womanPersonality: string;
+  womanFashion: string;
 }

@@ -18,7 +18,6 @@ export interface MainInfoInterface {
   marriagePlan: string;
   religion: string;
   vehicle: string;
-  wantedFood: string;
   education: string;
   salary: string;
 }

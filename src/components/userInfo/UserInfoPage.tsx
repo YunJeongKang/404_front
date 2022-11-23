@@ -1,7 +1,7 @@
 import UserInfoForm from "@styles/indexForm";
 import Age from "./Age";
 import { useState, useEffect } from "react";
-import H2 from "@styles/indexHeading";
+import H2, { H3 } from "@styles/indexHeading";
 import PATH from "@utils/routes/PATH";
 import axios from "axios";
 import { RadioInputTemplate } from "@styles/indexInput";
@@ -58,7 +58,6 @@ const UserInfoPage = () => {
     salary: "",
     smoke: "",
     vehicle: "",
-    wantedFood: "",
   });
 
   // 지역 상세 데이터
@@ -156,6 +155,15 @@ const UserInfoPage = () => {
       <SectionTemplate>
         <H2>생년월일</H2>
         <Age onChange={mainInfoChange} value={mainInfo.birth} />
+      </SectionTemplate>
+      {/* 키 / 체중 */}
+      <SectionTemplate>
+        <div className="w-1/2">
+          <H3>몸무게</H3>
+        </div>
+        <div className="w-1/2">
+          <H3>키</H3>
+        </div>
       </SectionTemplate>
       {/* 지역 */}
       <SectionTemplate>
@@ -533,7 +541,8 @@ const UserInfoPage = () => {
           }
         />
       </SectionTemplate>
-      학력
+      {/* 학력 */}
+      <SectionTemplate></SectionTemplate>
       <button
         type="submit"
         className="border shadow rounded-md px-2.5 py-1 active:scale-95 "

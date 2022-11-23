@@ -37,6 +37,10 @@ import { jejuList } from "@data/region_info/jeju";
 import SectionTemplate from "@styles/indexSection";
 import { alcoholList } from "@data/main_info/alcohol";
 import { smokeList } from "@data/main_info/smoke";
+import { educationList } from "@data/main_info/educational";
+import { salaryList } from "@data/main_info/salary";
+import SelectDiv from "./../../styles/indexDiv";
+import { assetList } from "@data/main_info/asset";
 
 const { UI, URL } = PATH;
 
@@ -58,6 +62,8 @@ const UserInfoPage = () => {
     salary: "",
     smoke: "",
     vehicle: "",
+    height: "",
+    weight: "",
   });
 
   // 지역 상세 데이터
@@ -125,7 +131,7 @@ const UserInfoPage = () => {
       : (mainInfo.region = "");
   }, []);
 
-  const [...props] = regionList.map((value) => mainInfo.region === `${value}`);
+  const arrayRange = [...Array(120).keys()];
 
   return (
     <UserInfoForm onSubmit={onSubmit}>
@@ -158,17 +164,45 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 키 / 체중 */}
       <SectionTemplate>
-        <div className="w-1/2">
+        <div className="w-1/2 flex flex-raw gap-2">
           <H3>몸무게</H3>
+          <>
+            <SelectInput
+              name="weight"
+              value={mainInfo.weight}
+              onChange={mainInfoChange}
+            >
+              {arrayRange.map((item) => (
+                <OptionInput value={item + 31} key={item}>
+                  {item + 31}
+                </OptionInput>
+              ))}
+            </SelectInput>
+          </>
+          <h1 className="text-lg">KG</h1>
         </div>
-        <div className="w-1/2">
+        <div className="w-1/2 flex flex-raw gap-2">
           <H3>키</H3>
+          <>
+            <SelectInput
+              name="height"
+              value={mainInfo.height}
+              onChange={mainInfoChange}
+            >
+              {arrayRange.map((item) => (
+                <OptionInput value={item + 81} key={item}>
+                  {item + 81}
+                </OptionInput>
+              ))}
+            </SelectInput>
+          </>
+          <h1 className="text-lg">CM</h1>
         </div>
       </SectionTemplate>
       {/* 지역 */}
       <SectionTemplate>
         <H2>지역</H2>
-        <div className="w-2/3 flex-raw flex flex-wrap">
+        <SelectDiv>
           <>
             <SelectInput
               name="region"
@@ -176,7 +210,7 @@ const UserInfoPage = () => {
               onChange={mainInfoChange}
             >
               {regionList.map(({ value, regionInfoName }) => (
-                <OptionInput value={value} key={value}>
+                <OptionInput value={value} key={value} required>
                   {regionInfoName}
                 </OptionInput>
               ))}
@@ -473,7 +507,7 @@ const UserInfoPage = () => {
               <></>
             )}
           </>
-        </div>
+        </SelectDiv>
       </SectionTemplate>
       {/* 결혼유무 */}
       <SectionTemplate>
@@ -542,7 +576,71 @@ const UserInfoPage = () => {
         />
       </SectionTemplate>
       {/* 학력 */}
-      <SectionTemplate></SectionTemplate>
+      <SectionTemplate>
+        <H2>학력</H2>
+        <RadioInputTemplate
+          RadioLabelTemplate={
+            <>
+              {educationList.map(({ htmlFor, labelName, value }) => (
+                <RadioLabelTemplate
+                  checked={value === mainInfo.education}
+                  onChange={mainInfoChange}
+                  key={htmlFor}
+                  inputID={htmlFor}
+                  name="education"
+                  value={value}
+                  labelChild={labelName}
+                  htmlFor={htmlFor}
+                />
+              ))}
+            </>
+          }
+        />
+      </SectionTemplate>
+      {/* 연봉  */}
+      <SectionTemplate>
+        <H2>연봉</H2>
+        <RadioInputTemplate
+          RadioLabelTemplate={
+            <>
+              {salaryList.map(({ htmlFor, labelName, value }) => (
+                <RadioLabelTemplate
+                  checked={value === mainInfo.gender}
+                  onChange={mainInfoChange}
+                  key={htmlFor}
+                  inputID={htmlFor}
+                  name="gender"
+                  value={value}
+                  labelChild={labelName}
+                  htmlFor={htmlFor}
+                />
+              ))}
+            </>
+          }
+        />
+      </SectionTemplate>
+      {/* 재산 */}
+      <SectionTemplate>
+        <H2>재산</H2>
+        <RadioInputTemplate
+          RadioLabelTemplate={
+            <>
+              {assetList.map(({ htmlFor, labelName, value }) => (
+                <RadioLabelTemplate
+                  checked={value === mainInfo.asset}
+                  onChange={mainInfoChange}
+                  key={htmlFor}
+                  inputID={htmlFor}
+                  name="asset"
+                  value={value}
+                  labelChild={labelName}
+                  htmlFor={htmlFor}
+                />
+              ))}
+            </>
+          }
+        />
+      </SectionTemplate>
       <button
         type="submit"
         className="border shadow rounded-md px-2.5 py-1 active:scale-95 "

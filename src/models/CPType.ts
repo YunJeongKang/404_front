@@ -4,15 +4,7 @@ export interface RadioType {
   value: string;
 }
 
-export interface RegionSelectType {
-  regionInfoName: string;
+export interface SelectType {
+  optionName: string;
   value: string;
-}
-
-export interface JobSelectType {
-  jobName: string;
-}
-
-export interface salarySelectType {
-  salaryRange: string;
 }

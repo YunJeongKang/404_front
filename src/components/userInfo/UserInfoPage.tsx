@@ -14,6 +14,7 @@ import { marriedList } from "@data/main_info/married";
 import {
   MainInfoInterface,
   RegionInfoInterface,
+  StyleInfoInterface,
 } from "@models/user/UserDetail";
 import { SelectInput } from "@styles/indexSelect";
 import { OptionInput } from "@styles/indexOption";
@@ -45,6 +46,17 @@ const UserInfoPage = () => {
     region: "",
     married: "",
     job: "",
+    alcohol: "",
+    asset: "",
+    blood: "",
+    education: "",
+    health: "",
+    marriagePlan: "",
+    religion: "",
+    salary: "",
+    smoke: "",
+    vehicle: "",
+    wantedFood: "",
   });
 
   // 지역 상세 데이터
@@ -67,6 +79,15 @@ const UserInfoPage = () => {
     region_chungnam: "",
     region_chungbuk: "",
     region_global: "",
+  });
+
+  const [styleInfo, setStyleInfo] = useState<StyleInfoInterface>({
+    manAppearance: "",
+    manFashion: "",
+    manPersonality: "",
+    womanAppearance: "",
+    womanFashion: "",
+    womanPersonality: "",
   });
 
   // 지역 선택에 따라 달라지는 지역상세 컬럼
@@ -464,6 +485,8 @@ const UserInfoPage = () => {
           }
         />
       </SectionTemplate>
+
+      <SectionTemplate></SectionTemplate>
       <button
         type="submit"
         className="border shadow rounded-md px-2.5 py-1 active:scale-95 "

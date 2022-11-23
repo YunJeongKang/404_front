@@ -36,6 +36,7 @@ import { ulsanList } from "@data/region_info/ulsan";
 import { jejuList } from "@data/region_info/jeju";
 import SectionTemplate from "@styles/indexSection";
 import { alcoholList } from "@data/main_info/alcohol";
+import { smokeList } from "@data/main_info/smoke";
 
 const { UI, URL } = PATH;
 
@@ -159,7 +160,7 @@ const UserInfoPage = () => {
       {/* 지역 */}
       <SectionTemplate>
         <H2>지역</H2>
-        <div className="w-1/2 flex-raw flex flex-wrap">
+        <div className="w-2/3 flex-raw flex flex-wrap">
           <>
             <SelectInput
               name="region"
@@ -500,7 +501,7 @@ const UserInfoPage = () => {
                   onChange={mainInfoChange}
                   key={htmlFor}
                   inputID={htmlFor}
-                  name="gender"
+                  name="alcohol"
                   value={value}
                   labelChild={labelName}
                   htmlFor={htmlFor}
@@ -510,6 +511,29 @@ const UserInfoPage = () => {
           }
         />
       </SectionTemplate>
+      {/* 흡연여부 */}
+      <SectionTemplate>
+        <H2>흡연여부</H2>
+        <RadioInputTemplate
+          RadioLabelTemplate={
+            <>
+              {smokeList.map(({ htmlFor, labelName, value }) => (
+                <RadioLabelTemplate
+                  checked={value === mainInfo.smoke}
+                  onChange={mainInfoChange}
+                  key={htmlFor}
+                  inputID={htmlFor}
+                  name="smoke"
+                  value={value}
+                  labelChild={labelName}
+                  htmlFor={htmlFor}
+                />
+              ))}
+            </>
+          }
+        />
+      </SectionTemplate>
+      학력
       <button
         type="submit"
         className="border shadow rounded-md px-2.5 py-1 active:scale-95 "

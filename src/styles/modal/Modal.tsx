@@ -1,4 +1,4 @@
-import useModalStore from "@store/useModal";
+import useModal from "@store/useModal";
 import { CommonDivProps } from "@utils/common/props";
 import { FunctionComponent as FC, useLayoutEffect } from "react";
 
@@ -8,14 +8,14 @@ interface ModalProps extends CommonDivProps {
 
 const Modal: FC<ModalProps> = (props) => {
   const { isOpen, children, className } = props;
-  const { setOpen, setModal } = useModalStore();
+  const { setOpen, setModal } = useModal();
 
   useLayoutEffect(() => {
     setOpen(isOpen);
     isOpen &&
       setModal(
         <div
-          className={`select-none checked-bg:bg-gray-200 flex flex-col items-center h w-[26rem] absolute left-1/2 -translate-x-1/2 top-1/2 rounded-md -translate-y-1/2 border shadow-md bg-white ${className}`}
+          className={`select-none checked-bg:bg-gray-200 flex flex-col items-center h w-[26rem] absolute left-1/2 -translate-x-1/2 top-1/2 rounded-lg -translate-y-1/2 border shadow-md bg-white ${className}`}
         >
           {children}
         </div>
@@ -32,7 +32,7 @@ interface ModalProviderProps {
 }
 
 export const ModalProvider: FC<ModalProviderProps> = ({ children: app }) => {
-  const { isOpen, modal } = useModalStore();
+  const { isOpen, modal } = useModal();
 
   return (
     <div className="relative z-0 min-h-screen">

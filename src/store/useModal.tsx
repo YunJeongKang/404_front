@@ -8,11 +8,11 @@ interface ModalState {
   setModal: (modal: React.ReactNode) => void;
 }
 
-const useModalStore = create<ModalState>((set, get) => ({
+const useModal = create<ModalState>((set, get) => ({
   isOpen: false,
   modal: <div> Empty Modal</div>,
   setOpen: (isOpen) => set({ isOpen }),
   setModal: (modal) => set({ modal }),
 }));
 
-export default useModalStore;
+export default useModal;

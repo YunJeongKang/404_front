@@ -148,7 +148,9 @@ const UserInfoPage = () => {
             {mainInfo.gender === "m" ? "남자" : "여자"}
           </ModalEmptyDiv>
         ) : (
-          <ModalEmptyDiv onClick={() => setOpen(true)}>isClick</ModalEmptyDiv>
+          <ModalEmptyDiv onClick={() => setOpen(true)}>
+            성별을 선택하세요
+          </ModalEmptyDiv>
         )}
         <Modal isOpen={isOpen}>
           <H2>성별</H2>
@@ -177,7 +179,21 @@ const UserInfoPage = () => {
       {/* 생년월일 */}
       <SectionTemplate>
         <H2>생년월일</H2>
-        <Age onChange={mainInfoChange} value={mainInfo.birth} />
+        {mainInfo.birth !== "" ? (
+          <ModalEmptyDiv onClick={() => setOpen(true)}>
+            {mainInfo.birth === "" ? "isClick" : mainInfo.birth}
+          </ModalEmptyDiv>
+        ) : (
+          <ModalEmptyDiv onClick={() => setOpen(true)}>
+            생년월일을 선택하세요
+          </ModalEmptyDiv>
+        )}
+        <Modal isOpen={isOpen}>
+          <H2>생년월일</H2>
+          <HrDiv />
+          <Age onChange={mainInfoChange} value={mainInfo.birth} />
+          <button onClick={() => setOpen(false)}>X</button>
+        </Modal>
       </SectionTemplate>
       {/* 키 / 체중 */}
       <SectionTemplate>

@@ -20,6 +20,8 @@ export interface MainInfoInterface {
   vehicle: string;
   education: string;
   salary: string;
+  height: string;
+  weight: string;
 }
 
 export interface RegionInfoInterface {

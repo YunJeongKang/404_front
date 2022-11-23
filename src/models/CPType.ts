@@ -12,3 +12,7 @@ export interface RegionSelectType {
 export interface JobSelectType {
   jobName: string;
 }
+
+export interface salarySelectType {
+  salaryRange: string;
+}

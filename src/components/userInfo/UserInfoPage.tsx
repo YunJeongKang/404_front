@@ -44,7 +44,7 @@ const UserInfoPage = () => {
     birth: "",
     region: "",
     married: "",
-    sisBro: "",
+    job: "",
   });
 
   // 지역 상세 데이터

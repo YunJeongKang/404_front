@@ -5,7 +5,7 @@ const H2: FC<CommonHeadingProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <h2
-      className={`text-3xl font-bold bg-cyan-200 inline-block ${className}`}
+      className={`w-2/6 text-center text-3xl font-bold bg-cyan-200 inline-block ${className}`}
       {...restProps}
     >
       {children}

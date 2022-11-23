@@ -7,7 +7,7 @@ export const RadioInputTemplate = ({
 }: RadioInputTemplateInterface) => {
   return (
     <>
-      <fieldset className="flex flex-wrap flex-raw justify-start items-center gap-2 p-[3px]">
+      <fieldset className="w-1/2 flex flex-wrap flex-raw justify-start items-center gap-2 p-[3px]">
         {RadioLabelTemplate}
       </fieldset>
       <hr className="py-0.5 my-1" />

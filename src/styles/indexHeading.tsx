@@ -14,3 +14,15 @@ const H2: FC<CommonHeadingProps> = (props) => {
 };
 
 export default H2;
+
+export const H3: FC<CommonHeadingProps> = (props) => {
+  const { children, className, ...restProps } = props;
+  return (
+    <h3
+      className={`w-2/6 text-center text-xl font-bold bg-cyan-200 inline-block ${className}`}
+      {...restProps}
+    >
+      {children}
+    </h3>
+  );
+};

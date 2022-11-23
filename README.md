@@ -1,7 +1,5 @@
 # Front work
 
----
-
 ## Use skill set
 
 - TypeScript

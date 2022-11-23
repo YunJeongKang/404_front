@@ -1,6 +1,6 @@
-import { SigninAnchor } from "@styles/indexAnchor";
-import { KakaoBtn } from "@styles/indexBtn";
-import { SigninParagraph } from "@styles/indexParagraph";
+import { SigninAnchor } from "@styles/indexStyle/indexAnchor";
+import { KakaoBtn } from "@styles/indexStyle/indexBtn";
+import { SigninParagraph } from "@styles/indexStyle/indexParagraph";
 import { RiKakaoTalkFill } from "react-icons/ri";
 
 const KakaoAPI = () => {

@@ -1,6 +1,6 @@
-import { SigninAnchor } from "@styles/indexAnchor";
-import { AppleBtn } from "@styles/indexBtn";
-import { SigninParagraph } from "@styles/indexParagraph";
+import { SigninAnchor } from "@styles/indexStyle/indexAnchor";
+import { AppleBtn } from "@styles/indexStyle/indexBtn";
+import { SigninParagraph } from "@styles/indexStyle/indexParagraph";
 import { SiApple } from "react-icons/si";
 
 const AppleAPI = () => {

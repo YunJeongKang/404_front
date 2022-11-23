@@ -1,6 +1,6 @@
-import { SigninAnchor } from "@styles/indexAnchor";
-import { FacebookBtn } from "@styles/indexBtn";
-import { SigninParagraph } from "@styles/indexParagraph";
+import { SigninAnchor } from "@styles/indexStyle/indexAnchor";
+import { FacebookBtn } from "@styles/indexStyle/indexBtn";
+import { SigninParagraph } from "@styles/indexStyle/indexParagraph";
 import { FaFacebook } from "react-icons/fa";
 
 const FacebookAPI = () => {

@@ -1,4 +1,4 @@
-import UserInfoForm from "@styles/indexForm";
+import UserInfoForm from "@styles/indexStyle/indexForm";
 import { TextInputTemplate } from "@utils/common/props/userInfo/TotalFormTemplate";
 import axios from "axios";
 import { useState } from "react";

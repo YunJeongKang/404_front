@@ -1,11 +1,11 @@
-import UserInfoForm from "@styles/indexForm";
+import UserInfoForm from "@styles/indexStyle/indexForm";
 import Age from "./Age";
 import { useState, useEffect } from "react";
-import H2, { H3 } from "@styles/indexHeading";
+import H2, { H3 } from "@styles/indexStyle/indexHeading";
 import PATH from "@utils/routes/PATH";
 import axios from "axios";
-import { RadioInputTemplate } from "@styles/indexInput";
-import { RadioLabelTemplate } from "@styles/indexLabel";
+import { RadioInputTemplate } from "@styles/indexStyle/indexInput";
+import { RadioLabelTemplate } from "@styles/indexStyle/indexLabel";
 import { genderList } from "@data/main_info/gender";
 import { regionList } from "@data/main_info/region";
 import { seoulList } from "@data/region_info/seoul";
@@ -16,8 +16,8 @@ import {
   RegionInfoInterface,
   StyleInfoInterface,
 } from "@models/user/UserDetail";
-import { SelectInput } from "@styles/indexSelect";
-import { OptionInput } from "@styles/indexOption";
+import { SelectInput } from "@styles/indexStyle/indexSelect";
+import { OptionInput } from "@styles/indexStyle/indexOption";
 import { kangwonList } from "@data/region_info/kangwon";
 import { gwangjuList } from "@data/region_info/gwangju";
 import { daejeonList } from "@data/region_info/daejeon";
@@ -34,12 +34,12 @@ import { globalList } from "@data/region_info/global";
 import { sejongList } from "@data/region_info/sejong";
 import { ulsanList } from "@data/region_info/ulsan";
 import { jejuList } from "@data/region_info/jeju";
-import SectionTemplate from "@styles/indexSection";
+import SectionTemplate from "@styles/indexStyle/indexSection";
 import { alcoholList } from "@data/main_info/alcohol";
 import { smokeList } from "@data/main_info/smoke";
 import { educationList } from "@data/main_info/educational";
 import { salaryList } from "@data/main_info/salary";
-import SelectDiv from "./../../styles/indexDiv";
+import SelectDiv from "./../../styles/indexStyle/indexDiv";
 import { assetList } from "@data/main_info/asset";
 
 const { UI, URL } = PATH;

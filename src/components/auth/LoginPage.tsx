@@ -34,9 +34,9 @@ function LoginPage() {
   }, []);
 
   return (
-    <div className="w-[50vw] max-w-[28rem] flex flex-col items-center gap-4">
+    <div className="w-[50vw] max-w-[24rem] flex flex-col items-center gap-4">
       <h1>LOGIN page</h1>
-      <section className="rounded-md border px-8 py-2 max-w-[26rem] w-[100vw]">
+      <section className="rounded-md border px-8 py-2 max-w-[24rem] w-[100vw]">
         <form
           className="flex flex-col gap-y-2 "
           onSubmit={(evt) => {
@@ -53,7 +53,7 @@ function LoginPage() {
               value={loginInfo.email}
               ref={usernameRef}
               autoComplete="on"
-              className="w-4/5 border px-2 py-1 rounded-md"
+              className="w-5/6 border px-2 py-1 rounded-md"
               onChange={onChange}
             />
           </fieldset>
@@ -63,7 +63,7 @@ function LoginPage() {
               value={loginInfo.password}
               type={showPassword ? "text" : "password"}
               name="password"
-              className="w-4/5 border px-2 py-1 rounded-md"
+              className="w-5/6 border px-2 py-1 rounded-md"
               onChange={onChange}
             />
             <div

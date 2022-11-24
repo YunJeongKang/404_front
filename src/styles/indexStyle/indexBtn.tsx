@@ -6,7 +6,7 @@ const SigninBtnInterface: FC<CommonButtonProps> = (props) => {
   return (
     <button
       {...restProps}
-      className={`flex flex-wrap flex-raw duration-200 justify-center active:scale-95 items-center w-[388px] gap-4 shadow-md rounded-[15px] h-[50px] border ${className}`}
+      className={`flex flex-wrap flex-raw duration-200 justify-center active:scale-95 items-center w-[22rem] gap-4 shadow-md rounded-[15px] h-[40px]  ${className}`}
     >
       {children}
     </button>

@@ -9,10 +9,10 @@ export const radioMarriagePlanList: RadioType[] = [
 ];
 
 export const selectMarriagePlanList: SelectType[] = [
-  { optionName: "1달", value: "1m" },
-  { optionName: "3달", value: "3m" },
-  { optionName: "6달", value: "6m" },
-  { optionName: "1년", value: "1y" },
+  { optionName: "1달 이내", value: "1m" },
+  { optionName: "3달 이내", value: "3m" },
+  { optionName: "6달 이내", value: "6m" },
+  { optionName: "1년 이내", value: "1y" },
   { optionName: "언제든지", value: "a" },
 ];
 

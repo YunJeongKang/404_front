@@ -4,7 +4,7 @@ function MainPage() {
   const auth = useAuth();
   return (
     <div className="flex flex-col flex-wrap">
-      홈-인증
+      메인 페이지
       <button
         className="bg-indigo-400 rounded-md shadow"
         onClick={() => auth.logout()}

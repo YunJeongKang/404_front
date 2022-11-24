@@ -1,6 +1,6 @@
 import { SigninAnchor } from "@styles/indexStyle/indexAnchor";
 import { AppleBtn } from "@styles/indexStyle/indexBtn";
-import { SigninParagraph } from "@styles/indexStyle/indexParagraph";
+import { SignUpParagraph } from "@styles/indexStyle/indexParagraph";
 import { SiApple } from "react-icons/si";
 
 const AppleAPI = () => {
@@ -8,9 +8,9 @@ const AppleAPI = () => {
     <SigninAnchor className="text-white">
       <AppleBtn>
         <SiApple size="28" color="white" />
-        <SigninParagraph className="text-white">
-          Apple로 로그인 하기
-        </SigninParagraph>
+        <SignUpParagraph className="text-white">
+          Apple로 시작하기
+        </SignUpParagraph>
       </AppleBtn>
     </SigninAnchor>
   );

@@ -1,12 +1,17 @@
 const PATH = {
   URL: "http://localhost:8000",
-  HOME: "/",
-  TEST: "/test",
-  UI: "/ui",
+  // Sign-up routes
   LOGIN: "/login",
-  EASY_AUTH: "/login/easy_auth",
-  SIGNUP: "/login/easy-auth/signup",
-  USER: "/input_info",
+  EASY_AUTH: "/login/easy-auth",
+  SIGNUP: "/login/easy-auth/sign-up",
+  INPUT: "/user-data-input",
+
+  //main routes
+  HOME: "/",
+  LIKE: "/like",
+  RECOMMEND: "/recommend",
+  CHAT: "/home/chat",
+  USER: "/user-setting",
 };
 
 Object.freeze(PATH);

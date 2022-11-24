@@ -5,7 +5,7 @@ const ModalEmptyDiv: FC<CommonDivProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <div
-      className={`w-2/3 flex-raw flex flex-wrap ${className}`}
+      className={`w-2/3 flex-raw flex flex-wrap gap-2 ${className}`}
       {...restProps}
     >
       {children}

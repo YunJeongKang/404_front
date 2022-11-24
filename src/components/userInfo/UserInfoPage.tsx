@@ -47,6 +47,9 @@ import Modal from "@styles/modal/Modal";
 import ModalEmptyDiv, { HrDiv } from "@styles/indexStyle/indexDiv";
 import { selectBloodList } from "@data/main_info/blood";
 import { selectVehicleList } from "@data/main_info/vehicle";
+import { radioJobList } from "@data/main_info/job";
+import { selectMarriagePlanList } from "@data/main_info/marriagePlants";
+import { selectReligionList } from "@data/main_info/religion";
 
 const { UI, URL } = PATH;
 
@@ -536,28 +539,6 @@ const UserInfoPage = () => {
           </SelectInput>
         </ModalEmptyDiv>
       </SectionTemplate>
-      {/* 결혼유무 */}
-      <SectionTemplate>
-        <H2>결혼유무</H2>
-        <RadioInputTemplate
-          RadioLabelTemplate={
-            <>
-              {radioMarriedList.map(({ htmlFor, labelName, value }) => (
-                <RadioLabelTemplate
-                  checked={value === mainInfo.married}
-                  onChange={mainInfoChange}
-                  key={htmlFor}
-                  inputID={htmlFor}
-                  name="married"
-                  value={value}
-                  labelChild={labelName}
-                  htmlFor={htmlFor}
-                />
-              ))}
-            </>
-          }
-        />
-      </SectionTemplate>
       {/* 음주여부 */}
       <SectionTemplate>
         <H2>음주여부</H2>
@@ -587,6 +568,40 @@ const UserInfoPage = () => {
             {selectEducationList.map(({ value, optionName }) => (
               <OptionInput value={value} key={value} required>
                 {optionName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </ModalEmptyDiv>
+      </SectionTemplate>
+      {/* 종교 */}
+      <SectionTemplate>
+        <H2>종교</H2>
+        <ModalEmptyDiv>
+          <SelectInput
+            name="religion"
+            value={mainInfo.religion}
+            onChange={mainInfoChange}
+          >
+            {selectReligionList.map(({ value, optionName }) => (
+              <OptionInput value={value} key={value} required>
+                {optionName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </ModalEmptyDiv>
+      </SectionTemplate>
+      {/* 직업 */}
+      <SectionTemplate>
+        <H2>직업</H2>
+        <ModalEmptyDiv>
+          <SelectInput
+            name="job"
+            value={mainInfo.job}
+            onChange={mainInfoChange}
+          >
+            {radioJobList.map(({ jobName }, value) => (
+              <OptionInput value={value} key={value} required>
+                {jobName}
               </OptionInput>
             ))}
           </SelectInput>
@@ -653,6 +668,45 @@ const UserInfoPage = () => {
             onChange={mainInfoChange}
           >
             {selectVehicleList.map(({ value, optionName }) => (
+              <OptionInput value={value} key={value} required>
+                {optionName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </ModalEmptyDiv>
+      </SectionTemplate>
+      {/* 결혼유무 */}
+      <SectionTemplate>
+        <H2>결혼유무</H2>
+        <RadioInputTemplate
+          RadioLabelTemplate={
+            <>
+              {radioMarriedList.map(({ htmlFor, labelName, value }) => (
+                <RadioLabelTemplate
+                  checked={value === mainInfo.married}
+                  onChange={mainInfoChange}
+                  key={htmlFor}
+                  inputID={htmlFor}
+                  name="married"
+                  value={value}
+                  labelChild={labelName}
+                  htmlFor={htmlFor}
+                />
+              ))}
+            </>
+          }
+        />
+      </SectionTemplate>
+      {/* 결혼계획 */}
+      <SectionTemplate>
+        <H2>결혼계획</H2>
+        <ModalEmptyDiv>
+          <SelectInput
+            name="marriagePlan"
+            value={mainInfo.marriagePlan}
+            onChange={mainInfoChange}
+          >
+            {selectMarriagePlanList.map(({ value, optionName }) => (
               <OptionInput value={value} key={value} required>
                 {optionName}
               </OptionInput>

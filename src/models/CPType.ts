@@ -6,7 +6,7 @@ export interface RadioType {
 
 export interface SelectType {
   optionName: string;
-  value: string;
+  value?: string;
 }
 
 export interface RegionSelectType {

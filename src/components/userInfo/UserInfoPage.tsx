@@ -52,7 +52,7 @@ import { selectMarriagePlanList } from "@data/main_info/marriagePlants";
 import { selectReligionList } from "@data/main_info/religion";
 import RequiredMark from "@styles/indexStyle/indexSpan";
 
-const { UI, URL } = PATH;
+const { INPUT, URL, USER } = PATH;
 
 const UserInfoPage = () => {
   // 메인 프로파일 데이터
@@ -128,10 +128,14 @@ const UserInfoPage = () => {
   };
 
   function onSubmit() {
-    axios.post(`${URL}${UI}`, {
-      ...mainInfo,
-      regionInfo: { ...regionInfo },
-    });
+    mainInfo.gender === "" || mainInfo.married === ""
+      ? mainInfo.gender === ""
+        ? alert("성별을 선택해주세요")
+        : alert("결혼 유무를 선택해주세요")
+      : axios.post(`${URL}${USER}`, {
+          ...mainInfo,
+          regionInfo: { ...regionInfo },
+        });
     console.log({ ...mainInfo, regionInfo: { ...regionInfo } });
   }
 
@@ -150,7 +154,7 @@ const UserInfoPage = () => {
   return (
     <UserInfoForm onSubmit={onSubmit}>
       <span>
-        <span className="text-red-700">'*'</span> 는 필수입력란 입니다
+        <span className="text-red-700 ">'*'</span> 는 필수입력란 입니다
       </span>
       {/* 성별 */}
       <SectionTemplate>

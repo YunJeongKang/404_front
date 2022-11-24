@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import PATH from "@utils/routes/PATH";
 import { AuthInterface } from "@models/user/UserDetail";
+import { Link } from "react-router-dom";
 
 const SignInPage = () => {
   const [values, setValues] = useState<AuthInterface>({
@@ -95,11 +96,12 @@ const SignInPage = () => {
           </span>
         </div>
       </fieldset>
+
       <button
         type="submit"
         className="border px-3 py-1 rounded-md shadow-md duration-150 active:scale-95"
       >
-        제출
+        <Link to={PATH.USER}>제출</Link>
       </button>
     </UserInfoForm>
   );

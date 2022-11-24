@@ -153,8 +153,8 @@ const UserInfoPage = () => {
 
   return (
     <UserInfoForm onSubmit={onSubmit}>
-      <span>
-        <span className="text-red-700 ">'*'</span> 는 필수입력란 입니다
+      <span className="pt-6">
+        <span className="text-red-700 px-2">'*'</span> 는 필수입력란 입니다
       </span>
       {/* 성별 */}
       <SectionTemplate>
@@ -728,7 +728,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       <button
         type="submit"
-        className="border shadow rounded-md px-2.5 py-1 active:scale-95 "
+        className="border shadow rounded-md px-2.5 py-1 duration-75 active:scale-[0.97] "
       >
         제출
       </button>

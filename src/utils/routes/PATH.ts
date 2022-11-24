@@ -10,7 +10,7 @@ const PATH = {
   HOME: "/",
   LIKE: "/like",
   RECOMMEND: "/recommend",
-  CHAT: "/home/chat",
+  CHAT: "/chat",
   USER: "/user-setting",
 };
 

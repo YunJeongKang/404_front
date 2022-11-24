@@ -99,7 +99,7 @@ const SignInPage = () => {
 
       <button
         type="submit"
-        className="border px-3 py-1 rounded-md shadow-md duration-150 active:scale-95"
+        className="border px-3 py-1 rounded-md shadow-md duration-200 active:scale-95"
       >
         <Link to={PATH.USER}>제출</Link>
       </button>

@@ -34,9 +34,9 @@ function LoginPage() {
   }, []);
 
   return (
-    <div className="w-[50vw] max-w-[28rem]  flex flex-col items-center gap-4">
+    <div className="w-[50vw] max-w-[28rem] flex flex-col items-center gap-4">
       <h1>LOGIN page</h1>
-      <section className="rounded-md px-8 py-2 max-w-[26rem] w-[100vw]">
+      <section className="rounded-md border px-8 py-2 max-w-[26rem] w-[100vw]">
         <form
           className="flex flex-col gap-y-2 "
           onSubmit={(evt) => {

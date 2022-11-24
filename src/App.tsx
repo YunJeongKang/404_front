@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FiHome } from "react-icons/fi";
-import { CgHeart } from "react-icons/cg";
-import { GiLovers } from "react-icons/gi";
-import { RiChat1Line } from "react-icons/ri";
-import { AiOutlineUser } from "react-icons/ai";
+import { AiFillHome, AiOutlineHome } from "react-icons/ai";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+import {
+  HiBadgeCheck,
+  HiOutlineBadgeCheck,
+  HiUser,
+  HiOutlineUser,
+} from "react-icons/hi";
+import { RiChat1Line, RiChat1Fill } from "react-icons/ri";
 import PATH from "@utils/routes/PATH";
 import ProtectedRoutes from "@components/routes/ProtectedRoutes";
 import UnauthedRoutes from "@components/routes/UnauthedRoutes";
@@ -39,7 +43,7 @@ function App() {
             auth.isAuthenticated === true
               ? "min-h-[41.6rem] max-h-[41.6rem]"
               : "min-h-[44.6rem] max-h-[44.6rem]"
-          } overflow-hidden overflow-y-auto scrollbar-hide`}
+          } overflow-hidden overflow-y-auto scrollbar-hide justify-center`}
         >
           {currentRoutes}
         </main>
@@ -47,19 +51,39 @@ function App() {
           <footer>
             <nav className="flex flex-row justify-center gap-16 border shadow-md py-2 ">
               <Link to={HOME}>
-                <FiHome size="30" />
+                {location.pathname === HOME ? (
+                  <AiFillHome size="30" />
+                ) : (
+                  <AiOutlineHome size="30" />
+                )}
               </Link>
               <Link to={LIKE}>
-                <CgHeart size="30" />
+                {location.pathname === LIKE ? (
+                  <FaHeart size="30" />
+                ) : (
+                  <FaRegHeart size="30" />
+                )}
               </Link>
               <Link to={RECOMMEND}>
-                <GiLovers size="30" />
+                {location.pathname === RECOMMEND ? (
+                  <HiBadgeCheck size="30" />
+                ) : (
+                  <HiOutlineBadgeCheck size="30" />
+                )}
               </Link>
               <Link to={CHAT}>
-                <RiChat1Line size="30" />
+                {location.pathname === CHAT ? (
+                  <RiChat1Fill size="30" />
+                ) : (
+                  <RiChat1Line size="30" />
+                )}
               </Link>
               <Link to={USER}>
-                <AiOutlineUser size="30" />
+                {location.pathname === USER ? (
+                  <HiUser size="30" />
+                ) : (
+                  <HiOutlineUser size="30" />
+                )}
               </Link>
             </nav>
           </footer>

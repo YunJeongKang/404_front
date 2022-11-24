@@ -36,7 +36,7 @@ import { ulsanList } from "@data/region_info/ulsan";
 import { jejuList } from "@data/region_info/jeju";
 import SectionTemplate from "@styles/indexStyle/indexSection";
 import { radioAlcoholList, selectAlcoholList } from "@data/main_info/alcohol";
-import { radioSmokeList } from "@data/main_info/smoke";
+import { radioSmokeList, selectSmokeList } from "@data/main_info/smoke";
 import {
   radioEducationList,
   selectEducationList,
@@ -577,7 +577,7 @@ const UserInfoPage = () => {
             value={mainInfo.smoke}
             onChange={mainInfoChange}
           >
-            {selectEducationList.map(({ value, optionName }) => (
+            {selectSmokeList.map(({ value, optionName }) => (
               <OptionInput value={value} key={value} required>
                 {optionName}
               </OptionInput>

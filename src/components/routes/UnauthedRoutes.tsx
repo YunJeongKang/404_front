@@ -10,10 +10,10 @@ const { LOGIN, EASY_AUTH, SIGNUP, INPUT, USER } = PATH;
 function UnauthedRoutes() {
   return (
     <Routes>
-      <Route path={LOGIN} element={<LoginPage />} />
-      <Route path={USER} element={<UserInfoPage />} />
-      <Route path={SIGNUP} element={<SignInPage />} />
       <Route path={EASY_AUTH} element={<EasyStartPage />} />
+      <Route path={LOGIN} element={<LoginPage />} />
+      <Route path={SIGNUP} element={<SignInPage />} />
+      <Route path={INPUT} element={<UserInfoPage />} />
       <Route path="*" element={<Navigate replace to={EASY_AUTH} />} />
     </Routes>
   );

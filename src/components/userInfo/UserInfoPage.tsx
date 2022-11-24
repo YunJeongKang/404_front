@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import H2, { H3 } from "@styles/indexStyle/indexHeading";
 import PATH from "@utils/routes/PATH";
 import axios from "axios";
-import { RadioInputTemplate } from "@styles/indexStyle/indexInput";
+import { RequiredRadioInputTemplate } from "@styles/indexStyle/indexInput";
 import { RadioLabelTemplate } from "@styles/indexStyle/indexLabel";
 import { radioGenderList } from "@data/main_info/gender";
 import { radioRegionList } from "@data/main_info/region";
@@ -50,6 +50,7 @@ import { selectVehicleList } from "@data/main_info/vehicle";
 import { radioJobList } from "@data/main_info/job";
 import { selectMarriagePlanList } from "@data/main_info/marriagePlants";
 import { selectReligionList } from "@data/main_info/religion";
+import RequiredMark from "@styles/indexStyle/indexSpan";
 
 const { UI, URL } = PATH;
 
@@ -148,10 +149,13 @@ const UserInfoPage = () => {
 
   return (
     <UserInfoForm onSubmit={onSubmit}>
+      <span>
+        <span className="text-red-700">'*'</span> 는 필수입력란 입니다
+      </span>
       {/* 성별 */}
       <SectionTemplate>
         <H2>성별</H2>
-        <RadioInputTemplate
+        <RequiredRadioInputTemplate
           RadioLabelTemplate={
             <>
               {radioGenderList.map(({ htmlFor, labelName, value }) => (
@@ -174,43 +178,7 @@ const UserInfoPage = () => {
       <SectionTemplate>
         <H2>생년월일</H2>
         <Age onChange={mainInfoChange} value={mainInfo.birth} />
-      </SectionTemplate>
-      {/* 키 / 체중 */}
-      <SectionTemplate>
-        <div className="w-1/2 flex flex-raw gap-2">
-          <H3>몸무게</H3>
-          <>
-            <SelectInput
-              name="weight"
-              value={mainInfo.weight}
-              onChange={mainInfoChange}
-            >
-              {arrayRange.map((item) => (
-                <OptionInput value={item + 31} key={item}>
-                  {item + 31}
-                </OptionInput>
-              ))}
-            </SelectInput>
-          </>
-          <h1 className="text-lg">KG</h1>
-        </div>
-        <div className="w-1/2 flex flex-raw gap-2">
-          <H3>키</H3>
-          <>
-            <SelectInput
-              name="height"
-              value={mainInfo.height}
-              onChange={mainInfoChange}
-            >
-              {arrayRange.map((item) => (
-                <OptionInput value={item + 81} key={item}>
-                  {item + 81}
-                </OptionInput>
-              ))}
-            </SelectInput>
-          </>
-          <h1 className="text-lg">CM</h1>
-        </div>
+        <RequiredMark />
       </SectionTemplate>
       {/* 지역 */}
       <SectionTemplate>
@@ -520,7 +488,47 @@ const UserInfoPage = () => {
               <></>
             )}
           </>
+          <RequiredMark />
         </ModalEmptyDiv>
+      </SectionTemplate>
+      {/* 키 / 체중 */}
+      <SectionTemplate>
+        {/* 체중 */}
+        <div className="w-1/2 flex flex-raw gap-2">
+          <H3>몸무게</H3>
+          <>
+            <SelectInput
+              name="weight"
+              value={mainInfo.weight}
+              onChange={mainInfoChange}
+            >
+              {arrayRange.map((item) => (
+                <OptionInput value={item + 31} key={item}>
+                  {item + 31}
+                </OptionInput>
+              ))}
+            </SelectInput>
+          </>
+          <h1 className="text-lg">KG</h1>
+        </div>
+        {/* 키 */}
+        <div className="w-1/2 flex flex-raw gap-2">
+          <H3>키</H3>
+          <>
+            <SelectInput
+              name="height"
+              value={mainInfo.height}
+              onChange={mainInfoChange}
+            >
+              {arrayRange.map((item) => (
+                <OptionInput value={item + 81} key={item}>
+                  {item + 81}
+                </OptionInput>
+              ))}
+            </SelectInput>
+          </>
+          <h1 className="text-lg">CM</h1>
+        </div>
       </SectionTemplate>
       {/* 혈액형 */}
       <SectionTemplate>
@@ -678,7 +686,7 @@ const UserInfoPage = () => {
       {/* 결혼유무 */}
       <SectionTemplate>
         <H2>결혼유무</H2>
-        <RadioInputTemplate
+        <RequiredRadioInputTemplate
           RadioLabelTemplate={
             <>
               {radioMarriedList.map(({ htmlFor, labelName, value }) => (

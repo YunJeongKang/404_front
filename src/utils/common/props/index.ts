@@ -9,6 +9,7 @@ export type CommonParagraphProps = Omit<Props<HTMLParagraphElement>, "classID">;
 export type CommonHeadingProps = Omit<Props<HTMLHeadingElement>, "classID">;
 export type CommonSelectProps = Omit<Props<HTMLSelectElement>, "classID">;
 export type CommonOptionProps = Omit<Props<HTMLOptionElement>, "classID">;
+export type CommonSpanProps = Omit<Props<HTMLSpanElement>, "classID ">;
 export type CommonSectionProps = Omit<
   Props<HTMLTableSectionElement>,
   "classID"

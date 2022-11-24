@@ -34,30 +34,36 @@ function App() {
   return (
     <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide">
       <div className="h-screen max-w-[28rem] z-10 scrollbar-hide">
-        <main className="flex flex-col items-center w-[28rem] border shadow-inner drop-shadow">
+        <main
+          className={`flex flex-col items-center w-[28rem] border shadow-inner drop-shadow ${
+            auth.isAuthenticated === true
+              ? "min-h-[41.6rem] max-h-[41.6rem]"
+              : "min-h-[44.6rem] max-h-[44.6rem]"
+          } overflow-hidden overflow-y-auto scrollbar-hide`}
+        >
           {currentRoutes}
         </main>
-        {/* {auth.isAuthenticated === true ? ( */}
-        <footer>
-          <nav className="flex flex-row justify-center gap-16 border shadow-md py-2">
-            <Link to={HOME}>
-              <FiHome size="30" />
-            </Link>
-            <Link to={LIKE}>
-              <CgHeart size="30" />
-            </Link>
-            <Link to={RECOMMEND}>
-              <GiLovers size="30" />
-            </Link>
-            <Link to={CHAT}>
-              <RiChat1Line size="30" />
-            </Link>
-            <Link to={USER}>
-              <AiOutlineUser size="30" />
-            </Link>
-          </nav>
-        </footer>
-        {/* ) : null} */}
+        {auth.isAuthenticated === true ? (
+          <footer>
+            <nav className="flex flex-row justify-center gap-16 border shadow-md py-2 ">
+              <Link to={HOME}>
+                <FiHome size="30" />
+              </Link>
+              <Link to={LIKE}>
+                <CgHeart size="30" />
+              </Link>
+              <Link to={RECOMMEND}>
+                <GiLovers size="30" />
+              </Link>
+              <Link to={CHAT}>
+                <RiChat1Line size="30" />
+              </Link>
+              <Link to={USER}>
+                <AiOutlineUser size="30" />
+              </Link>
+            </nav>
+          </footer>
+        ) : null}
       </div>
     </div>
   );

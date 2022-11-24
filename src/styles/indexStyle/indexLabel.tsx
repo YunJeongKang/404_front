@@ -5,7 +5,7 @@ const LabelInput: FC<CommonLabelProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <label
-      className={`border rounded-md shadow-md px-1.5 py-1 cursor-pointer duration-150 hover:bg-gray-200 active:scale-[0.92] ${className}`}
+      className={`rounded-md shadow-md px-1.5 py-1 cursor-pointer duration-150 hover:bg-blue-100 active:scale-[0.92] ${className}`}
       {...restProps}
     >
       {children}
@@ -20,8 +20,9 @@ interface RadioInputInterface {
   labelChild: string;
   htmlFor: string;
   checked: boolean;
+  className?: string;
 
-  onChange: (evt: any) => void;
+  onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const RadioLabelTemplate = ({
@@ -32,11 +33,12 @@ export const RadioLabelTemplate = ({
   labelChild,
   onChange,
   checked,
+  className,
 }: RadioInputInterface) => {
   return (
     <>
       <input
-        className="hidden"
+        className={`hidden ${className}`}
         type="radio"
         value={value}
         name={name}

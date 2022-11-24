@@ -39,11 +39,11 @@ function App() {
     <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide">
       <div className="h-screen max-w-[28rem] z-10 scrollbar-hide">
         <main
-          className={`flex flex-col items-center w-[28rem] border shadow-inner drop-shadow ${
+          className={`flex flex-col items-center w-[26rem] border shadow-inner drop-shadow ${
             auth.isAuthenticated === true
               ? "min-h-[41.6rem] max-h-[41.6rem]"
               : "min-h-[44.6rem] max-h-[44.6rem]"
-          } overflow-hidden overflow-y-auto scrollbar-hide justify-center`}
+          } overflow-hidden overflow-y-auto scrollbar-hide justify-center bg-blue-200`}
         >
           {currentRoutes}
         </main>

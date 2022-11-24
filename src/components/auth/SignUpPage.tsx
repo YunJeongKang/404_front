@@ -23,7 +23,7 @@ const SignInPage = () => {
 
   const [checkPW, setCheckPW] = useState<string>("");
 
-  const { URL, SIGNUP } = PATH;
+  const { URL, SIGNUP, INPUT } = PATH;
 
   function onSubmit() {
     axios.post(`${URL}${SIGNUP}`, { ...values });
@@ -39,7 +39,7 @@ const SignInPage = () => {
       value?: string; 
       placeholder?: string; */
 
-    <UserInfoForm className="py-4 px-12 gap-2" onSubmit={onSubmit}>
+    <UserInfoForm className="py-4 px-10 gap-2 bg-white" onSubmit={onSubmit}>
       <TextInputTemplate
         onChange={onChange}
         value={values.nickname || ""}
@@ -101,7 +101,7 @@ const SignInPage = () => {
         type="submit"
         className="border px-3 py-1 rounded-md shadow-md duration-200 active:scale-95"
       >
-        <Link to={PATH.USER}>제출</Link>
+        <Link to={INPUT}>제출</Link>
       </button>
     </UserInfoForm>
   );

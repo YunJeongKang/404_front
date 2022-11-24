@@ -34,9 +34,9 @@ function LoginPage() {
   }, []);
 
   return (
-    <div className="w-[50vw] max-w-[24rem] flex flex-col items-center gap-4">
+    <div className="w-[50vw] max-w-[24rem] flex flex-col items-center  gap-4">
       <h1>LOGIN page</h1>
-      <section className="rounded-md border px-8 py-2 max-w-[24rem] w-[100vw]">
+      <section className="rounded-md border px-8 py-2 max-w-[24rem] w-[100vw] bg-white">
         <form
           className="flex flex-col gap-y-2 "
           onSubmit={(evt) => {
@@ -86,7 +86,7 @@ function LoginPage() {
         </form>
         <div className="py-2">
           <Link to={EASY_AUTH}>
-            <button className="bg-secondary text-white rounded-md px-2 py-1 active:scale-95 font-bold border">
+            <button className="bg-secondary text-white rounded-md px-2 pt-1 active:scale-95 font-bold border">
               회원가입
             </button>
           </Link>

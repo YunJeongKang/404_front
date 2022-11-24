@@ -1,7 +1,7 @@
 import UserInfoForm from "@styles/indexStyle/indexForm";
 import Age from "./Age";
 import { useState, useEffect } from "react";
-import H2, { H3 } from "@styles/indexStyle/indexHeading";
+import H2 from "@styles/indexStyle/indexHeading";
 import PATH from "@utils/routes/PATH";
 import axios from "axios";
 import { RequiredRadioInputTemplate } from "@styles/indexStyle/indexInput";
@@ -152,8 +152,13 @@ const UserInfoPage = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
 
   return (
-    <UserInfoForm onSubmit={onSubmit}>
-      <span className="pt-6">
+    <UserInfoForm
+      onSubmit={onSubmit}
+      className={`bg-white ${
+        mainInfo.gender === "f" ? "checked-bg:bg-red-200" : null
+      } `}
+    >
+      <span className="pt-2">
         <span className="text-red-700 px-2">'*'</span> 는 필수입력란 입니다
       </span>
       {/* 성별 */}
@@ -164,6 +169,9 @@ const UserInfoPage = () => {
             <>
               {radioGenderList.map(({ htmlFor, labelName, value }) => (
                 <RadioLabelTemplate
+                  className={`${
+                    mainInfo.gender === "f" ? "hover:bg-red-200" : null
+                  }`}
                   checked={value === mainInfo.gender}
                   onChange={mainInfoChange}
                   key={htmlFor}
@@ -181,8 +189,10 @@ const UserInfoPage = () => {
       {/* 생년월일 */}
       <SectionTemplate>
         <H2>생년월일</H2>
-        <Age onChange={mainInfoChange} value={mainInfo.birth} />
-        <RequiredMark />
+        <ModalEmptyDiv>
+          <Age onChange={mainInfoChange} value={mainInfo.birth} />
+          <RequiredMark />
+        </ModalEmptyDiv>
       </SectionTemplate>
       {/* 지역 */}
       <SectionTemplate>
@@ -498,8 +508,8 @@ const UserInfoPage = () => {
       {/* 키 / 체중 */}
       <SectionTemplate>
         {/* 체중 */}
-        <div className="w-1/2 flex flex-raw gap-2">
-          <H3>몸무게</H3>
+        <H2>몸무게</H2>
+        <div className="w-1/4 flex gap-1">
           <>
             <SelectInput
               name="weight"
@@ -513,11 +523,11 @@ const UserInfoPage = () => {
               ))}
             </SelectInput>
           </>
-          <h1 className="text-lg">KG</h1>
+          <h1 className="text-md">KG</h1>
         </div>
         {/* 키 */}
-        <div className="w-1/2 flex flex-raw gap-2">
-          <H3>키</H3>
+        <div className="w-2/5 flex flex-raw gap-1">
+          <H2>키</H2>
           <>
             <SelectInput
               name="height"
@@ -531,7 +541,7 @@ const UserInfoPage = () => {
               ))}
             </SelectInput>
           </>
-          <h1 className="text-lg">CM</h1>
+          <h1 className="text-md">CM</h1>
         </div>
       </SectionTemplate>
       {/* 혈액형 */}
@@ -728,7 +738,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       <button
         type="submit"
-        className="border shadow rounded-md px-2.5 py-1 duration-75 active:scale-[0.97] "
+        className="border shadow rounded-md px-2.5 py-1 duration-150 active:scale-[0.97] "
       >
         제출
       </button>

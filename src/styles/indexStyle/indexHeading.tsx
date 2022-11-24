@@ -5,7 +5,7 @@ const H2: FC<CommonHeadingProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <h2
-      className={`w-2/6 text-center text-3xl font-bold bg-cyan-200 inline-block ${className}`}
+      className={`w-[26%]  text-center text-lg font-bold  inline-block ${className}`}
       {...restProps}
     >
       {children}
@@ -14,15 +14,3 @@ const H2: FC<CommonHeadingProps> = (props) => {
 };
 
 export default H2;
-
-export const H3: FC<CommonHeadingProps> = (props) => {
-  const { children, className, ...restProps } = props;
-  return (
-    <h3
-      className={`w-2/6 text-center text-2xl font-bold bg-cyan-200 inline-block ${className}`}
-      {...restProps}
-    >
-      {children}
-    </h3>
-  );
-};

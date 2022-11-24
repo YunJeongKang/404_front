@@ -8,7 +8,7 @@ const EasyStartPage = () => {
   // const KAKAO_CODE = new URL(document.location).searchParams.get("code");
   const { LOGIN, SIGNUP } = PATH;
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-2 bg-white rounded-md px-4 py-2">
       <Link to={SIGNUP}>
         <span className="text-sm underline">이메일로 간편하게 회원가입</span>
       </Link>

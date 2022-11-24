@@ -1,6 +1,6 @@
 import { RegionSelectType } from "@models/CPType";
 
-export const regionList: RegionSelectType[] = [
+export const radioRegionList: RegionSelectType[] = [
   { regionInfoName: "강원도", value: "a" },
   { regionInfoName: "경기도", value: "b" },
   { regionInfoName: "경상남도", value: "c" },
@@ -22,4 +22,4 @@ export const regionList: RegionSelectType[] = [
 ];
 
 // 내용을 한 단계 depth 동결 시키는 것 -> 불변성 조금 보장 -> value 바뀔 수 있음.
-Object.freeze(regionList);
+Object.freeze(radioRegionList);

@@ -6,11 +6,11 @@ import PATH from "@utils/routes/PATH";
 import axios from "axios";
 import { RadioInputTemplate } from "@styles/indexStyle/indexInput";
 import { RadioLabelTemplate } from "@styles/indexStyle/indexLabel";
-import { genderList } from "@data/main_info/gender";
-import { regionList } from "@data/main_info/region";
+import { radioGenderList } from "@data/main_info/gender";
+import { radioRegionList } from "@data/main_info/region";
 import { seoulList } from "@data/region_info/seoul";
 import { gyungkiList } from "@data/region_info/gyungki";
-import { marriedList } from "@data/main_info/married";
+import { radioMarriedList } from "@data/main_info/married";
 import {
   MainInfoInterface,
   RegionInfoInterface,
@@ -35,13 +35,18 @@ import { sejongList } from "@data/region_info/sejong";
 import { ulsanList } from "@data/region_info/ulsan";
 import { jejuList } from "@data/region_info/jeju";
 import SectionTemplate from "@styles/indexStyle/indexSection";
-import { alcoholList } from "@data/main_info/alcohol";
-import { smokeList } from "@data/main_info/smoke";
-import { educationList } from "@data/main_info/educational";
-import { salaryList } from "@data/main_info/salary";
-import { assetList } from "@data/main_info/asset";
+import { radioAlcoholList, selectAlcoholList } from "@data/main_info/alcohol";
+import { radioSmokeList } from "@data/main_info/smoke";
+import {
+  radioEducationList,
+  selectEducationList,
+} from "@data/main_info/educational";
+import { radioSalaryList, selectSalaryList } from "@data/main_info/salary";
+import { radioAssetList, selectAssetList } from "@data/main_info/asset";
 import Modal from "@styles/modal/Modal";
 import ModalEmptyDiv, { HrDiv } from "@styles/indexStyle/indexDiv";
+import { selectBloodList } from "@data/main_info/blood";
+import { selectVehicleList } from "@data/main_info/vehicle";
 
 const { UI, URL } = PATH;
 
@@ -143,57 +148,29 @@ const UserInfoPage = () => {
       {/* 성별 */}
       <SectionTemplate>
         <H2>성별</H2>
-        {mainInfo.gender !== "" ? (
-          <ModalEmptyDiv onClick={() => setOpen(true)}>
-            {mainInfo.gender === "m" ? "남자" : "여자"}
-          </ModalEmptyDiv>
-        ) : (
-          <ModalEmptyDiv onClick={() => setOpen(true)}>
-            성별을 선택하세요
-          </ModalEmptyDiv>
-        )}
-        <Modal isOpen={isOpen}>
-          <H2>성별</H2>
-          <HrDiv />
-          <RadioInputTemplate
-            RadioLabelTemplate={
-              <>
-                {genderList.map(({ htmlFor, labelName, value }) => (
-                  <RadioLabelTemplate
-                    checked={value === mainInfo.gender}
-                    onChange={mainInfoChange}
-                    key={htmlFor}
-                    inputID={htmlFor}
-                    name="gender"
-                    value={value}
-                    labelChild={labelName}
-                    htmlFor={htmlFor}
-                  />
-                ))}
-              </>
-            }
-          />
-          <button onClick={() => setOpen(false)}>X</button>
-        </Modal>
+        <RadioInputTemplate
+          RadioLabelTemplate={
+            <>
+              {radioGenderList.map(({ htmlFor, labelName, value }) => (
+                <RadioLabelTemplate
+                  checked={value === mainInfo.gender}
+                  onChange={mainInfoChange}
+                  key={htmlFor}
+                  inputID={htmlFor}
+                  name="gender"
+                  value={value}
+                  labelChild={labelName}
+                  htmlFor={htmlFor}
+                />
+              ))}
+            </>
+          }
+        />
       </SectionTemplate>
       {/* 생년월일 */}
       <SectionTemplate>
         <H2>생년월일</H2>
-        {mainInfo.birth !== "" ? (
-          <ModalEmptyDiv onClick={() => setOpen(true)}>
-            {mainInfo.birth === "" ? "isClick" : mainInfo.birth}
-          </ModalEmptyDiv>
-        ) : (
-          <ModalEmptyDiv onClick={() => setOpen(true)}>
-            생년월일을 선택하세요
-          </ModalEmptyDiv>
-        )}
-        <Modal isOpen={isOpen}>
-          <H2>생년월일</H2>
-          <HrDiv />
-          <Age onChange={mainInfoChange} value={mainInfo.birth} />
-          <button onClick={() => setOpen(false)}>X</button>
-        </Modal>
+        <Age onChange={mainInfoChange} value={mainInfo.birth} />
       </SectionTemplate>
       {/* 키 / 체중 */}
       <SectionTemplate>
@@ -242,7 +219,7 @@ const UserInfoPage = () => {
               value={mainInfo.region}
               onChange={mainInfoChange}
             >
-              {regionList.map(({ value, regionInfoName }) => (
+              {radioRegionList.map(({ value, regionInfoName }) => (
                 <OptionInput value={value} key={value} required>
                   {regionInfoName}
                 </OptionInput>
@@ -542,13 +519,30 @@ const UserInfoPage = () => {
           </>
         </ModalEmptyDiv>
       </SectionTemplate>
+      {/* 혈액형 */}
+      <SectionTemplate>
+        <H2>혈액형</H2>
+        <ModalEmptyDiv>
+          <SelectInput
+            name="blood"
+            value={mainInfo.blood}
+            onChange={mainInfoChange}
+          >
+            {selectBloodList.map(({ value, optionName }) => (
+              <OptionInput value={value} key={value} required>
+                {optionName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </ModalEmptyDiv>
+      </SectionTemplate>
       {/* 결혼유무 */}
       <SectionTemplate>
         <H2>결혼유무</H2>
         <RadioInputTemplate
           RadioLabelTemplate={
             <>
-              {marriedList.map(({ htmlFor, labelName, value }) => (
+              {radioMarriedList.map(({ htmlFor, labelName, value }) => (
                 <RadioLabelTemplate
                   checked={value === mainInfo.married}
                   onChange={mainInfoChange}
@@ -567,112 +561,104 @@ const UserInfoPage = () => {
       {/* 음주여부 */}
       <SectionTemplate>
         <H2>음주여부</H2>
-        <RadioInputTemplate
-          RadioLabelTemplate={
-            <>
-              {alcoholList.map(({ htmlFor, labelName, value }) => (
-                <RadioLabelTemplate
-                  checked={value === mainInfo.alcohol}
-                  onChange={mainInfoChange}
-                  key={htmlFor}
-                  inputID={htmlFor}
-                  name="alcohol"
-                  value={value}
-                  labelChild={labelName}
-                  htmlFor={htmlFor}
-                />
-              ))}
-            </>
-          }
-        />
+        <ModalEmptyDiv>
+          <SelectInput
+            name="alcohol"
+            value={mainInfo.alcohol}
+            onChange={mainInfoChange}
+          >
+            {selectAlcoholList.map(({ value, optionName }) => (
+              <OptionInput value={value} key={value} required>
+                {optionName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </ModalEmptyDiv>
       </SectionTemplate>
       {/* 흡연여부 */}
       <SectionTemplate>
         <H2>흡연여부</H2>
-        <RadioInputTemplate
-          RadioLabelTemplate={
-            <>
-              {smokeList.map(({ htmlFor, labelName, value }) => (
-                <RadioLabelTemplate
-                  checked={value === mainInfo.smoke}
-                  onChange={mainInfoChange}
-                  key={htmlFor}
-                  inputID={htmlFor}
-                  name="smoke"
-                  value={value}
-                  labelChild={labelName}
-                  htmlFor={htmlFor}
-                />
-              ))}
-            </>
-          }
-        />
+        <ModalEmptyDiv>
+          <SelectInput
+            name="smoke"
+            value={mainInfo.smoke}
+            onChange={mainInfoChange}
+          >
+            {selectEducationList.map(({ value, optionName }) => (
+              <OptionInput value={value} key={value} required>
+                {optionName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </ModalEmptyDiv>
       </SectionTemplate>
       {/* 학력 */}
       <SectionTemplate>
         <H2>학력</H2>
-        <RadioInputTemplate
-          RadioLabelTemplate={
-            <>
-              {educationList.map(({ htmlFor, labelName, value }) => (
-                <RadioLabelTemplate
-                  checked={value === mainInfo.education}
-                  onChange={mainInfoChange}
-                  key={htmlFor}
-                  inputID={htmlFor}
-                  name="education"
-                  value={value}
-                  labelChild={labelName}
-                  htmlFor={htmlFor}
-                />
-              ))}
-            </>
-          }
-        />
+        <ModalEmptyDiv>
+          <SelectInput
+            name="education"
+            value={mainInfo.education}
+            onChange={mainInfoChange}
+          >
+            {selectEducationList.map(({ value, optionName }) => (
+              <OptionInput value={value} key={value} required>
+                {optionName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </ModalEmptyDiv>
       </SectionTemplate>
       {/* 연봉  */}
       <SectionTemplate>
         <H2>연봉</H2>
-        <RadioInputTemplate
-          RadioLabelTemplate={
-            <>
-              {salaryList.map(({ htmlFor, labelName, value }) => (
-                <RadioLabelTemplate
-                  checked={value === mainInfo.gender}
-                  onChange={mainInfoChange}
-                  key={htmlFor}
-                  inputID={htmlFor}
-                  name="gender"
-                  value={value}
-                  labelChild={labelName}
-                  htmlFor={htmlFor}
-                />
-              ))}
-            </>
-          }
-        />
+        <ModalEmptyDiv>
+          <SelectInput
+            name="salary"
+            value={mainInfo.salary}
+            onChange={mainInfoChange}
+          >
+            {selectSalaryList.map(({ value, optionName }) => (
+              <OptionInput value={value} key={value} required>
+                {optionName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </ModalEmptyDiv>
       </SectionTemplate>
-      {/* 재산 */}
+      {/* 자산 */}
       <SectionTemplate>
-        <H2>재산</H2>
-        <RadioInputTemplate
-          RadioLabelTemplate={
-            <>
-              {assetList.map(({ htmlFor, labelName, value }) => (
-                <RadioLabelTemplate
-                  checked={value === mainInfo.asset}
-                  onChange={mainInfoChange}
-                  key={htmlFor}
-                  inputID={htmlFor}
-                  name="asset"
-                  value={value}
-                  labelChild={labelName}
-                  htmlFor={htmlFor}
-                />
-              ))}
-            </>
-          }
-        />
+        <H2>자산</H2>
+        <ModalEmptyDiv>
+          <SelectInput
+            name="asset"
+            value={mainInfo.asset}
+            onChange={mainInfoChange}
+          >
+            {selectAssetList.map(({ value, optionName }) => (
+              <OptionInput value={value} key={value} required>
+                {optionName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </ModalEmptyDiv>
+      </SectionTemplate>
+      {/* 차량 */}
+      <SectionTemplate>
+        <H2>차량</H2>
+        <ModalEmptyDiv>
+          <SelectInput
+            name="vehicle"
+            value={mainInfo.vehicle}
+            onChange={mainInfoChange}
+          >
+            {selectVehicleList.map(({ value, optionName }) => (
+              <OptionInput value={value} key={value} required>
+                {optionName}
+              </OptionInput>
+            ))}
+          </SelectInput>
+        </ModalEmptyDiv>
       </SectionTemplate>
       <button
         type="submit"

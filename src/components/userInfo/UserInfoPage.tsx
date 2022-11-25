@@ -140,8 +140,6 @@ const UserInfoPage = () => {
   }
 
   useEffect(() => {
-    mainInfo.weight === "" ? (mainInfo.weight = "50") : null;
-    mainInfo.height === "" ? (mainInfo.height = "160") : null;
     mainInfo.region === ""
       ? ((mainInfo.region = "a"), (regionInfo.region_kangwon = "a01"))
       : null;
@@ -169,9 +167,6 @@ const UserInfoPage = () => {
             <>
               {radioGenderList.map(({ htmlFor, labelName, value }) => (
                 <RadioLabelTemplate
-                  className={`${
-                    mainInfo.gender === "f" ? "hover:bg-red-200" : null
-                  }`}
                   checked={value === mainInfo.gender}
                   onChange={mainInfoChange}
                   key={htmlFor}

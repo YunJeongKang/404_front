@@ -21,12 +21,6 @@ const SignInPage = () => {
     });
   };
 
-  useEffect(() => {
-    axios.get(`${URL}${SIGNUP}`).then((response) => {
-      console.log(response);
-    });
-  }, []);
-
   const [checkPW, setCheckPW] = useState<string>("");
 
   const { URL, SIGNUP, INPUT } = PATH;
@@ -34,6 +28,11 @@ const SignInPage = () => {
   function onSubmit() {
     axios.post(`${URL}${SIGNUP}`, { ...values });
     console.log({ ...values, checkPW });
+    useEffect(() => {
+      axios.get(`${URL}${SIGNUP}`).then((response) => {
+        console.log(response);
+      });
+    }, []);
   }
 
   return (

@@ -1,10 +1,10 @@
 export interface AuthInterface {
-  nickname: string;
   email: string;
   password: string;
 }
 
 export interface MainInfoInterface {
+  nickname: string;
   gender: string;
   birth: string;
   married: string;

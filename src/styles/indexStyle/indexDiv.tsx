@@ -18,3 +18,12 @@ export const HrDiv = () => {
 };
 
 export default ModalEmptyDiv;
+
+export const UserDetail: FC<CommonDivProps> = (props) => {
+  const { children, className, ...restProps } = props;
+  return (
+    <div className={`flex flex-col items-center ${className}`} {...restProps}>
+      <div>{children}</div>
+    </div>
+  );
+};

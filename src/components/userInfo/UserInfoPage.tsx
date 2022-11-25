@@ -46,6 +46,7 @@ import { radioJobList } from "@data/main_info/job";
 import { selectMarriagePlanList } from "@data/main_info/marriagePlants";
 import { selectReligionList } from "@data/main_info/religion";
 import RequiredMark from "@styles/indexStyle/indexSpan";
+import { TextInputTemplate } from "@utils/common/props/userInfo/TotalFormTemplate";
 
 const { INPUT, URL } = PATH;
 
@@ -69,6 +70,7 @@ const UserInfoPage = () => {
     vehicle: "",
     height: "",
     weight: "",
+    nickname: "",
   });
 
   // 지역 상세 데이터
@@ -129,15 +131,40 @@ const UserInfoPage = () => {
   const arrayRange = [...Array(120).keys()];
 
   return (
-    <UserInfoForm
-      onSubmit={onSubmit}
-      className={`bg-white ${
-        mainInfo.gender === "f" ? "checked-bg:bg-red-200" : null
-      } `}
-    >
+    <UserInfoForm onSubmit={onSubmit} className={`bg-white `}>
       <span className="pt-2">
         <span className="text-red-700 px-2">'*'</span> 는 필수입력란 입니다
       </span>
+      {/* 닉네임 */}
+      <SectionTemplate>
+        <RequiredMark />
+        <H2>닉네임</H2>
+        <ModalEmptyDiv>
+          <fieldset className="flex gap-2">
+            <div className="flex flex-col items-start gap-1">
+              <input
+                className="border peer dark:text-dark px-1 rounded-md shadow"
+                value={mainInfo.nickname}
+                pattern="[가-힣A-Za-z0-9]{1,8}$"
+                name="nickname"
+                placeholder="닉네임을 입력하세요"
+                required
+                autoComplete="on"
+                onChange={mainInfoChange}
+              />
+              <span className="hidden peer-invalid:block">
+                {mainInfo.nickname === "" ? (
+                  <></>
+                ) : (
+                  <span className="text-danger text-xs">
+                    "1~8자의 올바른 닉네임을 입력하세요"
+                  </span>
+                )}
+              </span>
+            </div>
+          </fieldset>
+        </ModalEmptyDiv>
+      </SectionTemplate>
       {/* 성별 */}
       <SectionTemplate>
         <RequiredMark />

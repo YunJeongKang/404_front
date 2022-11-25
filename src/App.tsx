@@ -41,7 +41,7 @@ function App() {
             isTrue
               ? "min-h-[41.6rem] max-h-[41.6rem]"
               : "min-h-[44.6rem] max-h-[44.6rem]"
-          } overflow-hidden overflow-y-auto scrollbar-hide justify-center bg-blue-200`}
+          } overflow-hidden overflow-y-auto scrollbar-hide justify-center bg-sky-100`}
         >
           {currentRoutes}
         </main>

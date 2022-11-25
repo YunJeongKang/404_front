@@ -1,11 +1,11 @@
 interface TextInputTemplateInterface {
-  query: string;
+  query?: string;
   pattern: string;
   name: string;
   dangerText?: string;
   type?: string;
   placeholder?: string;
-  value: any;
+  value: string;
   autoComplete?: string;
 
   onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;

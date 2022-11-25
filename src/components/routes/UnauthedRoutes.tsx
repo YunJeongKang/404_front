@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import PATH from "@utils/routes/PATH";
 import LoginPage from "@components/auth/LoginPage";
 import EasyStartPage from "@components/auth/EasyStartPage";
-import SignInPage from "@components/auth/SignUpPage";
+import SignUnPage from "@components/auth/SignUpPage";
 import UserInfoPage from "@components/userInfo/UserInfoPage";
 import useAuth from "./../../store/useAuth";
 
@@ -17,7 +17,7 @@ function UnauthedRoutes() {
       <Route path={LOGIN} element={<LoginPage />} />
       <Route
         path={autoInput ? INPUT : SIGNUP}
-        element={autoInput ? <UserInfoPage /> : <SignInPage />}
+        element={autoInput ? <UserInfoPage /> : <SignUnPage />}
       />
       <Route path={INPUT} element={<UserInfoPage />} />
       <Route

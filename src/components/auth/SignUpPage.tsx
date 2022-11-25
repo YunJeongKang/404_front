@@ -7,9 +7,8 @@ import { AuthInterface } from "@models/user/UserDetail";
 import { Link } from "react-router-dom";
 import useAuth from "@store/useAuth";
 
-const SignInPage = () => {
+const SignUnPage = () => {
   const [values, setValues] = useState<AuthInterface>({
-    nickname: "",
     email: "",
     password: "",
   });
@@ -55,15 +54,6 @@ const SignInPage = () => {
       placeholder?: string; */
 
     <UserInfoForm className="py-4 px-10 gap-2 bg-white" onSubmit={onSubmit}>
-      <TextInputTemplate
-        onChange={onChange}
-        value={values.nickname || ""}
-        query="닉네임"
-        pattern="[가-힣A-Za-z0-9]{1,8}$"
-        name="nickname"
-        dangerText="8자 이하의 올바른 닉네임을 입력하세요(자모음소X)"
-        placeholder="닉네임을 입력하세요"
-      />
       <TextInputTemplate
         onChange={onChange}
         value={values.email || ""}
@@ -124,4 +114,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default SignUnPage;

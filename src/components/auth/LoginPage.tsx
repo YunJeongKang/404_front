@@ -53,7 +53,7 @@ function LoginPage() {
               value={loginInfo.email}
               ref={usernameRef}
               autoComplete="on"
-              className="w-5/6 border px-2 py-1 rounded-md"
+              className="w-5/6 border px-2 py-1 bg-white rounded-md"
               onChange={onChange}
             />
           </fieldset>

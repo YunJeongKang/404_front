@@ -6,6 +6,8 @@ interface TextInputTemplateInterface {
   type?: string;
   placeholder?: string;
   value: any;
+  autoComplete?: string;
+
   onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -17,6 +19,7 @@ export const TextInputTemplate = ({
   dangerText = "This is not correct",
   type,
   placeholder,
+  autoComplete = "true",
   onChange,
 }: TextInputTemplateInterface) => {
   return (
@@ -31,8 +34,8 @@ export const TextInputTemplate = ({
           name={name}
           placeholder={placeholder}
           required
+          autoComplete={autoComplete}
           onChange={onChange}
-          autoComplete="true"
         />
         <span className="hidden peer-invalid:block">
           {value === "" ? (

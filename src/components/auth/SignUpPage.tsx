@@ -25,26 +25,19 @@ const SignInPage = () => {
 
   const { URL, SIGNUP, INPUT } = PATH;
 
-  let userEmail: object = [];
-  let username: object = [];
-
-  useEffect(() => {
-    axios.get(`${URL}${SIGNUP}`).then((response) => {
-      response.data.map((item: any) => {
-        userEmail = item.mb_email;
-        username = item.mb_name;
-      });
-    });
-  }, [userEmail, username]);
-
-  console.log(userEmail, username);
-
   function onSubmit() {
-    axios.post(`${URL}${SIGNUP}`, { ...values });
+    // 회원가입 axios
+    axios
+      .post(`${URL}${SIGNUP}`, { ...values })
+      .then((res) => {
+        console.log("넘어 온 값 :  ", res.data.repeat, res.data.isReady);
+      })
+      .catch(() => {
+        console.log("회원가입 통신 실패");
+      });
+
     console.log({ ...values, checkPW });
   }
-
-  console.log(userEmail, username);
 
   return (
     /* query: string;
@@ -83,6 +76,7 @@ const SignInPage = () => {
         type="password"
         dangerText="숫자, 영문, 특수문자를 각 1개 이상 포함한 8자리 이상의 비밀번호를 입력하세요"
         placeholder="비밀번호를 입력하세요"
+        autoComplete="false"
       />
       <fieldset className="flex gap-2 p-[3px]">
         <span>비밀번호 재입력</span>
@@ -95,6 +89,7 @@ const SignInPage = () => {
             name="checked-password"
             placeholder="비밀번호 재입력"
             required
+            autoComplete="false"
             onChange={(evt) => {
               setCheckPW(evt.target.value);
               console.log("password", values.password);

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import PATH from "@utils/routes/PATH";
 import { AuthInterface } from "@models/user/UserDetail";
 import { Link } from "react-router-dom";
-import useClient from "@store/useClient";
+import useAuth from "@store/useAuth";
 
 const SignInPage = () => {
   const [values, setValues] = useState<AuthInterface>({
@@ -22,9 +22,10 @@ const SignInPage = () => {
     });
   };
 
+  // 비밀번호 확인
   const [checkPW, setCheckPW] = useState<string>("");
 
-  const client = useClient();
+  const auth = useAuth();
   const { URL, SIGNUP, INPUT } = PATH;
 
   function onSubmit() {
@@ -33,7 +34,8 @@ const SignInPage = () => {
       .post(`${URL}${SIGNUP}`, { ...values })
       .then((res) => {
         console.log("넘어 온 값 :  ", res.data);
-        client.setUserNum(res.data.mb_no);
+        // isReady 상태변경
+        auth.setReady(res.data.isReady);
       })
       .catch(() => {
         alert("인터넷이 원활하지 않거나 서버에 이상이 있습니다");
@@ -57,9 +59,9 @@ const SignInPage = () => {
         onChange={onChange}
         value={values.nickname || ""}
         query="닉네임"
-        pattern="[가-힣A-Za-z0-9]{3,8}$"
+        pattern="[가-힣A-Za-z0-9]{1,8}$"
         name="nickname"
-        dangerText="3~8자의 올바른 닉네임을 입력하세요(자모음소X)"
+        dangerText="8자 이하의 올바른 닉네임을 입력하세요(자모음소X)"
         placeholder="닉네임을 입력하세요"
       />
       <TextInputTemplate
@@ -80,7 +82,7 @@ const SignInPage = () => {
         type="password"
         dangerText="숫자, 영문, 특수문자를 각 1개 이상 포함한 8자리 이상의 비밀번호를 입력하세요"
         placeholder="비밀번호를 입력하세요"
-        autoComplete="false"
+        autoComplete="off"
       />
       <fieldset className="flex gap-2 p-[3px]">
         <span>비밀번호 재입력</span>

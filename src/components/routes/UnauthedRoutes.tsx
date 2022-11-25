@@ -4,17 +4,26 @@ import LoginPage from "@components/auth/LoginPage";
 import EasyStartPage from "@components/auth/EasyStartPage";
 import SignInPage from "@components/auth/SignUpPage";
 import UserInfoPage from "@components/userInfo/UserInfoPage";
+import useAuth from "./../../store/useAuth";
 
-const { LOGIN, EASY_AUTH, SIGNUP, INPUT, USER } = PATH;
+const { LOGIN, EASY_AUTH, SIGNUP, INPUT } = PATH;
 
 function UnauthedRoutes() {
+  const auth = useAuth();
+  const autoInput = auth.getReady() === "true";
   return (
     <Routes>
       <Route path={EASY_AUTH} element={<EasyStartPage />} />
       <Route path={LOGIN} element={<LoginPage />} />
-      <Route path={SIGNUP} element={<SignInPage />} />
+      <Route
+        path={autoInput ? INPUT : SIGNUP}
+        element={autoInput ? <UserInfoPage /> : <SignInPage />}
+      />
       <Route path={INPUT} element={<UserInfoPage />} />
-      <Route path="*" element={<Navigate replace to={EASY_AUTH} />} />
+      <Route
+        path="*"
+        element={<Navigate replace to={autoInput ? INPUT : EASY_AUTH} />}
+      />
     </Routes>
   );
 }

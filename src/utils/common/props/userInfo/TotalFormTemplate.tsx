@@ -6,8 +6,7 @@ interface TextInputTemplateInterface {
   type?: string;
   placeholder?: string;
   value: any;
-
-  onChange: (evt: any) => void;
+  onChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const TextInputTemplate = ({

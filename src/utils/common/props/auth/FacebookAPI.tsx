@@ -7,7 +7,7 @@ const FacebookAPI = () => {
   return (
     <SigninAnchor className="text-white">
       <FacebookBtn>
-        <FaFacebook size="28" color="bg-facebook" />
+        <FaFacebook size="24" color="bg-facebook" />
         <SignUpParagraph className="text-white">
           Facebook으로 시작하기
         </SignUpParagraph>

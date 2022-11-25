@@ -10,7 +10,7 @@ const KakaoAPI = () => {
   return (
     <SigninAnchor href={KAKAO_AUTH_URL}>
       <KakaoBtn>
-        <RiKakaoTalkFill size="28" className="" />
+        <RiKakaoTalkFill size="24" className="" />
         <SignUpParagraph>카카오로 시작하기</SignUpParagraph>
       </KakaoBtn>
     </SigninAnchor>

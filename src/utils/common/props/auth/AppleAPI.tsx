@@ -7,7 +7,7 @@ const AppleAPI = () => {
   return (
     <SigninAnchor className="text-white">
       <AppleBtn>
-        <SiApple size="28" color="white" />
+        <SiApple size="24" color="white" />
         <SignUpParagraph className="text-white">
           Apple로 시작하기
         </SignUpParagraph>

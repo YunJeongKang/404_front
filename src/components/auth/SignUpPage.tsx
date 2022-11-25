@@ -25,15 +25,26 @@ const SignInPage = () => {
 
   const { URL, SIGNUP, INPUT } = PATH;
 
+  let userEmail: object = [];
+  let username: object = [];
+
+  useEffect(() => {
+    axios.get(`${URL}${SIGNUP}`).then((response) => {
+      response.data.map((item: any) => {
+        userEmail = item.mb_email;
+        username = item.mb_name;
+      });
+    });
+  }, [userEmail, username]);
+
+  console.log(userEmail, username);
+
   function onSubmit() {
     axios.post(`${URL}${SIGNUP}`, { ...values });
     console.log({ ...values, checkPW });
-    useEffect(() => {
-      axios.get(`${URL}${SIGNUP}`).then((response) => {
-        console.log(response);
-      });
-    }, []);
   }
+
+  console.log(userEmail, username);
 
   return (
     /* query: string;

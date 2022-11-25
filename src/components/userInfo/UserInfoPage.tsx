@@ -52,7 +52,7 @@ import { selectMarriagePlanList } from "@data/main_info/marriagePlants";
 import { selectReligionList } from "@data/main_info/religion";
 import RequiredMark from "@styles/indexStyle/indexSpan";
 
-const { INPUT, URL, USER } = PATH;
+const { INPUT, URL } = PATH;
 
 const UserInfoPage = () => {
   // 메인 프로파일 데이터
@@ -132,7 +132,7 @@ const UserInfoPage = () => {
       ? mainInfo.gender === ""
         ? alert("성별을 선택해주세요")
         : alert("결혼 유무를 선택해주세요")
-      : axios.post(`${URL}${USER}`, {
+      : axios.post(`${URL}${INPUT}`, {
           ...mainInfo,
           regionInfo: { ...regionInfo },
         });

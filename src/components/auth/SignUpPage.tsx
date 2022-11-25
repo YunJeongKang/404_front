@@ -1,7 +1,7 @@
 import UserInfoForm from "@styles/indexStyle/indexForm";
 import { TextInputTemplate } from "@utils/common/props/userInfo/TotalFormTemplate";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PATH from "@utils/routes/PATH";
 import { AuthInterface } from "@models/user/UserDetail";
 import { Link } from "react-router-dom";
@@ -20,6 +20,12 @@ const SignInPage = () => {
       [name]: value,
     });
   };
+
+  useEffect(() => {
+    axios.get(`${URL}${SIGNUP}`).then((response) => {
+      console.log(response);
+    });
+  }, []);
 
   const [checkPW, setCheckPW] = useState<string>("");
 

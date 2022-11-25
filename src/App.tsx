@@ -26,28 +26,26 @@ function App() {
     console.log("추적 가능한 경로", location.pathname);
   }, [location.pathname]);
 
+  const isTrue = auth.isAuthenticated || auth.isAutoLogin() === "true";
+
   useEffect(() => {
-    const currentRoutes = auth.isAuthenticated ? (
-      <ProtectedRoutes />
-    ) : (
-      <UnauthedRoutes />
-    );
+    const currentRoutes = isTrue ? <ProtectedRoutes /> : <UnauthedRoutes />;
     setCurrentRoutes(currentRoutes);
-  }, [auth.isAuthenticated]);
+  }, [auth.isAuthenticated, auth.isAutoLogin()]);
 
   return (
     <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide">
       <div className="h-screen max-w-[28rem] z-10 scrollbar-hide">
         <main
           className={`flex flex-col items-center w-[26rem] border shadow-inner drop-shadow ${
-            auth.isAuthenticated === true
+            isTrue
               ? "min-h-[41.6rem] max-h-[41.6rem]"
               : "min-h-[44.6rem] max-h-[44.6rem]"
           } overflow-hidden overflow-y-auto scrollbar-hide justify-center bg-blue-200`}
         >
           {currentRoutes}
         </main>
-        {auth.isAuthenticated === true ? (
+        {isTrue ? (
           <footer>
             <nav className="flex flex-row justify-center gap-14 border shadow-md py-2 ">
               <Link to={HOME}>

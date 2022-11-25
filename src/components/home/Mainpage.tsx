@@ -7,7 +7,7 @@ function MainPage() {
       메인 페이지
       <button
         className="bg-indigo-400 rounded-md shadow"
-        onClick={() => auth.logout()}
+        onClick={() => ((auth.isAuthenticated = false), auth.logout())}
       >
         로그아웃
       </button>

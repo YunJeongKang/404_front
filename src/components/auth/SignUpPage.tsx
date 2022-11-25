@@ -36,6 +36,7 @@ const SignInPage = () => {
         client.setUserNum(res.data.mb_no);
       })
       .catch(() => {
+        alert("인터넷이 원활하지 않거나 서버에 이상이 있습니다");
         console.log("회원가입 통신 실패");
       });
 

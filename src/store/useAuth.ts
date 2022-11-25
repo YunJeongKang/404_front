@@ -13,6 +13,7 @@ interface AuthState {
   logout: () => void;
 
   setAutoLogin: (isAuthenticated: boolean) => void;
+  isAutoLogin: () => string | null;
 }
 
 const useAuth = create<AuthState>((set, get) => {
@@ -43,12 +44,14 @@ const useAuth = create<AuthState>((set, get) => {
 
     logout: () => {
       set({ isAuthenticated: false });
+      localStorage.removeItem("AutoLogin");
     },
 
     setAutoLogin: (isAuthenticated) => {
       localStorage.setItem("AutoLogin", JSON.stringify(isAuthenticated));
     },
 
+    isAutoLogin: () => localStorage.getItem("AutoLogin"),
     // End of create
   };
 });

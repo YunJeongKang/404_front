@@ -46,11 +46,12 @@ function LoginPage() {
               .then((res) => {
                 console.log(res.data);
                 auth.setAutoLogin(res.data.isAuthenticated);
-                localStorage.getItem("AutoLogin") === "true"
+                auth.isAutoLogin() === "true"
                   ? (auth.isAuthenticated = true) && auth.login()
-                  : false;
+                  : alert("아이디나 비밀번호가 틀렸습니다.");
               })
               .catch(() => {
+                alert("인터넷이 원활하지 않거나 서버에 이상이 있습니다");
                 console.log("로그인 통신 실패");
               });
             console.log("로그인 페이지 보내지는 정보 : ", { ...loginInfo });

@@ -14,7 +14,6 @@ import { radioMarriedList } from "@data/main_info/married";
 import {
   MainInfoInterface,
   RegionInfoInterface,
-  StyleInfoInterface,
 } from "@models/user/UserDetail";
 import { SelectInput } from "@styles/indexStyle/indexSelect";
 import { OptionInput } from "@styles/indexStyle/indexOption";
@@ -35,16 +34,12 @@ import { sejongList } from "@data/region_info/sejong";
 import { ulsanList } from "@data/region_info/ulsan";
 import { jejuList } from "@data/region_info/jeju";
 import SectionTemplate from "@styles/indexStyle/indexSection";
-import { radioAlcoholList, selectAlcoholList } from "@data/main_info/alcohol";
-import { radioSmokeList, selectSmokeList } from "@data/main_info/smoke";
-import {
-  radioEducationList,
-  selectEducationList,
-} from "@data/main_info/educational";
-import { radioSalaryList, selectSalaryList } from "@data/main_info/salary";
-import { radioAssetList, selectAssetList } from "@data/main_info/asset";
-import Modal from "@styles/modal/Modal";
-import ModalEmptyDiv, { HrDiv } from "@styles/indexStyle/indexDiv";
+import { selectAlcoholList } from "@data/main_info/alcohol";
+import { selectSmokeList } from "@data/main_info/smoke";
+import { selectEducationList } from "@data/main_info/educational";
+import { selectSalaryList } from "@data/main_info/salary";
+import { selectAssetList } from "@data/main_info/asset";
+import ModalEmptyDiv from "@styles/indexStyle/indexDiv";
 import { selectBloodList } from "@data/main_info/blood";
 import { selectVehicleList } from "@data/main_info/vehicle";
 import { radioJobList } from "@data/main_info/job";
@@ -98,15 +93,6 @@ const UserInfoPage = () => {
     region_global: "",
   });
 
-  const [styleInfo, setStyleInfo] = useState<StyleInfoInterface>({
-    manAppearance: "",
-    manFashion: "",
-    manPersonality: "",
-    womanAppearance: "",
-    womanFashion: "",
-    womanPersonality: "",
-  });
-
   // 지역 선택에 따라 달라지는 지역상세 컬럼
 
   const mainInfoChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -128,26 +114,19 @@ const UserInfoPage = () => {
   };
 
   function onSubmit() {
-    mainInfo.gender === "" || mainInfo.married === ""
-      ? mainInfo.gender === ""
-        ? alert("성별을 선택해주세요")
-        : alert("결혼 유무를 선택해주세요")
-      : axios.post(`${URL}${INPUT}`, {
+    mainInfo.gender === "" || mainInfo.married === "" || mainInfo.region === ""
+      ? (mainInfo.gender === "" ? alert("성별을 선택해주세요") : true) &&
+        (mainInfo.married === "" ? alert("결혼유무를 선택해주세요") : true) &&
+        (mainInfo.region === "" ? alert("지역을 선택해주세요") : true)
+      : // 유저 정보 axios
+        axios.post(`${URL}${INPUT}`, {
           ...mainInfo,
           regionInfo: { ...regionInfo },
         });
     console.log({ ...mainInfo, regionInfo: { ...regionInfo } });
   }
 
-  useEffect(() => {
-    mainInfo.region === ""
-      ? ((mainInfo.region = "a"), (regionInfo.region_kangwon = "a01"))
-      : null;
-  }, [mainInfo.region, regionInfo.region_kangwon, mainInfo.weight]);
-
   const arrayRange = [...Array(120).keys()];
-
-  const [isOpen, setOpen] = useState<boolean>(false);
 
   return (
     <UserInfoForm
@@ -161,6 +140,7 @@ const UserInfoPage = () => {
       </span>
       {/* 성별 */}
       <SectionTemplate>
+        <RequiredMark />
         <H2>성별</H2>
         <RequiredRadioInputTemplate
           RadioLabelTemplate={
@@ -183,14 +163,15 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 생년월일 */}
       <SectionTemplate>
+        <RequiredMark />
         <H2>생년월일</H2>
         <ModalEmptyDiv>
           <Age onChange={mainInfoChange} value={mainInfo.birth} />
-          <RequiredMark />
         </ModalEmptyDiv>
       </SectionTemplate>
       {/* 지역 */}
       <SectionTemplate>
+        <RequiredMark />
         <H2>지역</H2>
         <ModalEmptyDiv>
           <>
@@ -497,7 +478,6 @@ const UserInfoPage = () => {
               <></>
             )}
           </>
-          <RequiredMark />
         </ModalEmptyDiv>
       </SectionTemplate>
       {/* 키 / 체중 */}
@@ -694,6 +674,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 결혼유무 */}
       <SectionTemplate>
+        <RequiredMark />
         <H2>결혼유무</H2>
         <RequiredRadioInputTemplate
           RadioLabelTemplate={

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import PATH from "@utils/routes/PATH";
 import { AuthInterface } from "@models/user/UserDetail";
 import { Link } from "react-router-dom";
+import useClient from "@store/useClient";
 
 const SignInPage = () => {
   const [values, setValues] = useState<AuthInterface>({
@@ -23,6 +24,7 @@ const SignInPage = () => {
 
   const [checkPW, setCheckPW] = useState<string>("");
 
+  const client = useClient();
   const { URL, SIGNUP, INPUT } = PATH;
 
   function onSubmit() {
@@ -30,7 +32,8 @@ const SignInPage = () => {
     axios
       .post(`${URL}${SIGNUP}`, { ...values })
       .then((res) => {
-        console.log("넘어 온 값 :  ", res.data.repeat, res.data.isReady);
+        console.log("넘어 온 값 :  ", res.data);
+        client.setUserNum(res.data.mb_no);
       })
       .catch(() => {
         console.log("회원가입 통신 실패");

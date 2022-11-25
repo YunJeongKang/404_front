@@ -41,9 +41,19 @@ function LoginPage() {
           className="flex flex-col gap-y-2 "
           onSubmit={(evt) => {
             evt.preventDefault();
-            axios.post(`${URL}${LOGIN}`, { ...loginInfo });
-            console.log({ ...loginInfo });
-            login();
+            axios
+              .post(`${URL}${LOGIN}`, { ...loginInfo })
+              .then((res) => {
+                console.log(res.data);
+                auth.setAutoLogin(res.data.isAuthenticated);
+                localStorage.getItem("AutoLogin") === "true"
+                  ? (auth.isAuthenticated = true) && auth.login()
+                  : false;
+              })
+              .catch(() => {
+                console.log("로그인 통신 실패");
+              });
+            console.log("로그인 페이지 보내지는 정보 : ", { ...loginInfo });
           }}
         >
           <fieldset className="flex justify-between gap-2">
@@ -65,6 +75,7 @@ function LoginPage() {
               name="password"
               className="w-5/6 border px-2 py-1 rounded-md"
               onChange={onChange}
+              autoComplete="off"
             />
             <div
               onClick={(evt) => evt.preventDefault()}

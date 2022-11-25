@@ -4,6 +4,7 @@ interface AuthState {
   username: string;
   password: string;
   isAuthenticated: boolean;
+  isReady: boolean;
 
   setUserName: (username: string) => void;
   setPassword: (password: string) => void;
@@ -20,6 +21,7 @@ const useAuth = create<AuthState>((set, get) => {
   return {
     username: "",
     password: "",
+    isReady: false,
     isAuthenticated: false,
 
     setUserName: (username) => set({ username }),

@@ -4,16 +4,16 @@ import LoginPage from "@components/auth/LoginPage";
 import EasyStartPage from "@components/auth/EasyStartPage";
 import SignUnPage from "@components/auth/SignUpPage";
 import UserInfoPage from "@components/userInfo/UserInfoPage";
-import useAuth from "./../../store/useAuth";
 import { useEffect } from "react";
 import { useState } from "react";
+import useAuth from "@store/useAuth";
 
 const { LOGIN, EASY_AUTH, SIGNUP, INPUT } = PATH;
 
 function UnauthedRoutes() {
   const auth = useAuth();
   // 사용자 정보 입력에 따른 삼항연상자
-  const autoInput = auth.getReady() === "true";
+  const autoInput = auth.getReady();
   const [currentRoute, setCurrentRoute] = useState<React.ReactNode | null>(
     null
   );

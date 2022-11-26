@@ -313,6 +313,10 @@ const UserInfoPage = () => {
                     value={mainInfo.weight}
                     onChange={mainInfoChange}
                   >
+                    <OptionInput
+                      value=""
+                      className={mainInfo.weight ? "hidden" : ""}
+                    ></OptionInput>
                     {arrayRange.map((item) => (
                       <OptionInput value={item + 31} key={item}>
                         {item + 31}
@@ -331,6 +335,10 @@ const UserInfoPage = () => {
                     value={mainInfo.height}
                     onChange={mainInfoChange}
                   >
+                    <OptionInput
+                      value=""
+                      className={mainInfo.height ? "hidden" : ""}
+                    ></OptionInput>
                     {arrayRange.map((item) => (
                       <OptionInput value={item + 81} key={item}>
                         {item + 81}
@@ -350,6 +358,10 @@ const UserInfoPage = () => {
                   value={mainInfo.blood}
                   onChange={mainInfoChange}
                 >
+                  <OptionInput
+                    value=""
+                    className={mainInfo.blood ? "hidden" : ""}
+                  ></OptionInput>
                   {selectBloodList.map(({ value, optionName }) => (
                     <OptionInput value={value} key={value} required>
                       {optionName}

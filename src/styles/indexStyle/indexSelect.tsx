@@ -5,7 +5,7 @@ export const SelectInputTypeProto: FC<CommonSelectProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <select
-      className={`text-center scrollbar-hide border shadow rounded-md px-1 py-1.5${className}`}
+      className={`text-center scrollbar-hide border shadow rounded-md px-1 appearance-none ${className}`}
       {...restProps}
     >
       {children}
@@ -16,23 +16,26 @@ export const SelectInputTypeProto: FC<CommonSelectProps> = (props) => {
 interface SelectInputInterface {
   name: string;
   value: string;
+  className?: string;
   children: React.ReactNode;
 
   onChange: (evt: any) => void;
 }
 
 export const SelectInput = ({
+  name,
   value,
   onChange,
   children,
-  name,
+  className,
 }: SelectInputInterface) => {
   return (
-    <fieldset className="flex flex-raw gap-2">
+    <fieldset className={`flex flex-raw gap-2`}>
       <SelectInputTypeProto
         name={name}
         onChange={onChange}
         value={value}
+        className={className}
         required
       >
         {children}

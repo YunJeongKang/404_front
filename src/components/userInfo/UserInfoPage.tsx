@@ -130,12 +130,14 @@ const UserInfoPage = () => {
 
   // Increase Step Index
   useLayoutEffect(() => {
-    if (mainInfo.nickname && mainInfo.gender && mainInfo.birth) {
-      setStepIndex(1);
-    }
-
-    if (mainInfo.detailRegion != "") {
+    if (mainInfo.alcohol && mainInfo.smoke) {
+      setStepIndex(4);
+    } else if (mainInfo.height && mainInfo.weight && mainInfo.blood) {
+      setStepIndex(3);
+    } else if (mainInfo.detailRegion != "") {
       setStepIndex(2);
+    } else if (mainInfo.nickname && mainInfo.gender && mainInfo.birth) {
+      setStepIndex(1);
     }
   }, [mainInfo]);
 
@@ -285,8 +287,9 @@ const UserInfoPage = () => {
                 <>
                   <SelectInput
                     name="detailRegion"
-                    onChange={mainInfoChange}
                     value={mainInfo.detailRegion}
+                    onChange={mainInfoChange}
+                    className="!min-w-[2rem]"
                   >
                     {detailRegionOptions}
                   </SelectInput>
@@ -388,6 +391,10 @@ const UserInfoPage = () => {
                   value={mainInfo.alcohol}
                   onChange={mainInfoChange}
                 >
+                  <OptionInput
+                    value=""
+                    className={mainInfo.alcohol ? "hidden" : ""}
+                  ></OptionInput>
                   {selectAlcoholList.map(({ value, optionName }) => (
                     <OptionInput value={value} key={value} required>
                       {optionName}
@@ -405,6 +412,10 @@ const UserInfoPage = () => {
                   value={mainInfo.smoke}
                   onChange={mainInfoChange}
                 >
+                  <OptionInput
+                    value=""
+                    className={mainInfo.smoke ? "hidden" : ""}
+                  ></OptionInput>
                   {selectSmokeList.map(({ value, optionName }) => (
                     <OptionInput value={value} key={value} required>
                       {optionName}
@@ -584,7 +595,8 @@ const UserInfoPage = () => {
           >
             <button
               type="submit"
-              className="border shadow rounded-md px-2.5 py-1 duration-150 active:scale-[0.97] "
+              disabled={!mainInfo.married || !mainInfo.detailRegion}
+              className="border shadow rounded-md px-2.5 py-1 duration-150 active:scale-[0.97] disabled:bg-default"
             >
               제출
             </button>

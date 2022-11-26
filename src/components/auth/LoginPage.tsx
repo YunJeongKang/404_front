@@ -75,7 +75,7 @@ function LoginPage() {
               name="password"
               className="w-full px-2 py-1 bg-white border-b-2"
               onChange={onChange}
-              autoComplete="off"
+              autoComplete="on"
               placeholder="비밀번호"
             />
             <div

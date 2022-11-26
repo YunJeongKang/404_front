@@ -11,7 +11,7 @@ const EasyStartPage = () => {
   const { LOGIN, SIGNUP } = PATH;
   const { CoupleImg } = ImageStore;
   return (
-    <div className={`flex flex-col h-full w-full items-center`}>
+    <div className={`flex flex-col h-full w-full items-center select-none`}>
       {/* 배경화면 부분 */}
       <div className="relative z-0 h-[64%] overflow-hidden">
         <img src={CoupleImg} alt="" />

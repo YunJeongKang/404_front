@@ -4,7 +4,6 @@ interface AuthState {
   username: string;
   password: string;
   isAuthenticated: boolean;
-  isReady: boolean;
   isCompleted: boolean;
 
   setUserName: (username: string) => void;
@@ -17,7 +16,7 @@ interface AuthState {
   isAutoLogin: () => string | null;
 
   setReady: (isReady: boolean) => void;
-  getReady: () => string | null;
+  getReady: () => boolean;
 }
 
 const useAuth = create<AuthState>((set, get) => {
@@ -26,7 +25,6 @@ const useAuth = create<AuthState>((set, get) => {
   return {
     username: "",
     password: "",
-    isReady: false,
     isAuthenticated: false,
     isCompleted: false,
 
@@ -58,11 +56,10 @@ const useAuth = create<AuthState>((set, get) => {
     isAutoLogin: () => localStorage.getItem("AutoLogin"),
 
     setReady: (isReady) => {
-      isReady === true ? set({ isReady }) : set({ isReady: false });
       localStorage.setItem("isReady", JSON.stringify(isReady));
     },
 
-    getReady: () => localStorage.getItem("isReady"),
+    getReady: () => localStorage.getItem("isReady") === "true",
     // End of create
   };
 });

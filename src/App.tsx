@@ -13,9 +13,9 @@ function App() {
     null
   );
 
-  const authPageUI = "min-h-[37.5rem] max-h-[37.5rem]";
-  const authOtherUI = "min-h-[40.15rem] max-h-[40.15rem]";
-  const unAuthPageUI = "min-h-[43rem] max-h-[43rem]";
+  const authPageUI = "min-h-[37.5rem] h-[37.5rem] max-h-[37.5rem]";
+  const authOtherUI = "min-h-[40.15rem] h-[40.15rem] max-h-[40.15rem]";
+  const unAuthPageUI = "min-h-[43rem] h-[43rem] max-h-[43rem]";
   useEffect(() => {
     console.log("추적 가능한 경로", location.pathname);
   }, [location.pathname]);

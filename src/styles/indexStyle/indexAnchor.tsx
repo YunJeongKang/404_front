@@ -1,7 +1,7 @@
 import { CommonAnchorProps } from "@utils/common/props";
 import { FunctionComponent as FC } from "react";
 
-export const SigninAnchor: FC<CommonAnchorProps> = (props) => {
+export const SignUpAnchor: FC<CommonAnchorProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <a

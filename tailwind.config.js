@@ -83,6 +83,7 @@ module.exports = {
       ...defaultBoxShadows,
     },
     dropShadow: {
+      ...defaultDropShadows,
       "t-sm": "0 -1px 1px rgb(0 0 0 / 0.05)",
       t: ["0 -1px 2px rgb(0 0 0 / 0.1)", "0 -1px 1px rgb(0 0 0 / 0.06)"],
       "t-md": ["0 -4px 3px rgb(0 0 0 / 0.07)", "0 -2px 2px rgb(0 0 0 / 0.06)"],
@@ -92,7 +93,6 @@ module.exports = {
         "0 -8px 5px rgb(0 0 0 / 0.08)",
       ],
       "t-2xl": "0 -25px 25px rgb(0 0 0 / 0.15)",
-      ...defaultDropShadows,
     },
   },
   plugins: [

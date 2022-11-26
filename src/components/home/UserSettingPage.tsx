@@ -24,7 +24,7 @@ const UserSettingPage = () => {
       </>
       {/* 프로필 사진 */}
       <>
-        <div className="absolute text-center left-7 top-6 inline-block">
+        <div className="absolute text-center left-7 top-3 inline-block">
           <div
             className="rounded-full 
              h-[11.5rem] w-[11.5rem] overflow-hidden"

@@ -1,5 +1,5 @@
-import { SigninAnchor } from "@styles/indexStyle/indexAnchor";
-import { KakaoBtn } from "@styles/indexStyle/indexBtn";
+import { SignUpAnchor } from "@styles/indexStyle/indexAnchor";
+import { SignUpBtn } from "@styles/indexStyle/indexBtn";
 import { SignUpParagraph } from "@styles/indexStyle/indexParagraph";
 import { RiKakaoTalkFill } from "react-icons/ri";
 
@@ -8,12 +8,15 @@ const KakaoAPI = () => {
   const REDIRECT_URL = "http://localhost:3000/auth/kakao/callback";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code`;
   return (
-    <SigninAnchor href={KAKAO_AUTH_URL}>
-      <KakaoBtn>
-        <RiKakaoTalkFill size="24" className="" />
+    <SignUpAnchor href={KAKAO_AUTH_URL}>
+      <SignUpBtn className="relative bg-kakao">
+        <RiKakaoTalkFill
+          size="24"
+          className="absolute inline-block bg-kakao left-3"
+        />
         <SignUpParagraph>카카오로 시작하기</SignUpParagraph>
-      </KakaoBtn>
-    </SigninAnchor>
+      </SignUpBtn>
+    </SignUpAnchor>
   );
 };
 

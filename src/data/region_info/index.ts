@@ -16,6 +16,14 @@ import { jejuList } from "@data/region_info/jeju";
 import { chungnamList } from "./chungnam";
 import { chungbukList } from "./chungbuk";
 import { globalList } from "@data/region_info/global";
+/*
+  const detailRegionsByCode = {
+    a: [ ... ],
+    b: [ ... ],
+    c: [ ... ],
+    ...
+  };
+*/
 
 const detailRegionsByCode = {
   a: kangwonList,

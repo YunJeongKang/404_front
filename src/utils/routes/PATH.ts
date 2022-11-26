@@ -1,5 +1,5 @@
 const PATH = {
-  URL: "http://localhost:8000",
+  URL: import.meta.env.VITE_API_BASE_URL,
   // Sign-up routes
   LOGIN: "/login",
   EASY_AUTH: "/login/easy-auth",

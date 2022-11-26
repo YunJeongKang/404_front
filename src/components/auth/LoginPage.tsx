@@ -3,9 +3,11 @@ import useAuth from "@store/useAuth";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import PATH from "@utils/routes/PATH";
+import API_PATH from "@utils/routes/api/API_PATH";
 import axios from "axios";
 
-const { EASY_AUTH, URL, LOGIN } = PATH;
+const { EASY_AUTH } = PATH;
+const { URL, LOGIN } = API_PATH;
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -88,7 +90,7 @@ function LoginPage() {
           <div className="flex flex-col">
             <button
               type="submit"
-              className="border bg-primary text-main-contra font-bold rounded-3xl duration-150 active:scale-95 px-2 py-1"
+              className="border bg-sky-200 font-bold rounded-3xl duration-150 active:scale-95 px-2 py-1"
             >
               LOGIN
             </button>

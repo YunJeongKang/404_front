@@ -12,16 +12,22 @@ const EasyStartPage = () => {
   const { CoupleImg } = ImageStore;
   return (
     <div className={`flex flex-col h-full w-full items-center`}>
-      <div className="relative z-0 h-2/3 overflow-hidden">
+      <div className="relative z-0 h-[64%] overflow-hidden">
         <img src={CoupleImg} alt="" />
-        <div className="absolute z-10 left-0 right-0 top-0 bottom-0 bg-gradient-to-b from-transparent to-white">
+        <div className="absolute z-10 left-0 right-0 top-0 bottom-0 bg-gradient-to-b via-transparent from-transparent to-white">
           <div className="flex justify-end">
-            <div className="flex flex-col p-4 pr-6">
-              <span className="text-white font-eland text-5xl font-medium drop-shadow-[0.09em_0.09em_0_rgba(0_0_0_/_0.8)] opacity-90">
-                After
+            <div className="flex flex-col p-3 pr-5">
+              <span className="text-white font-eland text-5xl font-medium drop-shadow-[0.08em_0.08em_0_rgba(0_0_0_/_0.8)] opacity-90">
+                <span className="text-red-400">A</span>fter
               </span>
-              <span className="flex text-white font-eland text-5xl font-medium justify-end drop-shadow-[0.09em_0.09em_0_rgba(0_0_0_/_0.8)] opacity-90">
+              <span className="flex text-blue-400 font-eland text-5xl font-medium justify-end drop-shadow-[0.09em_0.09em_0_rgba(0_0_0_/_0.8)] opacity-90">
                 Like
+              </span>
+              <span className="text-white text-lg font-eland drop-shadow-[0.12em_0.09em_0_rgba(0_0_0_/_0.8)] w-32">
+                인연이 있다
+              </span>
+              <span className="flex justify-end font-eland text-lg text-white drop-shadow-[0.1em_0.08em_0_rgba(0_0_0_/_0.8)]">
+                결혼으로 잇다
               </span>
             </div>
           </div>
@@ -34,7 +40,7 @@ const EasyStartPage = () => {
         <KakaoAPI />
         <FacebookAPI />
         <AppleAPI />
-        <div className="flex flex-raw items-center justify-around w-full ">
+        <div className="flex flex-raw items-center justify-around w-full">
           <span className="ml-6 text-sm text-gray-500">
             이미 계정이 있으신가요?
           </span>

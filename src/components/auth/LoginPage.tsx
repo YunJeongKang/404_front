@@ -55,7 +55,7 @@ function LoginPage() {
 
   return (
     <div className="w-[50vw] max-w-[24rem] flex flex-col items-center  gap-4">
-      <section className="rounded-md border px-8 py-2 max-w-[24rem] w-[100vw] bg-white">
+      <section className="rounded-md px-8 py-2 max-w-[24rem] w-[100vw] bg-white">
         <form className="flex flex-col gap-y-2 " onSubmit={onSubmit}>
           <fieldset className="flex justify-between gap-2">
             <input
@@ -96,10 +96,10 @@ function LoginPage() {
             </button>
           </div>
         </form>
-        <div className="flex justify-center gap-10 pt-2">
-          <span className="text-sm text-gray-500">계정이 없으신가요?</span>
+        <div className="flex justify-center gap-6 pt-2">
+          <span className="text-sm text-gray-500">혹시 계정이 없으신가요?</span>
           <Link
-            className="underline underline-offset-2 text-xs py-0.5"
+            className="underline text-blue-500 underline-offset-2 text-xs py-0.5"
             to={EASY_AUTH}
           >
             회원가입

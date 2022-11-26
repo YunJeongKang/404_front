@@ -10,6 +10,7 @@ export interface MainInfoInterface {
   married: string;
   job: string;
   region: string;
+  detailRegion: string;
   asset: string;
   blood: string;
   alcohol: string;

@@ -1,6 +1,5 @@
 const ImageStore = {
-  PasswordView:
-    "https://notfound-404.s3.ap-northeast-2.amazonaws.com/pw_eye.png",
+  CoupleImg: "https://notfound-404.s3.ap-northeast-2.amazonaws.com/couple.jpg",
 };
 
 export default ImageStore;

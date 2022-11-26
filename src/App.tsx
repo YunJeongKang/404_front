@@ -28,7 +28,7 @@ function App() {
   }, [auth.isAuthenticated, auth.isAutoLogin()]);
 
   return (
-    <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide">
+    <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide bg-slate-200">
       <div className="h-screen max-w-[28rem] z-10 scrollbar-hide py-3">
         {isTrue ? location.pathname === "/" ? <Header /> : null : null}
         <main
@@ -38,7 +38,7 @@ function App() {
                 ? authPageUI
                 : authOtherUI
               : unAuthPageUI
-          } overflow-hidden overflow-y-auto scrollbar-hide justify-center border`}
+          } overflow-hidden overflow-y-auto scrollbar-hide justify-center border bg-white`}
         >
           {currentRoutes}
         </main>

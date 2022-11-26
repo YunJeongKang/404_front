@@ -1,7 +1,7 @@
 import UserInfoForm from "@styles/indexStyle/indexForm";
 import Age from "./Age";
 import { useState, useEffect } from "react";
-import H2 from "@styles/indexStyle/indexHeading";
+import UserInfoH2 from "@styles/indexStyle/indexHeading";
 import PATH from "@utils/routes/PATH";
 import axios from "axios";
 import { RequiredRadioInputTemplate } from "@styles/indexStyle/indexInput";
@@ -138,7 +138,7 @@ const UserInfoPage = () => {
       {/* 닉네임 */}
       <SectionTemplate>
         <RequiredMark />
-        <H2>닉네임</H2>
+        <UserInfoH2>닉네임</UserInfoH2>
         <ModalEmptyDiv>
           <fieldset className="flex gap-2">
             <div className="flex flex-col items-start gap-1">
@@ -168,7 +168,7 @@ const UserInfoPage = () => {
       {/* 성별 */}
       <SectionTemplate>
         <RequiredMark />
-        <H2>성별</H2>
+        <UserInfoH2>성별</UserInfoH2>
         <RequiredRadioInputTemplate
           RadioLabelTemplate={
             <>
@@ -191,7 +191,7 @@ const UserInfoPage = () => {
       {/* 생년월일 */}
       <SectionTemplate>
         <RequiredMark />
-        <H2>생년월일</H2>
+        <UserInfoH2>생년월일</UserInfoH2>
         <ModalEmptyDiv>
           <Age onChange={mainInfoChange} value={mainInfo.birth} />
         </ModalEmptyDiv>
@@ -199,7 +199,7 @@ const UserInfoPage = () => {
       {/* 지역 */}
       <SectionTemplate>
         <RequiredMark />
-        <H2>지역</H2>
+        <UserInfoH2>지역</UserInfoH2>
         <ModalEmptyDiv>
           <>
             <SelectInput
@@ -510,7 +510,7 @@ const UserInfoPage = () => {
       {/* 키 / 체중 */}
       <SectionTemplate>
         {/* 체중 */}
-        <H2>몸무게</H2>
+        <UserInfoH2>몸무게</UserInfoH2>
         <div className="w-1/4 flex gap-1">
           <>
             <SelectInput
@@ -529,7 +529,7 @@ const UserInfoPage = () => {
         </div>
         {/* 키 */}
         <div className="w-2/5 flex flex-raw gap-1">
-          <H2>키</H2>
+          <UserInfoH2>키</UserInfoH2>
           <>
             <SelectInput
               name="height"
@@ -548,7 +548,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 혈액형 */}
       <SectionTemplate>
-        <H2>혈액형</H2>
+        <UserInfoH2>혈액형</UserInfoH2>
         <ModalEmptyDiv>
           <SelectInput
             name="blood"
@@ -565,7 +565,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 음주여부 */}
       <SectionTemplate>
-        <H2>음주여부</H2>
+        <UserInfoH2>음주여부</UserInfoH2>
         <ModalEmptyDiv>
           <SelectInput
             name="alcohol"
@@ -582,7 +582,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 흡연여부 */}
       <SectionTemplate>
-        <H2>흡연여부</H2>
+        <UserInfoH2>흡연여부</UserInfoH2>
         <ModalEmptyDiv>
           <SelectInput
             name="smoke"
@@ -599,7 +599,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 종교 */}
       <SectionTemplate>
-        <H2>종교</H2>
+        <UserInfoH2>종교</UserInfoH2>
         <ModalEmptyDiv>
           <SelectInput
             name="religion"
@@ -616,7 +616,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 직업 */}
       <SectionTemplate>
-        <H2>직업</H2>
+        <UserInfoH2>직업</UserInfoH2>
         <ModalEmptyDiv>
           <SelectInput
             name="job"
@@ -633,7 +633,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 학력 */}
       <SectionTemplate>
-        <H2>학력</H2>
+        <UserInfoH2>학력</UserInfoH2>
         <ModalEmptyDiv>
           <SelectInput
             name="education"
@@ -650,7 +650,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 연봉  */}
       <SectionTemplate>
-        <H2>연봉</H2>
+        <UserInfoH2>연봉</UserInfoH2>
         <ModalEmptyDiv>
           <SelectInput
             name="salary"
@@ -667,7 +667,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 자산 */}
       <SectionTemplate>
-        <H2>자산</H2>
+        <UserInfoH2>자산</UserInfoH2>
         <ModalEmptyDiv>
           <SelectInput
             name="asset"
@@ -684,7 +684,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 차량 */}
       <SectionTemplate>
-        <H2>차량</H2>
+        <UserInfoH2>차량</UserInfoH2>
         <ModalEmptyDiv>
           <SelectInput
             name="vehicle"
@@ -702,7 +702,7 @@ const UserInfoPage = () => {
       {/* 결혼유무 */}
       <SectionTemplate>
         <RequiredMark />
-        <H2>결혼유무</H2>
+        <UserInfoH2>결혼유무</UserInfoH2>
         <RequiredRadioInputTemplate
           RadioLabelTemplate={
             <>
@@ -724,7 +724,7 @@ const UserInfoPage = () => {
       </SectionTemplate>
       {/* 결혼계획 */}
       <SectionTemplate>
-        <H2>결혼계획</H2>
+        <UserInfoH2>결혼계획</UserInfoH2>
         <ModalEmptyDiv>
           <SelectInput
             name="marriagePlan"

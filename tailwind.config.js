@@ -57,8 +57,8 @@ module.exports = {
         dark: "#262626",
         "dark-active": "#131313",
         "dark-contra": "#FBFBFB",
-        // SuperLight
-        mainShadow: "#fafafa",
+        // light sky
+        userSetting: "#E8F3FF",
         //Kakao btn
         kakao: "#ffff00",
         facebook: "#3D5AFE",

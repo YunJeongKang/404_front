@@ -17,7 +17,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <nav className="flex flex-row justify-center gap-14 border shadow-md py-2 ">
+      <nav className="flex flex-row bg-white justify-center gap-14 border shadow-md py-2 ">
         <Link to={HOME}>
           {location.pathname === HOME ? (
             <AiFillHome size="30" />

@@ -128,6 +128,7 @@ const UserInfoPage = () => {
 
   const arrayRange = [...Array(120).keys()];
 
+  // Increase Step Index
   useLayoutEffect(() => {
     if (mainInfo.nickname && mainInfo.gender && mainInfo.birth) {
       setStepIndex(1);
@@ -138,8 +139,14 @@ const UserInfoPage = () => {
     }
   }, [mainInfo]);
 
+  // Change Detail Region List Components
   useLayoutEffect(() => {
     if (!mainInfo.region) return;
+
+    setMainInfo({
+      ...mainInfo,
+      detailRegion: "",
+    });
 
     const detailList =
       detailRegionsByCode[mainInfo.region as keyof typeof detailRegionsByCode];
@@ -157,6 +164,21 @@ const UserInfoPage = () => {
 
     setDetailRegionOptions(componentList);
   }, [mainInfo.region]);
+
+  useLayoutEffect(() => {
+    if (!mainInfo.detailRegion) return;
+
+    const detailList =
+      detailRegionsByCode[mainInfo.region as keyof typeof detailRegionsByCode];
+
+    const componentList = detailList.map(({ value, regionInfoName }) => (
+      <OptionInput value={value} key={`detail-region-${value}`}>
+        {regionInfoName}
+      </OptionInput>
+    ));
+
+    setDetailRegionOptions(componentList);
+  }, [mainInfo.detailRegion]);
 
   return (
     <div className="flex flex-col min-h-screen w-full items-center justify-center">
@@ -246,7 +268,12 @@ const UserInfoPage = () => {
                     value={mainInfo.region}
                     onChange={mainInfoChange}
                   >
-                    <option value="">선택 필수</option>
+                    <option
+                      value=""
+                      className={mainInfo.region ? "hidden" : ""}
+                    >
+                      선택 필수
+                    </option>
                     {radioRegionList.map(({ value, regionInfoName }) => (
                       <OptionInput value={value} key={value}>
                         {regionInfoName}

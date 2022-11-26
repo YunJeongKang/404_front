@@ -12,6 +12,7 @@ const EasyStartPage = () => {
   const { CoupleImg } = ImageStore;
   return (
     <div className={`flex flex-col h-full w-full items-center`}>
+      {/* 배경화면 부분 */}
       <div className="relative z-0 h-[64%] overflow-hidden">
         <img src={CoupleImg} alt="" />
         <div className="absolute z-10 left-0 right-0 top-0 bottom-0 bg-gradient-to-b via-transparent from-transparent to-white">
@@ -34,9 +35,11 @@ const EasyStartPage = () => {
         </div>
       </div>
       <div className="flex flex-col items-center gap-2 bg-white rounded-md px-4 py-2">
+        {/* 이메일 간편가입 이동 */}
         <Link to={SIGNUP}>
           <span className="text-sm underline">이메일로 간편가입</span>
         </Link>
+        {/* 로그인 API 클릭 컴포넌트 */}
         <KakaoAPI />
         <FacebookAPI />
         <AppleAPI />

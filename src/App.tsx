@@ -13,7 +13,8 @@ function App() {
     null
   );
 
-  const authPageUI = "min-h-[38rem] max-h-[38rem]";
+  const authPageUI = "min-h-[37.5rem] max-h-[37.5rem]";
+  const authOtherUI = "min-h-[40.15rem] max-h-[40.15rem]";
   const unAuthPageUI = "min-h-[43rem] max-h-[43rem]";
   useEffect(() => {
     console.log("추적 가능한 경로", location.pathname);
@@ -28,11 +29,15 @@ function App() {
 
   return (
     <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide">
-      <div className="h-screen max-w-[28rem] z-10 scrollbar-hide py-2">
-        {isTrue ? <Header /> : null}
+      <div className="h-screen max-w-[28rem] z-10 scrollbar-hide py-3">
+        {isTrue ? location.pathname === "/" ? <Header /> : null : null}
         <main
           className={`flex flex-col items-center w-[26rem] border-x shadow-sm drop-shadow ${
-            isTrue ? authPageUI : unAuthPageUI
+            isTrue
+              ? location.pathname === "/"
+                ? authPageUI
+                : authOtherUI
+              : unAuthPageUI
           } overflow-hidden overflow-y-auto scrollbar-hide justify-center border`}
         >
           {currentRoutes}

@@ -10,7 +10,7 @@ const AppleAPI = () => {
         <SiApple
           size="24"
           color="white"
-          className="absolute inline-block left-3"
+          className="absolute inline-block left-6"
         />
         <SignUpParagraph className="text-white">
           Apple로 시작하기

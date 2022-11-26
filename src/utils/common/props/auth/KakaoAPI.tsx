@@ -12,7 +12,7 @@ const KakaoAPI = () => {
       <SignUpBtn className="relative bg-kakao">
         <RiKakaoTalkFill
           size="24"
-          className="absolute inline-block bg-kakao left-3"
+          className="absolute inline-block bg-kakao left-6"
         />
         <SignUpParagraph>카카오로 시작하기</SignUpParagraph>
       </SignUpBtn>

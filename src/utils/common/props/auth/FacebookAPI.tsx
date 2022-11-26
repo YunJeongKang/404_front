@@ -10,7 +10,7 @@ const FacebookAPI = () => {
         <FaFacebook
           size="24"
           color="bg-facebook"
-          className="absolute inline-block left-3"
+          className="absolute inline-block left-6"
         />
         <SignUpParagraph className="text-white">
           Facebook으로 시작하기

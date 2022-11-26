@@ -116,11 +116,12 @@ const UserInfoPage = () => {
   };
 
   function onSubmit() {
+    // 성별 또는 결혼유무 또는 지역중 하나라도 선택되지 않았으면 경고창 띄움.
     mainInfo.gender === "" || mainInfo.married === "" || mainInfo.region === ""
       ? (mainInfo.gender === "" ? alert("성별을 선택해주세요") : true) &&
         (mainInfo.married === "" ? alert("결혼유무를 선택해주세요") : true) &&
         (mainInfo.region === "" ? alert("지역을 선택해주세요") : true)
-      : // 유저 정보 axios
+      : // 위의 삼항연산자를 다 통과하면 유저 정보 axios 실행
         axios.post(`${URL}${INPUT}`, {
           ...mainInfo,
           regionInfo: { ...regionInfo },

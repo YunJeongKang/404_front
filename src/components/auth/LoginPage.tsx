@@ -33,56 +33,54 @@ function LoginPage() {
     usernameRef.current.focus();
   }, []);
 
+  const onSubmit: React.ChangeEventHandler<HTMLFormElement> = (evt) => {
+    evt.preventDefault();
+    axios
+      .post(`${URL}${LOGIN}`, { ...loginInfo })
+      .then((res) => {
+        console.log(res.data);
+        auth.setAutoLogin(res.data.isAuthenticated);
+        auth.isAutoLogin() === "true"
+          ? (auth.isAuthenticated = true) && auth.login()
+          : alert("아이디나 비밀번호가 틀렸습니다.");
+      })
+      .catch(() => {
+        alert("인터넷이 원활하지 않거나 서버에 이상이 있습니다");
+        console.log("로그인 통신 실패");
+      });
+    console.log("로그인 페이지 보내지는 정보 : ", { ...loginInfo });
+  };
+
   return (
     <div className="w-[50vw] max-w-[24rem] flex flex-col items-center  gap-4">
-      <h1>LOGIN page</h1>
       <section className="rounded-md border px-8 py-2 max-w-[24rem] w-[100vw] bg-white">
-        <form
-          className="flex flex-col gap-y-2 "
-          onSubmit={(evt) => {
-            evt.preventDefault();
-            axios
-              .post(`${URL}${LOGIN}`, { ...loginInfo })
-              .then((res) => {
-                console.log(res.data);
-                auth.setAutoLogin(res.data.isAuthenticated);
-                auth.isAutoLogin() === "true"
-                  ? (auth.isAuthenticated = true) && auth.login()
-                  : alert("아이디나 비밀번호가 틀렸습니다.");
-              })
-              .catch(() => {
-                alert("인터넷이 원활하지 않거나 서버에 이상이 있습니다");
-                console.log("로그인 통신 실패");
-              });
-            console.log("로그인 페이지 보내지는 정보 : ", { ...loginInfo });
-          }}
-        >
+        <form className="flex flex-col gap-y-2 " onSubmit={onSubmit}>
           <fieldset className="flex justify-between gap-2">
-            <span>ID</span>
             <input
               name="email"
               value={loginInfo.email}
               ref={usernameRef}
               autoComplete="on"
-              className="w-5/6 border px-2 py-1 bg-white rounded-md"
+              className="w-full px-2 py-1 bg-white border-b-2"
               onChange={onChange}
+              placeholder="이메일"
             />
           </fieldset>
           <fieldset className="relative flex justify-between gap-2">
-            <span>PW</span>
             <input
               value={loginInfo.password}
               type={showPassword ? "text" : "password"}
               name="password"
-              className="w-5/6 border px-2 py-1 rounded-md"
+              className="w-full px-2 py-1 bg-white border-b-2"
               onChange={onChange}
               autoComplete="off"
+              placeholder="비밀번호"
             />
             <div
               onClick={(evt) => evt.preventDefault()}
               onMouseDown={() => setShowPassword(true)}
               onMouseUp={() => setShowPassword(false)}
-              className="absolute right-2 top-1/2 -translate-y-1/2"
+              className="absolute right-0 top-5 -translate-y-1/2 "
             >
               {!showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
             </div>
@@ -90,17 +88,19 @@ function LoginPage() {
           <div className="flex flex-col">
             <button
               type="submit"
-              className="border bg-primary text-main-contra font-bold rounded-md duration-150 active:scale-95 px-2 py-1"
+              className="border bg-primary text-main-contra font-bold rounded-3xl duration-150 active:scale-95 px-2 py-1"
             >
               LOGIN
             </button>
           </div>
         </form>
-        <div className="py-2">
-          <Link to={EASY_AUTH}>
-            <button className="bg-secondary text-white rounded-md px-2 pt-1 active:scale-95 font-bold border">
-              회원가입
-            </button>
+        <div className="flex justify-center gap-10 pt-2">
+          <span className="text-sm text-gray-500">계정이 없으신가요?</span>
+          <Link
+            className="underline underline-offset-2 text-xs py-0.5"
+            to={EASY_AUTH}
+          >
+            회원가입
           </Link>
         </div>
       </section>

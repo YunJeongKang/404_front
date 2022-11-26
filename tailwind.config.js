@@ -6,6 +6,9 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        eland: ["ELAND_Choice_M"],
+      },
       colors: {
         main: "#FCF7FF",
         "main-contra": "#e4ffdb",

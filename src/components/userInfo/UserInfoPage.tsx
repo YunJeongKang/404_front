@@ -234,8 +234,8 @@ const UserInfoPage = () => {
         {stepIndex >= 1 && (
           <motion.div
             className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8 }}
-            animate={{ scaleY: 1.0 }}
+            initial={{ scaleY: 0.8, opacity: 0.5 }}
+            animate={{ scaleY: 1.0, opacity: 1.0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             {/* 지역 */}
@@ -280,8 +280,8 @@ const UserInfoPage = () => {
         {stepIndex >= 2 && (
           <motion.div
             className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8 }}
-            animate={{ scaleY: 1.0 }}
+            initial={{ scaleY: 0.8, opacity: 0.5 }}
+            animate={{ scaleY: 1.0, opacity: 1.0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             {/* 키 / 체중 */}
@@ -357,8 +357,8 @@ const UserInfoPage = () => {
         {stepIndex >= 3 && (
           <motion.div
             className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8 }}
-            animate={{ scaleY: 1.0 }}
+            initial={{ scaleY: 0.8, opacity: 0.5 }}
+            animate={{ scaleY: 1.0, opacity: 1.0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             {/* 음주여부 */}
@@ -408,8 +408,8 @@ const UserInfoPage = () => {
         {stepIndex == -1 && (
           <motion.div
             className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8 }}
-            animate={{ scaleY: 1.0 }}
+            initial={{ scaleY: 0.8, opacity: 0.5 }}
+            animate={{ scaleY: 1.0, opacity: 1.0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             {/* 종교 */}
@@ -536,8 +536,8 @@ const UserInfoPage = () => {
         {stepIndex >= 4 && (
           <motion.div
             className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8 }}
-            animate={{ scaleY: 1.0 }}
+            initial={{ scaleY: 0.8, opacity: 0.5 }}
+            animate={{ scaleY: 1.0, opacity: 1.0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             {/* 결혼유무 */}
@@ -568,8 +568,8 @@ const UserInfoPage = () => {
         {stepIndex >= 4 && (
           <motion.div
             className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8 }}
-            animate={{ scaleY: 1.0 }}
+            initial={{ scaleY: 0.8, opacity: 0.5 }}
+            animate={{ scaleY: 1.0, opacity: 1.0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             <button

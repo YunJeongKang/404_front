@@ -8,31 +8,10 @@ import { RequiredRadioInputTemplate } from "@styles/indexStyle/indexInput";
 import { RadioLabelTemplate } from "@styles/indexStyle/indexLabel";
 import { radioGenderList } from "@data/main_info/gender";
 import { radioRegionList } from "@data/main_info/region";
-import { seoulList } from "@data/region_info/seoul";
-import { gyungkiList } from "@data/region_info/gyungki";
 import { radioMarriedList } from "@data/main_info/married";
-import {
-  MainInfoInterface,
-  RegionInfoInterface,
-} from "@models/user/UserDetail";
+import { MainInfoInterface } from "@models/user/UserDetail";
 import { SelectInput } from "@styles/indexStyle/indexSelect";
 import { OptionInput } from "@styles/indexStyle/indexOption";
-import { kangwonList } from "@data/region_info/kangwon";
-import { gwangjuList } from "@data/region_info/gwangju";
-import { daejeonList } from "@data/region_info/daejeon";
-import { daeguList } from "@data/region_info/daegu";
-import { incheonList } from "@data/region_info/incheon";
-import { busanList } from "@data/region_info/busan";
-import { jeonbukList } from "@data/region_info/jeonbuk";
-import { jeonnamList } from "@data/region_info/jeonnam";
-import { chungnamList } from "@data/region_info/chungnam";
-import { chungbukList } from "@data/region_info/chungbuk";
-import { gyungnamList } from "@data/region_info/gyungnam";
-import { gyungbukList } from "@data/region_info/gyungbuk";
-import { globalList } from "@data/region_info/global";
-import { sejongList } from "@data/region_info/sejong";
-import { ulsanList } from "@data/region_info/ulsan";
-import { jejuList } from "@data/region_info/jeju";
 import SectionTemplate from "@styles/indexStyle/indexSection";
 import { selectAlcoholList } from "@data/main_info/alcohol";
 import { selectSmokeList } from "@data/main_info/smoke";
@@ -47,7 +26,7 @@ import { selectMarriagePlanList } from "@data/main_info/marriagePlants";
 import { selectReligionList } from "@data/main_info/religion";
 import RequiredMark from "@styles/indexStyle/indexSpan";
 import { motion } from "framer-motion";
-import detailRegionsByCode from "./../../data/region_info/index";
+import detailRegionsByCode from "@data/region_info/index";
 
 const { INPUT, URL } = PATH;
 

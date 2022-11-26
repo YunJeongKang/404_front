@@ -8,5 +8,10 @@
   font-style: normal;
 }
 
+#root *:focus,
+#root *:active {
+  -webkit-tap-highlight-color: transparent;
+}
+
 @tailwind components;
 @tailwind utilities;

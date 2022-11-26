@@ -7,8 +7,28 @@ import {
 } from "react-icons/bs";
 import { NickNameH1, SubInfoH3 } from "@styles/indexStyle/indexHeading";
 import { UserSettingSpan } from "@styles/indexStyle/indexSpan";
+import { useState, useLayoutEffect } from "react";
+import axios from "axios";
 
 const UserSettingPage = () => {
+  // FIXME init as undefined
+  const [profileImageUri, setProfileImageUri] = useState<string | undefined>(
+    `${import.meta.env.VITE_S3_BASE_URL}/yena.jpg`
+  );
+
+  // const [user, setUser] =
+
+  useLayoutEffect(() => {
+    //  axios.get<Type>()
+    //    .then(({data}) => data)
+    //    .then((user) => {
+    //      /* Codes */
+    //      const profileImageUri = `${import.meta.env.VITE_S3_BASE_URL}/user/${user.프로필경로}`;
+    //      setProfileImageUri(profileImageUri);
+    //    })
+    //    .catch(console.error);
+  }, []);
+
   return (
     <div
       className="flex flex-col flex-wrap justify-center items-center 
@@ -29,11 +49,7 @@ const UserSettingPage = () => {
             className="rounded-full 
              h-[11.5rem] w-[11.5rem] overflow-hidden"
           >
-            <img
-              src="https://image.ytn.co.kr/general/jpg/2022/0117/202201171741117266_d.jpg"
-              alt=""
-              className="rounded-full"
-            />
+            <img src={profileImageUri} alt="" className="rounded-full" />
             {/* 회원 정보 수정 클릭 && 연필 */}
             <>
               <div
@@ -98,8 +114,7 @@ const UserSettingPage = () => {
             <div className="flex flex-col gap-2 w-full h-[55%]">
               <span className="text-lg">나의 소개</span>
               <div className="border-2 w-full h-5/6 rounded-lg cursor-pointer">
-                {" "}
-                ㅁㄴㅇㄹ
+                user?.소개글 || "입력된 소개글이 없습니다."
               </div>
             </div>
           </div>

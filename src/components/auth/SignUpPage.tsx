@@ -36,10 +36,7 @@ const SignUnPage = () => {
         // isReady 상태변경
         auth.setReady(res.data.isReady);
       })
-      .catch(() => {
-        alert("인터넷이 원활하지 않거나 서버에 이상이 있습니다");
-        console.log("회원가입 통신 실패");
-      });
+      .catch(console.error);
 
     console.log({ ...values, checkPW });
   }
@@ -81,8 +78,8 @@ const SignUnPage = () => {
             className="border peer dark:text-dark px-1"
             type="password"
             value={checkPW}
-            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
             name="checked-password"
+            pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
             placeholder="비밀번호 재입력"
             required
             autoComplete="false"
@@ -92,15 +89,11 @@ const SignUnPage = () => {
               console.log("checkPW", checkPW);
             }}
           />
-          <span className="hidden peer-invalid:block">
-            {values.password === checkPW ? (
-              <></>
-            ) : (
-              <span className="text-danger text-sm">
-                위의 비밀번호를 똑같이 입력하세요
-              </span>
-            )}
-          </span>
+          {values.password !== checkPW && (
+            <span className="text-danger text-sm">
+              위의 비밀번호를 똑같이 입력하세요
+            </span>
+          )}
         </div>
       </fieldset>
 

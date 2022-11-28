@@ -9,6 +9,7 @@ export interface MainInfoInterface {
   birth: string;
   married: string;
   job: string;
+  jobInfo: string;
   region: string;
   detailRegion: string;
   asset: string;

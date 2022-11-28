@@ -39,6 +39,7 @@ const UserInfoPage = () => {
     detailRegion: "",
     married: "",
     job: "",
+    jobInfo: "",
     alcohol: "",
     asset: "",
     blood: "",
@@ -84,6 +85,8 @@ const UserInfoPage = () => {
   // Increase Step Index
   useLayoutEffect(() => {
     if (mainInfo.married && mainInfo.marriagePlan) {
+      setStepIndex(6);
+    } else if (mainInfo.job) {
       setStepIndex(5);
     } else if (mainInfo.alcohol && mainInfo.smoke) {
       setStepIndex(4);
@@ -138,126 +141,123 @@ const UserInfoPage = () => {
   }, [mainInfo.detailRegion]);
 
   return (
-    <div className="flex flex-col min-h-screen w-full items-center justify-center">
-      <UserInfoForm
-        onSubmit={onSubmit}
-        className={`bg-white border rounded-md shadow-md w-[90%] max-h-[80vh] h-fit overflow-scroll scrollbar-hide py-4 px-2`}
-      >
-        {/* 닉네임 */}
-        <SectionTemplate>
-          <UserInfoH2>닉네임</UserInfoH2>
-          <ModalEmptyDiv>
-            <fieldset className="flex gap-2">
-              <div className="flex flex-col items-start gap-1">
-                <input
-                  className="border peer dark:text-dark px-1 rounded-md shadow"
-                  value={mainInfo.nickname}
-                  pattern="[가-힣A-Za-z0-9]{1,8}$"
-                  name="nickname"
-                  placeholder="닉네임을 입력하세요"
-                  required
-                  autoComplete="on"
+    <UserInfoForm
+      onSubmit={onSubmit}
+      className={`bg-white w-full max-h-[43rem] h-fit overflow-scroll scrollbar-hide py-4 px-2 gap-4`}
+    >
+      {/* 닉네임 */}
+      <SectionTemplate>
+        <UserInfoH2>닉네임</UserInfoH2>
+        <ModalEmptyDiv>
+          <fieldset className="flex gap-2">
+            <div className="flex flex-col items-start gap-1">
+              <input
+                className="peer px-1  text-center border-b-[1px] bg-white outline-none"
+                value={mainInfo.nickname}
+                pattern="[가-힣A-Za-z0-9]{1,8}$"
+                name="nickname"
+                placeholder="닉네임을 입력하세요"
+                required
+                autoComplete="on"
+                onChange={mainInfoChange}
+              />
+              <span className="hidden peer-invalid:block">
+                {mainInfo.nickname === "" ? (
+                  <></>
+                ) : (
+                  <span className="text-danger text-xs">
+                    1~8자의 올바른 닉네임을 입력하세요
+                  </span>
+                )}
+              </span>
+            </div>
+          </fieldset>
+        </ModalEmptyDiv>
+      </SectionTemplate>
+      {/* 성별 */}
+      <SectionTemplate>
+        <UserInfoH2>성별</UserInfoH2>
+        <RequiredRadioInputTemplate
+          RadioLabelTemplate={
+            <>
+              {radioGenderList.map(({ htmlFor, labelName, value }) => (
+                <RadioLabelTemplate
+                  checked={value === mainInfo.gender}
                   onChange={mainInfoChange}
+                  key={htmlFor}
+                  inputID={htmlFor}
+                  name="gender"
+                  value={value}
+                  labelChild={labelName}
+                  htmlFor={htmlFor}
                 />
-                <span className="hidden peer-invalid:block">
-                  {mainInfo.nickname === "" ? (
-                    <></>
-                  ) : (
-                    <span className="text-danger text-xs">
-                      "1~8자의 올바른 닉네임을 입력하세요"
-                    </span>
-                  )}
-                </span>
-              </div>
-            </fieldset>
-          </ModalEmptyDiv>
-        </SectionTemplate>
-        {/* 성별 */}
-        <SectionTemplate>
-          <UserInfoH2>성별</UserInfoH2>
-          <RequiredRadioInputTemplate
-            RadioLabelTemplate={
+              ))}
+            </>
+          }
+        />
+      </SectionTemplate>
+      {/* 생년월일 */}
+      <SectionTemplate>
+        <UserInfoH2>생년월일</UserInfoH2>
+        <ModalEmptyDiv>
+          <Age onChange={mainInfoChange} value={mainInfo.birth} />
+        </ModalEmptyDiv>
+      </SectionTemplate>
+      {/* Step1 지역 */}
+      {stepIndex >= 1 && (
+        <motion.div
+          initial={{ scaleY: 0.8, opacity: 0.5 }}
+          animate={{ scaleY: 1.0, opacity: 1.0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          {/* 지역 */}
+          <SectionTemplate>
+            <UserInfoH2>지역</UserInfoH2>
+            <ModalEmptyDiv>
               <>
-                {radioGenderList.map(({ htmlFor, labelName, value }) => (
-                  <RadioLabelTemplate
-                    checked={value === mainInfo.gender}
-                    onChange={mainInfoChange}
-                    key={htmlFor}
-                    inputID={htmlFor}
-                    name="gender"
-                    value={value}
-                    labelChild={labelName}
-                    htmlFor={htmlFor}
-                  />
-                ))}
+                <SelectInput
+                  name="region"
+                  value={mainInfo.region}
+                  onChange={mainInfoChange}
+                >
+                  <option value="" className={mainInfo.region && "hidden"}>
+                    선택 필수
+                  </option>
+                  {radioRegionList.map(({ value, regionInfoName }) => (
+                    <OptionInput value={value} key={value}>
+                      {regionInfoName}
+                    </OptionInput>
+                  ))}
+                </SelectInput>
               </>
-            }
-          />
-        </SectionTemplate>
-        {/* 생년월일 */}
-        <SectionTemplate>
-          <UserInfoH2>생년월일</UserInfoH2>
-          <ModalEmptyDiv>
-            <Age onChange={mainInfoChange} value={mainInfo.birth} />
-          </ModalEmptyDiv>
-        </SectionTemplate>
-        {stepIndex >= 1 && (
-          <motion.div
-            className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8, opacity: 0.5 }}
-            animate={{ scaleY: 1.0, opacity: 1.0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            {/* 지역 */}
-            <SectionTemplate>
-              <UserInfoH2>지역</UserInfoH2>
-              <ModalEmptyDiv>
-                <>
+              {/* 상세지역 정보 */}
+              <>
+                {!!mainInfo.region && (
                   <SelectInput
-                    name="region"
-                    value={mainInfo.region}
+                    name="detailRegion"
+                    value={mainInfo.detailRegion}
                     onChange={mainInfoChange}
                   >
-                    <option
-                      value=""
-                      className={mainInfo.region ? "hidden" : ""}
-                    >
-                      선택 필수
-                    </option>
-                    {radioRegionList.map(({ value, regionInfoName }) => (
-                      <OptionInput value={value} key={value}>
-                        {regionInfoName}
-                      </OptionInput>
-                    ))}
+                    {detailRegionOptions}
                   </SelectInput>
-                </>
-                {/* 상세지역 정보 */}
-                <>
-                  {!!mainInfo.region && (
-                    <SelectInput
-                      name="detailRegion"
-                      value={mainInfo.detailRegion}
-                      onChange={mainInfoChange}
-                    >
-                      {detailRegionOptions}
-                    </SelectInput>
-                  )}
-                </>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-          </motion.div>
-        )}
-        {stepIndex >= 2 && (
-          <motion.div
-            className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8, opacity: 0.5 }}
-            animate={{ scaleY: 1.0, opacity: 1.0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            {/* 키 / 체중 */}
-            <SectionTemplate>
-              {/* 체중 */}
-              <UserInfoH2>몸무게</UserInfoH2>
+                )}
+              </>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+        </motion.div>
+      )}
+      {/* Step 체중, 키, 혈액형 */}
+      {stepIndex >= 2 && (
+        <motion.div
+          className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
+          initial={{ scaleY: 0.8, opacity: 0.5 }}
+          animate={{ scaleY: 1.0, opacity: 1.0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          {/* 체중 */}
+          <SectionTemplate>
+            <UserInfoH2>몸무게</UserInfoH2>
+            <ModalEmptyDiv>
               <div className="w-1/4 flex gap-1">
                 <>
                   <SelectInput
@@ -267,7 +267,7 @@ const UserInfoPage = () => {
                   >
                     <OptionInput
                       value=""
-                      className={mainInfo.weight ? "hidden" : ""}
+                      className={mainInfo.weight && "hidden"}
                     >
                       -선택-
                     </OptionInput>
@@ -280,9 +280,13 @@ const UserInfoPage = () => {
                 </>
                 <h1 className="text-md">KG</h1>
               </div>
-              {/* 키 */}
+            </ModalEmptyDiv>
+          </SectionTemplate>
+          {/* 키 */}
+          <SectionTemplate>
+            <UserInfoH2>키</UserInfoH2>
+            <ModalEmptyDiv>
               <div className="w-2/5 flex flex-raw gap-1">
-                <UserInfoH2>키</UserInfoH2>
                 <>
                   <SelectInput
                     name="height"
@@ -305,259 +309,278 @@ const UserInfoPage = () => {
                 </>
                 <h1 className="text-md">CM</h1>
               </div>
-            </SectionTemplate>
-            {/* 혈액형 */}
-            <SectionTemplate>
-              <UserInfoH2>혈액형</UserInfoH2>
-              <ModalEmptyDiv>
-                <SelectInput
-                  name="blood"
-                  value={mainInfo.blood}
-                  onChange={mainInfoChange}
-                >
-                  <OptionInput
-                    value=""
-                    className={mainInfo.blood ? "hidden" : ""}
-                  >
-                    -선택-
+            </ModalEmptyDiv>
+          </SectionTemplate>
+          {/* 혈액형 */}
+          <SectionTemplate>
+            <UserInfoH2>혈액형</UserInfoH2>
+            <ModalEmptyDiv>
+              <SelectInput
+                name="blood"
+                value={mainInfo.blood}
+                onChange={mainInfoChange}
+              >
+                <OptionInput value="" className={mainInfo.blood && "hidden"}>
+                  -선택-
+                </OptionInput>
+                {selectBloodList.map(({ value, optionName }) => (
+                  <OptionInput value={value} key={value} required>
+                    {optionName}
                   </OptionInput>
-                  {selectBloodList.map(({ value, optionName }) => (
-                    <OptionInput value={value} key={value} required>
-                      {optionName}
-                    </OptionInput>
-                  ))}
-                </SelectInput>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-          </motion.div>
-        )}
-        {stepIndex >= 3 && (
-          <motion.div
-            className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8, opacity: 0.5 }}
-            animate={{ scaleY: 1.0, opacity: 1.0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            {/* 음주여부 */}
-            <SectionTemplate>
-              <UserInfoH2>음주여부</UserInfoH2>
-              <ModalEmptyDiv>
-                <SelectInput
-                  name="alcohol"
-                  value={mainInfo.alcohol}
-                  onChange={mainInfoChange}
-                >
-                  <OptionInput
-                    value=""
-                    className={mainInfo.alcohol ? "hidden" : ""}
-                  >
-                    -선택-
+                ))}
+              </SelectInput>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+        </motion.div>
+      )}
+      {stepIndex >= 3 && (
+        <motion.div
+          className="flex flex-col justify-center gap-4"
+          initial={{ scaleY: 0.8, opacity: 0.5 }}
+          animate={{ scaleY: 1.0, opacity: 1.0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          {/* 음주여부 */}
+          <SectionTemplate>
+            <UserInfoH2>음주여부</UserInfoH2>
+            <ModalEmptyDiv>
+              <SelectInput
+                name="alcohol"
+                value={mainInfo.alcohol}
+                onChange={mainInfoChange}
+              >
+                <OptionInput value="" className={mainInfo.alcohol && "hidden"}>
+                  -선택-
+                </OptionInput>
+                {selectAlcoholList.map(({ value, optionName }) => (
+                  <OptionInput value={value} key={value} required>
+                    {optionName}
                   </OptionInput>
-                  {selectAlcoholList.map(({ value, optionName }) => (
-                    <OptionInput value={value} key={value} required>
-                      {optionName}
-                    </OptionInput>
-                  ))}
-                </SelectInput>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-            {/* 흡연여부 */}
-            <SectionTemplate>
-              <UserInfoH2>흡연여부</UserInfoH2>
-              <ModalEmptyDiv>
-                <SelectInput
-                  name="smoke"
-                  value={mainInfo.smoke}
-                  onChange={mainInfoChange}
-                >
-                  <OptionInput value="" className={mainInfo.smoke && "hidden"}>
-                    -선택-
+                ))}
+              </SelectInput>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+          {/* 흡연여부 */}
+          <SectionTemplate>
+            <UserInfoH2>흡연여부</UserInfoH2>
+            <ModalEmptyDiv>
+              <SelectInput
+                name="smoke"
+                value={mainInfo.smoke}
+                onChange={mainInfoChange}
+              >
+                <OptionInput value="" className={mainInfo.smoke && "hidden"}>
+                  -선택-
+                </OptionInput>
+                {selectSmokeList.map(({ value, optionName }) => (
+                  <OptionInput value={value} key={value} required>
+                    {optionName}
                   </OptionInput>
-                  {selectSmokeList.map(({ value, optionName }) => (
-                    <OptionInput value={value} key={value} required>
-                      {optionName}
-                    </OptionInput>
-                  ))}
-                </SelectInput>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-          </motion.div>
-        )}
-        {stepIndex >= 4 && (
-          <motion.div
-            className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8, opacity: 0.5 }}
-            animate={{ scaleY: 1.0, opacity: 1.0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            {/* 결혼유무 */}
-            <SectionTemplate>
-              <UserInfoH2>결혼유무</UserInfoH2>
-              <RequiredRadioInputTemplate
-                RadioLabelTemplate={
-                  <>
-                    {radioMarriedList.map(({ htmlFor, labelName, value }) => (
-                      <RadioLabelTemplate
-                        checked={value === mainInfo.married}
-                        onChange={mainInfoChange}
-                        key={htmlFor}
-                        inputID={htmlFor}
-                        name="married"
-                        value={value}
-                        labelChild={labelName}
-                        htmlFor={htmlFor}
-                      />
-                    ))}
-                  </>
-                }
+                ))}
+              </SelectInput>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+        </motion.div>
+      )}
+      {stepIndex >= 4 && (
+        <motion.div
+          className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
+          initial={{ scaleY: 0.8, opacity: 0.5 }}
+          animate={{ scaleY: 1.0, opacity: 1.0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          {/* 직업 */}
+          <SectionTemplate>
+            <UserInfoH2>직업</UserInfoH2>
+            <ModalEmptyDiv>
+              <SelectInput
+                name="job"
+                value={mainInfo.job}
+                onChange={mainInfoChange}
+              >
+                <OptionInput value="" className={mainInfo.job && "hidden"}>
+                  -선택-
+                </OptionInput>
+                {radioJobList.map(({ jobName }, value) => (
+                  <OptionInput value={value} key={value} required>
+                    {jobName}
+                  </OptionInput>
+                ))}
+              </SelectInput>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+          {/* 직업상세 */}
+          <SectionTemplate>
+            <UserInfoH2>직업상세</UserInfoH2>
+            <ModalEmptyDiv>
+              <input
+                name="jobInfo"
+                type="text"
+                value={mainInfo.jobInfo}
+                onChange={mainInfoChange}
+                className="text-center w-full outline-none border-b-[1px]"
+                maxLength={20}
+                placeholder="직업상세를 입력하세요"
               />
-            </SectionTemplate>
-            {/* 결혼계획 */}
-            <SectionTemplate>
-              <UserInfoH2>결혼계획</UserInfoH2>
-              <ModalEmptyDiv>
-                <SelectInput
-                  name="marriagePlan"
-                  value={mainInfo.marriagePlan}
-                  onChange={mainInfoChange}
+            </ModalEmptyDiv>
+          </SectionTemplate>
+        </motion.div>
+      )}
+      {stepIndex >= 5 && (
+        <motion.div
+          className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
+          initial={{ scaleY: 0.8, opacity: 0.5 }}
+          animate={{ scaleY: 1.0, opacity: 1.0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          {/* 결혼유무 */}
+          <SectionTemplate>
+            <UserInfoH2>결혼유무</UserInfoH2>
+            <RequiredRadioInputTemplate
+              RadioLabelTemplate={
+                <>
+                  {radioMarriedList.map(({ htmlFor, labelName, value }) => (
+                    <RadioLabelTemplate
+                      checked={value === mainInfo.married}
+                      onChange={mainInfoChange}
+                      key={htmlFor}
+                      inputID={htmlFor}
+                      name="married"
+                      value={value}
+                      labelChild={labelName}
+                      htmlFor={htmlFor}
+                    />
+                  ))}
+                </>
+              }
+            />
+          </SectionTemplate>
+          {/* 결혼계획 */}
+          <SectionTemplate>
+            <UserInfoH2>결혼계획</UserInfoH2>
+            <ModalEmptyDiv>
+              <SelectInput
+                name="marriagePlan"
+                value={mainInfo.marriagePlan}
+                onChange={mainInfoChange}
+              >
+                <OptionInput
+                  value=""
+                  className={mainInfo.marriagePlan && "hidden"}
                 >
-                  <OptionInput
-                    value=""
-                    className={mainInfo.marriagePlan && "hidden"}
-                  >
-                    -선택-
+                  -선택-
+                </OptionInput>
+                {selectMarriagePlanList.map(({ value, optionName }) => (
+                  <OptionInput value={value} key={value} required>
+                    {optionName}
                   </OptionInput>
-                  {selectMarriagePlanList.map(({ value, optionName }) => (
-                    <OptionInput value={value} key={value} required>
-                      {optionName}
-                    </OptionInput>
-                  ))}
-                </SelectInput>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-          </motion.div>
-        )}
-        {stepIndex >= 5 && (
-          <motion.div
-            className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8, opacity: 0.5 }}
-            animate={{ scaleY: 1.0, opacity: 1.0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            {/* 직업 */}
-            <SectionTemplate>
-              <UserInfoH2>직업</UserInfoH2>
-              <ModalEmptyDiv>
-                <SelectInput
-                  name="job"
-                  value={mainInfo.job}
-                  onChange={mainInfoChange}
-                >
-                  {radioJobList.map(({ jobName }, value) => (
-                    <OptionInput value={value} key={value} required>
-                      {jobName}
-                    </OptionInput>
-                  ))}
-                </SelectInput>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-            {/* 학력 */}
-            <SectionTemplate>
-              <UserInfoH2>학력</UserInfoH2>
-              <ModalEmptyDiv>
-                <SelectInput
-                  name="education"
-                  value={mainInfo.education}
-                  onChange={mainInfoChange}
-                >
-                  {selectEducationList.map(({ value, optionName }) => (
-                    <OptionInput value={value} key={value} required>
-                      {optionName}
-                    </OptionInput>
-                  ))}
-                </SelectInput>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-            {/* 연봉  */}
-            <SectionTemplate>
-              <UserInfoH2>연봉</UserInfoH2>
-              <ModalEmptyDiv>
-                <SelectInput
-                  name="salary"
-                  value={mainInfo.salary}
-                  onChange={mainInfoChange}
-                >
-                  {selectSalaryList.map(({ value, optionName }) => (
-                    <OptionInput value={value} key={value} required>
-                      {optionName}
-                    </OptionInput>
-                  ))}
-                </SelectInput>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-            {/* 자산 */}
-            <SectionTemplate>
-              <UserInfoH2>자산</UserInfoH2>
-              <ModalEmptyDiv>
-                <SelectInput
-                  name="asset"
-                  value={mainInfo.asset}
-                  onChange={mainInfoChange}
-                >
-                  {selectAssetList.map(({ value, optionName }) => (
-                    <OptionInput value={value} key={value} required>
-                      {optionName}
-                    </OptionInput>
-                  ))}
-                </SelectInput>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-            {/* 차량 */}
-            <SectionTemplate>
-              <UserInfoH2>차량</UserInfoH2>
-              <ModalEmptyDiv>
-                <SelectInput
-                  name="vehicle"
-                  value={mainInfo.vehicle}
-                  onChange={mainInfoChange}
-                >
-                  {selectVehicleList.map(({ value, optionName }) => (
-                    <OptionInput value={value} key={value} required>
-                      {optionName}
-                    </OptionInput>
-                  ))}
-                </SelectInput>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-            {/* 종교 */}
-            <SectionTemplate>
-              <UserInfoH2>종교</UserInfoH2>
-              <ModalEmptyDiv>
-                <SelectInput
-                  name="religion"
-                  value={mainInfo.religion}
-                  onChange={mainInfoChange}
-                >
-                  {selectReligionList.map(({ value, optionName }) => (
-                    <OptionInput value={value} key={value} required>
-                      {optionName}
-                    </OptionInput>
-                  ))}
-                </SelectInput>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-          </motion.div>
-        )}
-        {stepIndex >= 8 && (
-          <motion.div
-            className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8, opacity: 0.5 }}
-            animate={{ scaleY: 1.0, opacity: 1.0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          ></motion.div>
-        )}
-      </UserInfoForm>
-    </div>
+                ))}
+              </SelectInput>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+        </motion.div>
+      )}
+      {stepIndex >= 6 && (
+        <motion.div
+          className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
+          initial={{ scaleY: 0.8, opacity: 0.5 }}
+          animate={{ scaleY: 1.0, opacity: 1.0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          {/* 종교 */}
+          <SectionTemplate>
+            <UserInfoH2>종교</UserInfoH2>
+            <ModalEmptyDiv>
+              <SelectInput
+                name="religion"
+                value={mainInfo.religion}
+                onChange={mainInfoChange}
+              >
+                {selectReligionList.map(({ value, optionName }) => (
+                  <OptionInput value={value} key={value} required>
+                    {optionName}
+                  </OptionInput>
+                ))}
+              </SelectInput>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+          {/* 학력 */}
+          <SectionTemplate>
+            <UserInfoH2>학력</UserInfoH2>
+            <ModalEmptyDiv>
+              <SelectInput
+                name="education"
+                value={mainInfo.education}
+                onChange={mainInfoChange}
+              >
+                {selectEducationList.map(({ value, optionName }) => (
+                  <OptionInput value={value} key={value} required>
+                    {optionName}
+                  </OptionInput>
+                ))}
+              </SelectInput>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+          {/* 연봉  */}
+          <SectionTemplate>
+            <UserInfoH2>연봉</UserInfoH2>
+            <ModalEmptyDiv>
+              <SelectInput
+                name="salary"
+                value={mainInfo.salary}
+                onChange={mainInfoChange}
+              >
+                {selectSalaryList.map(({ value, optionName }) => (
+                  <OptionInput value={value} key={value} required>
+                    {optionName}
+                  </OptionInput>
+                ))}
+              </SelectInput>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+          {/* 자산 */}
+          <SectionTemplate>
+            <UserInfoH2>자산</UserInfoH2>
+            <ModalEmptyDiv>
+              <SelectInput
+                name="asset"
+                value={mainInfo.asset}
+                onChange={mainInfoChange}
+              >
+                {selectAssetList.map(({ value, optionName }) => (
+                  <OptionInput value={value} key={value} required>
+                    {optionName}
+                  </OptionInput>
+                ))}
+              </SelectInput>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+          {/* 차량 */}
+          <SectionTemplate>
+            <UserInfoH2>차량</UserInfoH2>
+            <ModalEmptyDiv>
+              <SelectInput
+                name="vehicle"
+                value={mainInfo.vehicle}
+                onChange={mainInfoChange}
+              >
+                {selectVehicleList.map(({ value, optionName }) => (
+                  <OptionInput value={value} key={value} required>
+                    {optionName}
+                  </OptionInput>
+                ))}
+              </SelectInput>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+        </motion.div>
+      )}
+      {/* 제춢버튼  */}
+      {stepIndex >= 6 && (
+        <button type="submit" className="border rounded-md shadow-md">
+          제출
+        </button>
+      )}
+    </UserInfoForm>
   );
 };
 

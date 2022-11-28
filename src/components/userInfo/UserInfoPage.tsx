@@ -58,28 +58,6 @@ const UserInfoPage = () => {
     []
   );
 
-  // 지역 상세 데이터
-  // const [regionInfo, setRegionInfo] = useState<RegionInfoInterface>({
-  //   region_kangwon: "",
-  //   region_gyungki: "",
-  //   region_gyungnam: "",
-  //   region_gyungbuk: "",
-  //   region_gwangju: "",
-  //   region_daegu: "",
-  //   region_daejeon: "",
-  //   region_busan: "",
-  //   region_seoul: "",
-  //   region_sejong: "",
-  //   region_ulsan: "",
-  //   region_incheon: "",
-  //   region_jeonnam: "",
-  //   region_jeonbuk: "",
-  //   region_jeju: "",
-  //   region_chungnam: "",
-  //   region_chungbuk: "",
-  //   region_global: "",
-  // });
-
   // 지역 선택에 따라 달라지는 지역상세 컬럼
 
   const mainInfoChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
@@ -91,21 +69,17 @@ const UserInfoPage = () => {
     });
   };
 
+  // axios API
   function onSubmit() {
-    // 성별 또는 결혼유무 또는 지역중 하나라도 선택되지 않았으면 경고창 띄움.
-    mainInfo.gender === "" || mainInfo.married === "" || mainInfo.region === ""
-      ? (mainInfo.gender === "" ? alert("성별을 선택해주세요") : true) &&
-        (mainInfo.married === "" ? alert("결혼유무를 선택해주세요") : true) &&
-        (mainInfo.region === "" ? alert("지역을 선택해주세요") : true)
-      : // 위의 삼항연산자를 다 통과하면 유저 정보 axios 실행
-        axios.post(`${URL}${INPUT}`, {
-          ...mainInfo,
-          regionInfo: mainInfo.detailRegion,
-        });
-    console.log({ ...mainInfo, regionInfo: mainInfo.detailRegion });
+    axios.post(`${URL}${INPUT}`, {
+      ...mainInfo,
+    });
+    console.log({ ...mainInfo });
   }
 
-  const arrayRange = [...Array(120).keys()];
+  // 체중, 키
+  const weightRange = [...Array(120).keys()];
+  const heightRange = [...Array(140, 200).keys()];
 
   // Increase Step Index
   useLayoutEffect(() => {
@@ -167,12 +141,8 @@ const UserInfoPage = () => {
         onSubmit={onSubmit}
         className={`bg-white border rounded-md shadow-md w-[90%] max-h-[80vh] h-fit overflow-scroll scrollbar-hide py-4 px-2`}
       >
-        <div className="block pt-2">
-          <span className="text-red-700 px-2">'*'</span> 는 필수입력란 입니다
-        </div>
         {/* 닉네임 */}
         <SectionTemplate>
-          <RequiredMark />
           <UserInfoH2>닉네임</UserInfoH2>
           <ModalEmptyDiv>
             <fieldset className="flex gap-2">
@@ -202,7 +172,6 @@ const UserInfoPage = () => {
         </SectionTemplate>
         {/* 성별 */}
         <SectionTemplate>
-          <RequiredMark />
           <UserInfoH2>성별</UserInfoH2>
           <RequiredRadioInputTemplate
             RadioLabelTemplate={
@@ -225,7 +194,6 @@ const UserInfoPage = () => {
         </SectionTemplate>
         {/* 생년월일 */}
         <SectionTemplate>
-          <RequiredMark />
           <UserInfoH2>생년월일</UserInfoH2>
           <ModalEmptyDiv>
             <Age onChange={mainInfoChange} value={mainInfo.birth} />
@@ -240,7 +208,6 @@ const UserInfoPage = () => {
           >
             {/* 지역 */}
             <SectionTemplate>
-              <RequiredMark />
               <UserInfoH2>지역</UserInfoH2>
               <ModalEmptyDiv>
                 <>
@@ -264,14 +231,15 @@ const UserInfoPage = () => {
                 </>
                 {/* 상세지역 정보 */}
                 <>
-                  <SelectInput
-                    name="detailRegion"
-                    value={mainInfo.detailRegion}
-                    onChange={mainInfoChange}
-                    className="!min-w-[2rem]"
-                  >
-                    {detailRegionOptions}
-                  </SelectInput>
+                  {!!mainInfo.region && (
+                    <SelectInput
+                      name="detailRegion"
+                      value={mainInfo.detailRegion}
+                      onChange={mainInfoChange}
+                    >
+                      {detailRegionOptions}
+                    </SelectInput>
+                  )}
                 </>
               </ModalEmptyDiv>
             </SectionTemplate>
@@ -298,8 +266,10 @@ const UserInfoPage = () => {
                     <OptionInput
                       value=""
                       className={mainInfo.weight ? "hidden" : ""}
-                    ></OptionInput>
-                    {arrayRange.map((item) => (
+                    >
+                      -선택-
+                    </OptionInput>
+                    {weightRange.map((item) => (
                       <OptionInput value={item + 31} key={item}>
                         {item + 31}
                       </OptionInput>
@@ -320,10 +290,13 @@ const UserInfoPage = () => {
                     <OptionInput
                       value=""
                       className={mainInfo.height ? "hidden" : ""}
-                    ></OptionInput>
-                    {arrayRange.map((item) => (
-                      <OptionInput value={item + 81} key={item}>
-                        {item + 81}
+                    >
+                      -선택-
+                    </OptionInput>
+                    <OptionInput value="139">140미만</OptionInput>
+                    {heightRange.map((item) => (
+                      <OptionInput value={item} key={item}>
+                        {item}
                       </OptionInput>
                     ))}
                   </SelectInput>
@@ -343,7 +316,9 @@ const UserInfoPage = () => {
                   <OptionInput
                     value=""
                     className={mainInfo.blood ? "hidden" : ""}
-                  ></OptionInput>
+                  >
+                    -선택-
+                  </OptionInput>
                   {selectBloodList.map(({ value, optionName }) => (
                     <OptionInput value={value} key={value} required>
                       {optionName}
@@ -373,7 +348,9 @@ const UserInfoPage = () => {
                   <OptionInput
                     value=""
                     className={mainInfo.alcohol ? "hidden" : ""}
-                  ></OptionInput>
+                  >
+                    -선택-
+                  </OptionInput>
                   {selectAlcoholList.map(({ value, optionName }) => (
                     <OptionInput value={value} key={value} required>
                       {optionName}
@@ -394,7 +371,9 @@ const UserInfoPage = () => {
                   <OptionInput
                     value=""
                     className={mainInfo.smoke ? "hidden" : ""}
-                  ></OptionInput>
+                  >
+                    -선택-
+                  </OptionInput>
                   {selectSmokeList.map(({ value, optionName }) => (
                     <OptionInput value={value} key={value} required>
                       {optionName}
@@ -405,23 +384,45 @@ const UserInfoPage = () => {
             </SectionTemplate>
           </motion.div>
         )}
-        {stepIndex == -1 && (
+        {stepIndex >= 4 && (
           <motion.div
             className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
             initial={{ scaleY: 0.8, opacity: 0.5 }}
             animate={{ scaleY: 1.0, opacity: 1.0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
-            {/* 종교 */}
+            {/* 결혼유무 */}
             <SectionTemplate>
-              <UserInfoH2>종교</UserInfoH2>
+              <UserInfoH2>결혼유무</UserInfoH2>
+              <RequiredRadioInputTemplate
+                RadioLabelTemplate={
+                  <>
+                    {radioMarriedList.map(({ htmlFor, labelName, value }) => (
+                      <RadioLabelTemplate
+                        checked={value === mainInfo.married}
+                        onChange={mainInfoChange}
+                        key={htmlFor}
+                        inputID={htmlFor}
+                        name="married"
+                        value={value}
+                        labelChild={labelName}
+                        htmlFor={htmlFor}
+                      />
+                    ))}
+                  </>
+                }
+              />
+            </SectionTemplate>
+            {/* 결혼계획 */}
+            <SectionTemplate>
+              <UserInfoH2>결혼계획</UserInfoH2>
               <ModalEmptyDiv>
                 <SelectInput
-                  name="religion"
-                  value={mainInfo.religion}
+                  name="marriagePlan"
+                  value={mainInfo.marriagePlan}
                   onChange={mainInfoChange}
                 >
-                  {selectReligionList.map(({ value, optionName }) => (
+                  {selectMarriagePlanList.map(({ value, optionName }) => (
                     <OptionInput value={value} key={value} required>
                       {optionName}
                     </OptionInput>
@@ -429,6 +430,15 @@ const UserInfoPage = () => {
                 </SelectInput>
               </ModalEmptyDiv>
             </SectionTemplate>
+          </motion.div>
+        )}
+        {stepIndex >= 5 && (
+          <motion.div
+            className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
+            initial={{ scaleY: 0.8, opacity: 0.5 }}
+            animate={{ scaleY: 1.0, opacity: 1.0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
             {/* 직업 */}
             <SectionTemplate>
               <UserInfoH2>직업</UserInfoH2>
@@ -514,16 +524,16 @@ const UserInfoPage = () => {
                 </SelectInput>
               </ModalEmptyDiv>
             </SectionTemplate>
-            {/* 결혼계획 */}
+            {/* 종교 */}
             <SectionTemplate>
-              <UserInfoH2>결혼계획</UserInfoH2>
+              <UserInfoH2>종교</UserInfoH2>
               <ModalEmptyDiv>
                 <SelectInput
-                  name="marriagePlan"
-                  value={mainInfo.marriagePlan}
+                  name="religion"
+                  value={mainInfo.religion}
                   onChange={mainInfoChange}
                 >
-                  {selectMarriagePlanList.map(({ value, optionName }) => (
+                  {selectReligionList.map(({ value, optionName }) => (
                     <OptionInput value={value} key={value} required>
                       {optionName}
                     </OptionInput>
@@ -539,47 +549,7 @@ const UserInfoPage = () => {
             initial={{ scaleY: 0.8, opacity: 0.5 }}
             animate={{ scaleY: 1.0, opacity: 1.0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            {/* 결혼유무 */}
-            <SectionTemplate>
-              <RequiredMark />
-              <UserInfoH2>결혼유무</UserInfoH2>
-              <RequiredRadioInputTemplate
-                RadioLabelTemplate={
-                  <>
-                    {radioMarriedList.map(({ htmlFor, labelName, value }) => (
-                      <RadioLabelTemplate
-                        checked={value === mainInfo.married}
-                        onChange={mainInfoChange}
-                        key={htmlFor}
-                        inputID={htmlFor}
-                        name="married"
-                        value={value}
-                        labelChild={labelName}
-                        htmlFor={htmlFor}
-                      />
-                    ))}
-                  </>
-                }
-              />
-            </SectionTemplate>
-          </motion.div>
-        )}
-        {stepIndex >= 4 && (
-          <motion.div
-            className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
-            initial={{ scaleY: 0.8, opacity: 0.5 }}
-            animate={{ scaleY: 1.0, opacity: 1.0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            <button
-              type="submit"
-              disabled={!mainInfo.married || !mainInfo.detailRegion}
-              className="border shadow rounded-md px-2.5 py-1 duration-150 active:scale-[0.97] disabled:bg-default"
-            >
-              제출
-            </button>
-          </motion.div>
+          ></motion.div>
         )}
       </UserInfoForm>
     </div>

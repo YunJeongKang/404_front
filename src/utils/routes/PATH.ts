@@ -5,6 +5,7 @@ const PATH = {
   EASY_AUTH: "/login/easy-auth",
   SIGNUP: "/login/easy-auth/sign-up",
   INPUT: "/user-data-input",
+  USER_IMAGE: "/user-data-input/user-image-input",
 
   //main routes
   HOME: "/",

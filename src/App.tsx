@@ -20,7 +20,7 @@ function App() {
     console.log("추적 가능한 경로", location.pathname);
   }, [location.pathname]);
 
-  const isTrue = auth.isAuthenticated || auth.isAutoLogin() === "true";
+  const isTrue = auth.isAuthenticated || auth.isAutoLogin();
 
   useEffect(() => {
     const currentRoutes = isTrue ? <ProtectedRoutes /> : <UnauthedRoutes />;
@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide bg-slate-200">
       <div className="h-screen max-w-[28rem] z-10 scrollbar-hide py-3">
-        {isTrue ? location.pathname === "/" ? <Header /> : null : null}
+        {isTrue && location.pathname === "/" && <Header />}
         <main
           className={`flex flex-col items-center w-[26rem] border-x shadow-sm drop-shadow ${
             isTrue

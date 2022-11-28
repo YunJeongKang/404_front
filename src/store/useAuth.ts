@@ -14,7 +14,7 @@ interface AuthState {
   logout: () => void;
 
   setAutoLogin: (isAuthenticated: boolean) => void;
-  isAutoLogin: () => string | null;
+  isAutoLogin: () => boolean;
 
   setReady: (isReady: boolean) => void;
   getReady: () => boolean;
@@ -55,7 +55,7 @@ const useAuth = create<AuthState>((set, get) => {
       localStorage.setItem("AutoLogin", JSON.stringify(isAuthenticated));
     },
 
-    isAutoLogin: () => localStorage.getItem("AutoLogin"),
+    isAutoLogin: () => localStorage.getItem("AutoLogin") === "true",
 
     setReady: (isReady) => {
       set({ isReady });

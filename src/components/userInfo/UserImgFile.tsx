@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import PATH from "@utils/routes/PATH";
+import { resolve } from "node:path/win32";
 
 const { USER_IMAGE, URL } = PATH;
 
 const UserImgFile = () => {
-  const [image, setImage] = useState<any>();
+  const [image, setImage] = useState<any>("");
   const formData = new FormData();
   formData.append("userImage", image);
   const config = {
@@ -14,20 +15,15 @@ const UserImgFile = () => {
     },
   };
 
-  useEffect(() => {
-    preview();
-
-    return () => preview();
-  }, []);
-
-  const preview = () => {
-    if (!image) return;
-
-    const imgEl = document.createElement("img");
+  const encode = (fileBlob: any) => {
     const reader = new FileReader();
-    reader.onload = () =>
-      (imgEl.style.backgroundImage = `url(${reader.result})`);
-    reader.readAsDataURL(image[0]);
+    reader.readAsDataURL(fileBlob);
+    return new Promise((resolve: any) => {
+      reader.onload = () => {
+        setImage(reader.result);
+        resolve();
+      };
+    });
   };
 
   return (
@@ -37,7 +33,7 @@ const UserImgFile = () => {
         onSubmit={(evt) => {
           evt.preventDefault();
           console.log(image);
-          axios.put(`${URL}${USER_IMAGE}`, formData, config);
+          axios.put(`${URL}${USER_IMAGE}`, formData);
         }}
       >
         <input
@@ -45,12 +41,15 @@ const UserImgFile = () => {
           accept="img/*"
           onChange={(evt: any) => {
             setImage(evt.target.files);
+            encode(evt.target.files[0]);
             console.log(evt.target.files[0]);
           }}
         />
         <button type="submit">제출</button>
       </form>
-      <div className="img"></div>
+      <div className="img">
+        {image && <img src={image} alt="preview-img" />}
+      </div>
     </div>
   );
 };

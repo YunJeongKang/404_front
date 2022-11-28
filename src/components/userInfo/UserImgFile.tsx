@@ -33,7 +33,7 @@ const UserImgFile = () => {
         onSubmit={(evt) => {
           evt.preventDefault();
           console.log(image);
-          axios.put(`${URL}${USER_IMAGE}`, formData);
+          axios.put(`${URL}${USER_IMAGE}`, formData, config);
         }}
       >
         <input
@@ -48,7 +48,7 @@ const UserImgFile = () => {
         <button type="submit">제출</button>
       </form>
       <div className="img">
-        {image && <img src={image} alt="preview-img" />}
+        {image && <img src={image} alt="preview-img" className="w-1/3 h-1/3" />}
       </div>
     </div>
   );

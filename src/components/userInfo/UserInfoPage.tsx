@@ -617,7 +617,7 @@ const UserInfoPage = () => {
       )}
       {/* Step : 외모,  (스타일 선택 모달창) */}
       {/* 제춢버튼  */}
-      {stepIndex >= 4 && (
+      {stepIndex >= 0 && (
         <button type="submit" className="border rounded-md shadow-md">
           <Link to={PATH.USER_IMAGE}>제출</Link>
         </button>

@@ -1,10 +1,9 @@
 import UserInfoForm from "@styles/indexStyle/indexForm";
 import { TextInputTemplate } from "@utils/common/props/userInfo/TotalFormTemplate";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PATH from "@utils/routes/PATH";
 import { AuthInterface } from "@models/user/UserDetail";
-import { Link } from "react-router-dom";
 import useAuth from "@store/useAuth";
 
 const SignUnPage = () => {
@@ -25,7 +24,7 @@ const SignUnPage = () => {
   const [checkPW, setCheckPW] = useState<string>("");
 
   const auth = useAuth();
-  const { URL, SIGNUP, INPUT } = PATH;
+  const { URL, SIGNUP } = PATH;
 
   function onSubmit() {
     // 회원가입 axios
@@ -101,7 +100,7 @@ const SignUnPage = () => {
         type="submit"
         className="border px-3 py-1 rounded-md shadow-md duration-200 active:scale-95"
       >
-        <Link to={INPUT}>제출</Link>
+        제출
       </button>
     </UserInfoForm>
   );

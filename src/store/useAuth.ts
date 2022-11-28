@@ -5,6 +5,7 @@ interface AuthState {
   password: string;
   isAuthenticated: boolean;
   isCompleted: boolean;
+  isReady: boolean;
 
   setUserName: (username: string) => void;
   setPassword: (password: string) => void;
@@ -27,6 +28,7 @@ const useAuth = create<AuthState>((set, get) => {
     password: "",
     isAuthenticated: false,
     isCompleted: false,
+    isReady: false,
 
     setUserName: (username) => set({ username }),
     setPassword: (password) => set({ password }),
@@ -56,6 +58,7 @@ const useAuth = create<AuthState>((set, get) => {
     isAutoLogin: () => localStorage.getItem("AutoLogin"),
 
     setReady: (isReady) => {
+      set({ isReady });
       localStorage.setItem("isReady", JSON.stringify(isReady));
     },
 

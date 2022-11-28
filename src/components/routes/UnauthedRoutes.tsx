@@ -4,7 +4,7 @@ import LoginPage from "@components/auth/LoginPage";
 import EasyStartPage from "@components/auth/EasyStartPage";
 import SignUnPage from "@components/auth/SignUpPage";
 import UserInfoPage from "@components/userInfo/UserInfoPage";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { useState } from "react";
 import useAuth from "@store/useAuth";
 
@@ -13,21 +13,21 @@ const { LOGIN, EASY_AUTH, SIGNUP, INPUT } = PATH;
 function UnauthedRoutes() {
   const auth = useAuth();
   // 사용자 정보 입력에 따른 삼항연상자
-  const autoInput = auth.getReady();
+  const autoStep = auth.getReady();
   const [currentRoute, setCurrentRoute] = useState<React.ReactNode | null>(
     null
   );
   const [currentPath, setCurrentPath] = useState<string>("");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // 컴포넌트 렌더링 -> 회원가입창 또는 정보입력창
-    const currentRoute = autoInput ? <UserInfoPage /> : <SignUnPage />;
+    const currentRoute = auth.isReady ? <UserInfoPage /> : <SignUnPage />;
     setCurrentRoute(currentRoute);
 
     //경로 렌더링 -> 회원가입창 또는 정보입력창
-    const currentPath = autoInput ? INPUT : SIGNUP;
+    const currentPath = auth.isReady ? INPUT : SIGNUP;
     setCurrentPath(currentPath);
-  }, [autoInput, INPUT, SIGNUP]);
+  }, [autoStep, INPUT, SIGNUP]);
 
   return (
     <Routes>
@@ -37,7 +37,7 @@ function UnauthedRoutes() {
       <Route path={INPUT} element={<UserInfoPage />} />
       <Route
         path="*"
-        element={<Navigate replace to={autoInput ? INPUT : EASY_AUTH} />}
+        element={<Navigate replace to={autoStep ? INPUT : EASY_AUTH} />}
       />
     </Routes>
   );

@@ -27,7 +27,7 @@ export const TextInputTemplate = ({
       <span>{query}</span>
       <div className="flex flex-col items-start gap-1">
         <input
-          className="border peer dark:text-dark px-1"
+          className="border peer dark:text-dark px-1 outline-none"
           type={type}
           value={value}
           pattern={`^${pattern}`}

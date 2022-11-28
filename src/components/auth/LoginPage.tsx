@@ -63,7 +63,7 @@ function LoginPage() {
               value={loginInfo.email}
               ref={usernameRef}
               autoComplete="on"
-              className="w-full px-2 py-1 bg-white border-b-2"
+              className="w-full px-2 py-1 bg-white border-b-2 outline-none"
               onChange={onChange}
               placeholder="이메일"
             />
@@ -73,7 +73,7 @@ function LoginPage() {
               value={loginInfo.password}
               type={showPassword ? "text" : "password"}
               name="password"
-              className="w-full px-2 py-1 bg-white border-b-2"
+              className="w-full px-2 py-1 bg-white border-b-2 outline-none"
               onChange={onChange}
               autoComplete="on"
               placeholder="비밀번호"

@@ -5,7 +5,7 @@ export const SelectInputTypeProto: FC<CommonSelectProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <select
-      className={`text-center scrollbar-hide border shadow rounded-md px-1 appearance-none ${className}`}
+      className={`text-left px-1 appearance-none !min-w-[4.5rem] outline-none ${className}`}
       {...restProps}
     >
       {children}

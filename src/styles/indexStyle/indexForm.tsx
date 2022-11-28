@@ -5,8 +5,8 @@ const UserInfoForm: FC<CommonFormProps> = (props) => {
   const { children, className, onSubmit, ...restProps } = props;
   return (
     <form
-      className={`flex flex-col checked-bg:scale-95
-       checked-bg:bg-blue-100 checked-bg:text-blue-700 rounded-lg gap-2 select-none  ${className}`}
+      className={`flex flex-col 
+       checked-bg:bg-gray-200 gap-2 select-none  ${className}`}
       {...restProps}
       onSubmit={(evt) => {
         evt.preventDefault();

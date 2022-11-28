@@ -27,6 +27,7 @@ import { selectReligionList } from "@data/main_info/religion";
 import { motion } from "framer-motion";
 import detailRegionsByCode from "@data/region_info/index";
 import _ from "lodash";
+import useClient from "@store/useClient";
 
 const { INPUT, URL } = PATH;
 
@@ -70,12 +71,17 @@ const UserInfoPage = () => {
     });
   };
 
+  const client = useClient();
   // axios API
   function onSubmit() {
-    axios.post(`${URL}${INPUT}`, {
-      ...mainInfo,
-    });
-    console.log({ ...mainInfo });
+    const userEmail = client.getUserEmail();
+    axios
+      .put(`${URL}${INPUT}`, {
+        ...mainInfo,
+        email: userEmail,
+      })
+      .then((res) => res.data);
+    console.log({ ...mainInfo, email: userEmail });
   }
 
   // 체중, 키
@@ -84,7 +90,9 @@ const UserInfoPage = () => {
 
   // Increase Step Index
   useLayoutEffect(() => {
-    if (mainInfo.married && mainInfo.marriagePlan) {
+    if (mainInfo.religion && mainInfo.education) {
+      setStepIndex(7);
+    } else if (mainInfo.married && mainInfo.marriagePlan) {
       setStepIndex(6);
     } else if (mainInfo.job) {
       setStepIndex(5);
@@ -203,7 +211,7 @@ const UserInfoPage = () => {
           <Age onChange={mainInfoChange} value={mainInfo.birth} />
         </ModalEmptyDiv>
       </SectionTemplate>
-      {/* Step1 지역 */}
+      {/* Step1 : 지역 */}
       {stepIndex >= 1 && (
         <motion.div
           initial={{ scaleY: 0.8, opacity: 0.5 }}
@@ -246,7 +254,7 @@ const UserInfoPage = () => {
           </SectionTemplate>
         </motion.div>
       )}
-      {/* Step 체중, 키, 혈액형 */}
+      {/* Step2 : 체중, 키, 혈액형 */}
       {stepIndex >= 2 && (
         <motion.div
           className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
@@ -333,6 +341,7 @@ const UserInfoPage = () => {
           </SectionTemplate>
         </motion.div>
       )}
+      {/* Step3 : 음주여부, 흡연여부 */}
       {stepIndex >= 3 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
@@ -382,6 +391,7 @@ const UserInfoPage = () => {
           </SectionTemplate>
         </motion.div>
       )}
+      {/* Step4 : 직업, 직업상세 */}
       {stepIndex >= 4 && (
         <motion.div
           className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
@@ -426,6 +436,7 @@ const UserInfoPage = () => {
           </SectionTemplate>
         </motion.div>
       )}
+      {/* Step5 : 결혼유무, 결혼계획 */}
       {stepIndex >= 5 && (
         <motion.div
           className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
@@ -480,6 +491,7 @@ const UserInfoPage = () => {
           </SectionTemplate>
         </motion.div>
       )}
+      {/* Step6 : 종교, 학력 */}
       {stepIndex >= 6 && (
         <motion.div
           className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
@@ -496,6 +508,9 @@ const UserInfoPage = () => {
                 value={mainInfo.religion}
                 onChange={mainInfoChange}
               >
+                <OptionInput value="" className={mainInfo.religion && "hidden"}>
+                  -선택-
+                </OptionInput>
                 {selectReligionList.map(({ value, optionName }) => (
                   <OptionInput value={value} key={value} required>
                     {optionName}
@@ -513,6 +528,12 @@ const UserInfoPage = () => {
                 value={mainInfo.education}
                 onChange={mainInfoChange}
               >
+                <OptionInput
+                  value=""
+                  className={mainInfo.education && "hidden"}
+                >
+                  -선택-
+                </OptionInput>
                 {selectEducationList.map(({ value, optionName }) => (
                   <OptionInput value={value} key={value} required>
                     {optionName}
@@ -521,6 +542,17 @@ const UserInfoPage = () => {
               </SelectInput>
             </ModalEmptyDiv>
           </SectionTemplate>
+        </motion.div>
+      )}
+      {/* Step7 : 연봉, 자산, 차량 */}
+      {stepIndex >= 7 && (
+        <motion.div
+          className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
+          initial={{ scaleY: 0.8, opacity: 0.5 }}
+          animate={{ scaleY: 1.0, opacity: 1.0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          {" "}
           {/* 연봉  */}
           <SectionTemplate>
             <UserInfoH2>연봉</UserInfoH2>
@@ -530,6 +562,9 @@ const UserInfoPage = () => {
                 value={mainInfo.salary}
                 onChange={mainInfoChange}
               >
+                <OptionInput value="" className={mainInfo.salary && "hidden"}>
+                  -선택-
+                </OptionInput>
                 {selectSalaryList.map(({ value, optionName }) => (
                   <OptionInput value={value} key={value} required>
                     {optionName}
@@ -547,6 +582,9 @@ const UserInfoPage = () => {
                 value={mainInfo.asset}
                 onChange={mainInfoChange}
               >
+                <OptionInput value="" className={mainInfo.asset && "hidden"}>
+                  -선택-
+                </OptionInput>
                 {selectAssetList.map(({ value, optionName }) => (
                   <OptionInput value={value} key={value} required>
                     {optionName}
@@ -564,6 +602,9 @@ const UserInfoPage = () => {
                 value={mainInfo.vehicle}
                 onChange={mainInfoChange}
               >
+                <OptionInput value="" className={mainInfo.vehicle && "hidden"}>
+                  -선택-
+                </OptionInput>
                 {selectVehicleList.map(({ value, optionName }) => (
                   <OptionInput value={value} key={value} required>
                     {optionName}
@@ -574,8 +615,9 @@ const UserInfoPage = () => {
           </SectionTemplate>
         </motion.div>
       )}
+      {/* Step : 외모,  (스타일 선택 모달창) */}
       {/* 제춢버튼  */}
-      {stepIndex >= 6 && (
+      {stepIndex >= 4 && (
         <button type="submit" className="border rounded-md shadow-md">
           제출
         </button>

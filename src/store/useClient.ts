@@ -1,15 +1,24 @@
 import create from "zustand";
 
 interface ClientState {
-  userNum: string;
+  userEmail: string;
 
-  setUserNum: (userNum: string) => void;
+  setUserEmail: (userEmail: string) => void;
+  getUserEmail: () => string | null;
 }
 
 const useClient = create<ClientState>((set, get) => ({
-  userNum: "",
+  userEmail: "",
 
-  setUserNum: (userNum) => set({ userNum }),
+  setUserEmail: (userEmail) => {
+    localStorage.setItem("userEmail", JSON.stringify(userEmail));
+  },
+
+  getUserEmail: () => {
+    const username = localStorage.getItem("userEmail");
+    return username;
+  },
+  // End of Create
 }));
 
 export default useClient;

@@ -13,7 +13,7 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
-  const { setUserName, setPassword, login } = auth;
+  const { setUserName, setPassword } = auth;
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
@@ -42,7 +42,7 @@ function LoginPage() {
       .then((res) => {
         console.log(res.data);
         auth.setAutoLogin(res.data.isAuthenticated);
-        auth.isAutoLogin() === "true"
+        auth.isAutoLogin()
           ? (auth.isAuthenticated = true) && auth.login()
           : alert("아이디나 비밀번호가 틀렸습니다.");
       })

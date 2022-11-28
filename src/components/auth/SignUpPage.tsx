@@ -5,6 +5,7 @@ import { useState } from "react";
 import PATH from "@utils/routes/PATH";
 import { AuthInterface } from "@models/user/UserDetail";
 import useAuth from "@store/useAuth";
+import useClient from "@store/useClient";
 
 const SignUnPage = () => {
   const [values, setValues] = useState<AuthInterface>({
@@ -24,6 +25,7 @@ const SignUnPage = () => {
   const [checkPW, setCheckPW] = useState<string>("");
 
   const auth = useAuth();
+  const client = useClient();
   const { URL, SIGNUP } = PATH;
 
   function onSubmit() {
@@ -34,6 +36,8 @@ const SignUnPage = () => {
         console.log("넘어 온 값 :  ", res.data);
         // isReady 상태변경
         auth.setReady(res.data.isReady);
+        const userEmail = res.data.email;
+        client.setUserEmail(userEmail);
       })
       .catch(console.error);
 

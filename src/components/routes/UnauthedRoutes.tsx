@@ -7,8 +7,9 @@ import UserInfoPage from "@components/userInfo/UserInfoPage";
 import { useLayoutEffect } from "react";
 import { useState } from "react";
 import useAuth from "@store/useAuth";
+import UserImgFile from "@components/userInfo/UserImgFile";
 
-const { LOGIN, EASY_AUTH, SIGNUP, INPUT } = PATH;
+const { LOGIN, EASY_AUTH, SIGNUP, INPUT, USER_IMAGE } = PATH;
 
 function UnauthedRoutes() {
   const auth = useAuth();
@@ -35,6 +36,7 @@ function UnauthedRoutes() {
       <Route path={LOGIN} element={<LoginPage />} />
       <Route path={currentPath} element={currentRoute} />
       <Route path={INPUT} element={<UserInfoPage />} />
+      <Route path={USER_IMAGE} element={<UserImgFile />} />
       <Route
         path="*"
         element={<Navigate replace to={autoStep ? INPUT : EASY_AUTH} />}

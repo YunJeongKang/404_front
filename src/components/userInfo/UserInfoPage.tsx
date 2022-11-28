@@ -26,8 +26,8 @@ import { selectMarriagePlanList } from "@data/main_info/marriagePlants";
 import { selectReligionList } from "@data/main_info/religion";
 import { motion } from "framer-motion";
 import detailRegionsByCode from "@data/region_info/index";
-import _ from "lodash";
 import useClient from "@store/useClient";
+import { Link } from "react-router-dom";
 
 const { INPUT, URL } = PATH;
 
@@ -86,7 +86,7 @@ const UserInfoPage = () => {
 
   // 체중, 키
   const weightRange = [...Array(120).keys()];
-  const heightRange = [..._.range(140, 200)];
+  const heightRange = [...Array(60).keys()];
 
   // Increase Step Index
   useLayoutEffect(() => {
@@ -309,8 +309,8 @@ const UserInfoPage = () => {
                     </OptionInput>
                     <OptionInput value="139">140미만</OptionInput>
                     {heightRange.map((item) => (
-                      <OptionInput value={item} key={item}>
-                        {item}
+                      <OptionInput value={item + 120} key={item}>
+                        {item + 120}
                       </OptionInput>
                     ))}
                   </SelectInput>
@@ -619,7 +619,7 @@ const UserInfoPage = () => {
       {/* 제춢버튼  */}
       {stepIndex >= 4 && (
         <button type="submit" className="border rounded-md shadow-md">
-          제출
+          <Link to={PATH.USER_IMAGE}>제출</Link>
         </button>
       )}
     </UserInfoForm>

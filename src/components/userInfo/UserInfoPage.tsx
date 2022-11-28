@@ -24,9 +24,9 @@ import { selectVehicleList } from "@data/main_info/vehicle";
 import { radioJobList } from "@data/main_info/job";
 import { selectMarriagePlanList } from "@data/main_info/marriagePlants";
 import { selectReligionList } from "@data/main_info/religion";
-import RequiredMark from "@styles/indexStyle/indexSpan";
 import { motion } from "framer-motion";
 import detailRegionsByCode from "@data/region_info/index";
+import _ from "lodash";
 
 const { INPUT, URL } = PATH;
 
@@ -79,11 +79,13 @@ const UserInfoPage = () => {
 
   // 체중, 키
   const weightRange = [...Array(120).keys()];
-  const heightRange = [...Array(140, 200).keys()];
+  const heightRange = [..._.range(140, 200)];
 
   // Increase Step Index
   useLayoutEffect(() => {
-    if (mainInfo.alcohol && mainInfo.smoke) {
+    if (mainInfo.married && mainInfo.marriagePlan) {
+      setStepIndex(5);
+    } else if (mainInfo.alcohol && mainInfo.smoke) {
       setStepIndex(4);
     } else if (mainInfo.height && mainInfo.weight && mainInfo.blood) {
       setStepIndex(3);
@@ -368,10 +370,7 @@ const UserInfoPage = () => {
                   value={mainInfo.smoke}
                   onChange={mainInfoChange}
                 >
-                  <OptionInput
-                    value=""
-                    className={mainInfo.smoke ? "hidden" : ""}
-                  >
+                  <OptionInput value="" className={mainInfo.smoke && "hidden"}>
                     -선택-
                   </OptionInput>
                   {selectSmokeList.map(({ value, optionName }) => (
@@ -422,6 +421,12 @@ const UserInfoPage = () => {
                   value={mainInfo.marriagePlan}
                   onChange={mainInfoChange}
                 >
+                  <OptionInput
+                    value=""
+                    className={mainInfo.marriagePlan && "hidden"}
+                  >
+                    -선택-
+                  </OptionInput>
                   {selectMarriagePlanList.map(({ value, optionName }) => (
                     <OptionInput value={value} key={value} required>
                       {optionName}
@@ -543,7 +548,7 @@ const UserInfoPage = () => {
             </SectionTemplate>
           </motion.div>
         )}
-        {stepIndex >= 4 && (
+        {stepIndex >= 8 && (
           <motion.div
             className="flex flex-col justify-center checked-bg:scale-95 checked-bg:bg-blue-100 checked-bg:text-blue-700 gap-2"
             initial={{ scaleY: 0.8, opacity: 0.5 }}

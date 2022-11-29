@@ -4,12 +4,16 @@ import { useState, useLayoutEffect } from "react";
 import UserInfoH2 from "@styles/indexStyle/indexHeading";
 import PATH from "@utils/routes/PATH";
 import axios from "axios";
-import { RequiredRadioInputTemplate } from "@styles/indexStyle/indexInput";
+import {
+  CheckBoxInput,
+  CheckBoxInputTemplate,
+  RequiredRadioInputTemplate,
+} from "@styles/indexStyle/indexInput";
 import { RadioLabelTemplate } from "@styles/indexStyle/indexLabel";
 import { radioGenderList } from "@data/main_info/gender";
 import { radioRegionList } from "@data/main_info/region";
 import { radioMarriedList } from "@data/main_info/married";
-import { MainInfoInterface } from "@models/user/UserDetail";
+import { MainInfoInterface, StyleInfoInterface } from "@models/user/UserDetail";
 import { SelectInput } from "@styles/indexStyle/indexSelect";
 import { OptionInput } from "@styles/indexStyle/indexOption";
 import SectionTemplate from "@styles/indexStyle/indexSection";
@@ -28,6 +32,18 @@ import { motion } from "framer-motion";
 import detailRegionsByCode from "@data/region_info/index";
 import useClient from "@store/useClient";
 import { Link } from "react-router-dom";
+import AppearanceModal from "@styles/modal/Modal";
+import { manAppearanceList } from "@data/style_info/man_style/appearance";
+import { manFashionList } from "@data/style_info/man_style/fashion";
+import { manPersonalityList } from "@data/style_info/man_style/personality";
+import { womanAppearanceList } from "@data/style_info/woman_style/appearance";
+import { womanFashionList } from "@data/style_info/woman_style/fashion";
+import { womanPersonalityList } from "@data/style_info/woman_style/personality";
+import OutsideInModal, {
+  ModalCloseButton,
+  OutsideModal,
+} from "@styles/modal/OutsideModal";
+import { validateHeaderValue } from "http";
 
 const { INPUT, URL } = PATH;
 
@@ -55,13 +71,23 @@ const UserInfoPage = () => {
     weight: "",
     nickname: "",
   });
+  // 단계별 진행
   const [stepIndex, setStepIndex] = useState<number>(0);
+  // 지역상세 상태변경
   const [detailRegionOptions, setDetailRegionOptions] = useState<JSX.Element[]>(
     []
   );
+  // 유저 외모, 성격, 패션스타일 상태변경
 
-  // 지역 선택에 따라 달라지는 지역상세 컬럼
+  const [manAppearance, setManAppearance] = useState<string[]>([]);
 
+  const onManAppearChecked = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked, value } = evt.target;
+    checked && setManAppearance([...manAppearance, value]);
+    !checked && setManAppearance(manAppearance.filter((el) => el !== value));
+  };
+
+  // 메인정보 선택에 따라 달라지는 지역상세 컬럼
   const mainInfoChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     const { value, name } = evt.target;
 
@@ -81,7 +107,11 @@ const UserInfoPage = () => {
         email: userEmail,
       })
       .then((res) => res.data);
-    console.log({ ...mainInfo, email: userEmail });
+    console.log({
+      ...mainInfo,
+      email: userEmail,
+      manAppearance: { ...manAppearance },
+    });
   }
 
   // 체중, 키
@@ -90,7 +120,9 @@ const UserInfoPage = () => {
 
   // Increase Step Index
   useLayoutEffect(() => {
-    if (mainInfo.religion && mainInfo.education) {
+    if (mainInfo.asset && mainInfo.vehicle && mainInfo.salary) {
+      setStepIndex(8);
+    } else if (mainInfo.religion && mainInfo.education) {
       setStepIndex(7);
     } else if (mainInfo.married && mainInfo.marriagePlan) {
       setStepIndex(6);
@@ -148,6 +180,14 @@ const UserInfoPage = () => {
     setDetailRegionOptions(componentList);
   }, [mainInfo.detailRegion]);
 
+  const [isAppearanceOpen, setAppearanceOpen] = useState<boolean>(false);
+
+  const CheckVoidList = (arr: string[]) => {
+    if (Array.isArray(arr) && arr.length === 0) {
+      return true;
+    }
+  };
+
   return (
     <UserInfoForm
       onSubmit={onSubmit}
@@ -157,10 +197,10 @@ const UserInfoPage = () => {
       <SectionTemplate>
         <UserInfoH2>닉네임</UserInfoH2>
         <ModalEmptyDiv>
-          <fieldset className="flex gap-2">
-            <div className="flex flex-col items-start gap-1">
+          <fieldset className="flex gap-2 w-full">
+            <div className="flex flex-col items-start gap-1 w-full">
               <input
-                className="peer px-1  text-center border-b-[1px] bg-white outline-none"
+                className="peer px-1 text-center border-b-[1px] bg-white outline-none w-full"
                 value={mainInfo.nickname}
                 pattern="[가-힣A-Za-z0-9]{1,8}$"
                 name="nickname"
@@ -208,7 +248,11 @@ const UserInfoPage = () => {
       <SectionTemplate>
         <UserInfoH2>생년월일</UserInfoH2>
         <ModalEmptyDiv>
-          <Age onChange={mainInfoChange} value={mainInfo.birth} />
+          <Age
+            onChange={mainInfoChange}
+            value={mainInfo.birth}
+            className={mainInfo.birth && "text-blue-600"}
+          />
         </ModalEmptyDiv>
       </SectionTemplate>
       {/* Step1 : 지역 */}
@@ -227,6 +271,7 @@ const UserInfoPage = () => {
                   name="region"
                   value={mainInfo.region}
                   onChange={mainInfoChange}
+                  className={mainInfo.region && "text-blue-600"}
                 >
                   <option value="" className={mainInfo.region && "hidden"}>
                     선택 필수
@@ -245,6 +290,7 @@ const UserInfoPage = () => {
                     name="detailRegion"
                     value={mainInfo.detailRegion}
                     onChange={mainInfoChange}
+                    className={mainInfo.detailRegion && "text-blue-600"}
                   >
                     {detailRegionOptions}
                   </SelectInput>
@@ -272,6 +318,7 @@ const UserInfoPage = () => {
                     name="weight"
                     value={mainInfo.weight}
                     onChange={mainInfoChange}
+                    className={mainInfo.weight && "text-blue-600"}
                   >
                     <OptionInput
                       value=""
@@ -300,6 +347,7 @@ const UserInfoPage = () => {
                     name="height"
                     value={mainInfo.height}
                     onChange={mainInfoChange}
+                    className={mainInfo.height && "text-blue-600"}
                   >
                     <OptionInput
                       value=""
@@ -309,8 +357,8 @@ const UserInfoPage = () => {
                     </OptionInput>
                     <OptionInput value="139">140미만</OptionInput>
                     {heightRange.map((item) => (
-                      <OptionInput value={item + 120} key={item}>
-                        {item + 120}
+                      <OptionInput value={item + 140} key={item}>
+                        {item + 140}
                       </OptionInput>
                     ))}
                   </SelectInput>
@@ -327,6 +375,7 @@ const UserInfoPage = () => {
                 name="blood"
                 value={mainInfo.blood}
                 onChange={mainInfoChange}
+                className={mainInfo.blood && "text-blue-600"}
               >
                 <OptionInput value="" className={mainInfo.blood && "hidden"}>
                   -선택-
@@ -357,6 +406,7 @@ const UserInfoPage = () => {
                 name="alcohol"
                 value={mainInfo.alcohol}
                 onChange={mainInfoChange}
+                className={mainInfo.alcohol && "text-blue-600"}
               >
                 <OptionInput value="" className={mainInfo.alcohol && "hidden"}>
                   -선택-
@@ -377,6 +427,7 @@ const UserInfoPage = () => {
                 name="smoke"
                 value={mainInfo.smoke}
                 onChange={mainInfoChange}
+                className={mainInfo.smoke && "text-blue-600"}
               >
                 <OptionInput value="" className={mainInfo.smoke && "hidden"}>
                   -선택-
@@ -407,6 +458,7 @@ const UserInfoPage = () => {
                 name="job"
                 value={mainInfo.job}
                 onChange={mainInfoChange}
+                className={mainInfo.job && "text-blue-600"}
               >
                 <OptionInput value="" className={mainInfo.job && "hidden"}>
                   -선택-
@@ -439,7 +491,7 @@ const UserInfoPage = () => {
       {/* Step5 : 결혼유무, 결혼계획 */}
       {stepIndex >= 5 && (
         <motion.div
-          className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
+          className="flex flex-col justify-center gap-4"
           initial={{ scaleY: 0.8, opacity: 0.5 }}
           animate={{ scaleY: 1.0, opacity: 1.0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -474,6 +526,7 @@ const UserInfoPage = () => {
                 name="marriagePlan"
                 value={mainInfo.marriagePlan}
                 onChange={mainInfoChange}
+                className={mainInfo.marriagePlan && "text-blue-600"}
               >
                 <OptionInput
                   value=""
@@ -507,6 +560,7 @@ const UserInfoPage = () => {
                 name="religion"
                 value={mainInfo.religion}
                 onChange={mainInfoChange}
+                className={mainInfo.religion && "text-blue-600"}
               >
                 <OptionInput value="" className={mainInfo.religion && "hidden"}>
                   -선택-
@@ -527,6 +581,7 @@ const UserInfoPage = () => {
                 name="education"
                 value={mainInfo.education}
                 onChange={mainInfoChange}
+                className={mainInfo.education && "text-blue-600"}
               >
                 <OptionInput
                   value=""
@@ -561,6 +616,7 @@ const UserInfoPage = () => {
                 name="salary"
                 value={mainInfo.salary}
                 onChange={mainInfoChange}
+                className={mainInfo.salary && "text-blue-600"}
               >
                 <OptionInput value="" className={mainInfo.salary && "hidden"}>
                   -선택-
@@ -581,6 +637,7 @@ const UserInfoPage = () => {
                 name="asset"
                 value={mainInfo.asset}
                 onChange={mainInfoChange}
+                className={mainInfo.asset && "text-blue-600"}
               >
                 <OptionInput value="" className={mainInfo.asset && "hidden"}>
                   -선택-
@@ -601,6 +658,7 @@ const UserInfoPage = () => {
                 name="vehicle"
                 value={mainInfo.vehicle}
                 onChange={mainInfoChange}
+                className={mainInfo.vehicle && "text-blue-600"}
               >
                 <OptionInput value="" className={mainInfo.vehicle && "hidden"}>
                   -선택-
@@ -616,6 +674,50 @@ const UserInfoPage = () => {
         </motion.div>
       )}
       {/* Step : 외모,  (스타일 선택 모달창) */}
+      {stepIndex >= 0 && (
+        <SectionTemplate>
+          <UserInfoH2>외모</UserInfoH2>
+          <ModalEmptyDiv>
+            {CheckVoidList(manAppearance) && (
+              <span onClick={() => setAppearanceOpen(true)}>-선택-</span>
+            )}
+            {!CheckVoidList(manAppearance) && (
+              <div
+                onClick={() => setAppearanceOpen(true)}
+                className="flex flex-raw"
+              >
+                {manAppearance.map((item) => (
+                  <span className={`px-1 flex text-blue-600`}>
+                    #
+                    {manAppearanceList.map(
+                      (data) => data.value === item && data.labelName
+                    )}
+                  </span>
+                ))}
+              </div>
+            )}
+            <AppearanceModal isOpen={isAppearanceOpen}>
+              <OutsideModal>
+                <OutsideInModal>외모</OutsideInModal>
+                <CheckBoxInputTemplate>
+                  {manAppearanceList.map(({ htmlFor, labelName, value }) => (
+                    <CheckBoxInput
+                      id={htmlFor}
+                      value={value}
+                      name="manAppearance"
+                      onChange={onManAppearChecked}
+                      checked={manAppearance.includes(value)}
+                    >
+                      {`#${labelName}`}
+                    </CheckBoxInput>
+                  ))}
+                </CheckBoxInputTemplate>
+                <ModalCloseButton onClick={() => setAppearanceOpen(false)} />
+              </OutsideModal>
+            </AppearanceModal>
+          </ModalEmptyDiv>
+        </SectionTemplate>
+      )}
       {/* 제춢버튼  */}
       {stepIndex >= 0 && (
         <button type="submit" className="border rounded-md shadow-md">

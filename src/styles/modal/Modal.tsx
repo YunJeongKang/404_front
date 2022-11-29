@@ -6,16 +6,16 @@ interface ModalProps extends CommonDivProps {
   isOpen: boolean;
 }
 
-const Modal: FC<ModalProps> = (props) => {
+const AppearanceModal: FC<ModalProps> = (props) => {
   const { isOpen, children, className } = props;
-  const { setIntroduceOpen: setOpen, setIntroduceModal } = useModal();
+  const { setAppearanceOpen, setAppearanceModal } = useModal();
 
   useLayoutEffect(() => {
-    setOpen(isOpen);
+    setAppearanceOpen(isOpen);
     isOpen &&
-      setIntroduceModal(
+      setAppearanceModal(
         <div
-          className={`select-none checked-bg:bg-gray-200 flex flex-col items-center h w-[26rem] absolute left-1/2 -translate-x-1/2 top-1/2 rounded-lg -translate-y-1/2 border shadow-md bg-white ${className}`}
+          className={`select-none checked-bg:bg-blue-100 flex flex-col flex-wrap items-center h w-[24rem] absolute left-1/2 -translate-x-1/2 top-1/2 rounded-lg -translate-y-1/2 border shadow-md bg-white ${className}`}
         >
           {children}
         </div>
@@ -25,14 +25,15 @@ const Modal: FC<ModalProps> = (props) => {
   return <></>;
 };
 
-export default Modal;
+export default AppearanceModal;
 
 interface ModalProviderProps {
   children?: React.ReactNode;
 }
 
 export const ModalProvider: FC<ModalProviderProps> = ({ children: app }) => {
-  const { isIntroduceOpen: isOpen, introduceModal } = useModal();
+  const { isAppearanceOpen: isOpen, isAppearanceModal: introduceModal } =
+    useModal();
 
   return (
     <div className="relative z-0 min-h-screen">

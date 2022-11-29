@@ -1,10 +1,10 @@
 import create from "zustand";
 
 interface ModalState {
-  isIntroduceOpen: boolean;
-  introduceModal: React.ReactNode;
-  setIntroduceOpen: (isIntroduceOpen: boolean) => void;
-  setIntroduceModal: (introduceModal: React.ReactNode) => void;
+  isAppearanceOpen: boolean;
+  isAppearanceModal: React.ReactNode;
+  setAppearanceOpen: (isAppearanceOpen: boolean) => void;
+  setAppearanceModal: (isAppearanceModal: React.ReactNode) => void;
 
   isJobInfoOpen: boolean;
   jobInfoModal: React.ReactNode;
@@ -13,10 +13,10 @@ interface ModalState {
 }
 
 const useModal = create<ModalState>((set, get) => ({
-  isIntroduceOpen: false,
-  introduceModal: <div> Empty Modal</div>,
-  setIntroduceOpen: (isIntroduceOpen) => set({ isIntroduceOpen }),
-  setIntroduceModal: (introduceModal) => set({ introduceModal }),
+  isAppearanceOpen: false,
+  isAppearanceModal: <div> Empty Modal</div>,
+  setAppearanceOpen: (isAppearanceOpen) => set({ isAppearanceOpen }),
+  setAppearanceModal: (isAppearanceModal) => set({ isAppearanceModal }),
 
   isJobInfoOpen: false,
   jobInfoModal: <div> Empty Modal</div>,

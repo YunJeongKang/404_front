@@ -33,7 +33,7 @@ const UserImgFile = () => {
         onSubmit={(evt) => {
           evt.preventDefault();
           console.log(image);
-          axios.put(`${URL}${USER_IMAGE}`, formData, config);
+          axios.put(`${URL}${USER_IMAGE}`, formData);
         }}
       >
         <input

@@ -94,6 +94,8 @@ const UserInfoPage = () => {
   const [womanPersonality, setWomanPersonality] = useState<string[]>([]);
   const [womanFashion, setWomanFashion] = useState<string[]>([]);
 
+  //// 모달창 onChange 상태관리 집합 ////
+
   const onManAppearChecked = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = evt.target;
     checked && setManAppearance([...manAppearance, value]);
@@ -145,12 +147,23 @@ const UserInfoPage = () => {
       .put(`${URL}${INPUT}`, {
         ...mainInfo,
         email: userEmail,
+        manAppearance: { ...manAppearance },
+        manPersonality: { ...manPersonality },
+        manFashion: { ...manFashion },
+        womanAppearance: { ...womanAppearance },
+        womanPersonality: { ...womanPersonality },
+        womanFashion: { ...womanFashion },
       })
       .then((res) => res.data);
     console.log({
       ...mainInfo,
       email: userEmail,
       manAppearance: { ...manAppearance },
+      manPersonality: { ...manPersonality },
+      manFashion: { ...manFashion },
+      womanAppearance: { ...womanAppearance },
+      womanPersonality: { ...womanPersonality },
+      womanFashion: { ...womanFashion },
     });
   }
 
@@ -727,7 +740,7 @@ const UserInfoPage = () => {
         </motion.div>
       )}
       {/* Step8 : 남성 스타일  (스타일 선택 모달창) */}
-      {man && stepIndex >= 0 && (
+      {man && stepIndex >= 8 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
           initial={{ scaleY: 0.8, opacity: 0.5 }}
@@ -866,9 +879,8 @@ const UserInfoPage = () => {
           </SectionTemplate>
         </motion.div>
       )}
-
-      {/* Step8 : 남성 스타일  (스타일 선택 모달창) */}
-      {woman && stepIndex >= 0 && (
+      {/* Step8 : 여성 스타일  (스타일 선택 모달창) */}
+      {woman && stepIndex >= 8 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
           initial={{ scaleY: 0.8, opacity: 0.5 }}

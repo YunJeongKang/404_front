@@ -32,7 +32,7 @@ import { motion } from "framer-motion";
 import detailRegionsByCode from "@data/region_info/index";
 import useClient from "@store/useClient";
 import { Link } from "react-router-dom";
-import AppearanceModal from "@styles/modal/Modal";
+import AppearanceModal, { PersonalityModal } from "@styles/modal/Modal";
 import { manAppearanceList } from "@data/style_info/man_style/appearance";
 import { manFashionList } from "@data/style_info/man_style/fashion";
 import { manPersonalityList } from "@data/style_info/man_style/personality";
@@ -73,18 +73,50 @@ const UserInfoPage = () => {
   });
   // 단계별 진행
   const [stepIndex, setStepIndex] = useState<number>(0);
+
   // 지역상세 상태변경
   const [detailRegionOptions, setDetailRegionOptions] = useState<JSX.Element[]>(
     []
   );
   // 유저 외모, 성격, 패션스타일 상태변경
-
   const [manAppearance, setManAppearance] = useState<string[]>([]);
+  const [manPersonality, setManPersonality] = useState<string[]>([]);
+  const [manFashion, setManFashion] = useState<string[]>([]);
+  const [womanAppearance, womanManAppearance] = useState<string[]>([]);
+  const [womanPersonality, setWomanPersonality] = useState<string[]>([]);
+  const [womanFashion, setWomanFashion] = useState<string[]>([]);
 
   const onManAppearChecked = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = evt.target;
     checked && setManAppearance([...manAppearance, value]);
     !checked && setManAppearance(manAppearance.filter((el) => el !== value));
+  };
+  const onManPersonality = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked, value } = evt.target;
+    checked && setManPersonality([...manPersonality, value]);
+    !checked && setManPersonality(manPersonality.filter((el) => el !== value));
+  };
+  const onManFashion = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked, value } = evt.target;
+    checked && setManFashion([...manFashion, value]);
+    !checked && setManFashion(manFashion.filter((el) => el !== value));
+  };
+  const onWomanAppearance = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked, value } = evt.target;
+    checked && womanManAppearance([...womanAppearance, value]);
+    !checked &&
+      womanManAppearance(womanAppearance.filter((el) => el !== value));
+  };
+  const onWomanPersonality = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked, value } = evt.target;
+    checked && setWomanPersonality([...womanPersonality, value]);
+    !checked &&
+      setWomanPersonality(womanPersonality.filter((el) => el !== value));
+  };
+  const onWomanFashion = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked, value } = evt.target;
+    checked && setWomanFashion([...womanFashion, value]);
+    !checked && setWomanFashion(womanFashion.filter((el) => el !== value));
   };
 
   // 메인정보 선택에 따라 달라지는 지역상세 컬럼
@@ -180,13 +212,21 @@ const UserInfoPage = () => {
     setDetailRegionOptions(componentList);
   }, [mainInfo.detailRegion]);
 
+  // 모달 제어창
   const [isAppearanceOpen, setAppearanceOpen] = useState<boolean>(false);
+  const [isPersonalityOpen, setPersonalityOpen] = useState<boolean>(false);
+  const [isFashionOpen, setFashionOpen] = useState<boolean>(false);
 
+  // 배열이 비어있는지 유효성을 체크하는 함수
   const CheckVoidList = (arr: string[]) => {
     if (Array.isArray(arr) && arr.length === 0) {
       return true;
     }
   };
+
+  // 유저의 성별에 따라 성격 설문 구분
+  const man = mainInfo.gender === "m";
+  const woman = mainInfo.gender === "f";
 
   return (
     <UserInfoForm
@@ -602,7 +642,7 @@ const UserInfoPage = () => {
       {/* Step7 : 연봉, 자산, 차량 */}
       {stepIndex >= 7 && (
         <motion.div
-          className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
+          className="flex flex-col justify-center gap-4"
           initial={{ scaleY: 0.8, opacity: 0.5 }}
           animate={{ scaleY: 1.0, opacity: 1.0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -675,48 +715,118 @@ const UserInfoPage = () => {
       )}
       {/* Step : 외모,  (스타일 선택 모달창) */}
       {stepIndex >= 0 && (
-        <SectionTemplate>
-          <UserInfoH2>외모</UserInfoH2>
-          <ModalEmptyDiv>
-            {CheckVoidList(manAppearance) && (
-              <span onClick={() => setAppearanceOpen(true)}>-선택-</span>
-            )}
-            {!CheckVoidList(manAppearance) && (
-              <div
-                onClick={() => setAppearanceOpen(true)}
-                className="flex flex-raw"
-              >
-                {manAppearance.map((item) => (
-                  <span className={`px-1 flex text-blue-600`}>
-                    #
-                    {manAppearanceList.map(
-                      (data) => data.value === item && data.labelName
-                    )}
-                  </span>
-                ))}
-              </div>
-            )}
-            <AppearanceModal isOpen={isAppearanceOpen}>
-              <OutsideModal>
-                <OutsideInModal>외모</OutsideInModal>
-                <CheckBoxInputTemplate>
-                  {manAppearanceList.map(({ htmlFor, labelName, value }) => (
-                    <CheckBoxInput
-                      id={htmlFor}
-                      value={value}
-                      name="manAppearance"
-                      onChange={onManAppearChecked}
-                      checked={manAppearance.includes(value)}
-                    >
-                      {`#${labelName}`}
-                    </CheckBoxInput>
-                  ))}
-                </CheckBoxInputTemplate>
-                <ModalCloseButton onClick={() => setAppearanceOpen(false)} />
-              </OutsideModal>
-            </AppearanceModal>
-          </ModalEmptyDiv>
-        </SectionTemplate>
+        <motion.div
+          className="flex flex-col justify-center gap-4"
+          initial={{ scaleY: 0.8, opacity: 0.5 }}
+          animate={{ scaleY: 1.0, opacity: 1.0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          {/* 남자 외모 */}
+          {man && (
+            <SectionTemplate>
+              <UserInfoH2>외모</UserInfoH2>
+              <ModalEmptyDiv>
+                {CheckVoidList(manAppearance) && (
+                  <span onClick={() => setAppearanceOpen(true)}>-선택-</span>
+                )}
+                {/* 선택한 값들이 모달 밖의 페이지에 보일 수 있도록 변경 */}
+                {!CheckVoidList(manAppearance) && (
+                  <div
+                    onClick={() => setAppearanceOpen(true)}
+                    className="flex flex-raw"
+                  >
+                    {manAppearance.map((item) => (
+                      <span key={item} className={`px-1 flex text-blue-600`}>
+                        #
+                        {manAppearanceList.map(
+                          (data) => data.value === item && data.labelName
+                        )}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <AppearanceModal isAppearanceOpen={isAppearanceOpen}>
+                  <OutsideModal>
+                    <OutsideInModal>외모</OutsideInModal>
+                    <CheckBoxInputTemplate>
+                      {manAppearanceList.map(
+                        ({ htmlFor, labelName, value }) => (
+                          <CheckBoxInput
+                            key={htmlFor}
+                            id={htmlFor}
+                            value={value}
+                            name="manAppearance"
+                            onChange={onManAppearChecked}
+                            checked={manAppearance.includes(value)}
+                          >
+                            {`#${labelName}`}
+                          </CheckBoxInput>
+                        )
+                      )}
+                    </CheckBoxInputTemplate>
+                    <ModalCloseButton
+                      onClick={() => setAppearanceOpen(false)}
+                    />
+                  </OutsideModal>
+                </AppearanceModal>
+              </ModalEmptyDiv>
+            </SectionTemplate>
+          )}
+          {/* 남자 성격 */}
+          {man && (
+            <SectionTemplate>
+              <UserInfoH2>성격</UserInfoH2>
+              <ModalEmptyDiv>
+                {CheckVoidList(manPersonality) && (
+                  <span onClick={() => setPersonalityOpen(true)}>-선택-</span>
+                )}
+                {/* 선택한 값들이 모달 밖의 페이지에 보일 수 있도록 변경 */}
+                {!CheckVoidList(manPersonality) && (
+                  <div
+                    onClick={() => setPersonalityOpen(true)}
+                    className="flex flex-raw"
+                  >
+                    {manPersonality.map((item) => (
+                      <span key={item} className={`px-1 flex text-blue-600`}>
+                        #
+                        {manPersonalityList.map(
+                          (data) => data.value === item && data.labelName
+                        )}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <PersonalityModal
+                  className="h-full"
+                  isPersonalityOpen={isPersonalityOpen}
+                >
+                  <OutsideModal>
+                    <OutsideInModal>성격</OutsideInModal>
+                    <CheckBoxInputTemplate>
+                      {manPersonalityList.map(
+                        ({ htmlFor, labelName, value }) => (
+                          <CheckBoxInput
+                            key={htmlFor}
+                            id={htmlFor}
+                            value={value}
+                            name="manPersonality"
+                            onChange={onManPersonality}
+                            checked={manPersonality.includes(value)}
+                          >
+                            {`#${labelName}`}
+                          </CheckBoxInput>
+                        )
+                      )}
+                    </CheckBoxInputTemplate>
+                    <ModalCloseButton
+                      onClick={() => setPersonalityOpen(false)}
+                    />
+                  </OutsideModal>
+                </PersonalityModal>
+              </ModalEmptyDiv>
+            </SectionTemplate>
+          )}
+        </motion.div>
       )}
       {/* 제춢버튼  */}
       {stepIndex >= 0 && (

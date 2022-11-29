@@ -6,10 +6,15 @@ interface ModalState {
   setAppearanceOpen: (isAppearanceOpen: boolean) => void;
   setAppearanceModal: (isAppearanceModal: React.ReactNode) => void;
 
-  isJobInfoOpen: boolean;
-  jobInfoModal: React.ReactNode;
-  setJonInfoOpen: (isJobInfoOpen: boolean) => void;
-  setJobInfoModal: (jobInfoModal: React.ReactNode) => void;
+  isPersonalityOpen: boolean;
+  isPersonalityModal: React.ReactNode;
+  setPersonalityOpen: (isPersonalityOpen: boolean) => void;
+  setPersonalityModal: (isPersonalityModal: React.ReactNode) => void;
+
+  isFashionOpen: boolean;
+  isFashionModal: React.ReactNode;
+  setFashionOpen: (isFashionOpen: boolean) => void;
+  setFashionModal: (isFashionModal: React.ReactNode) => void;
 }
 
 const useModal = create<ModalState>((set, get) => ({
@@ -18,10 +23,15 @@ const useModal = create<ModalState>((set, get) => ({
   setAppearanceOpen: (isAppearanceOpen) => set({ isAppearanceOpen }),
   setAppearanceModal: (isAppearanceModal) => set({ isAppearanceModal }),
 
-  isJobInfoOpen: false,
-  jobInfoModal: <div> Empty Modal</div>,
-  setJonInfoOpen: (isJobInfoOpen) => set({ isJobInfoOpen }),
-  setJobInfoModal: (jobInfoModal) => set({ jobInfoModal }),
+  isPersonalityOpen: false,
+  isPersonalityModal: <div> Empty Modal</div>,
+  setPersonalityOpen: (isPersonalityOpen) => set({ isPersonalityOpen }),
+  setPersonalityModal: (isPersonalityModal) => set({ isPersonalityModal }),
+
+  isFashionOpen: false,
+  isFashionModal: <div> Empty Modal</div>,
+  setFashionOpen: (isFashionOpen) => set({ isFashionOpen }),
+  setFashionModal: (isFashionModal) => set({ isFashionModal }),
 }));
 
 export default useModal;

@@ -1,10 +1,9 @@
 import { FunctionComponent as FC } from "react";
+import { CommonButtonProps, CommonDivProps } from "@utils/common/props";
 
 interface OutsideModalInterface extends CommonDivProps {
   isModal?: React.ReactNode;
 }
-
-import { CommonButtonProps, CommonDivProps } from "@utils/common/props";
 
 const OutsideInModal: FC<OutsideModalInterface> = (props) => {
   const { children, className, ...restProps } = props;
@@ -24,7 +23,7 @@ export const OutsideModal: FC<CommonDivProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <div
-      className={`relative flex flex-col items-center h-full w-full gap-4 ${className}`}
+      className={`relative flex flex-col flex-wrap items-center h-full w-full gap-4 ${className}`}
       {...restProps}
     >
       {children}

@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide bg-slate-200">
-      <div className="h-screen max-w-[28rem] z-10 scrollbar-hide py-3">
+      <div className="h-screen max-w-[28rem] z-[10] scrollbar-hide py-3">
         {isTrue && location.pathname === "/" && <Header />}
         <main
           className={`flex flex-col items-center w-[26rem] border-x shadow-sm drop-shadow ${

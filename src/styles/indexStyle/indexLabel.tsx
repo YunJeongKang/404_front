@@ -5,7 +5,7 @@ const LabelInput: FC<CommonLabelProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <label
-      className={`rounded-md shadow px-1.5 py-1 cursor-pointer duration-150  active:scale-[0.92] ${className}`}
+      className={`rounded-md border-2 px-1.5 py-1 cursor-pointer duration-150 text-gray-500 active:scale-[0.92] ${className}`}
       {...restProps}
     >
       {children}

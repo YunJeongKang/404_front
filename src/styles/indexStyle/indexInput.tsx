@@ -36,7 +36,7 @@ export const CheckBoxInputTemplate: FC<CommonFieldProps> = (props) => {
   return (
     <>
       <fieldset
-        className={`w-2/3 flex flex-wrap flex-raw justify-start items-center gap-2 p-[3px] ${className}`}
+        className={`w-[90%] h-[55%] flex flex-wrap flex-raw justify-center items-center gap-5 p-[3px] ${className}`}
         {...restProps}
       >
         {children}
@@ -70,7 +70,10 @@ export const CheckBoxInput: FC<CheckBoxInputInterface> = (props) => {
         className={`hidden ${className}`}
         {...restProps}
       />
-      <label htmlFor={id} className="px-2 py-0.5 border rounded-md">
+      <label
+        htmlFor={id}
+        className="px-2 py-0.5 border-2 text-gray-500 bg-gray-50 rounded-md"
+      >
         {children}
       </label>
     </>

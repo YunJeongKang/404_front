@@ -15,6 +15,21 @@ interface ModalState {
   isFashionModal: React.ReactNode;
   setFashionOpen: (isFashionOpen: boolean) => void;
   setFashionModal: (isFashionModal: React.ReactNode) => void;
+
+  isWomanAppearanceOpen: boolean;
+  isWomanAppearanceModal: React.ReactNode;
+  setWomanAppearanceOpen: (isWomanAppearanceOpen: boolean) => void;
+  setWomanAppearanceModal: (isWomanAppearanceModal: React.ReactNode) => void;
+
+  isWomanPersonalityOpen: boolean;
+  isWomanPersonalityModal: React.ReactNode;
+  setWomanPersonalityOpen: (isWomanPersonalityOpen: boolean) => void;
+  setWomanPersonalityModal: (isWomanPersonalityModal: React.ReactNode) => void;
+
+  isWomanFashionOpen: boolean;
+  isWomanFashionModal: React.ReactNode;
+  setWomanFashionOpen: (isWomanFashionOpen: boolean) => void;
+  setWomanFashionModal: (isWomanFashionModal: React.ReactNode) => void;
 }
 
 const useModal = create<ModalState>((set, get) => ({
@@ -32,6 +47,25 @@ const useModal = create<ModalState>((set, get) => ({
   isFashionModal: <div> Empty Modal</div>,
   setFashionOpen: (isFashionOpen) => set({ isFashionOpen }),
   setFashionModal: (isFashionModal) => set({ isFashionModal }),
+
+  isWomanAppearanceOpen: false,
+  isWomanAppearanceModal: <div> Empty Modal</div>,
+  setWomanAppearanceOpen: (isWomanAppearanceOpen) =>
+    set({ isWomanAppearanceOpen }),
+  setWomanAppearanceModal: (isWomanAppearanceModal) =>
+    set({ isWomanAppearanceModal }),
+
+  isWomanPersonalityOpen: false,
+  isWomanPersonalityModal: <div> Empty Modal</div>,
+  setWomanPersonalityOpen: (isWomanPersonalityOpen) =>
+    set({ isWomanPersonalityOpen }),
+  setWomanPersonalityModal: (isWomanPersonalityModal) =>
+    set({ isWomanPersonalityModal }),
+
+  isWomanFashionOpen: false,
+  isWomanFashionModal: <div> Empty Modal</div>,
+  setWomanFashionOpen: (isWomanFashionOpen) => set({ isWomanFashionOpen }),
+  setWomanFashionModal: (isWomanFashionModal) => set({ isWomanFashionModal }),
 }));
 
 export default useModal;

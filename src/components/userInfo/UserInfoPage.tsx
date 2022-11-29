@@ -32,9 +32,12 @@ import { motion } from "framer-motion";
 import detailRegionsByCode from "@data/region_info/index";
 import useClient from "@store/useClient";
 import { Link } from "react-router-dom";
-import AppearanceModal, {
-  FashionModal,
-  PersonalityModal,
+import ManAppearanceModal, {
+  ManFashionModal,
+  ManPersonalityModal,
+  WomanAppearanceModal,
+  WomanFashionModal,
+  WomanPersonalityModal,
 } from "@styles/modal/Modal";
 import { manAppearanceList } from "@data/style_info/man_style/appearance";
 import { manFashionList } from "@data/style_info/man_style/fashion";
@@ -87,7 +90,7 @@ const UserInfoPage = () => {
   const [manAppearance, setManAppearance] = useState<string[]>([]);
   const [manPersonality, setManPersonality] = useState<string[]>([]);
   const [manFashion, setManFashion] = useState<string[]>([]);
-  const [womanAppearance, womanManAppearance] = useState<string[]>([]);
+  const [womanAppearance, setWomanAppearance] = useState<string[]>([]);
   const [womanPersonality, setWomanPersonality] = useState<string[]>([]);
   const [womanFashion, setWomanFashion] = useState<string[]>([]);
 
@@ -108,9 +111,9 @@ const UserInfoPage = () => {
   };
   const onWomanAppearance = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = evt.target;
-    checked && womanManAppearance([...womanAppearance, value]);
+    checked && setWomanAppearance([...womanAppearance, value]);
     !checked &&
-      womanManAppearance(womanAppearance.filter((el) => el !== value));
+      setWomanAppearance(womanAppearance.filter((el) => el !== value));
   };
   const onWomanPersonality = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = evt.target;
@@ -221,6 +224,11 @@ const UserInfoPage = () => {
   const [isAppearanceOpen, setAppearanceOpen] = useState<boolean>(false);
   const [isPersonalityOpen, setPersonalityOpen] = useState<boolean>(false);
   const [isFashionOpen, setFashionOpen] = useState<boolean>(false);
+  const [isWomanAppearanceOpen, setWomanAppearanceOpen] =
+    useState<boolean>(false);
+  const [isWomanPersonalityOpen, setWomanPersonalityOpen] =
+    useState<boolean>(false);
+  const [isWomanFashionOpen, setWomanFashionOpen] = useState<boolean>(false);
 
   // 배열이 비어있는지 유효성을 체크하는 함수
   const CheckVoidList = (arr: string[]) => {
@@ -718,8 +726,8 @@ const UserInfoPage = () => {
           </SectionTemplate>
         </motion.div>
       )}
-      {/* Step : 외모,  (스타일 선택 모달창) */}
-      {stepIndex >= 0 && (
+      {/* Step8 : 남성 스타일  (스타일 선택 모달창) */}
+      {man && stepIndex >= 0 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
           initial={{ scaleY: 0.8, opacity: 0.5 }}
@@ -727,149 +735,293 @@ const UserInfoPage = () => {
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           {/* 남자 외모 */}
-          {man && (
-            <SectionTemplate>
-              <UserInfoH2>외모</UserInfoH2>
-              <ModalEmptyDiv>
-                {CheckVoidList(manAppearance) && (
-                  <span onClick={() => setAppearanceOpen(true)}>-선택-</span>
-                )}
-                {/* 선택한 값들이 모달 밖의 페이지에 보일 수 있도록 변경 */}
-                {!CheckVoidList(manAppearance) && (
-                  <ModalSpanDiv onClick={() => setAppearanceOpen(true)}>
-                    {manAppearance.map((item) => (
-                      <ModalSpan key={item}>
-                        #
-                        {manAppearanceList.map(
-                          (data) => data.value === item && data.labelName
-                        )}
-                      </ModalSpan>
-                    ))}
-                  </ModalSpanDiv>
-                )}
-                <AppearanceModal isAppearanceOpen={isAppearanceOpen}>
-                  <OutsideModal>
-                    <OutsideInModal>외모</OutsideInModal>
-                    <CheckBoxInputTemplate>
+          <SectionTemplate>
+            <UserInfoH2>외모</UserInfoH2>
+            <ModalEmptyDiv>
+              {CheckVoidList(manAppearance) && (
+                <span onClick={() => setAppearanceOpen(true)}>-선택-</span>
+              )}
+              {/* 선택한 값들이 모달 밖의 페이지에 보일 수 있도록 변경 */}
+              {!CheckVoidList(manAppearance) && (
+                <ModalSpanDiv onClick={() => setAppearanceOpen(true)}>
+                  {manAppearance.map((item) => (
+                    <ModalSpan key={item}>
+                      #
                       {manAppearanceList.map(
-                        ({ htmlFor, labelName, value }) => (
-                          <CheckBoxInput
-                            key={htmlFor}
-                            id={htmlFor}
-                            value={value}
-                            name="manAppearance"
-                            onChange={onManAppearChecked}
-                            checked={manAppearance.includes(value)}
-                          >
-                            {`#${labelName}`}
-                          </CheckBoxInput>
-                        )
+                        (data) => data.value === item && data.labelName
                       )}
-                    </CheckBoxInputTemplate>
-                    <ModalCloseButton
-                      onClick={() => setAppearanceOpen(false)}
-                    />
-                  </OutsideModal>
-                </AppearanceModal>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-          )}
+                    </ModalSpan>
+                  ))}
+                </ModalSpanDiv>
+              )}
+              <ManAppearanceModal isAppearanceOpen={isAppearanceOpen}>
+                <OutsideModal>
+                  <OutsideInModal>외모</OutsideInModal>
+                  <CheckBoxInputTemplate>
+                    {manAppearanceList.map(({ htmlFor, labelName, value }) => (
+                      <CheckBoxInput
+                        key={htmlFor}
+                        id={htmlFor}
+                        value={value}
+                        name="manAppearance"
+                        onChange={onManAppearChecked}
+                        checked={manAppearance.includes(value)}
+                      >
+                        {`#${labelName}`}
+                      </CheckBoxInput>
+                    ))}
+                  </CheckBoxInputTemplate>
+                  <ModalCloseButton onClick={() => setAppearanceOpen(false)} />
+                </OutsideModal>
+              </ManAppearanceModal>
+            </ModalEmptyDiv>
+          </SectionTemplate>
           {/* 남자 성격 */}
-          {man && (
-            <SectionTemplate>
-              <UserInfoH2>성격</UserInfoH2>
-              <ModalEmptyDiv>
-                {CheckVoidList(manPersonality) && (
-                  <span onClick={() => setPersonalityOpen(true)}>-선택-</span>
-                )}
-                {/* 선택한 값들이 모달 밖의 페이지에 보일 수 있도록 변경 */}
-                {!CheckVoidList(manPersonality) && (
-                  <ModalSpanDiv onClick={() => setPersonalityOpen(true)}>
-                    {manPersonality.map((item) => (
-                      <ModalSpan key={item}>
-                        #
-                        {manPersonalityList.map(
-                          (data) => data.value === item && data.labelName
-                        )}
-                      </ModalSpan>
-                    ))}
-                  </ModalSpanDiv>
-                )}
-                <PersonalityModal
-                  className="!h-4/5"
-                  isPersonalityOpen={isPersonalityOpen}
-                >
-                  <OutsideModal className="gap-2">
-                    <OutsideInModal>성격</OutsideInModal>
-                    <CheckBoxInputTemplate className="!gap-4">
+          <SectionTemplate>
+            <UserInfoH2>성격</UserInfoH2>
+            <ModalEmptyDiv>
+              {CheckVoidList(manPersonality) && (
+                <span onClick={() => setPersonalityOpen(true)}>-선택-</span>
+              )}
+              {/* 선택한 값들이 모달 밖의 페이지에 보일 수 있도록 변경 */}
+              {!CheckVoidList(manPersonality) && (
+                <ModalSpanDiv onClick={() => setPersonalityOpen(true)}>
+                  {manPersonality.map((item) => (
+                    <ModalSpan key={item}>
+                      #
                       {manPersonalityList.map(
-                        ({ htmlFor, labelName, value }) => (
-                          <CheckBoxInput
-                            key={htmlFor}
-                            id={htmlFor}
-                            value={value}
-                            name="manPersonality"
-                            onChange={onManPersonality}
-                            checked={manPersonality.includes(value)}
-                          >
-                            {`#${labelName}`}
-                          </CheckBoxInput>
-                        )
+                        (data) => data.value === item && data.labelName
                       )}
-                    </CheckBoxInputTemplate>
-                    <ModalCloseButton
-                      onClick={() => setPersonalityOpen(false)}
-                    />
-                  </OutsideModal>
-                </PersonalityModal>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-          )}
-          {/* 남자 패션 */}
-          {man && (
-            <SectionTemplate>
-              <UserInfoH2>패션</UserInfoH2>
-              <ModalEmptyDiv>
-                {CheckVoidList(manFashion) && (
-                  <span onClick={() => setFashionOpen(true)}>-선택-</span>
-                )}
-                {/* 선택한 값들이 모달 밖의 페이지에 보일 수 있도록 변경 */}
-                {!CheckVoidList(manFashion) && (
-                  <ModalSpanDiv onClick={() => setFashionOpen(true)}>
-                    {manFashion.map((item) => (
-                      <ModalSpan key={item}>
-                        #
-                        {manFashionList.map(
-                          (data) => data.value === item && data.labelName
-                        )}
-                      </ModalSpan>
+                    </ModalSpan>
+                  ))}
+                </ModalSpanDiv>
+              )}
+              <ManPersonalityModal
+                className="!h-4/5"
+                isPersonalityOpen={isPersonalityOpen}
+              >
+                <OutsideModal className="gap-2">
+                  <OutsideInModal>성격</OutsideInModal>
+                  <CheckBoxInputTemplate className="!gap-4">
+                    {manPersonalityList.map(({ htmlFor, labelName, value }) => (
+                      <CheckBoxInput
+                        key={htmlFor}
+                        id={htmlFor}
+                        value={value}
+                        name="manPersonality"
+                        onChange={onManPersonality}
+                        checked={manPersonality.includes(value)}
+                      >
+                        {`#${labelName}`}
+                      </CheckBoxInput>
                     ))}
-                  </ModalSpanDiv>
-                )}
-                <FashionModal className="h-full" isFashionOpen={isFashionOpen}>
-                  <OutsideModal>
-                    <OutsideInModal>패션</OutsideInModal>
-                    <CheckBoxInputTemplate>
-                      {manFashionList.map(({ htmlFor, labelName, value }) => (
+                  </CheckBoxInputTemplate>
+                  <ModalCloseButton onClick={() => setPersonalityOpen(false)} />
+                </OutsideModal>
+              </ManPersonalityModal>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+          {/* 남자 패션 */}
+          <SectionTemplate>
+            <UserInfoH2>패션</UserInfoH2>
+            <ModalEmptyDiv>
+              {CheckVoidList(manFashion) && (
+                <span onClick={() => setFashionOpen(true)}>-선택-</span>
+              )}
+              {/* 선택한 값들이 모달 밖의 페이지에 보일 수 있도록 변경 */}
+              {!CheckVoidList(manFashion) && (
+                <ModalSpanDiv onClick={() => setFashionOpen(true)}>
+                  {manFashion.map((item) => (
+                    <ModalSpan key={item}>
+                      #
+                      {manFashionList.map(
+                        (data) => data.value === item && data.labelName
+                      )}
+                    </ModalSpan>
+                  ))}
+                </ModalSpanDiv>
+              )}
+              <ManFashionModal className="h-full" isFashionOpen={isFashionOpen}>
+                <OutsideModal>
+                  <OutsideInModal>패션</OutsideInModal>
+                  <CheckBoxInputTemplate>
+                    {manFashionList.map(({ htmlFor, labelName, value }) => (
+                      <CheckBoxInput
+                        className="text-sm"
+                        key={htmlFor}
+                        id={htmlFor}
+                        value={value}
+                        name="manPersonality"
+                        onChange={onManFashion}
+                        checked={manFashion.includes(value)}
+                      >
+                        {`#${labelName}`}
+                      </CheckBoxInput>
+                    ))}
+                  </CheckBoxInputTemplate>
+                  <ModalCloseButton onClick={() => setFashionOpen(false)} />
+                </OutsideModal>
+              </ManFashionModal>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+        </motion.div>
+      )}
+
+      {/* Step8 : 남성 스타일  (스타일 선택 모달창) */}
+      {woman && stepIndex >= 0 && (
+        <motion.div
+          className="flex flex-col justify-center gap-4"
+          initial={{ scaleY: 0.8, opacity: 0.5 }}
+          animate={{ scaleY: 1.0, opacity: 1.0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          {/* 여자 외모 */}
+          <SectionTemplate>
+            <UserInfoH2>외모</UserInfoH2>
+            <ModalEmptyDiv>
+              {CheckVoidList(womanAppearance) && (
+                <span onClick={() => setWomanAppearanceOpen(true)}>-선택-</span>
+              )}
+              {/* 선택한 값들이 모달 밖의 페이지에 보일 수 있도록 변경 */}
+              {!CheckVoidList(womanAppearance) && (
+                <ModalSpanDiv onClick={() => setWomanAppearanceOpen(true)}>
+                  {womanAppearance.map((item) => (
+                    <ModalSpan key={item}>
+                      #
+                      {womanAppearanceList.map(
+                        (data) => data.value === item && data.labelName
+                      )}
+                    </ModalSpan>
+                  ))}
+                </ModalSpanDiv>
+              )}
+              <WomanAppearanceModal
+                isWomanAppearanceOpen={isWomanAppearanceOpen}
+              >
+                <OutsideModal>
+                  <OutsideInModal>외모</OutsideInModal>
+                  <CheckBoxInputTemplate>
+                    {womanAppearanceList.map(
+                      ({ htmlFor, labelName, value }) => (
                         <CheckBoxInput
-                          className="text-sm"
                           key={htmlFor}
                           id={htmlFor}
                           value={value}
-                          name="manPersonality"
-                          onChange={onManFashion}
-                          checked={manFashion.includes(value)}
+                          name="womanAppearance"
+                          onChange={onWomanAppearance}
+                          checked={womanAppearance.includes(value)}
                         >
                           {`#${labelName}`}
                         </CheckBoxInput>
-                      ))}
-                    </CheckBoxInputTemplate>
-                    <ModalCloseButton onClick={() => setFashionOpen(false)} />
-                  </OutsideModal>
-                </FashionModal>
-              </ModalEmptyDiv>
-            </SectionTemplate>
-          )}
+                      )
+                    )}
+                  </CheckBoxInputTemplate>
+                  <ModalCloseButton
+                    onClick={() => setWomanAppearanceOpen(false)}
+                  />
+                </OutsideModal>
+              </WomanAppearanceModal>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+          {/* 여자 성격 */}
+          <SectionTemplate>
+            <UserInfoH2>성격</UserInfoH2>
+            <ModalEmptyDiv>
+              {CheckVoidList(womanPersonality) && (
+                <span onClick={() => setWomanPersonalityOpen(true)}>
+                  -선택-
+                </span>
+              )}
+              {/* 선택한 값들이 모달 밖의 페이지에 보일 수 있도록 변경 */}
+              {!CheckVoidList(womanPersonality) && (
+                <ModalSpanDiv onClick={() => setWomanPersonalityOpen(true)}>
+                  {womanPersonality.map((item) => (
+                    <ModalSpan key={item}>
+                      #
+                      {womanPersonalityList.map(
+                        (data) => data.value === item && data.labelName
+                      )}
+                    </ModalSpan>
+                  ))}
+                </ModalSpanDiv>
+              )}
+              <WomanPersonalityModal
+                className="!h-4/5"
+                isWomanPersonalityOpen={isWomanPersonalityOpen}
+              >
+                <OutsideModal className="gap-2">
+                  <OutsideInModal>성격</OutsideInModal>
+                  <CheckBoxInputTemplate className="!gap-4">
+                    {womanPersonalityList.map(
+                      ({ htmlFor, labelName, value }) => (
+                        <CheckBoxInput
+                          key={htmlFor}
+                          id={htmlFor}
+                          value={value}
+                          name="womanPersonality"
+                          onChange={onWomanPersonality}
+                          checked={womanPersonality.includes(value)}
+                        >
+                          {`#${labelName}`}
+                        </CheckBoxInput>
+                      )
+                    )}
+                  </CheckBoxInputTemplate>
+                  <ModalCloseButton
+                    onClick={() => setWomanPersonalityOpen(false)}
+                  />
+                </OutsideModal>
+              </WomanPersonalityModal>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+          {/* 여자 패션 */}
+          <SectionTemplate>
+            <UserInfoH2>패션</UserInfoH2>
+            <ModalEmptyDiv>
+              {CheckVoidList(womanFashion) && (
+                <span onClick={() => setWomanFashionOpen(true)}>-선택-</span>
+              )}
+              {/* 선택한 값들이 모달 밖의 페이지에 보일 수 있도록 변경 */}
+              {!CheckVoidList(womanFashion) && (
+                <ModalSpanDiv onClick={() => setWomanFashionOpen(true)}>
+                  {womanFashion.map((item) => (
+                    <ModalSpan key={item}>
+                      #
+                      {womanFashionList.map(
+                        (data) => data.value === item && data.labelName
+                      )}
+                    </ModalSpan>
+                  ))}
+                </ModalSpanDiv>
+              )}
+              <WomanFashionModal
+                className="h-full"
+                isWomanFashionOpen={isWomanFashionOpen}
+              >
+                <OutsideModal>
+                  <OutsideInModal>패션</OutsideInModal>
+                  <CheckBoxInputTemplate className="!gap-3">
+                    {womanFashionList.map(({ htmlFor, labelName, value }) => (
+                      <CheckBoxInput
+                        className="text-sm"
+                        key={htmlFor}
+                        id={htmlFor}
+                        value={value}
+                        name="womanPersonality"
+                        onChange={onWomanFashion}
+                        checked={womanFashion.includes(value)}
+                      >
+                        {`#${labelName}`}
+                      </CheckBoxInput>
+                    ))}
+                  </CheckBoxInputTemplate>
+                  <ModalCloseButton
+                    onClick={() => setWomanFashionOpen(false)}
+                  />
+                </OutsideModal>
+              </WomanFashionModal>
+            </ModalEmptyDiv>
+          </SectionTemplate>
         </motion.div>
       )}
       {/* 제춢버튼  */}

@@ -63,7 +63,7 @@ export const FashionModal: FC<FashionModalProps> = (props) => {
     isFashionOpen &&
       setFashionModal(
         <div
-          className={`select-none checked-bg:border-2 checked-bg:text-blue-600 checked-bg:border-blue-500 checked-bg:bg-white flex flex-col flex-wrap items-center  h-[26rem] w-[24rem] absolute left-1/2 -translate-x-1/2 top-1/2 rounded-lg -translate-y-1/2 border shadow-md bg-white ${className}`}
+          className={`select-none checked-bg:border-2 checked-bg:text-blue-600 checked-bg:border-blue-500 checked-bg:bg-white flex flex-col flex-wrap items-center  h-[33rem] w-[24rem] absolute left-1/2 -translate-x-1/2 top-1/2 rounded-lg -translate-y-1/2 border shadow-md bg-white ${className}`}
         >
           {children}
         </div>
@@ -107,6 +107,14 @@ export const ModalProvider: FC<ModalProviderProps> = ({ children: app }) => {
         {isPersonalityOpen && (
           <aside className="absolute left-0 right-0 top-0 bottom-0 z-[16]">
             {isPersonalityModal}
+          </aside>
+        )}
+        {isFashionOpen && (
+          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[18]" />
+        )}
+        {isFashionOpen && (
+          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[20]">
+            {isFashionModal}
           </aside>
         )}
       </div>

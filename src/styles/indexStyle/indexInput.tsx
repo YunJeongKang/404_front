@@ -67,12 +67,12 @@ export const CheckBoxInput: FC<CheckBoxInputInterface> = (props) => {
         onChange={onChange}
         name={name}
         checked={checked}
-        className={`hidden ${className}`}
+        className="hidden"
         {...restProps}
       />
       <label
         htmlFor={id}
-        className="px-2 py-0.5 border-2 text-gray-500 bg-gray-50 rounded-md"
+        className={`px-2 py-0.5 border-2 text-gray-500 bg-gray-50 rounded-md ${className}`}
       >
         {children}
       </label>

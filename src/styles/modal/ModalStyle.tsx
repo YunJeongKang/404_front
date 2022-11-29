@@ -1,5 +1,9 @@
 import { FunctionComponent as FC } from "react";
-import { CommonButtonProps, CommonDivProps } from "@utils/common/props";
+import {
+  CommonButtonProps,
+  CommonDivProps,
+  CommonSpanProps,
+} from "@utils/common/props";
 
 interface OutsideModalInterface extends CommonDivProps {
   isModal?: React.ReactNode;
@@ -32,16 +36,37 @@ export const OutsideModal: FC<CommonDivProps> = (props) => {
 };
 
 interface ModalCloseButtonInterface {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const ModalCloseButton = ({ onClick }: ModalCloseButtonInterface) => {
   return (
     <button
       onClick={onClick}
-      className={`absolute top-6 right-8 text-lg font-black text-gray-500 duration-150 active:scale-90 hover:text-black`}
+      className={`absolute top-6 right-8 text-lg font-black text-gray-500 duration-150 active:scale-90 hover:text-black $`}
     >
       X
     </button>
+  );
+};
+
+export const ModalSpanDiv: FC<CommonDivProps> = (props) => {
+  const { children, className, ...restProps } = props;
+  return (
+    <div className={`flex flex-raw gap-1 ${className}`} {...restProps}>
+      {children}
+    </div>
+  );
+};
+
+export const ModalSpan: FC<CommonSpanProps> = (props) => {
+  const { children, className, ...restProps } = props;
+  return (
+    <span
+      className={`font-eland rounded-md border-2 text-sm border-blue-500 px-1 flex text-blue-600 ${className}`}
+      {...restProps}
+    >
+      {children}
+    </span>
   );
 };

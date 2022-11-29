@@ -140,6 +140,7 @@ const UserInfoPage = () => {
   };
 
   const client = useClient();
+
   // axios API
   function onSubmit() {
     const userEmail = client.getUserEmail();
@@ -154,8 +155,12 @@ const UserInfoPage = () => {
         womanPersonality: { ...womanPersonality },
         womanFashion: { ...womanFashion },
       })
-      .then((res) => res.data);
-    console.log({
+      .then((res) => {
+        client.isNextStep(res.data.isCompleted);
+      });
+
+    // 서버로 가는 데이터 확인
+    console.log("보내지는 데이터 :", {
       ...mainInfo,
       email: userEmail,
       manAppearance: { ...manAppearance },

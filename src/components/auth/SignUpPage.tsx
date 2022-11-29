@@ -39,7 +39,7 @@ const SignUnPage = () => {
         const userEmail = res.data.email;
         client.setUserEmail(userEmail);
       })
-      .catch(console.error);
+      .catch(() => console.log("이메일이 중복되었습니다"));
 
     console.log({ ...values, checkPW });
   }

@@ -35,7 +35,7 @@ const ManAppearanceModal: FC<ManAppearModalProps> = (props) => {
     isAppearanceOpen &&
       setAppearanceModal(
         <div
-          className={`select-none checked-bg:border-2 checked-bg:text-blue-600 checked-bg:border-blue-500 checked-bg:bg-white flex flex-col flex-wrap items-center  h-[26rem] w-[24rem] absolute left-1/2 -translate-x-1/2 top-1/2 rounded-lg -translate-y-1/2 border shadow-md bg-white ${className}`}
+          className={`select-none checked-bg:border-2 checked-bg:text-blue-600 checked-bg:border-blue-500 checked-bg:bg-white flex flex-col flex-wrap items-center  h-[22rem] w-[24rem] absolute left-1/2 -translate-x-1/2 top-1/2 rounded-lg -translate-y-1/2 border shadow-md bg-white ${className}`}
         >
           {children}
         </div>
@@ -56,7 +56,7 @@ export const ManPersonalityModal: FC<ManPersonalityModalProps> = (props) => {
     isPersonalityOpen &&
       setPersonalityModal(
         <div
-          className={`select-none checked-bg:border-2 checked-bg:text-blue-600 checked-bg:border-blue-500 checked-bg:bg-white flex flex-col flex-wrap items-center  max-h-[34rem] w-[24rem] absolute left-1/2 -translate-x-1/2 top-1/2 rounded-lg -translate-y-1/2 border shadow-md bg-white ${className}`}
+          className={`select-none checked-bg:border-2 checked-bg:text-blue-600 checked-bg:border-blue-500 checked-bg:bg-white flex flex-col flex-wrap items-center  max-h-[30rem] w-[24rem] absolute left-1/2 -translate-x-1/2 top-1/2 rounded-lg -translate-y-1/2 border shadow-md bg-white ${className}`}
         >
           {children}
         </div>

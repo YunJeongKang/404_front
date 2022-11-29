@@ -26,32 +26,11 @@ export interface MainInfoInterface {
   weight: string;
 }
 
-export interface RegionInfoInterface {
-  region_kangwon: string;
-  region_gyungki: string;
-  region_gyungnam: string;
-  region_gyungbuk: string;
-  region_gwangju: string;
-  region_daegu: string;
-  region_daejeon: string;
-  region_busan: string;
-  region_seoul: string;
-  region_sejong: string;
-  region_ulsan: string;
-  region_incheon: string;
-  region_jeonnam: string;
-  region_jeonbuk: string;
-  region_jeju: string;
-  region_chungnam: string;
-  region_chungbuk: string;
-  region_global: string;
-}
-
 export interface StyleInfoInterface {
-  manAppearance: string;
-  manPersonality: string;
-  manFashion: string;
-  womanAppearance: string;
-  womanPersonality: string;
-  womanFashion: string;
+  manAppearance: object;
+  manPersonality: object;
+  manFashion: object;
+  womanAppearance: object;
+  womanPersonality: object;
+  womanFashion: object;
 }

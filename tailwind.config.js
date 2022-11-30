@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         eland: ["ELAND_Choice_M"],
-        chosun: ["ChosunCentennial"],
+        sebang: ["SEBANG_Gothic_Bold"],
       },
       colors: {
         main: "#FCF7FF",

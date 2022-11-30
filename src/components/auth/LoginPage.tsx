@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import PATH from "@utils/routes/PATH";
 import API_PATH from "@utils/routes/api/API_PATH";
 import axios from "axios";
+import useClient from "@store/useClient";
 
 const { EASY_AUTH } = PATH;
 const { URL, LOGIN } = API_PATH;
@@ -13,6 +14,7 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
+  const client = useClient();
   const { setUserName, setPassword } = auth;
   const [loginInfo, setLoginInfo] = useState({
     email: "",
@@ -42,6 +44,7 @@ function LoginPage() {
       .then((res) => {
         console.log(res.data);
         auth.setAutoLogin(res.data.isAuthenticated);
+        client.setUserEmail(res.data.email);
         auth.isAutoLogin()
           ? (auth.isAuthenticated = true) && auth.login()
           : alert("아이디나 비밀번호가 틀렸습니다.");

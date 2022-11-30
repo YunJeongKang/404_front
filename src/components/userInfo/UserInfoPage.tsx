@@ -51,7 +51,6 @@ import OutsideInModal, {
   ModalSpanDiv,
   OutsideModal,
 } from "@styles/modal/ModalStyle";
-import { validateHeaderValue } from "http";
 
 const { INPUT, URL } = PATH;
 

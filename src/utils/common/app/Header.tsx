@@ -8,7 +8,7 @@ const Header = () => {
       <span className="text-2xl px-3 text-center font-bold font-eland text-white">
         After Like
       </span>
-      <BsBellFill size="24" color="white" className="m-1 mx-2" />
+      <BsBellFill size="24" color="white" className="m-1 mx-2 cursor-pointer" />
     </header>
   );
 };

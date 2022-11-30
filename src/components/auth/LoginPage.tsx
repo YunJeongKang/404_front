@@ -105,7 +105,7 @@ function LoginPage() {
             className="underline text-blue-500 underline-offset-2 text-xs py-0.5"
             to={EASY_AUTH}
           >
-            회원가입
+            간편 계정 로그인
           </Link>
         </div>
       </section>

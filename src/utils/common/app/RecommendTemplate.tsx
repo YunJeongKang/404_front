@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 interface RecommendTemplateInterface {
   img: string;
   username: string;
@@ -5,6 +7,9 @@ interface RecommendTemplateInterface {
   job: string;
   className?: string;
   ratingDiv: React.ReactNode;
+  initial: any;
+  animate: any;
+  transition: any;
 }
 
 const RecUserTemplate = ({
@@ -14,10 +19,16 @@ const RecUserTemplate = ({
   username,
   className,
   ratingDiv,
+  initial,
+  animate,
+  transition,
 }: RecommendTemplateInterface) => {
   return (
-    <div
+    <motion.div
       className={`relative ml-4 h-[33%] w-[75%] rounded-t-2xl flex justify-center ${className}`}
+      initial={initial}
+      animate={animate}
+      transition={transition}
     >
       <>
         {ratingDiv}
@@ -39,7 +50,7 @@ const RecUserTemplate = ({
         <span>{region}</span> <span className="text-xl">·</span>
         <span>{job}</span>
       </span>
-    </div>
+    </motion.div>
   );
 };
 

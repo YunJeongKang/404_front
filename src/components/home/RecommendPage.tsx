@@ -34,6 +34,9 @@ const RecommendPage = () => {
         <div className="relative flex flex-col items-start gap-2 w-full h-5/6">
           {/* 유저 정보 박스 */}
           <RecommendTemplate
+            initial={{ opacity: 0, translateY: 50 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             ratingDiv={
               <>
                 <FaCrown
@@ -52,6 +55,13 @@ const RecommendPage = () => {
             username="최예나"
           />
           <RecommendTemplate
+            initial={{ opacity: 0, translateY: 50 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{
+              duration: 0.4,
+              ease: "easeInOut",
+              delay: 0.15,
+            }}
             ratingDiv={
               <>
                 <div className="absolute z-20 right-[-14px] top-[-27px] flex justify-center rounded-full h-1/4 w-[13.5%] text-center">
@@ -71,6 +81,13 @@ const RecommendPage = () => {
             className="!ml-14"
           />
           <RecommendTemplate
+            initial={{ opacity: 0, translateY: 50 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{
+              duration: 0.4,
+              ease: "easeInOut",
+              delay: 0.3,
+            }}
             ratingDiv={
               <>
                 <div className="absolute z-20 right-0 top-[-30px] flex justify-center rounded-full h-1/4 w-[13.5%] text-center">

@@ -19,10 +19,9 @@ const RecommendPage = () => {
           !isClick && setClick(true);
           const userEmail = client.getUserEmail();
           axios.post(`${URL}${RECOMMEND}`, {
-            isClick: isClick,
             email: userEmail,
           });
-          console.log("보내는 값 :", { isClick, email: userEmail });
+          console.log("보내는 값 :", { email: userEmail });
         }}
       >
         천생연분
@@ -32,7 +31,7 @@ const RecommendPage = () => {
       )}
       {/* 추천 1, 2, 3등 큰 박스 */}
       {isClick && (
-        <div className="relative flex flex-col items-start w-full h-5/6">
+        <div className="relative flex flex-col items-start gap-2 w-full h-5/6">
           {/* 유저 정보 박스 */}
           <RecommendTemplate
             ratingDiv={

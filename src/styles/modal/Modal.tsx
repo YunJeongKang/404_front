@@ -173,47 +173,47 @@ export const ModalProvider: FC<ModalProviderProps> = ({ children: app }) => {
           <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[10]" />
         )}
         {isAppearanceOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[12]">
+          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[11]">
             {isAppearanceModal}
           </aside>
         )}
         {isPersonalityOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[14]" />
+          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[12]" />
         )}
         {isPersonalityOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[16]">
+          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[13]">
             {isPersonalityModal}
           </aside>
         )}
         {isFashionOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[18]" />
+          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[14]" />
         )}
         {isFashionOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[20]">
+          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[15]">
             {isFashionModal}
           </aside>
         )}
         {isWomanAppearanceOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[22]" />
+          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[16]" />
         )}
         {isWomanAppearanceOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[22]">
+          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[17]">
             {isWomanAppearanceModal}
           </aside>
         )}
         {isWomanPersonalityOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[24]" />
+          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[18]" />
         )}
         {isWomanPersonalityOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[26]">
+          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[19]">
             {isWomanPersonalityModal}
           </aside>
         )}
         {isWomanFashionOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[28]" />
+          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[20]" />
         )}
         {isWomanFashionOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[30]">
+          <aside className="absolute left-0 right-0 top-0 bottom-0 z-[21]">
             {isWomanFashionModal}
           </aside>
         )}

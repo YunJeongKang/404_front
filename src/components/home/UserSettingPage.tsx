@@ -62,7 +62,7 @@ const UserSettingPage = () => {
           <FiSettings
             size="25"
             color="gray"
-            className="m-1 cursor-pointer"
+            className="m-1 cursor-pointer z-10"
             onClick={() => {
               setSettingOpen(true);
               settingOpen && setSettingOpen(false);
@@ -72,7 +72,10 @@ const UserSettingPage = () => {
       </>
       {/* 프로필 사진 */}
       <>
-        <div className="absolute text-center left-7 top-3 inline-block">
+        <div
+          className="absolute text-center left-7 top-3 inline-block"
+          onClick={() => setSettingOpen(false)}
+        >
           <div
             className="rounded-full 
              h-[11.5rem] w-[11.5rem] overflow-hidden"
@@ -95,7 +98,10 @@ const UserSettingPage = () => {
         </div>
       </>
       {/* 정보박스 */}
-      <div className=" items-start bg-white rounded-lg w-[92%] h-[82%] -z-20">
+      <div
+        className=" items-start bg-white rounded-lg w-[92%] h-[82%] -z-20"
+        onClick={() => setSettingOpen(false)}
+      >
         {/* 프레임 조정 */}
         <div className="flex flex-col items-start px-6 h-full gap-4">
           {/* 빈공간 */}

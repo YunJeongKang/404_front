@@ -3,19 +3,24 @@ import RecommendTemplate from "@utils/common/app/RecommendTemplate";
 import axios from "axios";
 import PATH from "@utils/routes/PATH";
 import { FaCrown } from "react-icons/fa";
+import useClient from "@store/useClient";
 
 const RecommendPage = () => {
   const [isClick, setClick] = useState<boolean>(false);
   const { URL, RECOMMEND } = PATH;
+  const client = useClient();
 
   return (
     <div className="relative flex flex-col items-center w-full h-full max-w-[98%] max-h-[98%] gap-2 py-2 select-none">
       <span
-        className="text-4xl text-center w-full h-[14%] font-bold font-chosun drop-shadow-[0.08em_0.08em_0_rgba(255_155_0_/_0.8)]
+        className="text-4xl text-center w-full h-[14%] font-bold font-sebang drop-shadow-[0.08em_0.08em_0_rgba(255_155_0_/_0.8)]
       active:drop-shadow-[0.08em_0.08em_0_rgba(105_127_255_/_0.8)] active:scale-95 duration-100"
         onClick={() => {
           setClick(true);
-          axios.post(`${URL}${RECOMMEND}`, { isClick: isClick });
+          axios.post(`${URL}${RECOMMEND}`, {
+            isClick: isClick,
+            email: client.getUserEmail,
+          });
         }}
       >
         천생연분
@@ -58,7 +63,7 @@ const RecommendPage = () => {
           job="직업"
           region="지역"
           username="닉네임"
-          className="ml-14 "
+          className="!ml-14"
         />
         <RecommendTemplate
           ratingDiv={
@@ -77,7 +82,7 @@ const RecommendPage = () => {
           job="직업"
           region="지역"
           username="닉네임"
-          className="ml-24"
+          className="!ml-24"
         />
       </div>
     </div>

@@ -4,7 +4,8 @@ interface ClientState {
   userEmail: string;
   isComplete: boolean;
 
-  isNextStep: (isComplete: boolean) => void;
+  setComplete: (isComplete: boolean) => void;
+  authComplete: () => boolean;
   setUserEmail: (userEmail: string) => void;
   getUserEmail: () => string | null;
 }
@@ -22,9 +23,15 @@ const useClient = create<ClientState>((set, get) => ({
     return username;
   },
 
-  isNextStep: (isComplete) => {
+  setComplete: (isComplete) => {
     console.log("isComplete :", isComplete);
     set({ isComplete });
+    localStorage.setItem("isCompete", JSON.stringify(isComplete));
+  },
+
+  authComplete: () => {
+    const completeState = localStorage.getItem("isComplete") === "true";
+    return completeState;
   },
   // End of Create
 }));

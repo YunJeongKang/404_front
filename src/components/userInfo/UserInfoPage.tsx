@@ -31,7 +31,7 @@ import { selectReligionList } from "@data/main_info/religion";
 import { motion } from "framer-motion";
 import detailRegionsByCode from "@data/region_info/index";
 import useClient from "@store/useClient";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import ManAppearanceModal, {
   ManFashionModal,
   ManPersonalityModal,
@@ -52,7 +52,7 @@ import OutsideInModal, {
   OutsideModal,
 } from "@styles/modal/ModalStyle";
 
-const { INPUT, URL } = PATH;
+const { INPUT, URL, USER_IMAGE } = PATH;
 
 const UserInfoPage = () => {
   // 메인 프로파일 데이터
@@ -140,6 +140,8 @@ const UserInfoPage = () => {
 
   const client = useClient();
 
+  const navigate = useNavigate();
+
   // axios API
   function onSubmit() {
     const userEmail = client.getUserEmail();
@@ -155,8 +157,9 @@ const UserInfoPage = () => {
         womanFashion: { ...womanFashion },
       })
       .then((res) => {
-        client.isNextStep(res.data.isCompleted);
+        client.setComplete(res.data.isCompleted);
       });
+    navigate(`${URL}${USER_IMAGE}`);
 
     // 서버로 가는 데이터 확인
     console.log("보내지는 데이터 :", {
@@ -261,7 +264,7 @@ const UserInfoPage = () => {
   return (
     <UserInfoForm
       onSubmit={onSubmit}
-      className={`bg-white w-full max-h-[43rem] h-fit overflow-scroll scrollbar-hide py-4 px-2 gap-4`}
+      className={`justify-center items-center bg-white !max-h-[100rem] py-4 px-2 gap-4`}
     >
       {/* 닉네임 */}
       <SectionTemplate>
@@ -270,7 +273,7 @@ const UserInfoPage = () => {
           <fieldset className="flex gap-2 w-full">
             <div className="flex flex-col items-start gap-1 w-full">
               <input
-                className="peer px-1 text-center border-b-[1px] bg-white outline-none w-full"
+                className={`peer px-1 text-center border-b-[1px] bg-white outline-none w-5/6 text-blue-600`}
                 value={mainInfo.nickname}
                 pattern="[가-힣A-Za-z0-9]{1,8}$"
                 name="nickname"
@@ -325,12 +328,13 @@ const UserInfoPage = () => {
           />
         </ModalEmptyDiv>
       </SectionTemplate>
+
       {/* Step1 : 지역 */}
       {stepIndex >= 1 && (
         <motion.div
-          initial={{ scaleY: 0.8, opacity: 0.5 }}
-          animate={{ scaleY: 1.0, opacity: 1.0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          initial={{ translateY: 20, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1.0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
         >
           {/* 지역 */}
           <SectionTemplate>
@@ -373,10 +377,10 @@ const UserInfoPage = () => {
       {/* Step2 : 체중, 키, 혈액형 */}
       {stepIndex >= 2 && (
         <motion.div
-          className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
-          initial={{ scaleY: 0.8, opacity: 0.5 }}
-          animate={{ scaleY: 1.0, opacity: 1.0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="flex flex-col justify-center gap-4"
+          initial={{ translateY: 20, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1.0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
         >
           {/* 체중 */}
           <SectionTemplate>
@@ -464,9 +468,9 @@ const UserInfoPage = () => {
       {stepIndex >= 3 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
-          initial={{ scaleY: 0.8, opacity: 0.5 }}
-          animate={{ scaleY: 1.0, opacity: 1.0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          initial={{ translateY: 20, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1.0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
         >
           {/* 음주여부 */}
           <SectionTemplate>
@@ -516,9 +520,9 @@ const UserInfoPage = () => {
       {stepIndex >= 4 && (
         <motion.div
           className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
-          initial={{ scaleY: 0.8, opacity: 0.5 }}
-          animate={{ scaleY: 1.0, opacity: 1.0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          initial={{ translateY: 20, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1.0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
         >
           {/* 직업 */}
           <SectionTemplate>
@@ -550,7 +554,7 @@ const UserInfoPage = () => {
                 type="text"
                 value={mainInfo.jobInfo}
                 onChange={mainInfoChange}
-                className="text-center w-full outline-none border-b-[1px]"
+                className="text-center w-5/6 outline-none border-b-[1px] text-blue-600"
                 maxLength={20}
                 placeholder="직업상세를 입력하세요"
               />
@@ -562,9 +566,9 @@ const UserInfoPage = () => {
       {stepIndex >= 5 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
-          initial={{ scaleY: 0.8, opacity: 0.5 }}
-          animate={{ scaleY: 1.0, opacity: 1.0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          initial={{ translateY: 20, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1.0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
         >
           {/* 결혼유무 */}
           <SectionTemplate>
@@ -618,9 +622,9 @@ const UserInfoPage = () => {
       {stepIndex >= 6 && (
         <motion.div
           className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
-          initial={{ scaleY: 0.8, opacity: 0.5 }}
-          animate={{ scaleY: 1.0, opacity: 1.0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          initial={{ translateY: 20, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1.0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
         >
           {/* 종교 */}
           <SectionTemplate>
@@ -673,9 +677,9 @@ const UserInfoPage = () => {
       {stepIndex >= 7 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
-          initial={{ scaleY: 0.8, opacity: 0.5 }}
-          animate={{ scaleY: 1.0, opacity: 1.0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          initial={{ translateY: 20, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1.0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
         >
           {" "}
           {/* 연봉  */}
@@ -747,9 +751,9 @@ const UserInfoPage = () => {
       {man && stepIndex >= 8 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
-          initial={{ scaleY: 0.8, opacity: 0.5 }}
-          animate={{ scaleY: 1.0, opacity: 1.0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          initial={{ translateY: 20, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1.0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
         >
           {/* 남자 외모 */}
           <SectionTemplate>
@@ -887,9 +891,9 @@ const UserInfoPage = () => {
       {woman && stepIndex >= 8 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
-          initial={{ scaleY: 0.8, opacity: 0.5 }}
-          animate={{ scaleY: 1.0, opacity: 1.0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          initial={{ translateY: 20, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1.0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
         >
           {/* 여자 외모 */}
           <SectionTemplate>
@@ -1042,9 +1046,18 @@ const UserInfoPage = () => {
       )}
       {/* 제춢버튼  */}
       {stepIndex >= 0 && (
-        <button type="submit" className="border rounded-md shadow-md">
-          <Link to={PATH.USER_IMAGE}>제출</Link>
-        </button>
+        <motion.div
+          initial={{ translateY: 20, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1.0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
+          <button
+            type="submit"
+            className="bg-blue-400 text-white w-32 py-0.5 active:scale-90 duration-100 text-lg rounded-md shadow-md"
+          >
+            <Link to={PATH.USER_IMAGE}>제출</Link>
+          </button>
+        </motion.div>
       )}
     </UserInfoForm>
   );

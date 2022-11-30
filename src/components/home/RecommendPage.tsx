@@ -28,7 +28,7 @@ const RecommendPage = () => {
               <p className="relative text-center py-1.5 font-bold">1위</p>
             </div>
           }
-          img={`${import.meta.env.VITE_S3_BASE_URL}/yena.jpg`}
+          img="/yena.jpg"
           job="직업"
           region="지역"
           username="닉네임"
@@ -39,7 +39,7 @@ const RecommendPage = () => {
               <p className="relative text-center py-1.5 font-bold">2위</p>
             </div>
           }
-          img={`${import.meta.env.VITE_S3_BASE_URL}/yena.jpg`}
+          img="/Hyewoon.jpg"
           job="직업"
           region="지역"
           username="닉네임"
@@ -51,7 +51,7 @@ const RecommendPage = () => {
               <p className="relative text-center py-1.5 font-bold">3위</p>
             </div>
           }
-          img={`${import.meta.env.VITE_S3_BASE_URL}/yena.jpg`}
+          img="/Jien.jpg"
           job="직업"
           region="지역"
           username="닉네임"

@@ -53,7 +53,10 @@ const SignUnPage = () => {
       value?: string; 
       placeholder?: string; */
 
-    <UserInfoForm className="py-4 px-10 gap-2 bg-white" onSubmit={onSubmit}>
+    <UserInfoForm
+      className="flex flex-col items-center py-4 px-8 gap-2 !w-[98%] bg-white"
+      onSubmit={onSubmit}
+    >
       <TextInputTemplate
         onChange={onChange}
         value={values.email || ""}
@@ -74,11 +77,11 @@ const SignUnPage = () => {
         placeholder="비밀번호를 입력하세요"
         autoComplete="off"
       />
-      <fieldset className="flex gap-2 p-[3px]">
-        <span>비밀번호 재입력</span>
-        <div className="flex flex-col items-start gap-1">
+      <fieldset className="flex justify-between gap-2 w-full p-[3px]">
+        <span className="font-bold text-sm w-1/3">비밀번호 재입력</span>
+        <div className="flex flex-col items-start gap-1 w-2/3">
           <input
-            className="border peer dark:text-dark px-1"
+            className="border-b w-full peer dark:text-dark px-1"
             type="password"
             value={checkPW}
             name="checked-password"
@@ -93,18 +96,17 @@ const SignUnPage = () => {
             }}
           />
           {values.password !== checkPW && (
-            <span className="text-danger text-sm">
+            <span className="text-danger text-xs">
               위의 비밀번호를 똑같이 입력하세요
             </span>
           )}
         </div>
       </fieldset>
-
       <button
         type="submit"
-        className="border px-3 py-1 rounded-md shadow-md duration-200 active:scale-95"
+        className="text-center mt-4 bg-blue-400 text-white px-3 py-1 rounded-md shadow-md duration-100 active:scale-95 w-1/2"
       >
-        제출
+        회원가입
       </button>
     </UserInfoForm>
   );

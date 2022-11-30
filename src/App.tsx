@@ -16,9 +16,9 @@ function App() {
 
   const { HOME, USER } = PATH;
 
-  const authPageUI = "min-h-[37.5rem] h-[37.5rem] max-h-[37.5rem]";
-  const authOtherUI = "min-h-[40.15rem] h-[40.15rem] max-h-[40.15rem]";
-  const unAuthPageUI = "min-h-[43rem] h-[43rem] max-h-[43rem]";
+  const authPageUI = "min-h-[37.5rem] h-[37.5rem] max-h-[100rem]";
+  const authOtherUI = "min-h-[40.15rem] h-[40.15rem] max-h-[100rem]";
+  const unAuthPageUI = "min-h-[43rem] h-[43rem] !max-h-[100rem]";
   useEffect(() => {
     console.log("추적 가능한 경로", location.pathname);
   }, [location.pathname]);
@@ -31,8 +31,8 @@ function App() {
   }, [auth.isAuthenticated, auth.isAutoLogin()]);
 
   return (
-    <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide bg-slate-200 dr">
-      <div className="h-screen max-w-[28rem] z-[10] scrollbar-hide py-3 drop-shadow">
+    <div className="App flex flex-row justify-center overflow-x-hidden max-h-[100rem] scrollbar-hide bg-slate-200 dr">
+      <div className="max-h-[100rem] h-screen max-w-[28rem] z-[10] scrollbar-hide py-3 drop-shadow">
         {(isTrue && location.pathname === HOME && <Header />) ||
           (isTrue &&
             location.pathname !== HOME &&

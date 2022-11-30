@@ -23,11 +23,11 @@ export const TextInputTemplate = ({
   onChange,
 }: TextInputTemplateInterface) => {
   return (
-    <fieldset className="flex gap-2 p-[3px]">
-      <span>{query}</span>
-      <div className="flex flex-col items-start gap-1">
+    <fieldset className="flex flex-between gap-2 p-[3px] w-full">
+      <span className="w-1/3 text-sm font-bold">{query}</span>
+      <div className="flex flex-col items-start gap-1 w-2/3">
         <input
-          className="border peer dark:text-dark px-1 outline-none"
+          className="border-b peer w-full dark:text-dark px-1 outline-none"
           type={type}
           value={value}
           pattern={`^${pattern}`}
@@ -41,7 +41,7 @@ export const TextInputTemplate = ({
           {value === "" ? (
             <></>
           ) : (
-            <span className="text-danger text-sm">{dangerText}</span>
+            <span className="text-danger text-xs">{dangerText}</span>
           )}
         </span>
       </div>

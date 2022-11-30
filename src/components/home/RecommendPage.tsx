@@ -17,10 +17,12 @@ const RecommendPage = () => {
       active:drop-shadow-[0.08em_0.08em_0_rgba(105_127_255_/_0.8)] active:scale-95 duration-100"
         onClick={() => {
           setClick(true);
+          const userEmail = client.getUserEmail();
           axios.post(`${URL}${RECOMMEND}`, {
             isClick: isClick,
-            email: client.getUserEmail,
+            email: userEmail,
           });
+          console.log("보내는 값 :", { isClick, email: userEmail });
         }}
       >
         천생연분

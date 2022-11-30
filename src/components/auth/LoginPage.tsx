@@ -42,7 +42,7 @@ function LoginPage() {
     axios
       .post(`${URL}${LOGIN}`, { ...loginInfo })
       .then((res) => {
-        console.log(res.data);
+        console.log("들어오는 값: ", res.data);
         auth.setAutoLogin(res.data.isAuthenticated);
         client.setUserEmail(res.data.email);
         auth.isAutoLogin()

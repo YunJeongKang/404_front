@@ -67,14 +67,14 @@ const MainPageTemplate = ({
       {/* 텍스트 영역 */}
       <div className="flex flex-col items-center h-1/3 w-full gap-1">
         {/* 자기소개 */}
-        <div className="relative flex flex-col items-start h-[48%] w-[97%] rounded-lg bg-blue-200 ">
+        <div className="relative flex flex-col items-start h-[48%] w-[97%] rounded-lg border-2 shadow-md">
           <span className="text-sm m-0.5 left-4 top-1 z-10 underline underline-offset-[3px] text-gray-500">
             저는 이런 사람이에요
           </span>
           <p className="w-[95%] h-[90%] text-xs pl-1">{introSelf}</p>
         </div>
         {/* 원하는 이상형 정보 */}
-        <div className="relative flex flex-col items-start h-[48%] w-[97%] rounded-lg bg-blue-200">
+        <div className="relative flex flex-col items-start h-[50%] w-[97%] rounded-lg border-2 shadow-md">
           <span className="text-sm m-0.5 left-4 top-1 z-10 underline underline-offset-[3px] text-gray-500">
             저는 이런사람이 이상형이에요
           </span>

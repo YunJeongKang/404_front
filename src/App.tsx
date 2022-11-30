@@ -31,7 +31,7 @@ function App() {
   }, [auth.isAuthenticated, auth.isAutoLogin()]);
 
   return (
-    <div className="App flex flex-row justify-center overflow-x-hidden max-h-[100rem] scrollbar-hide bg-slate-200 dr">
+    <div className="App flex flex-row justify-center overflow-x-hidden max-h-[100rem] scrollbar-hide bg-slate-200 font-eland">
       <div className="max-h-[100rem] h-screen max-w-[28rem] z-[10] scrollbar-hide py-3 drop-shadow">
         {(isTrue && location.pathname === HOME && <Header />) ||
           (isTrue &&

@@ -46,7 +46,7 @@ const RecUserTemplate = ({
       <span className="text-xl absolute top-[7rem] left-4 font-semibold">
         {username}
       </span>
-      <span className="text-xl absolute top-[8.5rem] left-4 font-semibold z-10">
+      <span className="text-md absolute top-[8.3rem] left-4 font-semibold z-10">
         <span>{region}</span> <span className="text-xl">·</span>
         <span>{job}</span>
       </span>

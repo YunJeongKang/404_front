@@ -4,7 +4,7 @@ import ProtectedRoutes from "@components/routes/ProtectedRoutes";
 import UnauthedRoutes from "@components/routes/UnauthedRoutes";
 import useAuth from "@store/useAuth";
 import Footer from "@utils/common/app/Footer";
-import Header from "@utils/common/app/Header";
+import Header, { SubHeader } from "@utils/common/app/Header";
 
 function App() {
   const auth = useAuth();
@@ -28,16 +28,13 @@ function App() {
   }, [auth.isAuthenticated, auth.isAutoLogin()]);
 
   return (
-    <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide bg-slate-200">
-      <div className="h-screen max-w-[28rem] z-[10] scrollbar-hide py-3">
-        {isTrue && location.pathname === "/" && <Header />}
+    <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide bg-slate-200 dr">
+      <div className="h-screen max-w-[28rem] z-[10] scrollbar-hide py-3 drop-shadow">
+        {(isTrue && location.pathname === "/" && <Header />) ||
+          (location.pathname !== "/" && <SubHeader />)}
         <main
           className={`flex flex-col items-center w-[26rem] border-x shadow-sm drop-shadow ${
-            isTrue
-              ? location.pathname === "/"
-                ? authPageUI
-                : authOtherUI
-              : unAuthPageUI
+            isTrue ? authPageUI : unAuthPageUI
           } overflow-hidden overflow-y-auto scrollbar-hide justify-center border bg-white`}
         >
           {currentRoutes}

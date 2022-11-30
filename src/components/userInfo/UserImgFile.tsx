@@ -27,30 +27,46 @@ const UserImgFile = () => {
   };
 
   return (
-    <div>
-      이미지 파일 업로드
-      <form
-        onSubmit={(evt) => {
-          evt.preventDefault();
-          console.log(image);
-          axios.put(`${URL}${USER_IMAGE}`, formData);
-        }}
-      >
-        <input
-          type="file"
-          accept="img/*"
-          onChange={(evt: any) => {
-            setImage(evt.target.files);
-            encode(evt.target.files[0]);
-            console.log(evt.target.files[0]);
-          }}
-        />
-        <button type="submit">제출</button>
-      </form>
-      <div className="img">
-        {image && <img src={image} alt="preview-img" className="w-1/3 h-1/3" />}
+    <>
+      {/* 진짜 만들 imgpage */}
+      <div className="w-5/6 h-5/6">
+        <label
+          className="border-4 rounded-lg border-dotted p-10"
+          htmlFor="img1"
+        >
+          <span>+</span>
+          <img src="" alt="" />
+        </label>
+        <input type="file" accept="image/*" id="img1" />
       </div>
-    </div>
+      {/* 예시 업로드 */}
+      <div>
+        이미지 파일 업로드
+        <form
+          onSubmit={(evt) => {
+            evt.preventDefault();
+            console.log(image);
+            axios.put(`${URL}${USER_IMAGE}`, formData);
+          }}
+        >
+          <input
+            type="file"
+            accept="img/*"
+            onChange={(evt: any) => {
+              setImage(evt.target.files);
+              encode(evt.target.files[0]);
+              console.log(evt.target.files[0]);
+            }}
+          />
+          <button type="submit">제출</button>
+        </form>
+        <div className="img">
+          {image && (
+            <img src={image} alt="preview-img" className="w-1/3 h-1/3" />
+          )}
+        </div>
+      </div>
+    </>
   );
 };
 

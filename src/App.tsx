@@ -5,6 +5,7 @@ import UnauthedRoutes from "@components/routes/UnauthedRoutes";
 import useAuth from "@store/useAuth";
 import Footer from "@utils/common/app/Footer";
 import Header, { SubHeader } from "@utils/common/app/Header";
+import PATH from "@utils/routes/PATH";
 
 function App() {
   const auth = useAuth();
@@ -12,6 +13,8 @@ function App() {
   const [currentRoutes, setCurrentRoutes] = useState<React.ReactNode | null>(
     null
   );
+
+  const { HOME, USER } = PATH;
 
   const authPageUI = "min-h-[37.5rem] h-[37.5rem] max-h-[37.5rem]";
   const authOtherUI = "min-h-[40.15rem] h-[40.15rem] max-h-[40.15rem]";
@@ -30,11 +33,17 @@ function App() {
   return (
     <div className="App flex flex-row justify-center overflow-x-hidden scrollbar-hide bg-slate-200 dr">
       <div className="h-screen max-w-[28rem] z-[10] scrollbar-hide py-3 drop-shadow">
-        {(isTrue && location.pathname === "/" && <Header />) ||
-          (location.pathname !== "/" && <SubHeader />)}
+        {(isTrue && location.pathname === HOME && <Header />) ||
+          (isTrue &&
+            location.pathname !== HOME &&
+            location.pathname !== USER && <SubHeader />)}
         <main
           className={`flex flex-col items-center w-[26rem] border-x shadow-sm drop-shadow ${
-            isTrue ? authPageUI : unAuthPageUI
+            isTrue
+              ? location.pathname !== USER
+                ? authPageUI
+                : authOtherUI
+              : unAuthPageUI
           } overflow-hidden overflow-y-auto scrollbar-hide justify-center border bg-white`}
         >
           {currentRoutes}

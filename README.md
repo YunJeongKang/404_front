@@ -9,3 +9,4 @@
 - many something API
 - react-icons
 - UI design from Figma
+- Animation on react-Framer

@@ -282,7 +282,7 @@ const UserInfoPage = () => {
                 value={mainInfo.nickname}
                 pattern="[가-힣A-Za-z0-9]{1,8}$"
                 name="nickname"
-                placeholder="닉네임을 입력하세요"
+                placeholder="닉네임을 입력하세요 (필수)"
                 required
                 autoComplete="on"
                 onChange={mainInfoChange}

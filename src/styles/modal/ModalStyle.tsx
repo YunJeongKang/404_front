@@ -5,6 +5,8 @@ import {
   CommonSpanProps,
 } from "@utils/common/props";
 
+import { GrClose } from "react-icons/gr";
+
 interface OutsideModalInterface extends CommonDivProps {
   isModal?: React.ReactNode;
 }
@@ -41,12 +43,11 @@ interface ModalCloseButtonInterface {
 
 export const ModalCloseButton = ({ onClick }: ModalCloseButtonInterface) => {
   return (
-    <button
+    <GrClose
+      size="20"
       onClick={onClick}
-      className={`absolute top-6 right-8 text-lg font-black text-gray-500 duration-150 active:scale-90 hover:text-black $`}
-    >
-      X
-    </button>
+      className={`absolute top-5 right-5 text-lg font-black z-50 text-gray-500 duration-150 active:scale-90 hover:text-black cursor-pointer $`}
+    />
   );
 };
 

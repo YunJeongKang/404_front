@@ -12,7 +12,7 @@ const UserInfoModify = () => {
       <div className="grid grid-cols-3 w-[99%] h-[45%] bg-gray-200">
         <input
           type="file"
-          name="image1"
+          name="imageInfo1"
           id="imgInput1"
           accept="image/*"
           className="hidden"
@@ -25,7 +25,7 @@ const UserInfoModify = () => {
         </label>
         <input
           type="file"
-          name="image2"
+          name="imageInfo2"
           id="imgInput2"
           accept="image/*"
           className="hidden"
@@ -38,7 +38,7 @@ const UserInfoModify = () => {
         </label>
         <input
           type="file"
-          name="image3"
+          name="imageInfo3"
           id="imgInput3"
           accept="image/*"
           className="hidden"
@@ -51,7 +51,7 @@ const UserInfoModify = () => {
         </label>
         <input
           type="file"
-          name="image4"
+          name="imageInfo4"
           id="imgInput4"
           accept="image/*"
           className="hidden"
@@ -64,7 +64,7 @@ const UserInfoModify = () => {
         </label>
         <input
           type="file"
-          name="image5"
+          name="imageInfo5"
           id="imgInput5"
           accept="image/*"
           className="hidden"
@@ -77,7 +77,7 @@ const UserInfoModify = () => {
         </label>
         <input
           type="file"
-          name="image6"
+          name="imageInfo6"
           id="imgInput6"
           accept="image/*"
           className="hidden"

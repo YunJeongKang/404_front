@@ -61,7 +61,7 @@ const UserSettingPage = () => {
       {/* 상단 빈공간 */}
       <>
         {settingOpen && appearSetting}
-        <div className="w-[90%] h-[12%] flex justify-between">
+        <div className="w-[90%] h-[10%] flex justify-between">
           <div></div>
           {/* 설정 창 */}
           <FiSettings
@@ -78,12 +78,12 @@ const UserSettingPage = () => {
       {/* 프로필 사진 */}
       <>
         <div
-          className="absolute text-center left-7 top-3 inline-block"
+          className="absolute text-center left-7 top-2 inline-block"
           onClick={() => setSettingOpen(false)}
         >
           <div
             className="rounded-full 
-             h-[11.5rem] w-[11.5rem] overflow-hidden"
+             h-[11.7rem] w-[11.7rem] overflow-hidden"
           >
             <img src={profileImageUri} alt="" className="rounded-full" />
             {/* 회원 정보 수정 클릭 && 연필 */}
@@ -112,15 +112,15 @@ const UserSettingPage = () => {
         {/* 프레임 조정 */}
         <div className="flex flex-col items-start px-6 h-full gap-4">
           {/* 빈공간 */}
-          <div className="h-[32%]"></div>
+          <div className="h-[28%]"></div>
           {/* 닉네임, 지역, 직업 */}
-          <div className="h-1/6">
+          <div className="h-[15%]">
             <NickNameH1 className="flex gap-1">
               밥도둑용고
               <HiOutlineBadgeCheck
                 size="26"
                 color="gray"
-                className="my-1.5 cursor-pointer"
+                className="my-1 cursor-pointer"
               />
             </NickNameH1>
             <div className="flex gap-1">
@@ -130,27 +130,54 @@ const UserSettingPage = () => {
             </div>
           </div>
           {/* 보이스 메세지 */}
-          <div className="h-1/5 w-full cursor-pointer">
+          <div className="h-[14%] w-full cursor-pointer">
             <span
               className="flex justify-center border-2 border-gray-200 rounded-2xl 
-            text-center py-4 font-medium text-xl w-full"
+            text-center py-3 font-medium text-xl w-full"
             >
               <BsFillMicFill size="22" className="m-0.5 mr-3" />내 보이스 메세지
             </span>
           </div>
+
           {/* 정보 미리보기 박스*/}
           <div className="h-5/6 w-full">
-            {/* 자기 소개 */}
-            <div className="flex flex-col gap-2 w-full h-[55%]">
-              <span className="text-lg">소개</span>
-              <p className="text-blue-600 text-sm w-full h-full rounded-lg">
-                user?.소개글 || "입력된 소개글이 없습니다."
+            {/* 닉네임, 성별, 생일, 위치 */}
+            <div className="flex flex-col w-full h-[42%]">
+              {/* 닉네임 */}
+              <div className="flex items-center h-1/4">
+                <span className="w-full ">닉네임</span>
+                <span className="w-full text-blue-600">용고</span>
+              </div>
+              {/* 성별 */}
+              <div className="flex items-center h-1/4">
+                <span className="w-full ">성별</span>
+                <span className="w-full text-blue-600">남자</span>
+              </div>
+              {/* 생일 */}
+              <div className="flex items-center h-1/4">
+                <span className="w-full ">생일</span>
+                <span className="w-full text-blue-600">1999-06-05</span>
+              </div>
+              {/* 위치 */}
+              <div className="flex items-center h-1/4">
+                <span className="w-full ">위치</span>
+                <span className="w-full text-blue-600">광주광역시</span>
+              </div>
+            </div>
+            <hr className="py-2" />
+            {/* 자기소개 */}
+            <div className="flex flex-col w-full h-1/4">
+              <span className=" py-1">소개</span>
+              <p className="text-blue-600 text-xs">
+                여기는 니가 어떤 사람이고 뭘 어필할 수 있는지 쓰는 곳
               </p>
-              <hr />
-              {/* 이상형정보 */}
-              <span className="text-lg">나의 이상형</span>
-              <p className="text-blue-600 text-sm w-full h-full rounded-lg">
-                user?.소개글 || "입력된 소개글이 없습니다."
+            </div>
+            <hr className="py-2" />
+            {/* 나의 이상형  */}
+            <div className="flex flex-col w-full h-1/4">
+              <span className=" py-1">나의 이상형</span>
+              <p className="text-blue-600 text-xs">
+                여기는 니가 니 이상형에 대해 글을쓰는 곳입니다
               </p>
             </div>
           </div>

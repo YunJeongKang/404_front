@@ -18,7 +18,7 @@ export default UserInfoH2;
 export const NickNameH1: FC<CommonHeadingProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
-    <h1 className={`font-extrabold text-3xl ${className}`} {...restProps}>
+    <h1 className={`font-extrabold text-2xl ${className}`} {...restProps}>
       {children}
     </h1>
   );
@@ -27,7 +27,7 @@ export const NickNameH1: FC<CommonHeadingProps> = (props) => {
 export const SubInfoH3: FC<CommonHeadingProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
-    <h1 className={`font-medium text-xl ${className}`} {...restProps}>
+    <h1 className={`font-medium text-lg ${className}`} {...restProps}>
       {children}
     </h1>
   );

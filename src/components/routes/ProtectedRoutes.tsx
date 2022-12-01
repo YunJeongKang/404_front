@@ -6,8 +6,9 @@ import RecommendPage from "@components/home/RecommendPage";
 import LikePage from "@components/home/LikePage";
 import ChatPage from "@components/home/ChatPage";
 import UserSettingPage from "@components/home/UserSettingPage";
+import UserInfoModify from "@components/home/UserInfoModify";
 
-const { HOME, LIKE, RECOMMEND, CHAT, USER } = PATH;
+const { HOME, LIKE, RECOMMEND, CHAT, USER, MODIFY } = PATH;
 
 const ProtectedRoutes = () => {
   const auth = useAuth();
@@ -20,6 +21,7 @@ const ProtectedRoutes = () => {
       <Route path={RECOMMEND} element={<RecommendPage />} />
       <Route path={CHAT} element={<ChatPage />} />
       <Route path={USER} element={<UserSettingPage />} />
+      <Route path={MODIFY} element={<UserInfoModify />} />
       <Route path="*" element={<Navigate replace to={HOME} />} />
     </Routes>
   );

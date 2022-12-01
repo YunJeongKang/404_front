@@ -4,7 +4,7 @@ import ProtectedRoutes from "@components/routes/ProtectedRoutes";
 import UnauthedRoutes from "@components/routes/UnauthedRoutes";
 import useAuth from "@store/useAuth";
 import Footer from "@utils/common/app/Footer";
-import Header, { SubHeader } from "@utils/common/app/Header";
+import Header, { ModifyHeader, SubHeader } from "@utils/common/app/Header";
 import PATH from "@utils/routes/PATH";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
     null
   );
 
-  const { HOME, USER } = PATH;
+  const { HOME, USER, MODIFY } = PATH;
 
   const authPageUI = "min-h-[37.5rem] h-[37.5rem] max-h-[100rem]";
   const authOtherUI = "min-h-[40.15rem] h-[40.15rem] max-h-[100rem]";
@@ -35,8 +35,13 @@ function App() {
       <div className="max-h-[100rem] h-screen max-w-[28rem] z-[10] scrollbar-hide py-3 drop-shadow">
         {(isTrue && location.pathname === HOME && <Header />) ||
           (isTrue &&
-            location.pathname !== HOME &&
-            location.pathname !== USER && <SubHeader />)}
+          location.pathname !== HOME &&
+          location.pathname !== USER &&
+          location.pathname !== MODIFY ? (
+            <SubHeader />
+          ) : (
+            location.pathname !== USER && <ModifyHeader username="용고" />
+          ))}
         <main
           className={`flex flex-col items-center w-[26rem] border-x shadow-sm drop-shadow ${
             isTrue

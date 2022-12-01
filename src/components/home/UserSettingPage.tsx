@@ -11,8 +11,12 @@ import { useState, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import useAuth from "@store/useAuth";
+import { Link } from "react-router-dom";
+import PATH from "@utils/routes/PATH";
 
 const UserSettingPage = () => {
+  const { MODIFY } = PATH;
+
   // FIXME init as undefined
   const [profileImageUri, setProfileImageUri] = useState<string | undefined>(
     `${import.meta.env.VITE_S3_BASE_URL}/yena.jpg`
@@ -43,7 +47,8 @@ const UserSettingPage = () => {
     //    .then((user) => {
     //      /* Codes */
     //      const profileImageUri = `${import.meta.env.VITE_S3_BASE_URL}/user/${user.프로필경로}`;
-    //      setProfileImageUri(profile);
+    //      setProfileImageUri(profile)import { Link } from 'react-router-dom';
+
     //    })
     //    .catch(console.error);
   }, []);
@@ -51,7 +56,7 @@ const UserSettingPage = () => {
   return (
     <div
       className="relative flex flex-col flex-wrap justify-center items-center 
-    w-[26rem] h-[42rem] gap-4 bg-userSetting -z-30 select-none"
+    w-[26rem] h-[42rem] gap-4 -z-30 select-none"
     >
       {/* 상단 빈공간 */}
       <>
@@ -83,16 +88,18 @@ const UserSettingPage = () => {
             <img src={profileImageUri} alt="" className="rounded-full" />
             {/* 회원 정보 수정 클릭 && 연필 */}
             <>
-              <div
-                className="absolute inline-block rounded-full border-2 h-[2.7rem] cursor-pointer 
-               w-[2.7rem] bottom-0 right-3 content-center bg-white"
-              >
-                <HiOutlinePencil
-                  size="30"
-                  color="#555555"
-                  className="absolute inline-block right-[5px] top-[5px]"
-                />
-              </div>
+              <Link to={MODIFY}>
+                <div
+                  className="absolute inline-block rounded-full border-2 h-[2.7rem] cursor-pointer 
+                 w-[2.7rem] bottom-0 right-3 content-center bg-white"
+                >
+                  <HiOutlinePencil
+                    size="30"
+                    color="#555555"
+                    className="absolute inline-block right-[5px] top-[5px]"
+                  />
+                </div>
+              </Link>
             </>
           </div>
         </div>
@@ -131,25 +138,20 @@ const UserSettingPage = () => {
               <BsFillMicFill size="22" className="m-0.5 mr-3" />내 보이스 메세지
             </span>
           </div>
-          {/* 정보 입력 박스 */}
+          {/* 정보 미리보기 박스*/}
           <div className="h-5/6 w-full">
-            {/* 이벤트 창 */}
-            <div className="flex flex-col h-[40%] w-full gap-4">
-              <UserSettingSpan>
-                <BsStarFill color="#e5cf07" className="my-1" />
-                미션
-              </UserSettingSpan>
-              <UserSettingSpan>
-                <BsFillPatchCheckFill color="green" className="my-1" />
-                인증
-              </UserSettingSpan>
-            </div>
             {/* 자기 소개 */}
             <div className="flex flex-col gap-2 w-full h-[55%]">
-              <span className="text-lg">나의 소개</span>
-              <div className="border-2 w-full h-5/6 rounded-lg cursor-pointer">
+              <span className="text-lg">소개</span>
+              <p className="text-blue-600 text-sm w-full h-full rounded-lg">
                 user?.소개글 || "입력된 소개글이 없습니다."
-              </div>
+              </p>
+              <hr />
+              {/* 이상형정보 */}
+              <span className="text-lg">나의 이상형</span>
+              <p className="text-blue-600 text-sm w-full h-full rounded-lg">
+                user?.소개글 || "입력된 소개글이 없습니다."
+              </p>
             </div>
           </div>
         </div>

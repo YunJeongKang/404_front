@@ -13,6 +13,7 @@ const PATH = {
   RECOMMEND: "/recommend",
   CHAT: "/chat",
   USER: "/user-setting",
+  MODIFY: "/user-setting/user-information-modify",
 };
 
 Object.freeze(PATH);

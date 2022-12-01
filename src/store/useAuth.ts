@@ -49,6 +49,7 @@ const useAuth = create<AuthState>((set, get) => {
     logout: () => {
       set({ isAuthenticated: false });
       localStorage.removeItem("AutoLogin");
+      localStorage.removeItem("isReady");
     },
 
     setAutoLogin: (isAuthenticated) => {

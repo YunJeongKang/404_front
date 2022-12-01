@@ -158,7 +158,7 @@ const UserInfoPage = () => {
       })
       .then((res) => {
         client.setComplete(res.data.isCompleted);
-        res.data.isCompleted && navigate(`${URL}${USER_IMAGE}`);
+        // res.data.isCompleted && navigate(`${URL}${USER_IMAGE}`);
       });
 
     // 서버로 가는 데이터 확인
@@ -328,7 +328,6 @@ const UserInfoPage = () => {
           />
         </ModalEmptyDiv>
       </SectionTemplate>
-
       {/* Step1 : 지역 */}
       {stepIndex >= 1 && (
         <motion.div
@@ -1045,7 +1044,7 @@ const UserInfoPage = () => {
         </motion.div>
       )}
       {/* 제춢버튼  */}
-      {stepIndex >= 0 && (
+      {stepIndex >= 8 && (
         <motion.div
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}

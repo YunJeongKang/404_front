@@ -5,7 +5,7 @@ const UserInfoForm: FC<CommonFormProps> = (props) => {
   const { children, className, onSubmit, ...restProps } = props;
   return (
     <form
-      className={`flex flex-col flex-wrap
+      className={`flex flex-col
        checked-bg:border-2 checked-bg:border-blue-500 checked-bg:text-blue-600 gap-2 select-none ${className}`}
       {...restProps}
       onSubmit={(evt) => {

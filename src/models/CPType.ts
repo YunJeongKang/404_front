@@ -17,3 +17,7 @@ export interface RegionSelectType {
 export interface JobSelectType {
   jobName: string;
 }
+
+export interface HobbySelectType {
+  hobbyName: string;
+}

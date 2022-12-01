@@ -24,6 +24,7 @@ export interface MainInfoInterface {
   salary: string;
   height: string;
   weight: string;
+  hobby: string;
 }
 
 export interface StyleInfoInterface {

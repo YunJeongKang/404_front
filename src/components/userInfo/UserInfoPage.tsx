@@ -25,7 +25,7 @@ import { selectAssetList } from "@data/main_info/asset";
 import ModalEmptyDiv from "@styles/indexStyle/indexDiv";
 import { selectBloodList } from "@data/main_info/blood";
 import { selectVehicleList } from "@data/main_info/vehicle";
-import { radioJobList } from "@data/main_info/job";
+import { selectJobList } from "@data/main_info/job";
 import { selectMarriagePlanList } from "@data/main_info/marriagePlants";
 import { selectReligionList } from "@data/main_info/religion";
 import { motion } from "framer-motion";
@@ -51,6 +51,8 @@ import OutsideInModal, {
   ModalSpanDiv,
   OutsideModal,
 } from "@styles/modal/ModalStyle";
+import { selectHealthList } from "@data/main_info/health";
+import { selectHobbyList } from "@data/main_info/hobby";
 
 const { INPUT, URL, USER_IMAGE } = PATH;
 
@@ -77,6 +79,7 @@ const UserInfoPage = () => {
     height: "",
     weight: "",
     nickname: "",
+    hobby: "",
   });
   // 단계별 진행
   const [stepIndex, setStepIndex] = useState<number>(0);
@@ -180,7 +183,9 @@ const UserInfoPage = () => {
 
   // Increase Step Index
   useLayoutEffect(() => {
-    if (mainInfo.asset && mainInfo.vehicle && mainInfo.salary) {
+    if (mainInfo.hobby && mainInfo.hobby) {
+      setStepIndex(9);
+    } else if (mainInfo.asset && mainInfo.vehicle && mainInfo.salary) {
       setStepIndex(8);
     } else if (mainInfo.religion && mainInfo.education) {
       setStepIndex(7);
@@ -536,7 +541,7 @@ const UserInfoPage = () => {
                 <OptionInput value="" className={mainInfo.job && "hidden"}>
                   -선택-
                 </OptionInput>
-                {radioJobList.map(({ jobName }, value) => (
+                {selectJobList.map(({ jobName }, value) => (
                   <OptionInput value={value} key={value} required>
                     {jobName}
                   </OptionInput>
@@ -746,8 +751,60 @@ const UserInfoPage = () => {
           </SectionTemplate>
         </motion.div>
       )}
+      {/* Step9: 건강, 취미  */}
+      {stepIndex >= 8 && (
+        <motion.div
+          className="flex flex-col justify-center gap-4"
+          initial={{ translateY: 20, opacity: 0 }}
+          animate={{ translateY: 0, opacity: 1.0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
+          {/* 취미 */}
+          <SectionTemplate>
+            <UserInfoH2>취미</UserInfoH2>
+            <ModalEmptyDiv>
+              <SelectInput
+                name="hobby"
+                value={mainInfo.hobby}
+                onChange={mainInfoChange}
+                className={mainInfo.hobby && "text-blue-600"}
+              >
+                <OptionInput value="" className={mainInfo.hobby && "hidden"}>
+                  -선택-
+                </OptionInput>
+                {selectHobbyList.map(({ hobbyName }, value) => (
+                  <OptionInput value={value} key={value} required>
+                    {hobbyName}
+                  </OptionInput>
+                ))}
+              </SelectInput>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+          {/* 운동  */}
+          <SectionTemplate>
+            <UserInfoH2>운동</UserInfoH2>
+            <ModalEmptyDiv>
+              <SelectInput
+                name="health"
+                value={mainInfo.health}
+                onChange={mainInfoChange}
+                className={mainInfo.health && "text-blue-600"}
+              >
+                <OptionInput value="" className={mainInfo.health && "hidden"}>
+                  -선택-
+                </OptionInput>
+                {selectHealthList.map(({ value, optionName }) => (
+                  <OptionInput value={value} key={value} required>
+                    {optionName}
+                  </OptionInput>
+                ))}
+              </SelectInput>
+            </ModalEmptyDiv>
+          </SectionTemplate>
+        </motion.div>
+      )}
       {/* Step8 : 남성 스타일  (스타일 선택 모달창) */}
-      {man && stepIndex >= 8 && (
+      {man && stepIndex >= 9 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
           initial={{ translateY: 20, opacity: 0 }}
@@ -887,7 +944,7 @@ const UserInfoPage = () => {
         </motion.div>
       )}
       {/* Step8 : 여성 스타일  (스타일 선택 모달창) */}
-      {woman && stepIndex >= 8 && (
+      {woman && stepIndex >= 9 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
           initial={{ translateY: 20, opacity: 0 }}
@@ -1044,7 +1101,7 @@ const UserInfoPage = () => {
         </motion.div>
       )}
       {/* 제춢버튼  */}
-      {stepIndex >= 8 && (
+      {stepIndex >= 9 && (
         <motion.div
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}

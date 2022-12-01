@@ -40,7 +40,7 @@ function App() {
           location.pathname !== MODIFY ? (
             <SubHeader />
           ) : (
-            location.pathname !== USER && <ModifyHeader username="용고" />
+            location.pathname === MODIFY && <ModifyHeader />
           ))}
         <main
           className={`flex flex-col items-center w-[26rem] border-x shadow-sm drop-shadow ${

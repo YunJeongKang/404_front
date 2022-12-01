@@ -1,6 +1,6 @@
 import { JobSelectType } from "@models/CPType";
 
-export const radioJobList: JobSelectType[] = [
+export const selectJobList: JobSelectType[] = [
   { jobName: "기타" },
   { jobName: "경영" },
   { jobName: "마케팅" },
@@ -108,4 +108,4 @@ export const radioJobList: JobSelectType[] = [
 ];
 
 // 내용을 한 단계 depth 동결 시키는 것 -> 불변성 조금 보장 -바뀔 수 있음.
-Object.freeze(radioJobList);
+Object.freeze(selectJobList);

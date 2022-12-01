@@ -35,3 +35,12 @@ export interface StyleInfoInterface {
   womanPersonality: object;
   womanFashion: object;
 }
+
+export interface UserImage {
+  image1: string;
+  image2: string;
+  image3: string;
+  image4: string;
+  image5: string;
+  image6: string;
+}

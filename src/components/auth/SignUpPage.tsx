@@ -35,11 +35,12 @@ const SignUnPage = () => {
       .then((res) => {
         console.log("넘어 온 값 :  ", res.data);
         // isReady 상태변경
+        !res.data.repeat && alert("이메일이 중복되었습니다.");
         auth.setReady(res.data.isReady);
         const userEmail = res.data.email;
         client.setUserEmail(userEmail);
       })
-      .catch(() => console.log("이메일이 중복되었습니다"));
+      .catch(() => alert("서버나 인터넷의 연결이 불안정합니다"));
 
     console.log({ ...values, checkPW });
   }

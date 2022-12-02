@@ -45,7 +45,7 @@ const MainPageTemplate = ({
           {/* 회원 대표사진 */}
           <img
             src={`${import.meta.env.VITE_S3_BASE_URL}/${img}`}
-            className="absolute z-0 top-[-30px]"
+            className="absolute z-0 top-[-30px] object-cover"
             alt=""
           />
           <div className="absolute top-0 left-0 z-10 w-full h-full bg-gradient-to-b from-transparent via-transparent to-black" />

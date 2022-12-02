@@ -37,7 +37,7 @@ const RecUserTemplate = ({
           <img
             src={`${import.meta.env.VITE_S3_BASE_URL}${img}`}
             alt=""
-            className="absolute top-[-2.5rem]"
+            className="absolute top-[-2.5rem] object-cover"
           />
           {/* 그레디언트 필터 */}
           <div className="z-10 absolute w-[101%] h-[110%] rounded-t-2xl top-[-10px] left-0 overflow-hidden bg-gradient-to-b from-transparent  via-transparent to-white" />

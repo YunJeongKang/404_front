@@ -330,8 +330,8 @@ const UserImgFile = () => {
       {/* 제출 버튼 */}
       <div className="flex items-center justify-center w-full h-[14%]">
         <button
-          className="flex py-2 px-4 text-lg font-bold w-[65%] justify-around rounded-3xl h-fit border-2 border-blue-400
-         text-blue-500 duration-150 active:scale-95 active:text-blue-600 active active:border-blue-500 text-center"
+          className="flex py-2 px-4 text-lg font-bold w-[65%] justify-around rounded-md h-fit border-2 border-blue-400
+         text-blue-500 duration-150 active:scale-95 active:text-blue-700 active active:border-blue-600 text-center"
           onClick={onClick}
         >
           <span>After Like 시작하기</span> <BsArrowRight size="27" />

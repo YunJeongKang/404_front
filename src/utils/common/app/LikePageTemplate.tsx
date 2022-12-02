@@ -27,11 +27,11 @@ const LikePageTemplate = ({
         />
       </div>
       {/* 회원 정보 간략 확인창 */}
-      <div className="flex flex-col justify-start items-start w-1/2 px-2 ml-5 text-blue-600">
+      <div className="flex flex-col justify-start items-start w-1/2 h-[95%] px-2 ml-5 text-blue-600">
         {/* 닉네임 */}
-        <span className="text-2xl font-bold text-black py-1 ">
-          {username}
-          <div className="flex gap-0.5 text-base font-normal">
+        <span className="flex flex-col text-[22px] h-2/3 font-bold text-black py-2">
+          <span className="h-[55%]">{username}</span>
+          <div className="flex gap-0.5 text-base font-normal mb-2">
             {/* 직업, 지역 */}
             <span>{job}</span>·<span>{region}</span>
           </div>

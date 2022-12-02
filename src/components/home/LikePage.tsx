@@ -18,7 +18,7 @@ const LikePage = () => {
         job="가수"
         region="서울"
         salary="5억이상"
-        username="비비"
+        username="최예나"
       />
       <LikePageTemplate
         education="부산외대"
@@ -26,7 +26,7 @@ const LikePage = () => {
         job="가수"
         region="서울"
         salary="5억이상"
-        username="비비"
+        username="김지은"
       />
       <LikePageTemplate
         education="부산외대"
@@ -34,7 +34,7 @@ const LikePage = () => {
         job="가수"
         region="서울"
         salary="5억이상"
-        username="비비"
+        username="김혜윤"
       />
       <LikePageTemplate
         education="부산외대"
@@ -42,7 +42,7 @@ const LikePage = () => {
         job="가수"
         region="서울"
         salary="5억이상"
-        username="비비"
+        username="슈화"
       />
       <LikePageTemplate
         education="부산외대"
@@ -50,7 +50,7 @@ const LikePage = () => {
         job="가수"
         region="서울"
         salary="5억이상"
-        username="비비"
+        username="존윅"
       />
       <LikePageTemplate
         education="부산외대"
@@ -58,7 +58,7 @@ const LikePage = () => {
         job="가수"
         region="서울"
         salary="5억이상"
-        username="비비"
+        username="키미노 나마에와"
       />
     </div>
   );

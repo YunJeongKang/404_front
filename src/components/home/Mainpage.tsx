@@ -4,7 +4,7 @@ import MainPageTemplate from "@utils/common/app/MainPageTemplate";
 function MainPage() {
   const auth = useAuth();
   return (
-    <div className="flex flex-wrap w-full h-full gap-8  max-h-[1000rem] font-eland">
+    <div className="flex flex-wrap w-full h-full gap-8 max-h-[1000rem] font-eland">
       <MainPageTemplate
         age="24"
         appearance="귀여움"

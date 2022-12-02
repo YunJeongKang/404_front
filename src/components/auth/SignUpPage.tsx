@@ -55,60 +55,80 @@ const SignUnPage = () => {
       placeholder?: string; */
 
     <UserInfoForm
-      className="flex flex-col items-center py-4 px-8 gap-2 !w-[98%] bg-white"
+      className="flex flex-col justify-center items-center py-4 px-8 gap-2 !w-[98%] h-full bg-white"
       onSubmit={onSubmit}
     >
-      <TextInputTemplate
-        onChange={onChange}
-        value={values.email || ""}
-        query="이메일 주소"
-        pattern="([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
-        name="email"
-        dangerText="올바른 이메일 형식을 입력하세요"
-        placeholder="이메일을 입력하세요"
-      />
-      <TextInputTemplate
-        onChange={onChange}
-        value={values.password || ""}
-        query="비밀번호"
-        pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
-        name="password"
-        type="password"
-        dangerText="숫자, 영문, 특수문자를 각 1개 이상 포함한 8자리 이상의 비밀번호를 입력하세요"
-        placeholder="비밀번호를 입력하세요"
-        autoComplete="off"
-      />
-      <fieldset className="flex justify-between gap-2 w-full p-[3px]">
-        <span className="font-bold text-sm w-1/3">비밀번호 재입력</span>
-        <div className="flex flex-col items-start gap-1 w-2/3">
-          <input
-            className="border-b w-full peer dark:text-dark px-1"
-            type="password"
-            value={checkPW}
-            name="checked-password"
-            pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
-            placeholder="비밀번호 재입력"
-            required
-            autoComplete="false"
-            onChange={(evt) => {
-              setCheckPW(evt.target.value);
-              console.log("password", values.password);
-              console.log("checkPW", checkPW);
-            }}
-          />
-          {values.password !== checkPW && (
-            <span className="text-danger text-xs">
-              위의 비밀번호를 똑같이 입력하세요
+      <div className="flex justify-center items-center text-6xl w-full h-1/6">
+        <div className="flex flex-col p-3 pr-5">
+          <span className="text-white font-eland font-medium drop-shadow-[0.04em_0.04em_0_rgba(0_0_0_/_0.5)] opacity-90">
+            <span className="text-red-400 drop-shadow-[0.06em_0.06em_0_rgba(255_163_191_/_0.8)]">
+              A
             </span>
-          )}
+            <span className="drop-shadow-[0.09em_0.09em_0_rgba(0_0_0_/_0.1)]">
+              fter
+            </span>
+          </span>
+          <span className="flex text-blue-400 font-eland font-medium justify-end drop-shadow-[0.03em_0.03em_0_rgba(0_0_0_/_0.5)] opacity-90">
+            <span className="drop-shadow-[0.06em_0.06em_0_rgba(158_179_255_/_0.8)]">
+              Like
+            </span>
+          </span>
         </div>
-      </fieldset>
-      <button
-        type="submit"
-        className="text-center mt-4 bg-blue-400 text-white px-3 py-1 rounded-md shadow-md duration-100 active:scale-95 w-1/2"
-      >
-        회원가입
-      </button>
+      </div>
+      <div className="flex flex-col w-full h-[38%] justify-center items-center">
+        <TextInputTemplate
+          onChange={onChange}
+          value={values.email || ""}
+          query="이메일 주소"
+          pattern="([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+          name="email"
+          dangerText="올바른 이메일 형식을 입력하세요"
+          placeholder="이메일을 입력하세요"
+        />
+        <TextInputTemplate
+          onChange={onChange}
+          value={values.password || ""}
+          query="비밀번호"
+          pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
+          name="password"
+          type="password"
+          dangerText="숫자, 영문, 특수문자를 각 1개 이상 포함한 8자리 이상의 비밀번호를 입력하세요"
+          placeholder="비밀번호를 입력하세요"
+          autoComplete="off"
+        />
+        <fieldset className="flex justify-between gap-2 w-full p-[3px]">
+          <span className="font-bold text-sm w-1/3">비밀번호 재입력</span>
+          <div className="flex flex-col items-start gap-1 w-2/3">
+            <input
+              className="border-b w-full peer dark:text-dark px-1"
+              type="password"
+              value={checkPW}
+              name="checked-password"
+              pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
+              placeholder="비밀번호 재입력"
+              required
+              autoComplete="false"
+              onChange={(evt) => {
+                setCheckPW(evt.target.value);
+                console.log("password", values.password);
+                console.log("checkPW", checkPW);
+              }}
+            />
+            {values.password !== checkPW && (
+              <span className="text-danger text-xs">
+                위의 비밀번호를 똑같이 입력하세요
+              </span>
+            )}
+          </div>
+        </fieldset>
+        <button
+          type="submit"
+          className="text-center mt-4 bg-blue-400 text-white px-3 py-1 rounded-md shadow-md duration-100 active:scale-95 w-1/2"
+        >
+          회원가입
+        </button>
+      </div>
+      <div className="h-[10%]"></div>
     </UserInfoForm>
   );
 };

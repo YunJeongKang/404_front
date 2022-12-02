@@ -197,7 +197,7 @@ const UserInfoPage = () => {
       setStepIndex(4);
     } else if (mainInfo.height && mainInfo.weight && mainInfo.blood) {
       setStepIndex(3);
-    } else if (mainInfo.detailRegion != "") {
+    } else if (mainInfo.detailRegion) {
       setStepIndex(2);
     } else if (mainInfo.nickname && mainInfo.gender && mainInfo.birth) {
       setStepIndex(1);

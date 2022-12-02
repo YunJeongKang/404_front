@@ -42,13 +42,13 @@ const UserImgFile = () => {
     // 보내는 값
     console.log("보내는 값:", {
       "userImage[0]": formData.get("userImage"),
-      formData: formData.getAll("userImage"),
+      ...formData.getAll("userImage"),
       email: email,
       imageName: fileName,
     });
     // axios 통신
     axios.put(`${URL}${USER_IMAGE}`, {
-      formData: formData.getAll("userImage"),
+      ...formData.getAll("userImage"),
       email: email,
       imageName: { ...fileName },
     });

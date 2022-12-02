@@ -18,6 +18,8 @@ interface AuthState {
 
   setReady: (isReady: boolean) => void;
   getReady: () => boolean;
+
+  setKakaoToken: (token: string) => void;
 }
 
 const useAuth = create<AuthState>((set, get) => {
@@ -64,6 +66,10 @@ const useAuth = create<AuthState>((set, get) => {
     },
 
     getReady: () => localStorage.getItem("isReady") === "true",
+
+    setKakaoToken: (kkaoToken) => {
+      localStorage.setItem("kakaoToken", JSON.stringify(kkaoToken));
+    },
     // End of create
   };
 });

@@ -19,7 +19,7 @@ const LikePageTemplate = ({
   return (
     <div className="relative flex justify-center  items-center w-[95%] h-[18%] my-3">
       {/* 이미지 영역 */}
-      <div className="absolute left-2 flex justify-start items-center rounded-full overflow-hidden w-[25%] h-[95%]">
+      <div className="absolute left-2 flex justify-start items-center rounded-[32px] overflow-hidden w-[25%] h-[95%]">
         <img
           src={`${import.meta.env.VITE_S3_BASE_URL}/${img}`}
           alt=""

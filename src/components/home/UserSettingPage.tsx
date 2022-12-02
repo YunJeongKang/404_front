@@ -1,31 +1,27 @@
-import { HiOutlinePencil, HiOutlineBadgeCheck } from "react-icons/hi";
-import { FiSettings } from "react-icons/fi";
-import {
-  BsFillMicFill,
-  BsStarFill,
-  BsFillPatchCheckFill,
-} from "react-icons/bs";
-import { NickNameH1, SubInfoH3 } from "@styles/indexStyle/indexHeading";
-import { UserSettingSpan } from "@styles/indexStyle/indexSpan";
 import { useState, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import useAuth from "@store/useAuth";
-import { Link } from "react-router-dom";
 import PATH from "@utils/routes/PATH";
+import {
+  LinkModify,
+  SettingButton,
+  UserSettingInfo,
+} from "@styles/setting/AnySettingTemplate";
 
 const UserSettingPage = () => {
   const { MODIFY } = PATH;
 
   // FIXME init as undefined
   const [profileImageUri, setProfileImageUri] = useState<string | undefined>(
-    `${import.meta.env.VITE_S3_BASE_URL}/yena.jpg`
+    "yena.jpg"
   );
 
   const [settingOpen, setSettingOpen] = useState<boolean>(false);
   const [appearSetting, setAppearSetting] = useState<React.ReactNode | null>(
     null
   );
+
   // const [user, setUser] =
   const auth = useAuth();
 
@@ -58,131 +54,29 @@ const UserSettingPage = () => {
       className="relative flex flex-col flex-wrap justify-center items-center 
     w-[26rem] h-[42rem] gap-4 -z-30 select-none"
     >
-      {/* 상단 빈공간 */}
-      <>
-        {settingOpen && appearSetting}
-        <div className="w-[90%] h-[10%] flex justify-between">
-          <div></div>
-          {/* 설정 창 */}
-          <FiSettings
-            size="25"
-            color="gray"
-            className="m-1 cursor-pointer z-10"
-            onClick={() => {
-              setSettingOpen(true);
-              settingOpen && setSettingOpen(false);
-            }}
-          />
-        </div>
-      </>
+      {settingOpen && appearSetting}
+      <SettingButton
+        onClick={() => {
+          setSettingOpen(true);
+          settingOpen && setSettingOpen(false);
+        }}
+      />
       {/* 프로필 사진 */}
-      <>
-        <div
-          className="absolute text-center left-7 top-2 inline-block"
-          onClick={() => setSettingOpen(false)}
-        >
-          <div
-            className="rounded-full 
-             h-[11.7rem] w-[11.7rem] overflow-hidden"
-          >
-            <img src={profileImageUri} alt="" className="rounded-full" />
-            {/* 회원 정보 수정 클릭 && 연필 */}
-            <>
-              <Link to={MODIFY}>
-                <div
-                  className="absolute inline-block rounded-full border-2 h-[2.7rem] cursor-pointer 
-                 w-[2.7rem] bottom-0 right-3 content-center bg-white"
-                >
-                  <HiOutlinePencil
-                    size="30"
-                    color="#555555"
-                    className="absolute inline-block right-[5px] top-[5px]"
-                  />
-                </div>
-              </Link>
-            </>
-          </div>
-        </div>
-      </>
+      <LinkModify img={profileImageUri} onClick={() => setSettingOpen(false)} />
       {/* 정보박스 */}
-      <div
-        className=" items-start bg-white rounded-lg w-[92%] h-[82%] -z-20"
+      <UserSettingInfo
         onClick={() => setSettingOpen(false)}
-      >
-        {/* 프레임 조정 */}
-        <div className="flex flex-col items-start px-6 h-full gap-4">
-          {/* 빈공간 */}
-          <div className="h-[28%]"></div>
-          {/* 닉네임, 지역, 직업 */}
-          <div className="h-[15%]">
-            <NickNameH1 className="flex gap-1">
-              밥도둑용고
-              <HiOutlineBadgeCheck
-                size="26"
-                color="gray"
-                className="my-1 cursor-pointer"
-              />
-            </NickNameH1>
-            <div className="flex gap-1">
-              {/* 지역 */}
-              <SubInfoH3>광주광역시</SubInfoH3> ·{" "}
-              <SubInfoH3>FE개발자</SubInfoH3>
-            </div>
-          </div>
-          {/* 보이스 메세지 */}
-          <div className="h-[14%] w-full cursor-pointer">
-            <span
-              className="flex justify-center border-2 border-gray-200 rounded-2xl 
-            text-center py-3 font-medium text-xl w-full"
-            >
-              <BsFillMicFill size="22" className="m-0.5 mr-3" />내 보이스 메세지
-            </span>
-          </div>
-
-          {/* 정보 미리보기 박스*/}
-          <div className="h-5/6 w-full">
-            {/* 닉네임, 성별, 생일, 위치 */}
-            <div className="flex flex-col w-full h-[42%]">
-              {/* 닉네임 */}
-              <div className="flex items-center h-1/4">
-                <span className="w-full ">닉네임</span>
-                <span className="w-full text-blue-600">용고</span>
-              </div>
-              {/* 성별 */}
-              <div className="flex items-center h-1/4">
-                <span className="w-full ">성별</span>
-                <span className="w-full text-blue-600">남자</span>
-              </div>
-              {/* 생일 */}
-              <div className="flex items-center h-1/4">
-                <span className="w-full ">생일</span>
-                <span className="w-full text-blue-600">1999-06-05</span>
-              </div>
-              {/* 위치 */}
-              <div className="flex items-center h-1/4">
-                <span className="w-full ">위치</span>
-                <span className="w-full text-blue-600">광주광역시</span>
-              </div>
-            </div>
-            <hr className="py-2" />
-            {/* 자기소개 */}
-            <div className="flex flex-col w-full h-1/4">
-              <span className=" py-1">소개</span>
-              <p className="text-blue-600 text-xs">
-                여기는 니가 어떤 사람이고 뭘 어필할 수 있는지 쓰는 곳
-              </p>
-            </div>
-            <hr className="py-2" />
-            {/* 나의 이상형  */}
-            <div className="flex flex-col w-full h-1/4">
-              <span className=" py-1">나의 이상형</span>
-              <p className="text-blue-600 text-xs">
-                여기는 니가 니 이상형에 대해 글을쓰는 곳입니다
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+        gender="여자"
+        job="가수"
+        wanted="나의 이상형은 오큘러스 하는 너드남"
+        username="최예나"
+        region="서울특별시"
+        introduce="And I say hey! I'm gonna make it Smile, smile, smile away
+        예쁘게 웃고 넘겨버릴래 Just smile away Just smile awa-y 아픔, 슬픔, 외로움 잊게"
+        appearance="#귀여움"
+        fashion="#아무거나 잘 어울림"
+        personality="#쿨함 #오리 #이쁨"
+      />
     </div>
   );
 };

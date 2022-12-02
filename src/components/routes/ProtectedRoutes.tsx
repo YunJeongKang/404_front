@@ -4,7 +4,7 @@ import useAuth from "@store/useAuth";
 import MainPage from "@components/home/Mainpage";
 import RecommendPage from "@components/home/RecommendPage";
 import LikePage from "@components/home/LikePage";
-import ChatPage from "@components/home/ChatPage";
+import ChatListPage from "@components/home/ChatListPage";
 import UserSettingPage from "@components/home/UserSettingPage";
 import UserInfoModify from "@components/home/UserInfoModify";
 
@@ -19,7 +19,7 @@ const ProtectedRoutes = () => {
       <Route path={HOME} element={<MainPage />} />
       <Route path={LIKE} element={<LikePage />} />
       <Route path={RECOMMEND} element={<RecommendPage />} />
-      <Route path={CHAT} element={<ChatPage />} />
+      <Route path={CHAT} element={<ChatListPage />} />
       <Route path={USER} element={<UserSettingPage />} />
       <Route path={MODIFY} element={<UserInfoModify />} />
       <Route path="*" element={<Navigate replace to={HOME} />} />

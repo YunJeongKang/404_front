@@ -29,30 +29,29 @@ const UserImgFile = () => {
   // 백엔드에 보내주는 인코딩 이미지 데이터
   const formData = new FormData();
   // [...Array(6).keys()].forEach((value,index) =>  formData.append(`userImage${index}`, image[index]))
-  formData.append("userImage1", image1);
-  formData.append("userImage2", image2);
-  formData.append("userImage3", image3);
-  formData.append("userImage4", image4);
-  formData.append("userImage5", image5);
-  formData.append("userImage6", image6);
+  formData.append("userImage", image1);
+  formData.append("userImage", image2);
+  formData.append("userImage", image3);
+  formData.append("userImage", image4);
+  formData.append("userImage", image5);
+  formData.append("userImage", image6);
 
   const isAuth = useAuth();
 
   const onClick = () => {
     // 보내는 값
     console.log("보내는 값:", {
-      formData,
+      formData: formData.getAll("userImage"),
       email: email,
       imageName: fileName,
     });
     // axios 통신
-    axios
-      .put(`${URL}${USER_IMAGE}`, {
-        formData,
-        email: email,
-        imageName: { ...fileName },
-      })
-      .then((res) => isAuth.setAutoLogin(res.data.isAuthenticated));
+    axios.put(`${URL}${USER_IMAGE}`, {
+      formData: formData.getAll("userImage"),
+      email: email,
+      imageName: { ...fileName },
+    });
+    // .then((res) => isAuth.setAutoLogin(res.data.isAuthenticated));
   };
 
   const email = useClient().getUserEmail();

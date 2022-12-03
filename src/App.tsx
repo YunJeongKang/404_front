@@ -47,16 +47,16 @@ function App() {
           <main
             className={`flex flex-col items-center w-[26rem] border-x shadow-sm drop-shadow ${
               isTrue
-                ? location.pathname !== USER
+                ? location.pathname !== USER && location.pathname !== MODIFY
                   ? authPageUI
                   : authOtherUI
                 : unAuthPageUI
-            } overflow-hidden overflow-y-auto scrollbar-hide justify-center border bg-white`}
+            } overflow-hidden overflow-y-scroll scrollbar-hide justify-center border bg-white`}
           >
             {currentRoutes}
           </main>
         </SettingModalProvider>
-        {isTrue ? <Footer /> : null}
+        {isTrue && location.pathname !== MODIFY && <Footer />}
       </div>
     </div>
   );

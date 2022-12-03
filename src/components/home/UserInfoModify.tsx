@@ -1,4 +1,7 @@
-import { SettingModalCloseButton } from "@styles/modal/ModalStyle";
+import ModalH2, {
+  OutsideModal,
+  SettingModalCloseButton,
+} from "@styles/modal/ModalStyle";
 import { IntroModal } from "@styles/modal/SettingModal";
 import { motion } from "framer-motion";
 import { useLayoutEffect, useState } from "react";
@@ -11,9 +14,9 @@ const UserInfoModify = () => {
   };
   return (
     <motion.div
-      initial={{ scale: 0.85, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      initial={{ translateY: 600, opacity: 0 }}
+      animate={{ translateY: 0, opacity: 1 }}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
       className="relative flex flex-col justify-center items-center w-full h-[99%] max-h-[200rem] scrollbar-hide"
     >
       {/* 이미지 영역 */}
@@ -27,7 +30,7 @@ const UserInfoModify = () => {
         />
         <label
           htmlFor="imgInput1"
-          className="flex justify-center items-center border-2 border-white text-[0.5rem] text-gray-400"
+          className="flex justify-center items-center border-2 border-white text-[0.5rem] text-gray-400 cursor-pointer"
         >
           이미지를 올려주세요
         </label>
@@ -40,7 +43,7 @@ const UserInfoModify = () => {
         />
         <label
           htmlFor="imgInput2"
-          className="flex justify-center items-center border-2 border-white text-[0.5rem] text-gray-400"
+          className="flex justify-center items-center border-2 border-white text-[0.5rem] text-gray-400 cursor-pointer"
         >
           이미지를 올려주세요
         </label>
@@ -53,7 +56,7 @@ const UserInfoModify = () => {
         />
         <label
           htmlFor="imgInput3"
-          className="flex justify-center items-center border-2 border-white text-[0.5rem] text-gray-400"
+          className="flex justify-center items-center border-2 border-white text-[0.5rem] text-gray-400 cursor-pointer"
         >
           이미지를 올려주세요
         </label>
@@ -66,7 +69,7 @@ const UserInfoModify = () => {
         />
         <label
           htmlFor="imgInput4"
-          className="flex justify-center items-center border-2 border-white text-[0.5rem] text-gray-400"
+          className="flex justify-center items-center border-2 border-white text-[0.5rem] text-gray-400 cursor-pointer"
         >
           이미지를 올려주세요
         </label>
@@ -79,7 +82,7 @@ const UserInfoModify = () => {
         />
         <label
           htmlFor="imgInput5"
-          className="flex justify-center items-center border-2 border-white text-[0.5rem] text-gray-400"
+          className="flex justify-center items-center border-2 border-white text-[0.5rem] text-gray-400 cursor-pointer"
         >
           이미지를 올려주세요
         </label>
@@ -92,13 +95,13 @@ const UserInfoModify = () => {
         />
         <label
           htmlFor="imgInput6"
-          className="flex justify-center items-center border-2 border-white text-[0.5rem] text-gray-400"
+          className="flex justify-center items-center border-2 border-white text-[0.5rem] text-gray-400 cursor-pointer"
         >
           이미지를 올려주세요
         </label>
       </div>
       {/* 회원 정보창 영역 */}
-      <div className="absolute top-64 flex flex-col w-[92%] h-[165%] mt-4">
+      <div className="absolute top-64 flex flex-col w-[92%] h-[165%] mt-10">
         {/* 닉네임, 성별, 생일, 위치 */}
         <div className="flex flex-col w-full h-[15%]">
           {/* 닉네임 */}
@@ -127,8 +130,12 @@ const UserInfoModify = () => {
         <div className="flex flex-col w-full h-fit mb-4" onClick={introClick}>
           <span className="font-bold py-1">소개</span>
           <IntroModal isIntroOpen={introModalOpen}>
-            혹시 글씨가 보입니까?
-            <SettingModalCloseButton onClick={() => setIntroModalOpen(false)} />
+            <OutsideModal>
+              <ModalH2>소개</ModalH2>
+              <SettingModalCloseButton
+                onClick={() => setIntroModalOpen(false)}
+              />
+            </OutsideModal>
           </IntroModal>
           <p className="text-blue-600 text-sm">
             여기는 니가 어떤 사람이고 뭘 어필할 수 있는지 쓰는 곳

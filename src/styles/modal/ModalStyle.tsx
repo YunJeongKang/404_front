@@ -11,25 +11,25 @@ interface OutsideModalInterface extends CommonDivProps {
   isModal?: React.ReactNode;
 }
 
-const OutsideInModal: FC<OutsideModalInterface> = (props) => {
+const ModalH2: FC<OutsideModalInterface> = (props) => {
   const { children, className, ...restProps } = props;
   return (
-    <div
+    <h2
       {...restProps}
-      className={`w-4/6 my-8 text-center font-semibold text-3xl py-2 font-eland ${className}`}
+      className={`flex justify-center items-center w-4/6 h-[10%] text-center font-semibold text-3xl font-eland ${className}`}
     >
       {children}
-    </div>
+    </h2>
   );
 };
 
-export default OutsideInModal;
+export default ModalH2;
 
 export const OutsideModal: FC<CommonDivProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <div
-      className={`relative flex flex-col flex-wrap items-center h-full w-full gap-4 ${className}`}
+      className={`relative flex flex-col flex-wrap justify-center items-center h-[110%] w-full gap-8 ${className}`}
       {...restProps}
     >
       {children}
@@ -47,7 +47,7 @@ export const InfoModalCloseButton = ({
   return (
     <button
       onClick={onClick}
-      className={`absolute bottom-5 px-2 bg-success py-0.5 rounded-md text-lg z-50 text-white
+      className={`px-2 bg-success py-0.5 rounded-md text-lg z-50 text-white
        duration-150 hover:bg-green-400 cursor-pointer $`}
     >
       선택완료

@@ -5,7 +5,7 @@ const SectionTemplate: FC<CommonSectionProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <section
-      className={`flex flex-raw justify-center items-center w-[22rem] gap-1 ${className}`}
+      className={`flex justify-center h-fit items-center w-[22rem] gap-1 ${className}`}
       {...restProps}
     >
       {children}

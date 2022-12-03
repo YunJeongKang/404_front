@@ -45,7 +45,7 @@ import { manPersonalityList } from "@data/style_info/man_style/personality";
 import { womanAppearanceList } from "@data/style_info/woman_style/appearance";
 import { womanFashionList } from "@data/style_info/woman_style/fashion";
 import { womanPersonalityList } from "@data/style_info/woman_style/personality";
-import OutsideInModal, {
+import ModalH2, {
   InfoModalCloseButton,
   ModalSpan,
   ModalSpanDiv,
@@ -269,7 +269,7 @@ const UserInfoPage = () => {
   return (
     <UserInfoForm
       onSubmit={onSubmit}
-      className={`justify-center items-center bg-white !max-h-[100rem] py-4 px-2 gap-4`}
+      className={`relative justify-center items-center h-fit bg-white max-h-[100rem] py-4 px-2 gap-4`}
     >
       {/* 닉네임 */}
       <SectionTemplate>
@@ -833,7 +833,7 @@ const UserInfoPage = () => {
               )}
               <ManAppearanceModal isAppearanceOpen={isAppearanceOpen}>
                 <OutsideModal>
-                  <OutsideInModal>외모</OutsideInModal>
+                  <ModalH2>외모</ModalH2>
                   <CheckBoxInputTemplate>
                     {manAppearanceList.map(({ htmlFor, labelName, value }) => (
                       <CheckBoxInput
@@ -880,8 +880,8 @@ const UserInfoPage = () => {
                 isPersonalityOpen={isPersonalityOpen}
               >
                 <OutsideModal className="gap-2">
-                  <OutsideInModal>성격</OutsideInModal>
-                  <CheckBoxInputTemplate className="!gap-4">
+                  <ModalH2>성격</ModalH2>
+                  <CheckBoxInputTemplate className="!gap-4 h-[63.5%]">
                     {manPersonalityList.map(({ htmlFor, labelName, value }) => (
                       <CheckBoxInput
                         key={htmlFor}
@@ -924,8 +924,8 @@ const UserInfoPage = () => {
               )}
               <ManFashionModal className="h-full" isFashionOpen={isFashionOpen}>
                 <OutsideModal>
-                  <OutsideInModal>패션</OutsideInModal>
-                  <CheckBoxInputTemplate>
+                  <ModalH2>패션</ModalH2>
+                  <CheckBoxInputTemplate className="h-[69.5%]">
                     {manFashionList.map(({ htmlFor, labelName, value }) => (
                       <CheckBoxInput
                         className="text-sm"
@@ -948,7 +948,7 @@ const UserInfoPage = () => {
         </motion.div>
       )}
       {/* Step8 : 여성 스타일  (스타일 선택 모달창) */}
-      {woman && stepIndex >= 9 && (
+      {woman && stepIndex >= 0 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
           initial={{ translateY: 20, opacity: 0 }}
@@ -979,7 +979,7 @@ const UserInfoPage = () => {
                 isWomanAppearanceOpen={isWomanAppearanceOpen}
               >
                 <OutsideModal>
-                  <OutsideInModal>외모</OutsideInModal>
+                  <ModalH2>외모</ModalH2>
                   <CheckBoxInputTemplate>
                     {womanAppearanceList.map(
                       ({ htmlFor, labelName, value }) => (
@@ -1029,9 +1029,9 @@ const UserInfoPage = () => {
                 className="!h-4/5"
                 isWomanPersonalityOpen={isWomanPersonalityOpen}
               >
-                <OutsideModal className="gap-2">
-                  <OutsideInModal>성격</OutsideInModal>
-                  <CheckBoxInputTemplate className="!gap-4">
+                <OutsideModal className="gap-2 !h-[80%]">
+                  <ModalH2>성격</ModalH2>
+                  <CheckBoxInputTemplate className="!gap-4 h-[67%]">
                     {womanPersonalityList.map(
                       ({ htmlFor, labelName, value }) => (
                         <CheckBoxInput
@@ -1079,8 +1079,8 @@ const UserInfoPage = () => {
                 isWomanFashionOpen={isWomanFashionOpen}
               >
                 <OutsideModal>
-                  <OutsideInModal>패션</OutsideInModal>
-                  <CheckBoxInputTemplate className="!gap-3">
+                  <ModalH2>패션</ModalH2>
+                  <CheckBoxInputTemplate className="!gap-3 h-[68%]">
                     {womanFashionList.map(({ htmlFor, labelName, value }) => (
                       <CheckBoxInput
                         className="text-sm"

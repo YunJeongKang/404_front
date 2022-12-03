@@ -32,7 +32,7 @@ interface LinkModifyInterface {
 export const LinkModify = ({ img, onClick }: LinkModifyInterface) => {
   return (
     <div
-      className="absolute text-center left-7 top-2 inline-block"
+      className="absolute text-center left-7 top-4 inline-block"
       onClick={onClick}
     >
       <div

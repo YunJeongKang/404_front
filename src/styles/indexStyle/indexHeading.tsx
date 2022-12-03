@@ -5,7 +5,7 @@ const UserInfoH2: FC<CommonHeadingProps> = (props) => {
   const { children, className, ...restProps } = props;
   return (
     <h2
-      className={`w-[25%] text-left text-lg font-bold inline-block ${className}`}
+      className={`w-[25%] text-left text-lg font-bold ${className}`}
       {...restProps}
     >
       {children}

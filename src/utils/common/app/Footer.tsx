@@ -12,7 +12,7 @@ import {
 import PATH from "@utils/routes/PATH";
 
 const Footer = () => {
-  const { HOME, LIKE, RECOMMEND, CHAT, USER } = PATH;
+  const { HOME, LIKE, RECOMMEND, CHAT, USER, MODIFY } = PATH;
   const location = useLocation();
 
   return (
@@ -46,8 +46,8 @@ const Footer = () => {
             <RiChat1Line size="30" />
           )}
         </Link>
-        <Link to={USER}>
-          {location.pathname === USER ? (
+        <Link to={location.pathname === MODIFY ? MODIFY : USER}>
+          {location.pathname === USER || location.pathname === MODIFY ? (
             <HiUser size="30" />
           ) : (
             <HiOutlineUser size="30" />

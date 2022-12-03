@@ -6,6 +6,7 @@ import useAuth from "@store/useAuth";
 import Footer from "@utils/common/app/Footer";
 import Header, { ModifyHeader, SubHeader } from "@utils/common/app/Header";
 import PATH from "@utils/routes/PATH";
+import { SettingModalProvider } from "@styles/modal/SettingModal";
 
 function App() {
   const auth = useAuth();
@@ -42,17 +43,19 @@ function App() {
           ) : (
             location.pathname === MODIFY && <ModifyHeader />
           ))}
-        <main
-          className={`flex flex-col items-center w-[26rem] border-x shadow-sm drop-shadow ${
-            isTrue
-              ? location.pathname !== USER
-                ? authPageUI
-                : authOtherUI
-              : unAuthPageUI
-          } overflow-hidden overflow-y-auto scrollbar-hide justify-center border bg-white`}
-        >
-          {currentRoutes}
-        </main>
+        <SettingModalProvider>
+          <main
+            className={`flex flex-col items-center w-[26rem] border-x shadow-sm drop-shadow ${
+              isTrue
+                ? location.pathname !== USER
+                  ? authPageUI
+                  : authOtherUI
+                : unAuthPageUI
+            } overflow-hidden overflow-y-auto scrollbar-hide justify-center border bg-white`}
+          >
+            {currentRoutes}
+          </main>
+        </SettingModalProvider>
         {isTrue ? <Footer /> : null}
       </div>
     </div>

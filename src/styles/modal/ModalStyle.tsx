@@ -41,13 +41,31 @@ interface ModalCloseButtonInterface {
   onClick?: () => void;
 }
 
-export const ModalCloseButton = ({ onClick }: ModalCloseButtonInterface) => {
+export const InfoModalCloseButton = ({
+  onClick,
+}: ModalCloseButtonInterface) => {
   return (
-    <GrClose
-      size="20"
+    <button
       onClick={onClick}
-      className={`absolute top-5 right-5 text-lg font-black z-50 text-gray-500 duration-150 active:scale-90 hover:text-black cursor-pointer $`}
-    />
+      className={`absolute bottom-5 px-2 bg-success py-0.5 rounded-md text-lg z-50 text-white
+       duration-150 hover:bg-green-400 cursor-pointer $`}
+    >
+      선택완료
+    </button>
+  );
+};
+
+export const SettingModalCloseButton = ({
+  onClick,
+}: ModalCloseButtonInterface) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`absolute bottom-5 px-2 bg-success py-0.5 rounded-md text-lg z-50 text-white
+       duration-150 cursor-pointer hover:bg-green-400 $`}
+    >
+      수정완료
+    </button>
   );
 };
 

@@ -34,7 +34,7 @@ module.exports = {
         "secondary-active": "#a316fd",
         "secondary-contra": "#FFFFFF",
         // SUCCESS
-        success: "#00B74A",
+        success: "#00c853",
         "success-active": "#00913b",
         "success-contra": "#FFFFFF",
         // INFO

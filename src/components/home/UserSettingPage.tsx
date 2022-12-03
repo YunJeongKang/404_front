@@ -7,7 +7,7 @@ import {
   LinkModify,
   SettingButton,
   UserSettingInfo,
-} from "@styles/setting/AnySettingTemplate";
+} from "@styles/authPage/AnySettingTemplate";
 
 const UserSettingPage = () => {
   const { MODIFY } = PATH;
@@ -17,21 +17,43 @@ const UserSettingPage = () => {
     "yena.jpg"
   );
 
-  const [settingOpen, setSettingOpen] = useState<boolean>(false);
+  const [settingOpen, setSettingOpen] = useState<boolean | null>(null);
   const [appearSetting, setAppearSetting] = useState<React.ReactNode | null>(
     null
   );
+  const [disAppearSetting, setDisAppearSetting] =
+    useState<React.ReactNode | null>(null);
 
-  // const [user, setUser] =
   const auth = useAuth();
 
   useLayoutEffect(() => {
+    // change openClick setting BTN state
     setAppearSetting(
       <motion.div
         initial={{ translateX: 50, opacity: 0 }}
         animate={{ translateX: 0, opacity: 1 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="absolute top-12 right-2 flex flex-col justify-center w-[6rem] h-[2rem] shadow-md
+        transition={{
+          duration: 0.3,
+          ease: "easeInOut",
+          type: "linear",
+        }}
+        className="absolute font-eland top-14 right-3 flex flex-col justify-center w-[6rem] h-[2rem] shadow-md
+      drop-shadow rounded-md bg-white"
+      >
+        <button onClick={() => auth.logout()}>로그아웃</button>
+      </motion.div>
+    );
+    // change closeClick setting Btn state
+    setDisAppearSetting(
+      <motion.div
+        initial={{ translateX: 0, opacity: 1 }}
+        animate={{ translateX: 50, opacity: 0 }}
+        transition={{
+          duration: 0.3,
+          ease: "easeInOut",
+          type: "linear",
+        }}
+        className="absolute top-14 font-eland right-3 flex flex-col justify-center w-[6rem] h-[2rem] shadow-md
       drop-shadow rounded-md bg-white"
       >
         <button onClick={() => auth.logout()}>로그아웃</button>
@@ -47,14 +69,15 @@ const UserSettingPage = () => {
 
     //    })
     //    .catch(console.error);
-  }, []);
+  }, [settingOpen]);
 
   return (
     <div
       className="relative flex flex-col flex-wrap justify-center items-center 
     w-[26rem] h-[42rem] gap-4 -z-30 select-none"
     >
-      {settingOpen && appearSetting}
+      {settingOpen ? appearSetting : settingOpen !== null && disAppearSetting}
+      {/* 세팅버튼 */}
       <SettingButton
         onClick={() => {
           setSettingOpen(true);

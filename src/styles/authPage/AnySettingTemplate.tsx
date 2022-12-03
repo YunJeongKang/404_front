@@ -11,8 +11,8 @@ interface SettingButtonInterface {
 
 export const SettingButton = ({ onClick }: SettingButtonInterface) => {
   return (
-    <div className="w-[90%] h-[10%] flex justify-between" onClick={onClick}>
-      <div onClick={onClick}></div>
+    <div className="w-[90%] h-[10%] flex justify-between">
+      <div></div>
       {/* 설정 창 */}
       <FiSettings
         size="25"
@@ -36,20 +36,20 @@ export const LinkModify = ({ img, onClick }: LinkModifyInterface) => {
       onClick={onClick}
     >
       <div
-        className="rounded-full 
+        className="rounded-[32%] 
      h-[11.7rem] w-[11.7rem] overflow-hidden"
       >
         <img
           src={`${import.meta.env.VITE_S3_BASE_URL}/${img}`}
           alt=""
-          className="rounded-full"
+          className="object-cover"
         />
         {/* 회원 정보 수정 클릭 && 연필 */}
         <>
           <Link to={PATH.MODIFY}>
             <div
-              className="absolute inline-block rounded-full border-2 h-[2.7rem] cursor-pointer 
-         w-[2.7rem] bottom-0 right-3 content-center bg-white"
+              className="absolute inline-block rounded-[40%] border-2 h-[2.7rem] cursor-pointer 
+         w-[2.7rem] bottom-[-5px] right-[-5px] content-center bg-white"
             >
               <HiOutlinePencil
                 size="30"
@@ -100,13 +100,9 @@ export const UserSettingInfo = ({
         <div className="h-[28%]"></div>
         {/* 닉네임, 지역, 직업 */}
         <div className="h-[15%]">
-          <NickNameH1 className="flex gap-1">
+          <NickNameH1 className="flex gap-0.5">
             {username}
-            <HiOutlineBadgeCheck
-              size="26"
-              color="gray"
-              className="my-1 cursor-pointer"
-            />
+            <HiOutlineBadgeCheck size="22" color="gray" className="mt-1.5" />
           </NickNameH1>
           <div className="flex gap-1">
             {/* 지역 */}
@@ -115,16 +111,6 @@ export const UserSettingInfo = ({
             <SubInfoH3>{job}</SubInfoH3>
           </div>
         </div>
-        {/* 보이스 메세지 */}
-        <div className="h-[14%] w-full cursor-pointer">
-          <span
-            className="flex justify-center border-2 border-gray-200 rounded-2xl 
-      text-center py-3 font-medium text-xl w-full"
-          >
-            <BsFillMicFill size="22" className="m-0.5 mr-3" />내 보이스 메세지
-          </span>
-        </div>
-
         {/* 정보 미리보기 박스*/}
         <div className="h-5/6 w-full">
           {/* 닉네임, 성별, 생일, 위치 */}
@@ -152,21 +138,15 @@ export const UserSettingInfo = ({
           </div>
           <hr className="py-2" />
           {/* 자기소개 */}
-          <div className="flex flex-col w-full h-1/4">
+          <div className="flex flex-col w-full">
             <span className=" py-1">소개</span>
-            <p className="text-blue-600 text-xs">
-              {`${introduce.slice(0, 110)}${
-                introduce.length > 110 ? "..." : ""
-              }`}
-            </p>
+            <p className="text-blue-600 text-xs pb-2">{introduce}</p>
           </div>
           <hr className="py-2" />
           {/* 나의 이상형  */}
-          <div className="flex flex-col w-full h-1/4">
+          <div className="flex flex-col w-full">
             <span className=" py-1">나의 이상형</span>
-            <p className="text-blue-600 text-xs">
-              {`${wanted.slice(0, 110)}${wanted.length > 110 ? "..." : ""}`}
-            </p>
+            <p className="text-blue-600 text-xs pb-2">{wanted}</p>
           </div>
         </div>
       </div>

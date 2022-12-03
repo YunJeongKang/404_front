@@ -46,7 +46,7 @@ import { womanAppearanceList } from "@data/style_info/woman_style/appearance";
 import { womanFashionList } from "@data/style_info/woman_style/fashion";
 import { womanPersonalityList } from "@data/style_info/woman_style/personality";
 import OutsideInModal, {
-  ModalCloseButton,
+  InfoModalCloseButton,
   ModalSpan,
   ModalSpanDiv,
   OutsideModal,
@@ -848,7 +848,9 @@ const UserInfoPage = () => {
                       </CheckBoxInput>
                     ))}
                   </CheckBoxInputTemplate>
-                  <ModalCloseButton onClick={() => setAppearanceOpen(false)} />
+                  <InfoModalCloseButton
+                    onClick={() => setAppearanceOpen(false)}
+                  />
                 </OutsideModal>
               </ManAppearanceModal>
             </ModalEmptyDiv>
@@ -893,7 +895,9 @@ const UserInfoPage = () => {
                       </CheckBoxInput>
                     ))}
                   </CheckBoxInputTemplate>
-                  <ModalCloseButton onClick={() => setPersonalityOpen(false)} />
+                  <InfoModalCloseButton
+                    onClick={() => setPersonalityOpen(false)}
+                  />
                 </OutsideModal>
               </ManPersonalityModal>
             </ModalEmptyDiv>
@@ -936,7 +940,7 @@ const UserInfoPage = () => {
                       </CheckBoxInput>
                     ))}
                   </CheckBoxInputTemplate>
-                  <ModalCloseButton onClick={() => setFashionOpen(false)} />
+                  <InfoModalCloseButton onClick={() => setFashionOpen(false)} />
                 </OutsideModal>
               </ManFashionModal>
             </ModalEmptyDiv>
@@ -992,7 +996,7 @@ const UserInfoPage = () => {
                       )
                     )}
                   </CheckBoxInputTemplate>
-                  <ModalCloseButton
+                  <InfoModalCloseButton
                     onClick={() => setWomanAppearanceOpen(false)}
                   />
                 </OutsideModal>
@@ -1043,7 +1047,7 @@ const UserInfoPage = () => {
                       )
                     )}
                   </CheckBoxInputTemplate>
-                  <ModalCloseButton
+                  <InfoModalCloseButton
                     onClick={() => setWomanPersonalityOpen(false)}
                   />
                 </OutsideModal>
@@ -1091,7 +1095,7 @@ const UserInfoPage = () => {
                       </CheckBoxInput>
                     ))}
                   </CheckBoxInputTemplate>
-                  <ModalCloseButton
+                  <InfoModalCloseButton
                     onClick={() => setWomanFashionOpen(false)}
                   />
                 </OutsideModal>

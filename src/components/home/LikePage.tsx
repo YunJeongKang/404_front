@@ -1,5 +1,4 @@
 import LikePageTemplate from "@utils/common/app/LikePageTemplate";
-import React from "react";
 
 const LikePage = () => {
   return (

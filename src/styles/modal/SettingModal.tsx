@@ -15,7 +15,7 @@ export const IntroModal: FC<IntroModalProps> = (props) => {
     isIntroOpen &&
       setIntroModal(
         <div
-          className={`select-none checked-bg:border-2 flex flex-col flex-wrap items-center  h-[22rem] w-[24rem] absolute left-1/2 -translate-x-1/2 top-1/2 rounded-lg -translate-y-1/2 border shadow-md bg-white ${className}`}
+          className={`select-none checked-bg:border-2 flex flex-col flex-wrap items-center  h-[22rem] w-[22rem] absolute left-1/2 -translate-x-1/2 top-1/2 rounded-lg -translate-y-1/2 border shadow-md bg-white ${className}`}
         >
           {children}
         </div>
@@ -36,7 +36,7 @@ export const SettingModalProvider: FC<SettingModalProviderProps> = ({
     <>
       {children}
       {isIntroOpen && (
-        <aside className="absolute left-0 right-0 top-0 bottom-0 translate-x-[-36.45%] w-screen h-screen bg-black bg-opacity-30 z-10">
+        <aside className="absolute left-0 right-0 top-3 bottom-0 w-full h-[42.8rem] bg-black bg-opacity-30 z-10">
           <div className="absolute left-0 right-0 top-0 bottom-0 z-20">
             {isIntroModal}
           </div>

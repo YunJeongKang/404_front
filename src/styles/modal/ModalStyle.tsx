@@ -61,7 +61,7 @@ export const SettingModalCloseButton = ({
   return (
     <button
       onClick={onClick}
-      className={`absolute bottom-5 px-2 bg-success py-0.5 rounded-md text-lg z-50 text-white
+      className={`px-2 bg-success py-0.5 rounded-md text-lg z-50 text-white
        duration-150 cursor-pointer hover:bg-green-400 $`}
     >
       수정완료

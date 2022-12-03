@@ -8,16 +8,20 @@ import { useLayoutEffect, useState } from "react";
 
 const UserInfoModify = () => {
   const [introModalOpen, setIntroModalOpen] = useState<boolean>(false);
+  const [introduce, setIntroduce] = useState<string>("");
 
+  const introChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setIntroduce(evt.target.value);
+  };
   const introClick = () => {
     setIntroModalOpen(true);
   };
   return (
     <motion.div
-      initial={{ translateY: 600, opacity: 0 }}
+      initial={{ translateY: 600, opacity: 0.5 }}
       animate={{ translateY: 0, opacity: 1 }}
-      transition={{ duration: 0.2, ease: "easeInOut" }}
-      className="relative flex flex-col justify-center items-center w-full h-[99%] max-h-[200rem] scrollbar-hide"
+      transition={{ duration: 0.25, ease: "easeInOut" }}
+      className="relative flex flex-col justify-center items-center w-full h-[99%] max-h-[200rem] select-none scrollbar-hide"
     >
       {/* 이미지 영역 */}
       <div className="absolute top-0 grid grid-cols-3 w-[99%] h-[45%] max-h-full bg-gray-200">
@@ -128,23 +132,46 @@ const UserInfoModify = () => {
         <hr className="py-2" />
         {/* 자기소개 */}
         <div className="flex flex-col w-full h-fit mb-4" onClick={introClick}>
-          <span className="font-bold py-1">소개</span>
+          <div className="flex items-end gap-1">
+            <span className="font-bold py-1">소개</span>
+            <span className="text-xs text-gray-400 py-1.5">
+              (300자 미만으로 작성하세요)
+            </span>
+          </div>
           <IntroModal isIntroOpen={introModalOpen}>
             <OutsideModal>
               <ModalH2>소개</ModalH2>
+              <textarea
+                spellCheck
+                placeholder="글을 입력해주세요"
+                maxLength={300}
+                onChange={introChange}
+                className="flex justify-start border rounded-md w-5/6 h-1/2 text break-all text-ellipsis outline-none p-1 resize-none scrollbar-hide"
+              >
+                {introduce}
+              </textarea>
               <SettingModalCloseButton
                 onClick={() => setIntroModalOpen(false)}
               />
             </OutsideModal>
           </IntroModal>
-          <p className="text-blue-600 text-sm">
-            여기는 니가 어떤 사람이고 뭘 어필할 수 있는지 쓰는 곳
-          </p>
+          {introduce ? (
+            <p className="text-blue-600 text-sm">{introduce}</p>
+          ) : (
+            <p className="text-gray-300 text-sm">
+              "자신을 나타낼 수 있는 말들로 본인을 표현해보세요"
+            </p>
+          )}
         </div>
         <hr className="py-2" />
         {/* 나의 이상형  */}
         <div className="flex flex-col w-full h-fit mb-4">
-          <span className="font-bold py-1">나의 이상형</span>
+          <div className="flex items-end gap-1">
+            <span className="font-bold py-1">나의 이상형</span>
+            <span className="text-xs text-gray-400 py-1.5">
+              (300자 미만으로 작성하세요)
+            </span>
+          </div>
           <p className="text-blue-600 text-sm">
             여기는 니가 니 이상형에 대해 글을쓰는 곳입니다
           </p>

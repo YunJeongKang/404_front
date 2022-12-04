@@ -39,6 +39,8 @@ function LoginPage() {
 
   const onSubmit: React.ChangeEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
+    auth.setAutoLogin(true);
+    auth.isAutoLogin();
     axios
       .post(`${URL}${LOGIN}`, { ...loginInfo })
       .then((res) => {
@@ -90,10 +92,10 @@ function LoginPage() {
               {!showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
             </div>
           </fieldset>
-          <div className="flex flex-col">
+          <div className="flex flex-col mt-10 py-2">
             <button
               type="submit"
-              className="border bg-sky-200 font-bold rounded-3xl duration-150 active:scale-95 px-2 py-1"
+              className="border bg-blue-500 font-bold text-white rounded-md duration-150 active:bg-blue-400 active:scale-95 px-2 py-1"
             >
               LOGIN
             </button>

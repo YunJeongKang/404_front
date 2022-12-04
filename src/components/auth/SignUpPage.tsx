@@ -6,6 +6,7 @@ import PATH from "@utils/routes/PATH";
 import { AuthInterface } from "@models/user/UserDetail";
 import useAuth from "@store/useAuth";
 import useClient from "@store/useClient";
+import { Link } from "react-router-dom";
 
 const SignUnPage = () => {
   const [values, setValues] = useState<AuthInterface>({
@@ -26,7 +27,7 @@ const SignUnPage = () => {
 
   const auth = useAuth();
   const client = useClient();
-  const { URL, SIGNUP } = PATH;
+  const { URL, SIGNUP, EASY_AUTH } = PATH;
 
   function onSubmit() {
     // 회원가입 axios
@@ -55,7 +56,7 @@ const SignUnPage = () => {
       placeholder?: string; */
 
     <UserInfoForm
-      className="flex flex-col justify-center items-center py-4 px-8 gap-2 !w-[98%] h-full bg-white"
+      className="flex flex-col justify-end items-center py-4 px-8 gap-2 !w-[98%] h-full bg-white"
       onSubmit={onSubmit}
     >
       <div className="flex justify-center items-center text-6xl w-full h-1/6">
@@ -75,7 +76,7 @@ const SignUnPage = () => {
           </span>
         </div>
       </div>
-      <div className="flex flex-col w-full h-[38%] justify-center items-center">
+      <div className="flex flex-col w-full h-[50%] justify-center items-center">
         <TextInputTemplate
           onChange={onChange}
           value={values.email || ""}
@@ -121,12 +122,20 @@ const SignUnPage = () => {
             )}
           </div>
         </fieldset>
-        <button
-          type="submit"
-          className="text-center mt-4 bg-blue-400 text-white px-3 py-1 rounded-md shadow-md duration-100 active:scale-95 w-1/2"
-        >
-          회원가입
-        </button>
+        <div className="flex flex-col justify-center items-center w-full h-1/3">
+          <button
+            type="submit"
+            className="text-center mt-6 bg-blue-600 active:bg-blue-400 text-white px-3 py-1 rounded-md shadow-md duration-100 active:scale-95 w-5/6"
+          >
+            회원가입
+          </button>
+          <Link
+            to={EASY_AUTH}
+            className="text-sm underline underline-offset-2 text-gray-500 py-2 hover:text-blue-500"
+          >
+            간편가입으로 돌아가기
+          </Link>
+        </div>
       </div>
       <div className="h-[10%]"></div>
     </UserInfoForm>

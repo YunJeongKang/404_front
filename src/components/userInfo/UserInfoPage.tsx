@@ -948,7 +948,7 @@ const UserInfoPage = () => {
         </motion.div>
       )}
       {/* Step8 : 여성 스타일  (스타일 선택 모달창) */}
-      {woman && stepIndex >= 0 && (
+      {woman && stepIndex >= 9 && (
         <motion.div
           className="flex flex-col justify-center gap-4"
           initial={{ translateY: 20, opacity: 0 }}
@@ -1031,7 +1031,7 @@ const UserInfoPage = () => {
               >
                 <OutsideModal className="gap-2 !h-[80%]">
                   <ModalH2>성격</ModalH2>
-                  <CheckBoxInputTemplate className="!gap-4 h-[67%]">
+                  <CheckBoxInputTemplate className="!gap-4 h-[68.5%]">
                     {womanPersonalityList.map(
                       ({ htmlFor, labelName, value }) => (
                         <CheckBoxInput
@@ -1080,7 +1080,7 @@ const UserInfoPage = () => {
               >
                 <OutsideModal>
                   <ModalH2>패션</ModalH2>
-                  <CheckBoxInputTemplate className="!gap-3 h-[68%]">
+                  <CheckBoxInputTemplate className="!gap-3 h-[68.5%]">
                     {womanFashionList.map(({ htmlFor, labelName, value }) => (
                       <CheckBoxInput
                         className="text-sm"
@@ -1113,7 +1113,7 @@ const UserInfoPage = () => {
         >
           <button
             type="submit"
-            className="bg-blue-400 text-white w-32 py-0.5 active:scale-90 duration-100 text-lg rounded-md shadow-md"
+            className="bg-blue-600 active:bg-blue-400 text-white w-32 py-0.5 active:scale-90 duration-100 text-lg rounded-md shadow-md"
           >
             <Link to={PATH.USER_IMAGE}>제출</Link>
           </button>

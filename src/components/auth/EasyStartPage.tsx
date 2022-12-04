@@ -44,8 +44,11 @@ const EasyStartPage = () => {
       </div>
       <div className="flex flex-col items-center gap-2 bg-white rounded-md px-4 py-2">
         {/* 이메일 간편가입 이동 */}
-        <Link to={SIGNUP}>
-          <span className="text-sm underline">이메일로 간편가입</span>
+        <Link
+          to={SIGNUP}
+          className="text-sm underline underline-offset-2 hover:text-blue-500"
+        >
+          이메일로 간편가입
         </Link>
         {/* 로그인 API 클릭 컴포넌트 */}
         <KakaoAPI href={KAKAO_AUTH_URL} />
@@ -55,10 +58,11 @@ const EasyStartPage = () => {
           <span className="ml-6 text-sm text-gray-500">
             이미 계정이 있으신가요?
           </span>
-          <Link to={LOGIN}>
-            <span className="mr-6 text-left text-xs text-gray-700 underline underline-offset-2">
-              기존 회원 로그인
-            </span>
+          <Link
+            to={LOGIN}
+            className="mr-6 text-left text-xs text-gray-700 underline underline-offset-2 hover:text-blue-500"
+          >
+            기존 회원 로그인
           </Link>
         </div>
       </div>

@@ -397,7 +397,7 @@ const UserInfoModify = () => {
                   <span className="w-full font-bold">외모</span>
                   <div className="flex w-full text-sm">
                     <span className="w-fit text-center text-blue-600 border-2 border-blue-400 rounded-md px-1">
-                      #{items.appearance!}
+                      #{items.style!}
                     </span>
                   </div>
                 </div>
@@ -405,22 +405,22 @@ const UserInfoModify = () => {
                 <div className="flex items-center h-[40%]">
                   <span className="w-full font-bold">성격</span>
                   <div className="flex flex-wrap w-full text-sm gap-2">
-                    {/* {items.personality!.map((item: string) => (
-                        <span className="w-fit text-center text-blue-600 border-2 border-blue-400 rounded-md px-1">
-                          {`#${item.}`}
-                        </span>
-                      ))} */}
+                    {items.character!.map((item: string) => (
+                      <span className="w-fit text-center text-blue-600 border-2 border-blue-400 rounded-md px-1">
+                        {`#${item}`}
+                      </span>
+                    ))}
                   </div>
                 </div>
                 {/* 패션스타일 */}
                 <div className="flex items-center h-[40%]">
                   <span className="w-full font-bold">패션스타일</span>
                   <div className="flex flex-wrap w-full text-sm gap-2">
-                    {/* {items.fashion!.map((item: string) => (
-                        <span className="w-fit text-center text-blue-600 border-2 border-blue-400 rounded-md px-1">
-                          {`#${item}`}
-                        </span>
-                      ))} */}
+                    {items.fashion!.map((item: string) => (
+                      <span className="w-fit text-center text-blue-600 border-2 border-blue-400 rounded-md px-1">
+                        {`#${item}`}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>

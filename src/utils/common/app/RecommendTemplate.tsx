@@ -35,7 +35,7 @@ const RecUserTemplate = ({
         {/* 회원 이미지 영역 */}
         <div className="absolute z-0 w-full h-full rounded-t-2xl top-0 left-0 overflow-hidden">
           <img
-            src={`${import.meta.env.VITE_S3_BASE_URL}${img}`}
+            src={`${import.meta.env.VITE_S3_BASE_URL}/${img}`}
             alt=""
             className="absolute top-[-2.5rem] object-cover"
           />

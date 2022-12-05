@@ -8,9 +8,11 @@ import {
   SettingButton,
   UserSettingInfo,
 } from "@styles/authPage/AnySettingTemplate";
+import API_PATH from "@utils/routes/api/API_PATH";
 
 const UserSettingPage = () => {
-  const { MODIFY } = PATH;
+  const { MODIFY, USER } = PATH;
+  const { URL } = API_PATH;
 
   // FIXME init as undefined
   const [profileImageUri, setProfileImageUri] = useState<string | undefined>(
@@ -37,10 +39,19 @@ const UserSettingPage = () => {
           ease: "easeInOut",
           type: "linear",
         }}
-        className="absolute font-eland top-14 right-3 flex flex-col justify-center w-[6rem] h-[2rem] shadow-md
+        className="absolute font-eland top-14 right-3 flex flex-col justify-center w-[6rem] h-[4.5rem] shadow-md
       drop-shadow rounded-md bg-white"
       >
         <button onClick={() => auth.logout()}>로그아웃</button>
+        <hr className="py-[3px]" />
+        <button
+          onClick={() => {
+            auth.logout();
+            axios.post(`${URL}${USER}`, { userDelete: true });
+          }}
+        >
+          회원탈퇴
+        </button>
       </motion.div>
     );
     // change closeClick setting Btn state
@@ -53,10 +64,19 @@ const UserSettingPage = () => {
           ease: "easeInOut",
           type: "linear",
         }}
-        className="absolute top-14 font-eland right-3 flex flex-col justify-center w-[6rem] h-[2rem] shadow-md
+        className="absolute top-14 font-eland right-3 flex flex-col justify-center w-[6rem] h-[4.5rem] shadow-md
       drop-shadow rounded-md bg-white"
       >
         <button onClick={() => auth.logout()}>로그아웃</button>
+        <hr className="py-[3px]" />
+        <button
+          onClick={() => {
+            auth.logout();
+            axios.post(`${URL}${USER}`, { userDelete: true });
+          }}
+        >
+          회원탈퇴
+        </button>
       </motion.div>
     );
 

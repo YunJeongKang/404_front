@@ -1,6 +1,8 @@
 import useClient from "@store/useClient";
 import PATH from "@utils/routes/PATH";
 import axios from "axios";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 const { URL, LIKE } = PATH;
 interface LikePageInterface {
@@ -22,18 +24,31 @@ const LikePageTemplate = ({
 }: LikePageInterface) => {
   const client = useClient();
 
+  const [checkUsername, setCheckUsername] = useState<string>("");
   const heartClick = () => {
-    axios.put(`${URL}${LIKE}`, {
-      email: client.getUserEmail(),
-      username: username,
-    });
+    axios
+      .put(`${URL}${LIKE}`, {
+        email: client.getUserEmail(),
+        username: username,
+      })
+      .then((res) => res.data)
+      .then((data) => setCheckUsername(data));
+    setCheckUsername("최예나");
     console.log("보내는 값 :", {
       email: client.getUserEmail(),
       username: username,
     });
   };
+
   return (
-    <div className="relative flex justify-center  items-center w-[95%] h-[18%] my-3">
+    <motion.div
+      initial={{ x: 50, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.3, ease: "linear" }}
+      className={`relative flex justify-center  items-center w-[95%] h-[18%] my-3 ${
+        checkUsername === username && "hidden"
+      } `}
+    >
       {/* 이미지 영역 */}
       <div className="absolute left-2 flex justify-start items-center rounded-[32px] overflow-hidden w-[25%] h-[95%]">
         <img
@@ -70,7 +85,7 @@ const LikePageTemplate = ({
           패스
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

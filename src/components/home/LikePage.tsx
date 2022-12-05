@@ -2,7 +2,7 @@ import LikePageTemplate from "@utils/common/app/LikePageTemplate";
 
 const LikePage = () => {
   return (
-    <div className="flex flex-wrap justify-start items-center w-full h-full max-h-[1000rem] gap-2">
+    <div className="flex flex-wrap justify-start items-start place-content-start w-full h-full max-h-[1000rem] gap-2">
       <LikePageTemplate
         education="부산외대"
         img="bibi.png"

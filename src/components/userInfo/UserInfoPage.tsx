@@ -161,7 +161,7 @@ const UserInfoPage = () => {
       })
       .then((res) => {
         client.setComplete(res.data.isCompleted);
-        // res.data.isCompleted && navigate(`${URL}${USER_IMAGE}`);
+        res.data.isCompleted && navigate(`${URL}${USER_IMAGE}`);
       });
 
     // 서버로 가는 데이터 확인

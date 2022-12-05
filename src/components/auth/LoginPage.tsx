@@ -39,8 +39,6 @@ function LoginPage() {
 
   const onSubmit: React.ChangeEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
-    auth.setAutoLogin(true);
-    auth.isAutoLogin();
     axios
       .post(`${URL}${LOGIN}`, { ...loginInfo })
       .then((res) => {

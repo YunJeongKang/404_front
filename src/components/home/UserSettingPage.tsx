@@ -9,6 +9,7 @@ import {
   UserSettingInfo,
 } from "@styles/authPage/AnySettingTemplate";
 import API_PATH from "@utils/routes/api/API_PATH";
+import useClient from "@store/useClient";
 
 const UserSettingPage = () => {
   const { MODIFY, USER } = PATH;
@@ -27,6 +28,7 @@ const UserSettingPage = () => {
     useState<React.ReactNode | null>(null);
 
   const auth = useAuth();
+  const client = useClient();
 
   useLayoutEffect(() => {
     // change openClick setting BTN state
@@ -47,7 +49,9 @@ const UserSettingPage = () => {
         <button
           onClick={() => {
             auth.logout();
-            axios.post(`${URL}${USER}`, { userDelete: true });
+            axios
+              .delete(`${URL}${USER}`, { data: { email: client.getUserEmail } })
+              .then((res) => console.log(res.data));
           }}
         >
           회원탈퇴
@@ -72,7 +76,9 @@ const UserSettingPage = () => {
         <button
           onClick={() => {
             auth.logout();
-            axios.post(`${URL}${USER}`, { userDelete: true });
+            axios
+              .delete(`${URL}${USER}`, { data: { email: client.getUserEmail } })
+              .then((res) => console.log(res.data));
           }}
         >
           회원탈퇴

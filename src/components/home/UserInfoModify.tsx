@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { useEffect, useLayoutEffect, useState } from "react";
 import PATH from "@utils/routes/PATH";
 import API_PATH from "@utils/routes/api/API_PATH";
+import useClient from "@store/useClient";
 
 const { URL } = API_PATH;
 const { MODIFY } = PATH;
@@ -34,9 +35,11 @@ const UserInfoModify = () => {
     setWantedModalOpen(true);
   };
 
+  const client = useClient();
+
   useEffect(() => {
     axios
-      .post(`${URL}${MODIFY}`)
+      .post(`${URL}${MODIFY}`, { email: client.getUserEmail() })
       .then((res) => res.data)
       .then((user) => {
         setIntroduce(user.introduce);

@@ -49,7 +49,9 @@ const UserSettingPage = () => {
         <button
           onClick={() => {
             axios
-              .delete(`${URL}${USER}`, { data: { email: client.getUserEmail } })
+              .delete(`${URL}${USER}`, {
+                data: { email: client.getUserEmail() },
+              })
               .then((res) => {
                 auth.logout();
                 console.log(res.data);
@@ -81,7 +83,9 @@ const UserSettingPage = () => {
         <button
           onClick={() => {
             axios
-              .delete(`${URL}${USER}`, { data: { email: client.getUserEmail } })
+              .delete(`${URL}${USER}`, {
+                data: { email: client.getUserEmail() },
+              })
               .then((res) => {
                 auth.logout();
                 console.log(res.data);

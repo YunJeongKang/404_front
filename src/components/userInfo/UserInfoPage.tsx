@@ -266,6 +266,14 @@ const UserInfoPage = () => {
   const man = mainInfo.gender === "m";
   const woman = mainInfo.gender === "f";
 
+  const doubleCheck = () => {
+    axios
+      .post(`${URL}${INPUT}/doubleCheck`, { nickname: mainInfo.nickname })
+      .then((res) => res.data)
+      .then((check) => check)
+      .catch(console.error);
+  };
+
   return (
     <UserInfoForm
       onSubmit={onSubmit}
@@ -277,9 +285,9 @@ const UserInfoPage = () => {
         <ModalEmptyDiv>
           <fieldset className="flex gap-2 w-full">
             <div className="flex flex-col items-start gap-1 w-full">
-              <div className="">
+              <div className="relative flex justify-between w-full">
                 <input
-                  className={`peer px-1 text-center border-b-[1px] bg-white outline-none w-5/6 text-blue-600`}
+                  className={`peer px-1 text-center border-b-[1px] text-sm bg-white outline-none w-5/6 text-blue-600`}
                   value={mainInfo.nickname}
                   pattern="[가-힣A-Za-z0-9]{1,8}$"
                   name="nickname"
@@ -288,6 +296,13 @@ const UserInfoPage = () => {
                   autoComplete="on"
                   onChange={mainInfoChange}
                 />
+                <button
+                  type="button"
+                  onClick={doubleCheck}
+                  className="absolute w-2/6 text-xs top-0.5 right-[-25px] hover:text-blue-600"
+                >
+                  중복확인
+                </button>
               </div>
               <span className="hidden peer-invalid:block">
                 {mainInfo.nickname === "" ? (

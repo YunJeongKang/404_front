@@ -1,4 +1,8 @@
-import React from "react";
+import useClient from "@store/useClient";
+import PATH from "@utils/routes/PATH";
+import axios from "axios";
+
+const { URL, LIKE } = PATH;
 interface LikePageInterface {
   img: string;
   username: string;
@@ -16,6 +20,18 @@ const LikePageTemplate = ({
   education,
   salary,
 }: LikePageInterface) => {
+  const client = useClient();
+
+  const heartClick = () => {
+    axios.put(`${URL}${LIKE}`, {
+      email: client.getUserEmail(),
+      username: username,
+    });
+    console.log("보내는 값 :", {
+      email: client.getUserEmail(),
+      username: username,
+    });
+  };
   return (
     <div className="relative flex justify-center  items-center w-[95%] h-[18%] my-3">
       {/* 이미지 영역 */}
@@ -44,7 +60,10 @@ const LikePageTemplate = ({
       </div>
       {/* 버튼 영역 */}
       <div className="absolute flex h-1/2 gap-2 right-0 top-6">
-        <button className="rounded text-white bg-red-500 px-3 h-[60%] active:scale-90 duration-150">
+        <button
+          className="rounded text-white bg-red-500 px-3 h-[60%] active:scale-90 duration-150"
+          onClick={heartClick}
+        >
           하트
         </button>
         <button className="rounded text-gray-600 border-2 px-2 h-[60%] active:scale-90 duration-150">

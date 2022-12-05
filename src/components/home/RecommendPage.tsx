@@ -89,7 +89,7 @@ const RecommendPage = () => {
                 />
               </>
             }
-            img="/Hyewoon.jpg"
+            img="Hyewoon.jpg"
             job="배우"
             region="모름"
             username="김혜인?"
@@ -115,7 +115,7 @@ const RecommendPage = () => {
                 />
               </>
             }
-            img="/Jien.jpg"
+            img="Jien.jpg"
             job="배우"
             region="천원짜리"
             username="변호사"

@@ -271,7 +271,10 @@ const UserInfoPage = () => {
       .post(`${URL}${INPUT}/doubleCheck`, { nickname: mainInfo.nickname })
       .then((res) => res.data)
       .then((check) => {
-        !check.doubleCheck && alert("닉네임이 중복되었습니다");
+        console.log("닉네임 중복체크 시 받아오는 값:", check);
+        !check.doubleCheck
+          ? alert("닉네임이 중복되었습니다")
+          : alert("사용 가능한 닉네임 입니다!");
       })
       .catch(console.error);
     console.log("보내는 값: ", { nickname: mainInfo.nickname });

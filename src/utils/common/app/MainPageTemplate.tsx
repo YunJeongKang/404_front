@@ -1,4 +1,7 @@
-import { useState } from "react";
+import useClient from "@store/useClient";
+import PATH from "@utils/routes/PATH";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 interface MainPageTemplateState {
@@ -22,7 +25,39 @@ const MainPageTemplate = ({
   introSelf,
   wanted,
 }: MainPageTemplateState) => {
-  const [heart, setHeart] = useState<boolean>(false);
+  const [heart, setHeart] = useState<boolean | null>(null);
+  const { URL, HOME } = PATH;
+
+  const client = useClient();
+  useEffect(() => {
+    heart &&
+      axios.put(`${URL}${HOME}`, {
+        email: client.getUserEmail(),
+        username: username,
+      });
+    heart &&
+      console.log("관심표현시 보내지는 데이터 :", {
+        email: client.getUserEmail(),
+        username: username,
+      });
+
+    heart !== null &&
+      !heart &&
+      axios.delete(`${URL}${HOME}`, {
+        data: {
+          email: client.getUserEmail(),
+          username: username,
+        },
+      });
+
+    heart !== null &&
+      !heart &&
+      console.log("관심표현 제거시 보내지는 데이터 :", {
+        email: client.getUserEmail(),
+        username: username,
+      });
+  }, [heart]);
+
   return (
     <div className="flex flex-col items-center w-full h-[80%] bg-white rounded-xl text-xl my-2">
       {/* 이미지 부분 */}

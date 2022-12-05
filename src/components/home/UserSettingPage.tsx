@@ -1,5 +1,5 @@
 import { useState, useLayoutEffect } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import useAuth from "@store/useAuth";
 import PATH from "@utils/routes/PATH";
@@ -36,37 +36,40 @@ const UserSettingPage = () => {
   useLayoutEffect(() => {
     // change openClick setting BTN state
     setAppearSetting(
-      <motion.div
-        initial={{ translateX: 50, opacity: 0 }}
-        animate={{ translateX: 0, opacity: 1 }}
-        transition={{
-          duration: 0.3,
-          ease: "easeInOut",
-          type: "linear",
-        }}
-        className="absolute font-eland top-14 right-3 flex flex-col justify-center w-[6rem] h-[4.5rem] shadow-md
-      drop-shadow rounded-md bg-white"
-      >
-        <button onClick={() => auth.logout()}>로그아웃</button>
-        <hr className="py-[3px]" />
-        <button
-          onClick={() => {
-            axios
-              .delete(`${URL}${USER}`, {
-                data: { email: client.getUserEmail() },
-              })
-              .then((res) => {
-                auth.logout();
-                console.log(res.data);
-              })
-              .catch(() => {
-                console.log("err");
-              });
+      <AnimatePresence>
+        <motion.div
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{
+            duration: 0.3,
+            ease: "easeInOut",
+            type: "linear",
           }}
+          exit={{ x: 50, opacity: 0 }}
+          className="absolute font-eland top-14 right-3 flex flex-col justify-center w-[6rem] h-[4.5rem] shadow-md
+        drop-shadow rounded-md bg-white"
         >
-          회원탈퇴
-        </button>
-      </motion.div>
+          <button onClick={() => auth.logout()}>로그아웃</button>
+          <hr className="py-[3px]" />
+          <button
+            onClick={() => {
+              axios
+                .delete(`${URL}${USER}`, {
+                  data: { email: client.getUserEmail() },
+                })
+                .then((res) => {
+                  auth.logout();
+                  console.log(res.data);
+                })
+                .catch(() => {
+                  console.log("err");
+                });
+            }}
+          >
+            회원탈퇴
+          </button>
+        </motion.div>
+      </AnimatePresence>
     );
     // change closeClick setting Btn state
     setDisAppearSetting(

@@ -265,8 +265,14 @@ const UserInfoModify = () => {
                     <SettingModalCloseButton
                       onClick={() => {
                         setIntroModalOpen(false);
-                        axios.put(`${URL}${MODIFY}`, { introduce: introduce });
-                        console.log("소개 - 보내는 데이터 :", introduce);
+                        axios.put(`${URL}${MODIFY}`, {
+                          introduce: introduce,
+                          email: client.getUserEmail(),
+                        });
+                        console.log("소개 - 보내는 데이터 :", {
+                          introduce: introduce,
+                          email: client.getUserEmail(),
+                        });
                       }}
                     />
                   </OutsideModal>
@@ -306,9 +312,13 @@ const UserInfoModify = () => {
                     <SettingModalCloseButton
                       onClick={() => {
                         setWantedModalOpen(false);
-                        axios.put(`${URL}${MODIFY}`, wanted);
+                        axios.put(`${URL}${MODIFY}`, {
+                          wanted: wanted,
+                          email: client.getUserEmail(),
+                        });
                         console.log("나의 이상형 - 보내는 데이터 :", {
                           wanted: wanted,
+                          email: client.getUserEmail(),
                         });
                       }}
                     />

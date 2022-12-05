@@ -22,7 +22,7 @@ const RecommendPage = () => {
       })
       .then((res) => res.data)
       .then((user) => {
-        setUsername(user.username);
+        setUsername(user.nickname);
         setRegion(user.region);
         setJob(user.job);
         setImage(user.image);
@@ -63,10 +63,10 @@ const RecommendPage = () => {
                 </div>
               </>
             }
-            img="/yena.jpg"
-            job="가수"
-            region="서울어딘가"
-            username="최예나"
+            img={image[0]}
+            job={job[0]}
+            region={region[0]}
+            username={username[0]}
           />
           <RecommendTemplate
             initial={{ opacity: 0, translateY: 50 }}

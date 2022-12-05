@@ -270,8 +270,11 @@ const UserInfoPage = () => {
     axios
       .post(`${URL}${INPUT}/doubleCheck`, { nickname: mainInfo.nickname })
       .then((res) => res.data)
-      .then((check) => check)
+      .then((check) => {
+        !check.doubleCheck && alert("닉네임이 중복되었습니다");
+      })
       .catch(console.error);
+    console.log("보내는 값: ", { nickname: mainInfo.nickname });
   };
 
   return (

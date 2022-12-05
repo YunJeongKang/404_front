@@ -47,12 +47,13 @@ const UserImgFile = () => {
       imageName: fileName,
     });
     // axios 통신
-    axios.put(`${URL}${USER_IMAGE}`, {
-      formData: formData.getAll("userImage"),
-      email: email,
-      imageName: { ...fileName },
-    });
-    // .then((res) => isAuth.setAutoLogin(res.data.isAuthenticated));
+    axios
+      .put(`${URL}${USER_IMAGE}`, {
+        formData: formData.getAll("userImage"),
+        email: email,
+        imageName: { ...fileName },
+      })
+      .then((res) => isAuth.setAutoLogin(res.data.isAuthenticated));
   };
 
   const email = useClient().getUserEmail();

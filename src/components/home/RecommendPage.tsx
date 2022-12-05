@@ -22,6 +22,7 @@ const RecommendPage = () => {
       })
       .then((res) => res.data)
       .then((user) => {
+        console.log("받아오는 값 :", { ...user });
         setUsername(user.nickname);
         setRegion(user.region);
         setJob(user.job);

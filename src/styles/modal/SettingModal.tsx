@@ -59,14 +59,14 @@ export const SettingModalProvider: FC<SettingModalProviderProps> = ({
       {children}
       {isIntroOpen && (
         <aside className="absolute left-0 right-0 top-3 bottom-0 w-full h-[42.8rem] bg-black bg-opacity-30 z-10">
-          <div className="absolute left-0 right-0 top-0 bottom-0 z-20">
+          <div className="absolute left-0 right-0 top-0 bottom-0 z-[11]">
             {isIntroModal}
           </div>
         </aside>
       )}
       {isWantedOpen && (
-        <aside className="absolute left-0 right-0 top-3 bottom-0 w-full h-[42.8rem] bg-black bg-opacity-30 z-10">
-          <div className="absolute left-0 right-0 top-0 bottom-0 z-20">
+        <aside className="absolute left-0 right-0 top-3 bottom-0 w-full h-[42.8rem] bg-black bg-opacity-30 z-[12]">
+          <div className="absolute left-0 right-0 top-0 bottom-0 z-[13]">
             {isWantedModal}
           </div>
         </aside>

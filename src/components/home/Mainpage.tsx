@@ -20,7 +20,7 @@ function MainPage() {
       .then((user) => {
         const componentList = user.map((items: any) => (
           <MainPageTemplate
-            age={items.username}
+            age={items.age}
             appearance={items.appearance}
             img={items.image}
             introSelf={items.introduce}

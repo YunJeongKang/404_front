@@ -87,6 +87,7 @@ const UserInfoModify = () => {
                     <img
                       src={`${AWS_S3_URL}/${items.image.image1}`}
                       alt=""
+                      key={items.image.image1}
                       className="h-full w-full object-cover"
                     />
                   ) : (
@@ -265,7 +266,7 @@ const UserInfoModify = () => {
                     <SettingModalCloseButton
                       onClick={() => {
                         setIntroModalOpen(false);
-                        axios.put(`${URL}${MODIFY}`, {
+                        axios.put(`${URL}${MODIFY}/introduce`, {
                           introduce: introduce,
                           email: client.getUserEmail(),
                         });
@@ -312,7 +313,7 @@ const UserInfoModify = () => {
                     <SettingModalCloseButton
                       onClick={() => {
                         setWantedModalOpen(false);
-                        axios.put(`${URL}${MODIFY}`, {
+                        axios.put(`${URL}${MODIFY}/wanted`, {
                           wanted: wanted,
                           email: client.getUserEmail(),
                         });
@@ -381,7 +382,9 @@ const UserInfoModify = () => {
                 {/* 직업 */}
                 <div className="flex items-center h-1/5">
                   <span className="w-full font-bold">직업</span>
-                  <span className="w-full text-blue-600">{items.job!}</span>
+                  <span className="w-full text-blue-600">{`${items.job!} (${
+                    items.job_info
+                  })`}</span>
                 </div>
                 {/* 연봉 */}
                 <div className="flex items-center h-1/5">

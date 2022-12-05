@@ -1115,7 +1115,7 @@ const UserInfoPage = () => {
             type="submit"
             className="bg-blue-600 active:bg-blue-400 text-white w-32 py-0.5 active:scale-90 duration-100 text-lg rounded-md shadow-md"
           >
-            <Link to={PATH.USER_IMAGE}>제출</Link>
+            제출
           </button>
         </motion.div>
       )}

@@ -36,53 +36,17 @@ const UserSettingPage = () => {
   useLayoutEffect(() => {
     // change openClick setting BTN state
     setAppearSetting(
-      <AnimatePresence>
-        <motion.div
-          initial={{ x: 50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{
-            duration: 0.3,
-            ease: "easeInOut",
-            type: "linear",
-          }}
-          exit={{ x: 50, opacity: 0 }}
-          className="absolute font-eland top-14 right-3 flex flex-col justify-center w-[6rem] h-[4.5rem] shadow-md
-        drop-shadow rounded-md bg-white"
-        >
-          <button onClick={() => auth.logout()}>로그아웃</button>
-          <hr className="py-[3px]" />
-          <button
-            onClick={() => {
-              axios
-                .delete(`${URL}${USER}`, {
-                  data: { email: client.getUserEmail() },
-                })
-                .then((res) => {
-                  auth.logout();
-                  console.log(res.data);
-                })
-                .catch(() => {
-                  console.log("err");
-                });
-            }}
-          >
-            회원탈퇴
-          </button>
-        </motion.div>
-      </AnimatePresence>
-    );
-    // change closeClick setting Btn state
-    setDisAppearSetting(
       <motion.div
-        initial={{ translateX: 0, opacity: 1 }}
-        animate={{ translateX: 50, opacity: 0 }}
+        initial={{ x: 50, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
         transition={{
           duration: 0.3,
           ease: "easeInOut",
           type: "linear",
         }}
-        className="absolute top-14 font-eland right-3 flex flex-col justify-center w-[6rem] h-[4.5rem] shadow-md
-      drop-shadow rounded-md bg-white"
+        exit={{ x: 50, opacity: 0 }}
+        className="absolute font-eland top-14 right-3 flex flex-col justify-center w-[6rem] h-[4.5rem] shadow-md
+        drop-shadow rounded-md bg-white"
       >
         <button onClick={() => auth.logout()}>로그아웃</button>
         <hr className="py-[3px]" />
@@ -144,14 +108,14 @@ const UserSettingPage = () => {
         );
       });
     console.log("보내는 데이터 :", { email: client.getUserEmail() });
-  }, [settingOpen]);
+  }, []);
 
   return (
     <div
       className="relative flex flex-col flex-wrap justify-center items-center 
-    w-[26rem] h-[42rem] gap-4 -z-30 select-none"
+      w-[26rem] h-[42rem] gap-4 -z-30 select-none"
     >
-      {settingOpen ? appearSetting : settingOpen !== null && disAppearSetting}
+      <AnimatePresence>{settingOpen && appearSetting}</AnimatePresence>
       {/* 세팅버튼 */}
       <SettingButton
         onClick={() => {
@@ -170,7 +134,7 @@ const UserSettingPage = () => {
         username="최예나"
         region="서울특별시"
         introduce="And I say hey! I'm gonna make it Smile, smile, smile away
-        예쁘게 웃고 넘겨버릴래 Just smile away Just smile awa-y 아픔, 슬픔, 외로움 잊게"
+          예쁘게 웃고 넘겨버릴래 Just smile away Just smile awa-y 아픔, 슬픔, 외로움 잊게"
         appearance="#귀여움"
         fashion="#아무거나 잘 어울림"
         personality="#쿨함 #오리 #이쁨"

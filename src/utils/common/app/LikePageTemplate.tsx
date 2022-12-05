@@ -23,8 +23,13 @@ const LikePageTemplate = ({
   salary,
 }: LikePageInterface) => {
   const client = useClient();
-
   const [checkUsername, setCheckUsername] = useState<string>("");
+  const [pass, setPass] = useState<boolean>(false);
+
+  const passClick = () => {
+    setPass(true);
+  };
+
   const heartClick = () => {
     axios
       .put(`${URL}${LIKE}`, {
@@ -32,7 +37,11 @@ const LikePageTemplate = ({
         username: username,
       })
       .then((res) => res.data)
-      .then((data) => setCheckUsername(data));
+      .then((data) => {
+        console.log("들어오는 데이터 :", data);
+        setCheckUsername(data);
+      });
+
     setCheckUsername("최예나");
     console.log("보내는 값 :", {
       email: client.getUserEmail(),
@@ -42,12 +51,12 @@ const LikePageTemplate = ({
 
   return (
     <AnimatePresence>
-      {checkUsername !== username && (
+      {checkUsername !== username && !pass && (
         <motion.div
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: 40, opacity: 0 }}
           transition={{ duration: 0.25, ease: "linear" }}
-          className={`relative flex justify-center items-center w-[95%] h-[18%] my-3`}
+          className={`relative flex justify-center items-center w-[95%] h-[18%] my-3 $`}
         >
           {/* 이미지 영역 */}
           <div className="absolute left-2 flex justify-start items-center rounded-[32px] overflow-hidden w-[25%] h-[95%]">
@@ -81,7 +90,10 @@ const LikePageTemplate = ({
             >
               하트
             </button>
-            <button className="rounded text-gray-600 border-2 px-2 h-[60%] active:scale-90 duration-150">
+            <button
+              className="rounded text-gray-600 border-2 px-2 h-[60%] active:scale-90 duration-150"
+              onClick={passClick}
+            >
               패스
             </button>
           </div>

@@ -265,7 +265,7 @@ const UserInfoModify = () => {
                     <SettingModalCloseButton
                       onClick={() => {
                         setIntroModalOpen(false);
-                        axios.put(`${URL}${MODIFY}`, introduce);
+                        axios.put(`${URL}${MODIFY}`, { introduce: introduce });
                         console.log("소개 - 보내는 데이터 :", introduce);
                       }}
                     />
@@ -307,7 +307,9 @@ const UserInfoModify = () => {
                       onClick={() => {
                         setWantedModalOpen(false);
                         axios.put(`${URL}${MODIFY}`, wanted);
-                        console.log("나의 이상형 - 보내는 데이터 :", wanted);
+                        console.log("나의 이상형 - 보내는 데이터 :", {
+                          wanted: wanted,
+                        });
                       }}
                     />
                   </OutsideModal>

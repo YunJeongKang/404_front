@@ -40,11 +40,17 @@ const UserInfoModify = () => {
   useEffect(() => {
     axios
       .post(`${URL}${MODIFY}`, { email: client.getUserEmail() })
-      .then((res) => res.data)
+      .then((res) => {
+        console.log(res.data);
+        return res.data;
+      })
       .then((user) => {
+        console.log("받는 데이터 :", { data: user });
         setIntroduce(user.introduce);
         setWanted(user.wanted);
-      });
+      })
+      .catch((err) => console.error(err));
+    console.log("보내는 데이터 :", { email: client.getUserEmail() });
   }, []);
 
   return (
@@ -185,6 +191,7 @@ const UserInfoModify = () => {
                 onClick={() => {
                   setIntroModalOpen(false);
                   axios.put(`${URL}${MODIFY}`, introduce);
+                  console.log("보내는 데이터 :", introduce);
                 }}
               />
             </OutsideModal>
@@ -222,6 +229,7 @@ const UserInfoModify = () => {
                 onClick={() => {
                   setWantedModalOpen(false);
                   axios.put(`${URL}${MODIFY}`, wanted);
+                  console.log("보내는 데이터 :", wanted);
                 }}
               />
             </OutsideModal>

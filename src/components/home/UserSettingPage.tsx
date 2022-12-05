@@ -27,9 +27,12 @@ const UserSettingPage = () => {
   const [disAppearSetting, setDisAppearSetting] =
     useState<React.ReactNode | null>(null);
 
+  const [settingComponent, setSettingComponent] =
+    useState<React.ReactNode | null>(null);
   const auth = useAuth();
   const client = useClient();
 
+  // settingDiv State
   useLayoutEffect(() => {
     // change openClick setting BTN state
     setAppearSetting(
@@ -99,16 +102,45 @@ const UserSettingPage = () => {
         </button>
       </motion.div>
     );
+  }, [settingOpen]);
 
-    //  axios.get<Type>()
-    //    .then(({data}) => data)
-    //    .then((user) => {
-    //      /* Codes */
-    //      const profileImageUri = `${import.meta.env.VITE_S3_BASE_URL}/user/${user.프로필경로}`;
-    //      setProfileImageUri(profile)import { Link } from 'react-router-dom';
-
-    //    })
-    //    .catch(console.error);
+  useLayoutEffect(() => {
+    axios
+      .post(`${URL}${USER}`, { email: client.getUserEmail() })
+      .then((res) => res.data)
+      .then((user) => {
+        //settingUserInfo
+        setSettingComponent(
+          <>
+            {/* 세팅버튼 */}
+            <SettingButton
+              onClick={() => {
+                setSettingOpen(true);
+                settingOpen && setSettingOpen(false);
+              }}
+            />
+            {/* 프로필 사진 */}
+            <LinkModify
+              img={user.image}
+              onClick={() => setSettingOpen(false)}
+            />
+            {/* 정보박스 */}
+            <UserSettingInfo
+              onClick={() => setSettingOpen(false)}
+              gender={user.gender}
+              job={user.job}
+              wanted={user.wanted}
+              username={user.username}
+              region={user.region}
+              introduce={user.introduce}
+              appearance={`#${user.appearance}`}
+              fashion={`#${user.fashion}`}
+              personality={user.personality.map((items: string) => `#${items}`)}
+            />
+          </>
+        );
+      });
+    console.log("보내는 데이터 :", { email: client.getUserEmail() });
   }, [settingOpen]);
 
   return (

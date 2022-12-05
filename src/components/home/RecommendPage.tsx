@@ -8,8 +8,10 @@ import useClient from "@store/useClient";
 const RecommendPage = () => {
   const [isClick, setClick] = useState<boolean>(false);
   const { URL, RECOMMEND } = PATH;
-  const [recommendComponent, setRecommendComponent] =
-    useState<React.ReactNode | null>(null);
+  const [username, setUsername] = useState<string[]>([]);
+  const [region, setRegion] = useState<string[]>([]);
+  const [job, setJob] = useState<string[]>([]);
+  const [image, setImage] = useState<string[]>([]);
 
   const recommendClick = () => {
     !isClick && setClick(true);
@@ -20,29 +22,10 @@ const RecommendPage = () => {
       })
       .then((res) => res.data)
       .then((user) => {
-        setRecommendComponent(
-          <RecommendTemplate
-            initial={{ opacity: 0, translateY: 50 }}
-            animate={{ opacity: 1, translateY: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            ratingDiv={
-              <>
-                <FaCrown
-                  className="absolute top-[-45px] left-[-20px] z-20 rotate-[340deg]"
-                  size="28"
-                  color="yellow"
-                />
-                <div className=" absolute z-20 left-[-15px] top-[-30px] flex justify-center h-1/4 w-[13.5%] text-center">
-                  <p className="relative text-center py-1.5 font-bold">위</p>
-                </div>
-              </>
-            }
-            img="/yena.jpg"
-            job="가수"
-            region="서울어딘가"
-            username="최예나"
-          />
-        );
+        setUsername(user.username);
+        setRegion(user.region);
+        setJob(user.job);
+        setImage(user.image);
       });
     console.log("보내는 값 :", { email: userEmail });
   };

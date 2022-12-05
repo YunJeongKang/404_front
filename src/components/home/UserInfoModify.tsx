@@ -2,20 +2,48 @@ import ModalH2, {
   OutsideModal,
   SettingModalCloseButton,
 } from "@styles/modal/ModalStyle";
-import { IntroModal } from "@styles/modal/SettingModal";
+import { IntroModal, WantedModal } from "@styles/modal/SettingModal";
+import axios from "axios";
 import { motion } from "framer-motion";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
+import PATH from "@utils/routes/PATH";
+import API_PATH from "@utils/routes/api/API_PATH";
+
+const { URL } = API_PATH;
+const { MODIFY } = PATH;
 
 const UserInfoModify = () => {
   const [introModalOpen, setIntroModalOpen] = useState<boolean>(false);
+  const [wantedModalOpen, setWantedModalOpen] = useState<boolean>(false);
   const [introduce, setIntroduce] = useState<string>("");
+  const [wanted, setWanted] = useState<string>("");
 
   const introChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     setIntroduce(evt.target.value);
   };
+
+  const WantedChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setWanted(evt.target.value);
+  };
+
   const introClick = () => {
     setIntroModalOpen(true);
   };
+
+  const WantedClick = () => {
+    setWantedModalOpen(true);
+  };
+
+  useEffect(() => {
+    axios
+      .post(`${URL}${MODIFY}`)
+      .then((res) => res.data)
+      .then((user) => {
+        setIntroduce(user.introduce);
+        setWanted(user.wanted);
+      });
+  }, []);
+
   return (
     <motion.div
       initial={{ translateY: 600, opacity: 0.5 }}
@@ -151,7 +179,10 @@ const UserInfoModify = () => {
                 {introduce}
               </textarea>
               <SettingModalCloseButton
-                onClick={() => setIntroModalOpen(false)}
+                onClick={() => {
+                  setIntroModalOpen(false);
+                  axios.put(`${URL}${MODIFY}`, introduce);
+                }}
               />
             </OutsideModal>
           </IntroModal>
@@ -165,16 +196,40 @@ const UserInfoModify = () => {
         </div>
         <hr className="py-2" />
         {/* 나의 이상형  */}
-        <div className="flex flex-col w-full h-fit mb-4">
+        <div className="flex flex-col w-full h-fit mb-4" onClick={WantedClick}>
           <div className="flex items-end gap-1">
             <span className="font-bold py-1">나의 이상형</span>
             <span className="text-xs text-gray-400 py-1.5">
               (300자 미만으로 작성하세요)
             </span>
           </div>
-          <p className="text-blue-600 text-sm">
-            여기는 니가 니 이상형에 대해 글을쓰는 곳입니다
-          </p>
+          <WantedModal isWantedOpen={wantedModalOpen}>
+            <OutsideModal>
+              <ModalH2>나의 이상형</ModalH2>
+              <textarea
+                spellCheck
+                placeholder="글을 입력해주세요"
+                maxLength={300}
+                onChange={WantedChange}
+                className="flex justify-start border rounded-md w-5/6 h-1/2 text break-all text-ellipsis outline-none p-1 resize-none scrollbar-hide"
+              >
+                {wanted}
+              </textarea>
+              <SettingModalCloseButton
+                onClick={() => {
+                  setWantedModalOpen(false);
+                  axios.put(`${URL}${MODIFY}`, wanted);
+                }}
+              />
+            </OutsideModal>
+          </WantedModal>
+          {wanted ? (
+            <p className="text-blue-600 text-sm">{wanted}</p>
+          ) : (
+            <p className="text-gray-300 text-sm">
+              "내가 생각하는 나의 이상형에 대해서 표현해보세요"
+            </p>
+          )}
         </div>
         <hr className="py-2" />
         {/* 혈액형, 운동, 음주, 흡연, 결혼유무, 결혼계획 */}

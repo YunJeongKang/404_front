@@ -48,10 +48,15 @@ const UserSettingPage = () => {
         <hr className="py-[3px]" />
         <button
           onClick={() => {
-            auth.logout();
             axios
               .delete(`${URL}${USER}`, { data: { email: client.getUserEmail } })
-              .then((res) => console.log(res.data));
+              .then((res) => {
+                auth.logout();
+                console.log(res.data);
+              })
+              .catch(() => {
+                console.log("err");
+              });
           }}
         >
           회원탈퇴
@@ -75,10 +80,15 @@ const UserSettingPage = () => {
         <hr className="py-[3px]" />
         <button
           onClick={() => {
-            auth.logout();
             axios
               .delete(`${URL}${USER}`, { data: { email: client.getUserEmail } })
-              .then((res) => console.log(res.data));
+              .then((res) => {
+                auth.logout();
+                console.log(res.data);
+              })
+              .catch(() => {
+                console.log("err");
+              });
           }}
         >
           회원탈퇴

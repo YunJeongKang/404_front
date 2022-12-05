@@ -277,16 +277,18 @@ const UserInfoPage = () => {
         <ModalEmptyDiv>
           <fieldset className="flex gap-2 w-full">
             <div className="flex flex-col items-start gap-1 w-full">
-              <input
-                className={`peer px-1 text-center border-b-[1px] bg-white outline-none w-5/6 text-blue-600`}
-                value={mainInfo.nickname}
-                pattern="[가-힣A-Za-z0-9]{1,8}$"
-                name="nickname"
-                placeholder="닉네임을 입력하세요 (필수)"
-                required
-                autoComplete="on"
-                onChange={mainInfoChange}
-              />
+              <div className="">
+                <input
+                  className={`peer px-1 text-center border-b-[1px] bg-white outline-none w-5/6 text-blue-600`}
+                  value={mainInfo.nickname}
+                  pattern="[가-힣A-Za-z0-9]{1,8}$"
+                  name="nickname"
+                  placeholder="닉네임을 입력하세요 (필수)"
+                  required
+                  autoComplete="on"
+                  onChange={mainInfoChange}
+                />
+              </div>
               <span className="hidden peer-invalid:block">
                 {mainInfo.nickname === "" ? (
                   <></>

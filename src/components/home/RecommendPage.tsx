@@ -8,6 +8,44 @@ import useClient from "@store/useClient";
 const RecommendPage = () => {
   const [isClick, setClick] = useState<boolean>(false);
   const { URL, RECOMMEND } = PATH;
+  const [recommendComponent, setRecommendComponent] =
+    useState<React.ReactNode | null>(null);
+
+  const recommendClick = () => {
+    !isClick && setClick(true);
+    const userEmail = client.getUserEmail();
+    axios
+      .post(`${URL}${RECOMMEND}`, {
+        email: userEmail,
+      })
+      .then((res) => res.data)
+      .then((user) => {
+        setRecommendComponent(
+          <RecommendTemplate
+            initial={{ opacity: 0, translateY: 50 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            ratingDiv={
+              <>
+                <FaCrown
+                  className="absolute top-[-45px] left-[-20px] z-20 rotate-[340deg]"
+                  size="28"
+                  color="yellow"
+                />
+                <div className=" absolute z-20 left-[-15px] top-[-30px] flex justify-center h-1/4 w-[13.5%] text-center">
+                  <p className="relative text-center py-1.5 font-bold">위</p>
+                </div>
+              </>
+            }
+            img="/yena.jpg"
+            job="가수"
+            region="서울어딘가"
+            username="최예나"
+          />
+        );
+      });
+    console.log("보내는 값 :", { email: userEmail });
+  };
   const client = useClient();
 
   return (
@@ -15,14 +53,7 @@ const RecommendPage = () => {
       <span
         className="text-4xl text-center w-full h-[12%] font-bold font-sebang drop-shadow-[0.08em_0.08em_0_rgba(255_155_0_/_0.8)]
       active:drop-shadow-[0.08em_0.08em_0_rgba(105_127_255_/_0.8)] active:scale-95 duration-100"
-        onClick={() => {
-          !isClick && setClick(true);
-          const userEmail = client.getUserEmail();
-          axios.post(`${URL}${RECOMMEND}`, {
-            email: userEmail,
-          });
-          console.log("보내는 값 :", { email: userEmail });
-        }}
+        onClick={recommendClick}
       >
         천생연분
       </span>

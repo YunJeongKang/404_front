@@ -18,6 +18,8 @@ export const SettingButton = ({ onClick }: SettingButtonInterface) => {
         size="25"
         color="#555555"
         className="m-1 cursor-pointer z-10"
+        type="button"
+        onSubmit={(evt) => evt.preventDefault()}
         onClick={onClick}
       />
     </div>

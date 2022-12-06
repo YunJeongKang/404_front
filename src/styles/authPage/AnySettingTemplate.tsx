@@ -143,13 +143,25 @@ export const UserSettingInfo = ({
           {/* 자기소개 */}
           <div className="flex flex-col w-full">
             <span className=" py-1">소개</span>
-            <p className="text-blue-600 text-xs pb-2">{introduce}</p>
+            {introduce ? (
+              <p className="text-blue-600 text-xs pb-2">{introduce}</p>
+            ) : (
+              <p className="text-gray-300 text-sm">
+                "자신을 나타낼 수 있는 말들로 본인을 표현해보세요"
+              </p>
+            )}
           </div>
           <hr className="py-2" />
           {/* 나의 이상형  */}
           <div className="flex flex-col w-full">
             <span className=" py-1">나의 이상형</span>
-            <p className="text-blue-600 text-xs pb-2">{wanted}</p>
+            {wanted ? (
+              <p className="text-blue-600 text-xs pb-2">{wanted}</p>
+            ) : (
+              <p className="text-gray-300 text-sm">
+                "내가 생각하는 나의 이상형에 대해서 표현해보세요"
+              </p>
+            )}
           </div>
         </div>
       </div>

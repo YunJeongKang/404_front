@@ -16,8 +16,8 @@ const { MODIFY } = PATH;
 const UserInfoModify = () => {
   const [introModalOpen, setIntroModalOpen] = useState<boolean>(false);
   const [wantedModalOpen, setWantedModalOpen] = useState<boolean>(false);
-  const [introduce, setIntroduce] = useState<string>("");
-  const [wanted, setWanted] = useState<string>("");
+  const [introduce, setIntroduce] = useState<string | null>("");
+  const [wanted, setWanted] = useState<string | null>("");
   const [data, setData] = useState<any>(null);
 
   const introChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -45,9 +45,9 @@ const UserInfoModify = () => {
       .post(`${URL}${MODIFY}`, { email: client.getUserEmail() })
       .then((res) => res.data)
       .then((user) => {
-        setIntroduce(data.introduce);
-        setWanted(data.wanted);
         console.log("받는 데이터 :", { data: user });
+        setIntroduce(user[0].introduce);
+        setWanted(user[0].wanted);
         user.map((items: any) =>
           setData([
             {

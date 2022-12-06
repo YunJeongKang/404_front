@@ -119,23 +119,22 @@ export const UserSettingInfo = ({
           <div className="flex flex-col w-full h-[42%]">
             {/* 성별 */}
             <div className="flex items-center h-1/4">
-              <span className="w-full ">성별</span>
+              <span className="w-5/6">성별</span>
               <span className="w-full text-blue-600">{gender}</span>
             </div>
             {/* 외모 */}
             <div className="flex items-center h-1/4">
-              <span className="w-full ">외모</span>
+              <span className="w-5/6 ">외모</span>
               <span className="w-full text-blue-600">{appearance}</span>
             </div>
             {/* 성격 */}
             <div className="flex items-center h-1/4 gap-1 text-xs">
-              <span className="w-full text-base">성격</span>
-
+              <span className="w-5/6 text-base">성격</span>
               {personality}
             </div>
             {/* 패션스타일 */}
             <div className="flex items-center h-1/4 gap-1 text-xs">
-              <span className="w-full text-base">패션 스타일</span>
+              <span className="w-5/6 text-base">패션 스타일</span>
               {fashion}
             </div>
           </div>
@@ -144,7 +143,7 @@ export const UserSettingInfo = ({
           <div className="flex flex-col w-full">
             <span className=" py-1">소개</span>
             {introduce ? (
-              <p className="text-blue-600 text-xs pb-2">{introduce}</p>
+              <p className="text-blue-600 text-sm pb-2">{introduce}</p>
             ) : (
               <p className="text-gray-300 text-sm">
                 "자신을 나타낼 수 있는 말들로 본인을 표현해보세요"
@@ -156,7 +155,7 @@ export const UserSettingInfo = ({
           <div className="flex flex-col w-full">
             <span className=" py-1">나의 이상형</span>
             {wanted ? (
-              <p className="text-blue-600 text-xs pb-2">{wanted}</p>
+              <p className="text-blue-600 text-sm pb-2">{wanted}</p>
             ) : (
               <p className="text-gray-300 text-sm">
                 "내가 생각하는 나의 이상형에 대해서 표현해보세요"

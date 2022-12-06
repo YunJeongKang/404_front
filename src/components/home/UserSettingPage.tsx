@@ -84,12 +84,14 @@ const UserSettingPage = () => {
     >
       <AnimatePresence>{settingOpen && appearSetting}</AnimatePresence>
       {/* 세팅버튼 */}
-      <SettingButton
-        onClick={() => {
-          setSettingOpen(true);
-          settingOpen && setSettingOpen(false);
-        }}
-      />
+      {data && (
+        <SettingButton
+          onClick={() => {
+            setSettingOpen(true);
+            settingOpen && setSettingOpen(false);
+          }}
+        />
+      )}
       {data &&
         data.map((data: any) => (
           <>
@@ -109,10 +111,10 @@ const UserSettingPage = () => {
               introduce={data.introduce}
               appearance={data.style}
               fashion={data.fashion.map((items: string) => (
-                <span className="text-blue-600 w-1/2 h-full">{`#${items}`}</span>
+                <span className="text-blue-600 w-[55%] h-full pt-2">{`#${items}`}</span>
               ))}
               personality={data.character.map((items: string) => (
-                <span className="w-1/3 text-blue-600">{`#${items}`}</span>
+                <span className="w-[35%] text-blue-600 pt-0.5">{`#${items}`}</span>
               ))}
             />
           </>

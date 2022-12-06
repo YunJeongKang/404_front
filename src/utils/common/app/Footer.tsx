@@ -10,10 +10,23 @@ import {
   HiOutlineUser,
 } from "react-icons/hi";
 import PATH from "@utils/routes/PATH";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   const { HOME, LIKE, RECOMMEND, CHAT, USER, MODIFY } = PATH;
   const location = useLocation();
+  const variants: any = {
+    start: {
+      rotateY: 0,
+    },
+    end: (url: string) => ({
+      rotateY: location.pathname === url ? 1 : 360,
+    }),
+    transition: {
+      duration: 1.5,
+      repeat: Infinity,
+    },
+  };
 
   return (
     <footer>
@@ -32,13 +45,25 @@ const Footer = () => {
             <FaRegHeart size="30" />
           )}
         </Link>
-        <Link to={RECOMMEND}>
-          {location.pathname === RECOMMEND ? (
-            <HiBadgeCheck size="30" />
-          ) : (
-            <HiOutlineBadgeCheck size="30" />
-          )}
-        </Link>
+        <motion.div
+          variants={variants}
+          custom={RECOMMEND}
+          initial="start"
+          animate="end"
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            repeatDelay: 0.7,
+          }}
+        >
+          <Link to={RECOMMEND}>
+            {location.pathname === RECOMMEND ? (
+              <HiBadgeCheck size="30" />
+            ) : (
+              <HiOutlineBadgeCheck size="30" />
+            )}
+          </Link>
+        </motion.div>
         <Link to={CHAT}>
           {location.pathname === CHAT ? (
             <RiChat1Fill size="30" />

@@ -88,29 +88,30 @@ function MainPage() {
         wanted="강아지를 사랑하는 사람"
       /> */}
       {/* {mainComponent} */}
-      {data.map(
-        ({
-          birth,
-          character,
-          ideal,
-          nick,
-          profile,
-          region,
-          style,
-          img,
-        }: any) => (
-          <MainPageTemplate
-            age={birth}
-            appearance={style}
-            img={img}
-            introSelf={profile}
-            personality={character}
-            region={region}
-            username={nick}
-            wanted={ideal}
-          />
-        )
-      )}
+      {data &&
+        data.map(
+          ({
+            birth,
+            character,
+            ideal,
+            nick,
+            profile,
+            region,
+            style,
+            img,
+          }: any) => (
+            <MainPageTemplate
+              age={birth ? birth : ""}
+              appearance={style ? style : ""}
+              img={img ? img : ""}
+              introSelf={profile ? profile : ""}
+              personality={character ? character : ""}
+              region={region ? region : ""}
+              username={nick ? nick : ""}
+              wanted={ideal ? ideal : ""}
+            />
+          )
+        )}
     </div>
   );
 }

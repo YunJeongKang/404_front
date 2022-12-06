@@ -15,18 +15,6 @@ import { motion } from "framer-motion";
 const Footer = () => {
   const { HOME, LIKE, RECOMMEND, CHAT, USER, MODIFY } = PATH;
   const location = useLocation();
-  const variants: any = {
-    start: {
-      rotateY: 0,
-    },
-    end: (url: string) => ({
-      rotateY: location.pathname === url ? 1 : 360,
-    }),
-    transition: {
-      duration: 1.5,
-      repeat: Infinity,
-    },
-  };
 
   return (
     <footer>
@@ -46,10 +34,8 @@ const Footer = () => {
           )}
         </Link>
         <motion.div
-          variants={variants}
-          custom={RECOMMEND}
-          initial="start"
-          animate="end"
+          initial={{ rotateY: 0 }}
+          animate={{ rotateY: 360 }}
           transition={{
             duration: 1.5,
             repeat: Infinity,

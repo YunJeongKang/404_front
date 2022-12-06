@@ -4,13 +4,14 @@ import AppleAPI from "@utils/common/props/auth/AppleAPI";
 import FacebookAPI from "@utils/common/props/auth/FacebookAPI";
 import KakaoAPI from "@utils/common/props/auth/KakaoAPI";
 import PATH from "@utils/routes/PATH";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const EasyStartPage = () => {
   const auth = useAuth();
-  const { LOGIN, SIGNUP, EASY_AUTH } = PATH;
+  const navigate = useNavigate();
+  const { LOGIN, SIGNUP, EASY_AUTH, INPUT } = PATH;
   const { CoupleImg } = ImageStore;
 
   // JS SDK 로그인
@@ -28,7 +29,6 @@ const EasyStartPage = () => {
   const kakaoLogin = async () => {
     await Kakao.Auth.login({
       success(res: any) {
-        console.log("res 콘솔", res);
         Kakao.Auth.setAccessToken(res.access_token);
         setToken(res.access_token);
         console.log("카카오 로그인 성공");
@@ -39,7 +39,20 @@ const EasyStartPage = () => {
             console.log("카카오 인가 요청 성공");
             const kakaoAccount = res.kakao_account;
             setKakaoEmail(kakaoAccount.email);
-            console.log(kakaoAccount);
+            axios
+              .post(`${URL}${EASY_AUTH}`, {
+                email: kakaoEmail,
+                password: idToken,
+              })
+              .then((res) => {
+                console.log(res.data);
+                res.data.isReady && auth.setReady(true);
+                res.data.isReady && navigate(`${URL}${INPUT}`);
+                console.log("보내는 데이터2:", {
+                  email: kakaoEmail,
+                  password: idToken,
+                });
+              });
           },
           fail(err: any) {
             console.error(err);
@@ -51,12 +64,11 @@ const EasyStartPage = () => {
       },
     });
   };
+
   useEffect(() => {
     InitKakao();
-    Kakao.Auth.getAccessToken() && auth.setReady(true);
-    axios.post(`${URL}${EASY_AUTH}`, { email: kakaoEmail, password: idToken });
   }, []);
-  console.log("보내는 데이터:", { email: kakaoEmail, password: idToken });
+
   return (
     <div className={`flex flex-col h-full w-full items-center select-none`}>
       {/* 배경화면 부분 */}

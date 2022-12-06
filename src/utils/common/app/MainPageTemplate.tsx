@@ -31,7 +31,7 @@ const MainPageTemplate = ({
   const client = useClient();
   useEffect(() => {
     heart &&
-      axios.put(`${URL}${HOME}`, {
+      axios.post(`${URL}${HOME}`, {
         email: client.getUserEmail(),
         username: username,
       });

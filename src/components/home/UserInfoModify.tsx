@@ -48,13 +48,7 @@ const UserInfoModify = () => {
         console.log("받는 데이터 :", { data: user });
         setIntroduce(user[0].introduce);
         setWanted(user[0].wanted);
-        user.map((items: any) =>
-          setData([
-            {
-              ...items,
-            },
-          ])
-        );
+        user.map((items: any) => setData([{ ...items }]));
       })
       .catch(console.error);
     console.log("보내는 데이터 :", { email: client.getUserEmail() });

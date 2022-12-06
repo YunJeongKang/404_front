@@ -10,10 +10,12 @@ import {
 } from "@styles/authPage/AnySettingTemplate";
 import API_PATH from "@utils/routes/api/API_PATH";
 import useClient from "@store/useClient";
+import { useNavigate } from "react-router-dom";
 
 const UserSettingPage = () => {
-  const { MODIFY, USER } = PATH;
+  const { MODIFY, USER, EASY_AUTH } = PATH;
   const { URL } = API_PATH;
+  const navigate = useNavigate();
 
   // FIXME init as undefined
   const [profileImageUri, setProfileImageUri] = useState<string | undefined>(
@@ -50,6 +52,7 @@ const UserSettingPage = () => {
       >
         <button onClick={() => auth.logout()}>로그아웃</button>
         <hr className="py-[3px]" />
+        {/* 회원탈퇴 */}
         <button
           onClick={() => {
             axios
@@ -58,6 +61,7 @@ const UserSettingPage = () => {
               })
               .then((res) => {
                 auth.logout();
+                navigate(`${URL}${EASY_AUTH}`);
                 console.log(res.data);
               })
               .catch(() => {

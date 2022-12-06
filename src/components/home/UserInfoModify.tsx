@@ -44,8 +44,6 @@ const UserInfoModify = () => {
       .post(`${URL}${MODIFY}`, { email: client.getUserEmail() })
       .then((res) => res.data)
       .then((user) => {
-        setIntroduce(user.introduce);
-        setWanted(user.wanted);
         console.log("받는 데이터 :", { data: user });
         user.map((items: any) =>
           setData([
@@ -57,6 +55,14 @@ const UserInfoModify = () => {
       })
       .catch(console.error);
     console.log("보내는 데이터 :", { email: client.getUserEmail() });
+    axios
+      .get(`${URL}${MODIFY}`)
+      .then((res) => res.data)
+      .then((data) => {
+        console.log("소개 받아오는 데이터:", data);
+        setIntroduce(data.introduce);
+        setWanted(data.wanted);
+      });
   }, []);
 
   return (
@@ -266,7 +272,7 @@ const UserInfoModify = () => {
                     <SettingModalCloseButton
                       onClick={() => {
                         setIntroModalOpen(false);
-                        axios.put(`${URL}${MODIFY}/introduce`, {
+                        axios.put(`${URL}${MODIFY}`, {
                           introduce: introduce,
                           email: client.getUserEmail(),
                         });
@@ -313,7 +319,7 @@ const UserInfoModify = () => {
                     <SettingModalCloseButton
                       onClick={() => {
                         setWantedModalOpen(false);
-                        axios.put(`${URL}${MODIFY}/wanted`, {
+                        axios.put(`${URL}${MODIFY}`, {
                           wanted: wanted,
                           email: client.getUserEmail(),
                         });

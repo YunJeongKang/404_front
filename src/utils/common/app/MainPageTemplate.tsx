@@ -40,22 +40,6 @@ const MainPageTemplate = ({
         email: client.getUserEmail(),
         username: username,
       });
-
-    heart !== null &&
-      !heart &&
-      axios.delete(`${URL}${HOME}`, {
-        data: {
-          email: client.getUserEmail(),
-          username: username,
-        },
-      });
-
-    heart !== null &&
-      !heart &&
-      console.log("관심표현 제거시 보내지는 데이터 :", {
-        email: client.getUserEmail(),
-        username: username,
-      });
   }, [heart]);
 
   return (
@@ -68,7 +52,6 @@ const MainPageTemplate = ({
             className="absolute top-2 z-20 left-2"
             onClick={() => {
               setHeart(true);
-              heart && setHeart(false);
             }}
           >
             {heart ? (

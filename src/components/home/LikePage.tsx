@@ -6,11 +6,12 @@ import { useState } from "react";
 import { useLayoutEffect } from "react";
 
 const LikePage = () => {
+  const { URL, LIKE } = PATH;
+  const client = useClient();
+
   const [likeComponent, setLikeComponent] = useState<React.ReactNode[] | null>(
     null
   );
-  const { URL, LIKE } = PATH;
-  const client = useClient();
   useLayoutEffect(() => {
     axios
       .post(`${URL}${LIKE}`, { email: client.getUserEmail() })

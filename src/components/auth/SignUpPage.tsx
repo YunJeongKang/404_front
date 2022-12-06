@@ -9,6 +9,11 @@ import useClient from "@store/useClient";
 import { Link } from "react-router-dom";
 
 const SignUnPage = () => {
+  const auth = useAuth();
+  const client = useClient();
+  const { URL, SIGNUP, EASY_AUTH } = PATH;
+
+  // value 상태관리
   const [values, setValues] = useState<AuthInterface>({
     email: "",
     password: "",
@@ -24,10 +29,6 @@ const SignUnPage = () => {
 
   // 비밀번호 확인
   const [checkPW, setCheckPW] = useState<string>("");
-
-  const auth = useAuth();
-  const client = useClient();
-  const { URL, SIGNUP, EASY_AUTH } = PATH;
 
   function onSubmit() {
     // 회원가입 axios

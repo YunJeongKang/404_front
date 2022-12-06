@@ -11,15 +11,18 @@ const { EASY_AUTH } = PATH;
 const { URL, LOGIN } = API_PATH;
 
 function LoginPage() {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const usernameRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
   const client = useClient();
+
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const usernameRef = useRef<HTMLInputElement | null>(null);
   const { setUserName, setPassword } = auth;
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
+
+  // 모든 value를 관리하는 changeHandler
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
     const { name, value } = evt.target;
     name === "email" ? setUserName(value) : setPassword(value);
@@ -29,6 +32,7 @@ function LoginPage() {
     });
   };
 
+  // 포커싱
   useEffect(() => {
     if (usernameRef.current === null) {
       return;

@@ -1,6 +1,5 @@
-import { Navigate, Route, Routes, Link } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import PATH from "@utils/routes/PATH";
-import useAuth from "@store/useAuth";
 import MainPage from "@components/home/Mainpage";
 import RecommendPage from "@components/home/RecommendPage";
 import LikePage from "@components/home/LikePage";
@@ -11,9 +10,6 @@ import UserInfoModify from "@components/home/UserInfoModify";
 const { HOME, LIKE, RECOMMEND, CHAT, USER, MODIFY } = PATH;
 
 const ProtectedRoutes = () => {
-  const auth = useAuth();
-  const { isAuthenticated } = auth;
-
   return (
     <Routes>
       <Route path={HOME} element={<MainPage />} />

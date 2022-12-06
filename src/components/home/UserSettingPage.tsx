@@ -16,14 +16,15 @@ const UserSettingPage = () => {
   const { MODIFY, USER, EASY_AUTH } = PATH;
   const { URL } = API_PATH;
   const navigate = useNavigate();
-  const [data, setData] = useState<any>(null);
+  const auth = useAuth();
+  const client = useClient();
 
+  //일반 상태관리
+  const [data, setData] = useState<any>(null);
   const [settingOpen, setSettingOpen] = useState<boolean | null>(null);
   const [appearSetting, setAppearSetting] = useState<React.ReactNode | null>(
     null
   );
-  const auth = useAuth();
-  const client = useClient();
 
   // settingDiv State
   useLayoutEffect(() => {

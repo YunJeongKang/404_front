@@ -4,14 +4,25 @@ import axios from "axios";
 import PATH from "@utils/routes/PATH";
 import { FaCrown } from "react-icons/fa";
 import useClient from "@store/useClient";
+import { HiOutlineInformationCircle } from "react-icons/hi";
 
 const RecommendPage = () => {
-  const [isClick, setClick] = useState<boolean>(false);
   const { URL, RECOMMEND } = PATH;
+  const client = useClient();
+
+  // 기존 페이지에 있는 상태관리 변수
+  const [isClick, setClick] = useState<boolean>(false);
   const [username, setUsername] = useState<string[]>([]);
   const [region, setRegion] = useState<string[]>([]);
   const [job, setJob] = useState<string[]>([]);
   const [image, setImage] = useState<string[]>([]);
+
+  // 추천 상세보기 상태관리 변수
+  const [isInfo, setInfo] = useState<boolean>(false);
+
+  const InfoClick = () => {
+    setInfo(true);
+  };
 
   const recommendClick = () => {
     !isClick && setClick(true);
@@ -30,7 +41,6 @@ const RecommendPage = () => {
       });
     console.log("보내는 값 :", { email: userEmail });
   };
-  const client = useClient();
 
   return (
     <div className="relative flex flex-col items-center w-full h-full max-w-[98%] max-h-[98%] gap-2 py-2 select-none">
@@ -41,6 +51,14 @@ const RecommendPage = () => {
       >
         천생연분
       </span>
+      {isClick && (
+        <HiOutlineInformationCircle
+          className="absolute right-5 top-2 cursor-help"
+          size="25"
+          color="#1e88e5"
+          onClick={InfoClick}
+        />
+      )}
       {!isClick && (
         <span className="absolute text-xs top-12">위 글씨를 클릭하세요!</span>
       )}

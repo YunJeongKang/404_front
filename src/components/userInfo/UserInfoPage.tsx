@@ -57,6 +57,9 @@ import { selectHobbyList } from "@data/main_info/hobby";
 const { INPUT, URL, USER_IMAGE } = PATH;
 
 const UserInfoPage = () => {
+  const client = useClient();
+  const navigate = useNavigate();
+
   // 메인 프로파일 데이터
   const [mainInfo, setMainInfo] = useState<MainInfoInterface>({
     gender: "",
@@ -140,10 +143,6 @@ const UserInfoPage = () => {
       [name]: value,
     });
   };
-
-  const client = useClient();
-
-  const navigate = useNavigate();
 
   // axios API
   function onSubmit() {

@@ -4,19 +4,17 @@ import AppleAPI from "@utils/common/props/auth/AppleAPI";
 import FacebookAPI from "@utils/common/props/auth/FacebookAPI";
 import KakaoAPI from "@utils/common/props/auth/KakaoAPI";
 import PATH from "@utils/routes/PATH";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import queryString from "query-string";
 
 const EasyStartPage = () => {
+  const auth = useAuth();
   const { LOGIN, SIGNUP } = PATH;
+
   // 카카오 API 주소
   const REST_API_KEY = import.meta.env.VITE_KAKAO_API_KEY;
   const REDIRECT_URL = `${import.meta.env.VITE_BASE_URL}/auth/kakao/callback`;
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code`;
 
-  const auth = useAuth();
   const { CoupleImg } = ImageStore;
   return (
     <div className={`flex flex-col h-full w-full items-center select-none`}>

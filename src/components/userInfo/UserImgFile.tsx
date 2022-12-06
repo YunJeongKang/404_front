@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PATH from "@utils/routes/PATH";
 import { motion } from "framer-motion";
 import { BsArrowBarUp, BsArrowRight } from "react-icons/bs";
@@ -10,6 +10,8 @@ import useAuth from "@store/useAuth";
 const { USER_IMAGE, URL } = PATH;
 
 const UserImgFile = () => {
+  const isAuth = useAuth();
+
   const [image1, setImage1] = useState<any>("");
   const [image2, setImage2] = useState<any>("");
   const [image3, setImage3] = useState<any>("");
@@ -35,8 +37,6 @@ const UserImgFile = () => {
   formData.append("userImage", image4);
   formData.append("userImage", image5);
   formData.append("userImage", image6);
-
-  const isAuth = useAuth();
 
   const onClick = () => {
     // 보내는 값

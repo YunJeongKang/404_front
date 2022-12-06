@@ -5,7 +5,7 @@ import ModalH2, {
 import { IntroModal, WantedModal } from "@styles/modal/SettingModal";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PATH from "@utils/routes/PATH";
 import API_PATH from "@utils/routes/api/API_PATH";
 import useClient from "@store/useClient";
@@ -14,6 +14,10 @@ const { URL } = API_PATH;
 const { MODIFY } = PATH;
 
 const UserInfoModify = () => {
+  const client = useClient();
+  const AWS_S3_URL = import.meta.env.VITE_S3_BASE_URL;
+
+  // 일반 상태관리
   const [introModalOpen, setIntroModalOpen] = useState<boolean>(false);
   const [wantedModalOpen, setWantedModalOpen] = useState<boolean>(false);
   const [introduce, setIntroduce] = useState<string | null>("");
@@ -35,9 +39,6 @@ const UserInfoModify = () => {
   const WantedClick = () => {
     setWantedModalOpen(true);
   };
-
-  const client = useClient();
-  const AWS_S3_URL = import.meta.env.VITE_S3_BASE_URL;
 
   useEffect(() => {
     // 다른 데이터 axios

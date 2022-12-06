@@ -6,21 +6,16 @@ import KakaoAPI from "@utils/common/props/auth/KakaoAPI";
 import PATH from "@utils/routes/PATH";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const EasyStartPage = () => {
   const auth = useAuth();
-  const { LOGIN, SIGNUP } = PATH;
+  const { LOGIN, SIGNUP, EASY_AUTH } = PATH;
   const { CoupleImg } = ImageStore;
-
-  // 카카오 API 주소
-  const REST_API_KEY = import.meta.env.VITE_KAKAO_API_KEY;
-  const REDIRECT_URL = `${import.meta.env.VITE_BASE_URL}/auth/kakao/callback`;
-  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code`;
 
   // JS SDK 로그인
   const [idToken, setToken] = useState<string>("");
   const [kakaoEmail, setKakaoEmail] = useState<string>("");
-  const [isLogin, setLogin] = useState<boolean>(false);
   const InitKakao = async () => {
     const jsKey = import.meta.env.VITE_KAKO_JS_SDK_KEY;
 
@@ -45,7 +40,6 @@ const EasyStartPage = () => {
             const kakaoAccount = res.kakao_account;
             setKakaoEmail(kakaoAccount.email);
             console.log(kakaoAccount);
-            setLogin(true);
           },
           fail(err: any) {
             console.error(err);
@@ -57,11 +51,12 @@ const EasyStartPage = () => {
       },
     });
   };
-  console.log("저장된 데이터:", idToken, kakaoEmail);
   useEffect(() => {
     InitKakao();
-    Kakao.Auth.getAccessToken() ? setLogin(true) : setLogin(false);
+    Kakao.Auth.getAccessToken() && auth.setReady(true);
+    axios.post(`${URL}${EASY_AUTH}`, { email: kakaoEmail, password: idToken });
   }, []);
+  console.log("보내는 데이터:", { email: kakaoEmail, password: idToken });
   return (
     <div className={`flex flex-col h-full w-full items-center select-none`}>
       {/* 배경화면 부분 */}

@@ -45,6 +45,8 @@ const UserInfoModify = () => {
       .post(`${URL}${MODIFY}`, { email: client.getUserEmail() })
       .then((res) => res.data)
       .then((user) => {
+        setIntroduce(data.introduce);
+        setWanted(data.wanted);
         console.log("받는 데이터 :", { data: user });
         user.map((items: any) =>
           setData([
@@ -56,15 +58,6 @@ const UserInfoModify = () => {
       })
       .catch(console.error);
     console.log("보내는 데이터 :", { email: client.getUserEmail() });
-    // 소개, 나의 이상형 axios
-    axios
-      .get(`${URL}${MODIFY}`, { data: { email: client.getUserEmail() } })
-      .then((res) => res.data)
-      .then((data) => {
-        console.log("소개 받아오는 데이터:", data);
-        setIntroduce(data.introduce);
-        setWanted(data.wanted);
-      });
   }, []);
 
   return (

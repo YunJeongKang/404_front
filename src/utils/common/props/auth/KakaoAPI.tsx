@@ -4,13 +4,14 @@ import { SignUpParagraph } from "@styles/indexStyle/indexParagraph";
 import { RiKakaoTalkFill } from "react-icons/ri";
 
 interface KakaoAPIInterface {
-  href: string;
+  href?: string;
+  onClick: () => void;
 }
 
-const KakaoAPI = ({ href }: KakaoAPIInterface) => {
+const KakaoAPI = ({ href, onClick }: KakaoAPIInterface) => {
   return (
     <SignUpAnchor href={href}>
-      <SignUpBtn className="relative bg-kakao">
+      <SignUpBtn className="relative bg-kakao" onClick={onClick}>
         <RiKakaoTalkFill
           size="24"
           className="absolute inline-block bg-kakao left-6"

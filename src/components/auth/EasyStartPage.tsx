@@ -5,17 +5,63 @@ import FacebookAPI from "@utils/common/props/auth/FacebookAPI";
 import KakaoAPI from "@utils/common/props/auth/KakaoAPI";
 import PATH from "@utils/routes/PATH";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const EasyStartPage = () => {
   const auth = useAuth();
   const { LOGIN, SIGNUP } = PATH;
+  const { CoupleImg } = ImageStore;
 
   // 카카오 API 주소
   const REST_API_KEY = import.meta.env.VITE_KAKAO_API_KEY;
   const REDIRECT_URL = `${import.meta.env.VITE_BASE_URL}/auth/kakao/callback`;
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code`;
 
-  const { CoupleImg } = ImageStore;
+  // JS SDK 로그인
+  const [idToken, setToken] = useState<string>("");
+  const [kakaoEmail, setKakaoEmail] = useState<string>("");
+  const [isLogin, setLogin] = useState<boolean>(false);
+  const InitKakao = async () => {
+    const jsKey = import.meta.env.VITE_KAKO_JS_SDK_KEY;
+
+    if (Kakao && !Kakao.isInitialized()) {
+      await Kakao.init(jsKey);
+      console.log(`카카오 초기화 ${Kakao.isInitialized()}`);
+    }
+  };
+  const Kakao = (window as any).Kakao;
+  const kakaoLogin = async () => {
+    await Kakao.Auth.login({
+      success(res: any) {
+        console.log("res 콘솔", res);
+        Kakao.Auth.setAccessToken(res.access_token);
+        setToken(res.access_token);
+        console.log("카카오 로그인 성공");
+
+        Kakao.API.request({
+          url: "/v2/user/me",
+          success(res: any) {
+            console.log("카카오 인가 요청 성공");
+            const kakaoAccount = res.kakao_account;
+            setKakaoEmail(kakaoAccount.email);
+            console.log(kakaoAccount);
+            setLogin(true);
+          },
+          fail(err: any) {
+            console.error(err);
+          },
+        });
+      },
+      fail(err: any) {
+        console.error(err);
+      },
+    });
+  };
+  console.log("저장된 데이터:", idToken, kakaoEmail);
+  useEffect(() => {
+    InitKakao();
+    Kakao.Auth.getAccessToken() ? setLogin(true) : setLogin(false);
+  }, []);
   return (
     <div className={`flex flex-col h-full w-full items-center select-none`}>
       {/* 배경화면 부분 */}
@@ -49,7 +95,7 @@ const EasyStartPage = () => {
           이메일로 간편가입
         </Link>
         {/* 로그인 API 클릭 컴포넌트 */}
-        <KakaoAPI href={KAKAO_AUTH_URL} />
+        <KakaoAPI onClick={kakaoLogin} />
         <FacebookAPI />
         <AppleAPI />
         <div className="flex flex-raw items-center justify-around w-full">

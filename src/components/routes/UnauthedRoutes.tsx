@@ -10,7 +10,6 @@ import useAuth from "@store/useAuth";
 import UserImgFile from "@components/userInfo/UserImgFile";
 import useClient from "@store/useClient";
 import API_PATH from "@utils/routes/api/API_PATH";
-import KakaoLogin from "@components/auth/KakaoLogin";
 
 const { LOGIN, EASY_AUTH, SIGNUP, INPUT, USER_IMAGE } = PATH;
 const { KAKAO_API } = API_PATH;
@@ -39,7 +38,6 @@ function UnauthedRoutes() {
   return (
     <Routes>
       <Route path={EASY_AUTH} element={<EasyStartPage />} />
-      <Route path="/auth/kakao/callback" element={<KakaoLogin />} />
       <Route path={LOGIN} element={<LoginPage />} />
       <Route path={currentPath} element={currentRoute} />
       <Route path={INPUT} element={<UserInfoPage />} />

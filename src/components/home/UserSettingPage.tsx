@@ -20,6 +20,7 @@ const UserSettingPage = () => {
   const client = useClient();
 
   //일반 상태관리
+  const [isLoadingCursor, setLoadingCursor] = useState<boolean>(false);
   const [data, setData] = useState<any>(null);
   const [settingOpen, setSettingOpen] = useState<boolean | null>(null);
   const [appearSetting, setAppearSetting] = useState<React.ReactNode | null>(

@@ -18,19 +18,20 @@ function MainPage() {
       .post(`${URL}${HOME}`, { email: client.getUserEmail() })
       .then((res) => res.data)
       .then((user) => {
-        const componentList = user.map((items: any) => (
-          <MainPageTemplate
-            age={items.age}
-            appearance={items.appearance}
-            img={items.image}
-            introSelf={items.introduce}
-            personality={items.personality}
-            region={items.region}
-            username={items.username}
-            wanted={items.wanted}
-          />
-        ));
-        setMainComponent(componentList);
+        console.log("받아오는 데이터: ", user);
+        // const componentList = user.map((items: any) => (
+        //   <MainPageTemplate
+        //     age={items.age}
+        //     appearance={items.appearance}
+        //     img={items.image}
+        //     introSelf={items.introduce}
+        //     personality={items.personality}
+        //     region={items.region}
+        //     username={items.username}
+        //     wanted={items.wanted}
+        //   />
+        // ));
+        // setMainComponent(componentList);
       });
     console.log("보내는 데이터 :", { email: client.getUserEmail() });
   }, []);

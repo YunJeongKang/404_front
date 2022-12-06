@@ -4,7 +4,8 @@ interface ImportMetaEnv {
   readonly VITE_S3_BASE_URL: string;
 
   // OAUTH
-  readonly VITE_KAKAO_API_KEY: string;
+  readonly VITE_KAKAO_REST_API_KEY: string;
+  readonly VITE_KAKO_JS_SDK_KEY: string;
   readonly VITE_FACEBOOK_API_KEY: string;
   readonly VITE_APPLE_API_KEY: string;
   readonly VITE_KAKAO_CLIENT_SECRET: string;

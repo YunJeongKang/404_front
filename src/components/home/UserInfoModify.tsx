@@ -274,10 +274,12 @@ const UserInfoModify = () => {
                         setIntroModalOpen(false);
                         axios.put(`${URL}${MODIFY}`, {
                           introduce: introduce,
+                          wanted: wanted,
                           email: client.getUserEmail(),
                         });
                         console.log("소개 - 보내는 데이터 :", {
                           introduce: introduce,
+                          wanted: wanted,
                           email: client.getUserEmail(),
                         });
                       }}
@@ -321,10 +323,12 @@ const UserInfoModify = () => {
                         setWantedModalOpen(false);
                         axios.put(`${URL}${MODIFY}`, {
                           wanted: wanted,
+                          introduce: introduce,
                           email: client.getUserEmail(),
                         });
                         console.log("나의 이상형 - 보내는 데이터 :", {
                           wanted: wanted,
+                          introduce: introduce,
                           email: client.getUserEmail(),
                         });
                       }}

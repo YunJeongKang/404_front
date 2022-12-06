@@ -75,7 +75,7 @@ const MainPageTemplate = ({
             <span className="w-[6%]">{age}</span>
             <span className="w-[1.5%]">·</span>
             <span className="w-[31%]">{region}</span>
-            <div className="absolute right-4 flex text-base ml-28 w-[40%] mt-1 gap-2">
+            <div className="absolute right-4 flex justify-end text-base ml-28 w-[40%] mt-1 mx-2 gap-2">
               <span>#{personality}</span>
               <span>#{appearance}</span>
             </div>

@@ -7,6 +7,7 @@ interface ImportMetaEnv {
   readonly VITE_KAKAO_API_KEY: string;
   readonly VITE_FACEBOOK_API_KEY: string;
   readonly VITE_APPLE_API_KEY: string;
+  readonly VITE_KAKAO_CLIENT_SECRET: string;
 
   // API Server
   readonly VITE_API_BASE_URL: string;

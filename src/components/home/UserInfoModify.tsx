@@ -40,6 +40,7 @@ const UserInfoModify = () => {
   const AWS_S3_URL = import.meta.env.VITE_S3_BASE_URL;
 
   useEffect(() => {
+    // 다른 데이터 axios
     axios
       .post(`${URL}${MODIFY}`, { email: client.getUserEmail() })
       .then((res) => res.data)
@@ -55,8 +56,9 @@ const UserInfoModify = () => {
       })
       .catch(console.error);
     console.log("보내는 데이터 :", { email: client.getUserEmail() });
+    // 소개, 나의 이상형 axios
     axios
-      .get(`${URL}${MODIFY}`)
+      .get(`${URL}${MODIFY}`, { data: { email: client.getUserEmail() } })
       .then((res) => res.data)
       .then((data) => {
         console.log("소개 받아오는 데이터:", data);

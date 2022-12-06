@@ -16,21 +16,12 @@ const UserSettingPage = () => {
   const { MODIFY, USER, EASY_AUTH } = PATH;
   const { URL } = API_PATH;
   const navigate = useNavigate();
-
-  // FIXME init as undefined
-  const [profileImageUri, setProfileImageUri] = useState<string | undefined>(
-    "yena.jpg"
-  );
+  const [data, setData] = useState<any>(null);
 
   const [settingOpen, setSettingOpen] = useState<boolean | null>(null);
   const [appearSetting, setAppearSetting] = useState<React.ReactNode | null>(
     null
   );
-  const [disAppearSetting, setDisAppearSetting] =
-    useState<React.ReactNode | null>(null);
-
-  const [settingComponent, setSettingComponent] =
-    useState<React.ReactNode | null>(null);
   const auth = useAuth();
   const client = useClient();
 
@@ -79,37 +70,9 @@ const UserSettingPage = () => {
     axios
       .post(`${URL}${USER}`, { email: client.getUserEmail() })
       .then((res) => res.data)
-      .then((user) => {
-        //settingUserInfo
-        setSettingComponent(
-          <>
-            {/* 세팅버튼 */}
-            <SettingButton
-              onClick={() => {
-                setSettingOpen(true);
-                settingOpen && setSettingOpen(false);
-              }}
-            />
-            {/* 프로필 사진 */}
-            <LinkModify
-              img={user.image}
-              onClick={() => setSettingOpen(false)}
-            />
-            {/* 정보박스 */}
-            <UserSettingInfo
-              onClick={() => setSettingOpen(false)}
-              gender={user.gender}
-              job={user.job}
-              wanted={user.wanted}
-              username={user.username}
-              region={user.region}
-              introduce={user.introduce}
-              appearance={`#${user.appearance}`}
-              fashion={`#${user.fashion}`}
-              personality={user.personality.map((items: string) => `#${items}`)}
-            />
-          </>
-        );
+      .then((data) => {
+        console.log("내가 받아오는 데이터:", data);
+        data.map((items: any) => setData([{ ...items }]));
       });
     console.log("보내는 데이터 :", { email: client.getUserEmail() });
   }, []);
@@ -127,22 +90,33 @@ const UserSettingPage = () => {
           settingOpen && setSettingOpen(false);
         }}
       />
-      {/* 프로필 사진 */}
-      <LinkModify img={profileImageUri} onClick={() => setSettingOpen(false)} />
-      {/* 정보박스 */}
-      <UserSettingInfo
-        onClick={() => setSettingOpen(false)}
-        gender="여자"
-        job="가수"
-        wanted="나의 이상형은 오큘러스 하는 너드남"
-        username="최예나"
-        region="서울특별시"
-        introduce="And I say hey! I'm gonna make it Smile, smile, smile away
-          예쁘게 웃고 넘겨버릴래 Just smile away Just smile awa-y 아픔, 슬픔, 외로움 잊게"
-        appearance="#귀여움"
-        fashion="#아무거나 잘 어울림"
-        personality="#쿨함 #오리 #이쁨"
-      />
+      {data &&
+        data.map((data: any) => (
+          <>
+            {/* 프로필 사진 */}
+            <LinkModify
+              img={data.image}
+              onClick={() => setSettingOpen(false)}
+            />
+            {/* 정보박스 */}
+            <UserSettingInfo
+              onClick={() => setSettingOpen(false)}
+              gender={data.gender}
+              job={data.job}
+              wanted={data.wanted}
+              username={data.nickname}
+              region={data.region}
+              introduce={data.introduce}
+              appearance={data.style}
+              fashion={data.fashion.map((items: string) => (
+                <span className="text-blue-600 w-1/2 h-full">{`#${items}`}</span>
+              ))}
+              personality={data.character.map((items: string) => (
+                <span className="w-1/3 text-blue-600">{`#${items}`}</span>
+              ))}
+            />
+          </>
+        ))}
     </div>
   );
 };

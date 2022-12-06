@@ -115,27 +115,28 @@ export const UserSettingInfo = ({
         </div>
         {/* 정보 미리보기 박스*/}
         <div className="h-5/6 w-full">
-          {/* 닉네임, 성별, 생일, 위치 */}
+          {/* 성별, 외모, 성격, 패션스타일 */}
           <div className="flex flex-col w-full h-[42%]">
-            {/* 닉네임 */}
+            {/* 성별 */}
             <div className="flex items-center h-1/4">
               <span className="w-full ">성별</span>
               <span className="w-full text-blue-600">{gender}</span>
             </div>
-            {/* 성별 */}
+            {/* 외모 */}
             <div className="flex items-center h-1/4">
               <span className="w-full ">외모</span>
               <span className="w-full text-blue-600">{appearance}</span>
             </div>
-            {/* 생일 */}
-            <div className="flex items-center h-1/4">
-              <span className="w-full ">성격</span>
-              <span className="w-full text-blue-600">{personality}</span>
+            {/* 성격 */}
+            <div className="flex items-center h-1/4 gap-1 text-xs">
+              <span className="w-full text-base">성격</span>
+
+              {personality}
             </div>
-            {/* 위치 */}
-            <div className="flex items-center h-1/4">
-              <span className="w-full ">패션 스타일</span>
-              <span className="w-full text-blue-600">{fashion}</span>
+            {/* 패션스타일 */}
+            <div className="flex items-center h-1/4 gap-1 text-xs">
+              <span className="w-full text-base">패션 스타일</span>
+              {fashion}
             </div>
           </div>
           <hr className="py-2" />

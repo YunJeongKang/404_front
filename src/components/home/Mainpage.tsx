@@ -9,9 +9,7 @@ function MainPage() {
   const auth = useAuth();
   const client = useClient();
   const { URL, HOME } = PATH;
-  const [mainComponent, setMainComponent] = useState<React.ReactNode[] | null>(
-    null
-  );
+  const [data, setData] = useState<any>(null);
 
   useLayoutEffect(() => {
     axios
@@ -19,16 +17,17 @@ function MainPage() {
       .then((res) => res.data)
       .then((user) => {
         console.log("받아오는 데이터: ", user);
-        // const componentList = user.map((items: any) => (
+        setData(user);
+        // const componentList = user.map((items: any, index: number) => (
         //   <MainPageTemplate
-        //     age={items.age}
-        //     appearance={items.appearance}
+        //     age={items.birth}
+        //     appearance={items.style}
         //     img={items.image}
-        //     introSelf={items.introduce}
-        //     personality={items.personality}
+        //     introSelf={items.profile}
+        //     personality={items.character}
         //     region={items.region}
-        //     username={items.username}
-        //     wanted={items.wanted}
+        //     username={items.nick}
+        //     wanted={items.wanted ? "" : items.wanted}
         //   />
         // ));
         // setMainComponent(componentList);
@@ -37,7 +36,7 @@ function MainPage() {
   }, []);
   return (
     <div className="flex flex-wrap w-full h-full gap-6 max-h-[1000rem] font-eland select-none">
-      <MainPageTemplate
+      {/* <MainPageTemplate
         age="24"
         appearance="귀여움"
         img="yena.jpg"
@@ -87,8 +86,31 @@ function MainPage() {
         region="미국 어딘가"
         username="키아누 리브스"
         wanted="강아지를 사랑하는 사람"
-      />
-      {mainComponent}
+      /> */}
+      {/* {mainComponent} */}
+      {data.map(
+        ({
+          birth,
+          character,
+          ideal,
+          nick,
+          profile,
+          region,
+          style,
+          img,
+        }: any) => (
+          <MainPageTemplate
+            age={birth}
+            appearance={style}
+            img={img}
+            introSelf={profile}
+            personality={character}
+            region={region}
+            username={nick}
+            wanted={ideal}
+          />
+        )
+      )}
     </div>
   );
 }

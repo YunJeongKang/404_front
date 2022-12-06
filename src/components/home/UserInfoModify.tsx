@@ -223,9 +223,9 @@ const UserInfoModify = () => {
                   <span className="w-full font-bold">성별</span>
                   <span className="w-full text-blue-600">{items.gender}</span>
                 </div>
-                {/* 생일 */}
+                {/* 나이 */}
                 <div className="flex items-center h-1/4">
-                  <span className="w-full font-bold">생일</span>
+                  <span className="w-full font-bold">나이</span>
                   <span className="w-full text-blue-600">{items.birth}</span>
                 </div>
                 {/* 위치 */}

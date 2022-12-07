@@ -711,7 +711,6 @@ const UserInfoPage = () => {
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
         >
-          {" "}
           {/* 연봉  */}
           <SectionTemplate>
             <UserInfoH2>연봉</UserInfoH2>
@@ -860,7 +859,7 @@ const UserInfoPage = () => {
               <ManAppearanceModal isAppearanceOpen={isAppearanceOpen}>
                 <OutsideModal>
                   <ModalH2>외모</ModalH2>
-                  <CheckBoxInputTemplate>
+                  <CheckBoxInputTemplate required>
                     {manAppearanceList.map(({ htmlFor, labelName, value }) => (
                       <CheckBoxInput
                         key={htmlFor}
@@ -907,7 +906,7 @@ const UserInfoPage = () => {
               >
                 <OutsideModal className="gap-2">
                   <ModalH2>성격</ModalH2>
-                  <CheckBoxInputTemplate className="!gap-4 h-[63.5%]">
+                  <CheckBoxInputTemplate className="!gap-4 h-[63.5%]" required>
                     {manPersonalityList.map(({ htmlFor, labelName, value }) => (
                       <CheckBoxInput
                         key={htmlFor}
@@ -951,7 +950,7 @@ const UserInfoPage = () => {
               <ManFashionModal className="h-full" isFashionOpen={isFashionOpen}>
                 <OutsideModal>
                   <ModalH2>패션</ModalH2>
-                  <CheckBoxInputTemplate className="h-[69.5%]">
+                  <CheckBoxInputTemplate className="h-[69.5%]" required>
                     {manFashionList.map(({ htmlFor, labelName, value }) => (
                       <CheckBoxInput
                         className="text-sm"
@@ -1006,7 +1005,7 @@ const UserInfoPage = () => {
               >
                 <OutsideModal>
                   <ModalH2>외모</ModalH2>
-                  <CheckBoxInputTemplate>
+                  <CheckBoxInputTemplate required>
                     {womanAppearanceList.map(
                       ({ htmlFor, labelName, value }) => (
                         <CheckBoxInput
@@ -1055,9 +1054,9 @@ const UserInfoPage = () => {
                 className="!h-4/5"
                 isWomanPersonalityOpen={isWomanPersonalityOpen}
               >
-                <OutsideModal className="gap-2 !h-[80%]">
+                <OutsideModal className="gap-2 !h-[100%]">
                   <ModalH2>성격</ModalH2>
-                  <CheckBoxInputTemplate className="!gap-4 h-[68.5%]">
+                  <CheckBoxInputTemplate className="!gap-4 h-[69.5%]" required>
                     {womanPersonalityList.map(
                       ({ htmlFor, labelName, value }) => (
                         <CheckBoxInput
@@ -1104,9 +1103,9 @@ const UserInfoPage = () => {
                 className="h-full"
                 isWomanFashionOpen={isWomanFashionOpen}
               >
-                <OutsideModal>
+                <OutsideModal className="gap-2 !h-[140%]">
                   <ModalH2>패션</ModalH2>
-                  <CheckBoxInputTemplate className="!gap-3 h-[68.5%]">
+                  <CheckBoxInputTemplate className="!gap-3 h-[70.5%]" required>
                     {womanFashionList.map(({ htmlFor, labelName, value }) => (
                       <CheckBoxInput
                         className="text-sm"

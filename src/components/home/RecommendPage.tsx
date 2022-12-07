@@ -39,17 +39,17 @@ const RecommendPage = () => {
           <div className="flex items-start justify-start gap-1">
             <p>
               {/* 로고 부분 */}
-              <div className="flex gap-1 items-start justify-start text-base w-full h-1/2">
+              <div className="flex gap-1 items-start justify-start text-lg w-full h-1/2">
                 <span className="text-white font-medium drop-shadow-[0.08em_0.08em_0_rgba(0_0_0_/_0.8)] opacity-90">
                   <span className="text-red-400">A</span>fter
                 </span>
-                <span className="flex text-blue-400 font-medium justify-end drop-shadow-[0.09em_0.09em_0_rgba(0_0_0_/_0.8)] opacity-90">
+                <span className="flex text-blue-400 font-medium justify-end drop-shadow-[0.08em_0.08em_0_rgba(0_0_0_/_0.8)] opacity-90">
                   Like
                 </span>
-                의
+                <p className="text-base mt-1">의</p>
               </div>
               인공지능이 추천해주는{" "}
-              <span className="text-white bg-teal-500 rounded-sm p-0.5">
+              <span className="text-white bg-sky-500 rounded-sm p-0.5">
                 {myName}용고
               </span>
               님과 가장 어울리는 회원님은{" "}

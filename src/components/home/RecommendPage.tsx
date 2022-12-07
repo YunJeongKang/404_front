@@ -139,7 +139,7 @@ const RecommendPage = () => {
                   </div>
                 </>
               }
-              img={image[0]}
+              img={image[0] === "default" ? `${image[0]}.png` : image[0]}
               job={job[0]}
               region={region[0]}
               username={username[0]}

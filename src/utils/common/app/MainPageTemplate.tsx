@@ -46,7 +46,7 @@ const MainPageTemplate = ({
     <div className="flex flex-col items-center w-full h-[80%] bg-white rounded-xl text-xl my-2">
       {/* 이미지 부분 */}
       <div className="relative w-[97%] h-[70%] bg-black rounded-xl m-1 bg-cover">
-        <div className="relative rounded-t-xl w-full h-full rounded-b-xl z-0 overflow-hidden">
+        <div className="relative rounded-t-xl w-full h-full rounded-b-xl z-0 overflow-hidden shadow">
           {/* 관심표현 */}
           <button
             className="absolute top-2 z-30 left-2"

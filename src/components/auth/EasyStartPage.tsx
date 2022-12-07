@@ -48,7 +48,7 @@ const EasyStartPage = () => {
                 console.log(res.data);
                 res.data.isReady && auth.setReady(true);
                 res.data.isReady && navigate(`${URL}${INPUT}`);
-                console.log("보내는 데이터2:", {
+                console.log("보내는 데이터:", {
                   email: kakaoEmail,
                   password: idToken,
                 });

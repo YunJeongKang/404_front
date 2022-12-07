@@ -31,7 +31,7 @@ const RecommendPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         exit={{ opacity: 0, y: -40 }}
-        className="absolute flex flex-col items-center justify-center top-50 left-10 w-5/6 h-2/3 rounded-3xl shadow-md shadow-blue-200 drop-shadow-xl bg-white opacity-10 z-30"
+        className="absolute flex flex-col items-center justify-center top-50 left-10 w-5/6 h-2/3 rounded-3xl shadow-md drop-shadow-xl bg-white opacity-10 z-30"
       >
         <div>이건 글씨</div>
         <button
@@ -70,7 +70,9 @@ const RecommendPage = () => {
     <>
       <AnimatePresence>{isInfo && infoComponent}</AnimatePresence>
       <div
-        className={`relative flex flex-col items-center w-full h-full max-w-[98%] max-h-[98%] gap-2 py-2 select-none`}
+        className={`relative flex flex-col items-center w-full h-full max-w-[98%] max-h-[98%] gap-2 py-2 select-none ${
+          isInfo && "blur-lg "
+        }`}
       >
         <span
           className="text-4xl text-center w-full h-[12%] font-bold font-sebang drop-shadow-[0.08em_0.08em_0_rgba(255_155_0_/_0.8)]

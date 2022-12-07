@@ -102,7 +102,7 @@ const SignUnPage = () => {
           <span className="font-bold text-sm w-1/3">비밀번호 재입력</span>
           <div className="flex flex-col items-start gap-1 w-2/3">
             <input
-              className="border-b w-full peer dark:text-dark px-1"
+              className="border-b w-full peer dark:text-dark px-1 outline-none"
               type="password"
               value={checkPW}
               name="checked-password"

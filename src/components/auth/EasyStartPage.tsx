@@ -7,9 +7,11 @@ import PATH from "@utils/routes/PATH";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import useClient from "@store/useClient";
 
 const EasyStartPage = () => {
   const auth = useAuth();
+  const client = useClient();
   const navigate = useNavigate();
   const { LOGIN, SIGNUP, EASY_AUTH, INPUT, URL } = PATH;
   const { CoupleImg } = ImageStore;
@@ -43,6 +45,7 @@ const EasyStartPage = () => {
             console.log("카카오 인가 요청 성공");
             const kakaoAccount = res.kakao_account;
             setKakaoEmail(`[kakao]${kakaoAccount.email}`);
+            client.setUserEmail(kakaoEmail);
             axios
               .post(`${URL}${EASY_AUTH}`, {
                 email: kakaoEmail,

@@ -8,7 +8,7 @@ const PATH = {
   USER_IMAGE: "/user-data-input/user-image-input",
 
   //main routes
-  HOME: "/",
+  HOME: "/home",
   LIKE: "/like",
   RECOMMEND: "/recommend",
   CHAT: "/chat",

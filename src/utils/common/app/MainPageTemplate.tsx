@@ -45,7 +45,7 @@ const MainPageTemplate = ({
   return (
     <div className="flex flex-col items-center w-full h-[80%] bg-white rounded-xl text-xl my-2">
       {/* 이미지 부분 */}
-      <div className="relative w-[97%] h-[70%] bg-black rounded-xl m-1">
+      <div className="relative w-[97%] h-[70%] bg-black rounded-xl m-1 bg-cover">
         <div className="relative rounded-t-xl w-full h-full rounded-b-xl z-0 overflow-hidden">
           {/* 관심표현 */}
           <button
@@ -63,10 +63,10 @@ const MainPageTemplate = ({
           {/* 회원 대표사진 */}
           <img
             src={`${import.meta.env.VITE_S3_BASE_URL}/${img}`}
-            className="absolute z-0 w-full h-full top-[-45px] object-cover"
+            className="absolute z-0 w-full h-full object-cover"
             alt=""
           />
-          <div className="absolute top-0 left-0 z-10 w-full h-full bg-gradient-to-b from-transparent via-transparent to-black" />
+          <div className="absolute top-0 left-0 z-20 w-full h-full bg-gradient-to-b from-transparent via-transparent to-black" />
         </div>
         {/* 유저 Image in 텍스트 UI창 */}
         <div className="absolute z-20 w-[98%] flex flex-col justify-start text-white bottom-2 left-4">

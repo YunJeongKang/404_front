@@ -17,7 +17,7 @@ export const selectJobList: JobSelectType[] = [
   { jobName: "문화/예술" },
   { jobName: "방송" },
   { jobName: "연극/영화" },
-  { jobName: "IT관련식" },
+  { jobName: "IT관련직" },
   { jobName: "인터넷" },
   { jobName: "디자인" },
   { jobName: "건설" },

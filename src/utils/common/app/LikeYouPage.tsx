@@ -4,7 +4,6 @@ import axios from "axios";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const { URL, LIKE } = PATH;
 interface LikePageInterface {
   img: string;
   username: string;
@@ -22,17 +21,15 @@ const LikeYouPageTemplate = ({
   married,
   marriagePlan,
 }: LikePageInterface) => {
+  const { URL, LIKE_YOU } = PATH;
   const client = useClient();
   const [checkUsername, setCheckUsername] = useState<string>("");
   const [pass, setPass] = useState<boolean>(false);
 
   const passClick = () => {
     setPass(true);
-  };
-
-  const heartClick = () => {
     axios
-      .put(`${URL}${LIKE}`, {
+      .put(`${URL}${LIKE_YOU}`, {
         email: client.getUserEmail(),
         username: username,
       })

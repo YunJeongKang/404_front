@@ -53,6 +53,7 @@ const EasyStartPage = () => {
               })
               .then((res) => {
                 console.log(res.data);
+                res.data.isLogin && auth.setAutoLogin(res.data.isLogin);
                 res.data.isReady && auth.setReady(true);
                 res.data.isReady && navigate(`${URL}${INPUT}`);
               });

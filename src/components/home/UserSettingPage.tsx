@@ -45,8 +45,8 @@ const UserSettingPage = () => {
       >
         <button
           onClick={() => {
-            auth.logout();
             navigate(`${URL}${EASY_AUTH}`);
+            auth.logout();
           }}
         >
           로그아웃

@@ -49,7 +49,7 @@ const MainPageTemplate = ({
         <div className="relative rounded-t-xl w-full h-full rounded-b-xl z-0 overflow-hidden">
           {/* 관심표현 */}
           <button
-            className="absolute top-2 z-20 left-2"
+            className="absolute top-2 z-30 left-2"
             onClick={() => {
               setHeart(true);
             }}
@@ -66,7 +66,7 @@ const MainPageTemplate = ({
             className="absolute z-0 w-full h-full object-cover"
             alt=""
           />
-          <div className="absolute top-0 left-0 z-20 w-full h-full bg-gradient-to-b from-transparent via-transparent to-black" />
+          <div className="absolute top-0 left-0 z-10 w-full h-full bg-gradient-to-b from-transparent via-transparent to-black" />
         </div>
         {/* 유저 Image in 텍스트 UI창 */}
         <div className="absolute z-20 w-[98%] flex flex-col justify-start text-white bottom-2 left-4">

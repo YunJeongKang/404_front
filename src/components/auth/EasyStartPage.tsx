@@ -11,7 +11,7 @@ import axios from "axios";
 const EasyStartPage = () => {
   const auth = useAuth();
   const navigate = useNavigate();
-  const { LOGIN, SIGNUP, EASY_AUTH, INPUT } = PATH;
+  const { LOGIN, SIGNUP, EASY_AUTH, INPUT, URL } = PATH;
   const { CoupleImg } = ImageStore;
 
   // JS SDK 로그인
@@ -42,7 +42,17 @@ const EasyStartPage = () => {
           success(res: any) {
             console.log("카카오 인가 요청 성공");
             const kakaoAccount = res.kakao_account;
-            setKakaoEmail(kakaoAccount.email);
+            setKakaoEmail(`[kakao]${kakaoAccount.email}`);
+            axios
+              .post(`${URL}${EASY_AUTH}`, {
+                email: kakaoEmail,
+                password: idToken,
+              })
+              .then((res) => {
+                console.log(res.data);
+                res.data.isReady && auth.setReady(true);
+                res.data.isReady && navigate(`${URL}${INPUT}`);
+              });
           },
           fail(err: any) {
             console.error(err);
@@ -58,17 +68,6 @@ const EasyStartPage = () => {
   useEffect(() => {
     InitKakao();
   }, []);
-
-  axios
-    .post(`${URL}${EASY_AUTH}`, {
-      email: kakaoEmail,
-      password: idToken,
-    })
-    .then((res) => {
-      console.log(res.data);
-      res.data.isReady && auth.setReady(true);
-      res.data.isReady && navigate(`${URL}${INPUT}`);
-    });
 
   return (
     <div className={`flex flex-col h-full w-full items-center select-none`}>

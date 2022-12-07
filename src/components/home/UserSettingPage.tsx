@@ -113,14 +113,14 @@ const UserSettingPage = () => {
               introduce={data.introduce ? data.introduce : ""}
               appearance={data.style ? data.style : ""}
               fashion={
-                data.fashion.length === 1
+                data.fashion && data.fashion.length < 2
                   ? data.fashion
                   : data.fashion.map((items: string) => (
                       <span className="text-blue-600 w-[55%] h-full pt-2">{`#${items}`}</span>
                     ))
               }
               personality={
-                data.character.length === 1
+                data.character && data.character.length < 2
                   ? data.character
                   : data.character.map((items: string) => (
                       <span className="w-[35%] text-blue-600 pt-0.5">{`#${items}`}</span>

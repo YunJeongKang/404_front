@@ -21,6 +21,27 @@ function MainPage() {
   }, []);
   return (
     <div className="flex flex-wrap w-full h-full gap-6 max-h-[1000rem] font-eland select-none">
+      {/* <MainPageTemplate
+        age="26"
+        appearance="이쁨"
+        img="fromise9.jpg"
+        introSelf="저는 이새롬 입니당"
+        personality="조용함"
+        region="서울"
+        username="이새롬"
+        wanted="노래, 춤추기"
+      />
+      <MainPageTemplate
+        age="24"
+        appearance="귀여움"
+        img="yena.jpg"
+        introSelf="저는 최예나 입니당"
+        personality="천상오리"
+        region="서울"
+        username="예나최"
+        wanted="오큘러스 하는 남자"
+      /> */}
+
       {data &&
         data.map(
           ({

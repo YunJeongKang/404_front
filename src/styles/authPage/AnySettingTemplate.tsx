@@ -44,7 +44,7 @@ export const LinkModify = ({ img, onClick }: LinkModifyInterface) => {
         <img
           src={`${import.meta.env.VITE_S3_BASE_URL}/${img}`}
           alt=""
-          className="object-cover"
+          className="w-full h-full object-cover"
         />
         {/* 회원 정보 수정 클릭 && 연필 */}
         <>

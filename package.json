@@ -16,6 +16,7 @@
     "react-apple-login": "^1.1.6",
     "react-dom": "^18.0.0",
     "react-icons": "^4.6.0",
+    "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.4.3",
     "zustand": "^4.1.4"
   },

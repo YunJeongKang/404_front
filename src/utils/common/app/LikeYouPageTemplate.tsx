@@ -48,7 +48,7 @@ const LikeYouPageTemplate = ({
 
   return (
     <AnimatePresence>
-      {checkUsername !== username && !pass && (
+      {!pass && (
         <motion.div
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: 40, opacity: 0 }}

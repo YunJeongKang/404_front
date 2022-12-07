@@ -9,10 +9,8 @@ import { useState } from "react";
 import useAuth from "@store/useAuth";
 import UserImgFile from "@components/userInfo/UserImgFile";
 import useClient from "@store/useClient";
-import API_PATH from "@utils/routes/api/API_PATH";
 
 const { LOGIN, EASY_AUTH, SIGNUP, INPUT, USER_IMAGE } = PATH;
-const { KAKAO_API } = API_PATH;
 
 function UnauthedRoutes() {
   const auth = useAuth();

@@ -91,6 +91,7 @@ export const UserSettingInfo = ({
   username,
   wanted,
 }: UserSettingInfoState) => {
+  const { LIKE_ME } = PATH;
   return (
     <div
       className=" items-start bg-white rounded-lg w-[92%] h-[82%] -z-20"
@@ -138,7 +139,7 @@ export const UserSettingInfo = ({
               {fashion}
             </div>
           </div>
-          <hr className="py-2" />
+          <hr className="py-1.5" />
           {/* 자기소개 */}
           <div className="flex flex-col w-full">
             <span className=" py-1">소개</span>
@@ -150,7 +151,7 @@ export const UserSettingInfo = ({
               </p>
             )}
           </div>
-          <hr className="py-2" />
+          <hr className="py-1.5" />
           {/* 나의 이상형  */}
           <div className="flex flex-col w-full">
             <span className=" py-1">나의 이상형</span>
@@ -162,6 +163,13 @@ export const UserSettingInfo = ({
               </p>
             )}
           </div>
+          <hr className="py-1.5" />
+          <Link to={LIKE_ME}>
+            <div className="flex justify-between cursor-pointer">
+              <span>보낸 관심표현 목록</span>
+              <span className="font-bold">{">"}</span>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useLayoutEffect, useState } from "react";
 import PATH from "@utils/routes/PATH";
 import useClient from "@store/useClient";
+import LoadingSpinner from "@utils/common/app/LoadingSpinner";
 
 function MainPage() {
   const client = useClient();
@@ -21,6 +22,7 @@ function MainPage() {
   }, []);
   return (
     <div className="flex flex-wrap w-full h-full gap-6 max-h-[1000rem] font-eland select-none">
+      {!data && <LoadingSpinner />}
       {/* <MainPageTemplate
         age="26"
         appearance="이쁨"

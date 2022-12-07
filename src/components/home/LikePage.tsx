@@ -1,5 +1,6 @@
 import useClient from "@store/useClient";
 import LikePageTemplate from "@utils/common/app/LikePageTemplate";
+import LoadingSpinner from "@utils/common/app/LoadingSpinner";
 import PATH from "@utils/routes/PATH";
 import axios from "axios";
 import { useState } from "react";
@@ -9,27 +10,14 @@ const LikePage = () => {
   const { URL, LIKE } = PATH;
   const client = useClient();
 
-  const [likeComponent, setLikeComponent] = useState<React.ReactNode[] | null>(
-    null
-  );
+  const [data, setData] = useState<any>();
   useLayoutEffect(() => {
     axios
       .post(`${URL}${LIKE}`, { email: client.getUserEmail() })
       .then((res) => res.data)
       .then((data) => {
         console.log("받아오는 값:", data);
-        const componentList = data.map((items: any) => (
-          <LikePageTemplate
-            education={items.education}
-            img={items.img}
-            job={items.job}
-            region={items.region}
-            salary={items.salary}
-            username={items.username}
-            key={items.username}
-          />
-        ));
-        setLikeComponent(componentList);
+        setData(data);
       })
       .catch(console.error);
     console.log("보내는 값: ", { email: client.getUserEmail() });
@@ -37,7 +25,18 @@ const LikePage = () => {
 
   return (
     <div className="flex flex-wrap justify-start items-start place-content-start w-full h-full max-h-[1000rem] gap-2">
-      {likeComponent}
+      {!data && <LoadingSpinner />}
+      {data &&
+        data.map(({ education, image, job, region, salary, nickname }: any) => (
+          <LikePageTemplate
+            education={education ? education : ""}
+            img={image[0] === "default" ? "default.png" : image[0]}
+            job={job ? "job" : ""}
+            region={region ? "region" : ""}
+            salary={salary ? "salary" : ""}
+            username={nickname ? "nickname" : ""}
+          />
+        ))}
       <LikePageTemplate
         education="부산외대"
         img="bibi.png"

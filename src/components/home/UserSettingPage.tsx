@@ -11,6 +11,7 @@ import {
 import API_PATH from "@utils/routes/api/API_PATH";
 import useClient from "@store/useClient";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "@utils/common/app/LoadingSpinner";
 
 const UserSettingPage = () => {
   const { MODIFY, USER, EASY_AUTH } = PATH;
@@ -20,12 +21,15 @@ const UserSettingPage = () => {
   const client = useClient();
 
   //일반 상태관리
-  const [isLoadingCursor, setLoadingCursor] = useState<boolean>(false);
+
   const [data, setData] = useState<any>(null);
   const [settingOpen, setSettingOpen] = useState<boolean | null>(null);
   const [appearSetting, setAppearSetting] = useState<React.ReactNode | null>(
     null
   );
+
+  //회원탈퇴 상태관리
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   // settingDiv State
   useLayoutEffect(() => {
@@ -45,6 +49,7 @@ const UserSettingPage = () => {
       >
         <button
           onClick={() => {
+            setLoading(true);
             navigate(`${URL}${EASY_AUTH}`);
             auth.logout();
           }}
@@ -55,18 +60,17 @@ const UserSettingPage = () => {
         {/* 회원탈퇴 */}
         <button
           onClick={() => {
+            setLoading(true);
             axios
               .delete(`${URL}${USER}`, {
                 data: { email: client.getUserEmail() },
               })
               .then((res) => {
-                auth.logout();
                 navigate(`${URL}${EASY_AUTH}`);
+                auth.logout();
                 console.log(res.data);
               })
-              .catch(() => {
-                console.log("err");
-              });
+              .catch(console.error);
           }}
         >
           회원탈퇴
@@ -91,6 +95,10 @@ const UserSettingPage = () => {
       className="relative flex flex-col flex-wrap justify-center items-center 
       w-[26rem] h-[42rem] gap-4 -z-30 select-none"
     >
+      {isLoading && (
+        <LoadingSpinner className="bg-white opacity-50 z-50" color="black" />
+      )}
+      {!data && <LoadingSpinner />}
       <AnimatePresence>{settingOpen && appearSetting}</AnimatePresence>
       {/* 세팅버튼 */}
       {data && (

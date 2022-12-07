@@ -6,6 +6,7 @@ import { FaCrown } from "react-icons/fa";
 import useClient from "@store/useClient";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
+import LoadingSpinner from "@utils/common/app/LoadingSpinner";
 
 const RecommendPage = () => {
   const { URL, RECOMMEND } = PATH;
@@ -95,6 +96,7 @@ const RecommendPage = () => {
 
   return (
     <>
+      {!job && !username && !region && !image && !myName && <LoadingSpinner />}
       <AnimatePresence>{isInfo && infoComponent}</AnimatePresence>
       <div
         className={`relative flex flex-col items-center w-full h-full max-w-[98%] max-h-[98%] gap-2 py-2 select-none ${

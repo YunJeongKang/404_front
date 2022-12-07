@@ -1103,9 +1103,9 @@ const UserInfoPage = () => {
                 className="h-full"
                 isWomanFashionOpen={isWomanFashionOpen}
               >
-                <OutsideModal className="gap-2 !h-[140%]">
+                <OutsideModal className="gap-2 !h-[120%]">
                   <ModalH2>패션</ModalH2>
-                  <CheckBoxInputTemplate className="!gap-3 h-[70.5%]" required>
+                  <CheckBoxInputTemplate className="!gap-3 h-[69%]" required>
                     {womanFashionList.map(({ htmlFor, labelName, value }) => (
                       <CheckBoxInput
                         className="text-sm"

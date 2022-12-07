@@ -56,7 +56,7 @@ function MainPage() {
             <MainPageTemplate
               age={birth ? birth : ""}
               appearance={style ? style : ""}
-              img={img ? img : ""}
+              img={img ? img[0] : ""}
               introSelf={profile ? profile : ""}
               personality={character ? character : ""}
               region={region ? region : ""}

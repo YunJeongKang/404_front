@@ -27,6 +27,10 @@ const EasyStartPage = () => {
   };
   const Kakao = (window as any).Kakao;
   const kakaoLogin = async () => {
+    console.log("보내는 데이터:", {
+      email: kakaoEmail,
+      password: idToken,
+    });
     await Kakao.Auth.login({
       success(res: any) {
         Kakao.Auth.setAccessToken(res.access_token);
@@ -63,11 +67,7 @@ const EasyStartPage = () => {
 
   useEffect(() => {
     InitKakao();
-    console.log("보내는 데이터:", {
-      email: kakaoEmail,
-      password: idToken,
-    });
-  }, [kakaoEmail]);
+  }, []);
 
   return (
     <div className={`flex flex-col h-full w-full items-center select-none`}>
@@ -75,6 +75,7 @@ const EasyStartPage = () => {
       <div className="relative z-0 h-[64%] overflow-hidden">
         <img src={CoupleImg} alt="" />
         <div className="absolute z-10 left-0 right-0 top-0 bottom-0 bg-gradient-to-b via-transparent from-transparent to-white">
+          {/* 글씨 부분 */}
           <div className="flex justify-end">
             <div className="flex flex-col p-3 pr-5">
               <span className="text-white font-eland text-5xl font-medium drop-shadow-[0.08em_0.08em_0_rgba(0_0_0_/_0.8)] opacity-90">

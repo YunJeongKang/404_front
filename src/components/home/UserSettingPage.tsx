@@ -43,7 +43,14 @@ const UserSettingPage = () => {
         className="absolute font-eland top-14 right-3 flex flex-col justify-center w-[6rem] h-[4.5rem] shadow-md
         drop-shadow rounded-md bg-white"
       >
-        <button onClick={() => auth.logout()}>로그아웃</button>
+        <button
+          onClick={() => {
+            auth.logout();
+            navigate(`${URL}${EASY_AUTH}`);
+          }}
+        >
+          로그아웃
+        </button>
         <hr className="py-[3px]" />
         {/* 회원탈퇴 */}
         <button

@@ -23,17 +23,43 @@ const RecommendPage = () => {
   const [infoComponent, setInfoComponent] = useState<React.ReactNode | null>(
     null
   );
+  const [myName, setMyName] = useState<string>("");
 
   useLayoutEffect(() => {
     setInfoComponent(
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        exit={{ opacity: 0, y: -40 }}
+        transition={{ duration: 0.4 }}
+        exit={{ opacity: 0, y: -50 }}
         className="absolute flex flex-col items-center justify-center top-50 left-10 w-5/6 h-2/3 rounded-3xl shadow-md drop-shadow-xl bg-white opacity-10 z-30"
       >
-        <div>이건 글씨</div>
+        {/* 정보 박스 부분 */}
+        <div className="flex flex-col w-[90%] justify-center items-center h-5/6">
+          <div className="flex items-start justify-start gap-1">
+            <p>
+              {/* 로고 부분 */}
+              <div className="flex gap-1 items-start justify-start text-base w-full h-1/2">
+                <span className="text-white font-medium drop-shadow-[0.08em_0.08em_0_rgba(0_0_0_/_0.8)] opacity-90">
+                  <span className="text-red-400">A</span>fter
+                </span>
+                <span className="flex text-blue-400 font-medium justify-end drop-shadow-[0.09em_0.09em_0_rgba(0_0_0_/_0.8)] opacity-90">
+                  Like
+                </span>
+                의
+              </div>
+              인공지능이 추천해주는{" "}
+              <span className="text-white bg-teal-500 rounded-sm p-0.5">
+                {myName}용고
+              </span>
+              님과 가장 어울리는 회원님은{" "}
+              <span className="text-white bg-pink-500 rounded-sm p-0.5">
+                {username}
+              </span>
+              님 입니다.
+            </p>
+          </div>
+        </div>
         <button
           onClick={() => setInfo(false)}
           className="bg-blue-500 rounded-md w-5/6 py-1 text-white text"
@@ -62,6 +88,7 @@ const RecommendPage = () => {
         setRegion([user.region]);
         setJob([user.job]);
         setImage([user.image]);
+        setMyName(user.myName);
       });
     console.log("보내는 값 :", { email: userEmail });
   };

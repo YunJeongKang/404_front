@@ -51,12 +51,12 @@ function MainPage() {
             profile,
             region,
             style,
-            img,
+            image,
           }: any) => (
             <MainPageTemplate
               age={birth ? birth : ""}
               appearance={style ? style : ""}
-              img={img ? img[0] : ""}
+              img={image[0] ? image[0] : ""}
               introSelf={profile ? profile : ""}
               personality={character ? character : ""}
               region={region ? region : ""}

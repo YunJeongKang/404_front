@@ -91,7 +91,7 @@ export const UserSettingInfo = ({
   username,
   wanted,
 }: UserSettingInfoState) => {
-  const { LIKE_ME } = PATH;
+  const { LIKE_YOU: LIKE_ME } = PATH;
   return (
     <div
       className=" items-start bg-white rounded-lg w-[92%] h-[82%] -z-20"
@@ -167,7 +167,9 @@ export const UserSettingInfo = ({
           <Link to={LIKE_ME}>
             <div className="flex justify-between cursor-pointer">
               <span>보낸 관심표현 목록</span>
-              <span className="font-bold">{">"}</span>
+              <span className="font-bold text-lg text-gray-500 mr-0.5">
+                {">"}
+              </span>
             </div>
           </Link>
         </div>

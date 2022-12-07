@@ -14,7 +14,7 @@ interface LikePageInterface {
   marriagePlan: string;
 }
 
-const LikePageTemplate = ({
+const LikeYouPageTemplate = ({
   img,
   username,
   job,
@@ -59,7 +59,7 @@ const LikePageTemplate = ({
           className={`relative flex justify-center items-center w-[95%] h-[18%] my-3 $`}
         >
           {/* 이미지 영역 */}
-          <div className="absolute left-2 flex justify-start items-center rounded-[32px] overflow-hidden w-[25%] h-[95%]">
+          <div className="absolute left-2 flex justify-start items-center rounded-[32px] overflow-hidden w-[25%] h-[85%]">
             <img
               src={`${import.meta.env.VITE_S3_BASE_URL}/${img}`}
               alt=""
@@ -83,18 +83,12 @@ const LikePageTemplate = ({
             </div>
           </div>
           {/* 버튼 영역 */}
-          <div className="absolute flex h-1/2 gap-2 right-0 top-6">
-            <button
-              className="rounded text-white bg-red-500 px-3 h-[60%] active:scale-90 duration-150"
-              onClick={heartClick}
-            >
-              하트
-            </button>
+          <div className="absolute flex h-1/2 gap-2 right-0 top-8">
             <button
               className="rounded text-gray-600 border-2 px-2 h-[60%] active:scale-90 duration-150"
               onClick={passClick}
             >
-              패스
+              지우기
             </button>
           </div>
         </motion.div>
@@ -103,4 +97,4 @@ const LikePageTemplate = ({
   );
 };
 
-export default LikePageTemplate;
+export default LikeYouPageTemplate;

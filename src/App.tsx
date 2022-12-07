@@ -15,7 +15,7 @@ function App() {
     null
   );
 
-  const { HOME, USER, MODIFY } = PATH;
+  const { HOME, USER, MODIFY, LIKE_YOU } = PATH;
 
   const authPageUI = "min-h-[37.5rem] h-[37.5rem] max-h-[100rem]";
   const authOtherUI = "min-h-[40.15rem] h-[40.15rem] max-h-[100rem]";
@@ -47,7 +47,9 @@ function App() {
           <main
             className={`flex flex-col items-center w-[26rem] border-x shadow-sm drop-shadow ${
               isTrue
-                ? location.pathname !== USER && location.pathname !== MODIFY
+                ? location.pathname !== USER &&
+                  location.pathname !== MODIFY &&
+                  location.pathname !== LIKE_YOU
                   ? authPageUI
                   : authOtherUI
                 : unAuthPageUI
@@ -56,7 +58,9 @@ function App() {
             {currentRoutes}
           </main>
         </SettingModalProvider>
-        {isTrue && location.pathname !== MODIFY && <Footer />}
+        {isTrue &&
+          location.pathname !== MODIFY &&
+          location.pathname !== LIKE_YOU && <Footer />}
       </div>
     </div>
   );

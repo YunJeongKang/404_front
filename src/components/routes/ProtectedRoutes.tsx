@@ -6,8 +6,9 @@ import LikePage from "@components/home/LikePage";
 import ChatListPage from "@components/home/ChatListPage";
 import UserSettingPage from "@components/home/UserSettingPage";
 import UserInfoModify from "@components/home/UserInfoModify";
+import LikeYouPage from "@components/home/LikeYouPage";
 
-const { HOME, LIKE, RECOMMEND, CHAT, USER, MODIFY, LIKE_ME } = PATH;
+const { HOME, LIKE, RECOMMEND, CHAT, USER, MODIFY, LIKE_YOU } = PATH;
 
 const ProtectedRoutes = () => {
   return (
@@ -18,7 +19,7 @@ const ProtectedRoutes = () => {
       <Route path={CHAT} element={<ChatListPage />} />
       <Route path={USER} element={<UserSettingPage />} />
       <Route path={MODIFY} element={<UserInfoModify />} />
-      <Route path={LIKE_ME} element={<div>이거</div>} />
+      <Route path={LIKE_YOU} element={<LikeYouPage />} />
       <Route path="*" element={<Navigate replace to={HOME} />} />
     </Routes>
   );

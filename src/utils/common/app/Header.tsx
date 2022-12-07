@@ -2,12 +2,11 @@ import PATH from "@utils/routes/PATH";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsBellFill } from "react-icons/bs";
 import { HiOutlineChevronLeft } from "react-icons/hi";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const { HOME, USER, LIKE } = PATH;
+const { HOME, USER, LIKE, LIKE_YOU } = PATH;
 
 const Header = () => {
-  const location = useLocation();
   return (
     <header className="flex justify-between bg-blue-500 shadow-sm border py-1">
       <span className="text-2xl px-3 text-center font-bold font-eland text-white">
@@ -23,11 +22,16 @@ export const SubHeader = () => {
   return (
     <header
       className={`relative flex justify-center shadow-lg border py-1 ${
-        location.pathname === LIKE ? "bg-white" : "bg-blue-500"
+        location.pathname === LIKE || location.pathname === LIKE_YOU
+          ? "bg-white"
+          : "bg-blue-500"
       }`}
     >
-      <Link to={HOME} className="absolute left-2 top-2">
-        {location.pathname === LIKE ? (
+      <Link
+        to={location.pathname === LIKE_YOU ? USER : HOME}
+        className="absolute left-2 top-2"
+      >
+        {location.pathname === LIKE || location.pathname === LIKE_YOU ? (
           <HiOutlineChevronLeft size="25" />
         ) : (
           <HiOutlineChevronLeft size="25" color="white" />
@@ -35,12 +39,16 @@ export const SubHeader = () => {
       </Link>
       <span
         className={`${
-          location.pathname === LIKE
+          location.pathname === LIKE || location.pathname === LIKE_YOU
             ? "text-xl py-0.5 text-black"
             : "text-2xl text-white"
         } px-3 text-center font-bold font-eland `}
       >
-        {location.pathname === LIKE ? "내가 받은 관심" : "After Like"}
+        {location.pathname === LIKE
+          ? "내가 받은 관심"
+          : location.pathname === LIKE_YOU
+          ? "보낸 관심표현 목록"
+          : "After Like"}
       </span>
     </header>
   );

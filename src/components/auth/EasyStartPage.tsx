@@ -45,7 +45,7 @@ const EasyStartPage = () => {
             console.log("카카오 인가 요청 성공");
             const kakaoAccount = res.kakao_account;
             setKakaoEmail(`[kakao]${kakaoAccount.email}`);
-            client.setUserEmail(kakaoEmail);
+            client.setUserEmail(`[kakao]${kakaoAccount.email}`);
             axios
               .post(`${URL}${EASY_AUTH}`, {
                 email: kakaoEmail,

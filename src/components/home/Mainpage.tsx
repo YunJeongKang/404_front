@@ -41,7 +41,6 @@ function MainPage() {
         username="예나최"
         wanted="오큘러스 하는 남자"
       /> */}
-
       {data &&
         data.map(
           ({

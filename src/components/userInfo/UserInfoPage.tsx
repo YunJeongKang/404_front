@@ -285,15 +285,15 @@ const UserInfoPage = () => {
   return (
     <UserInfoForm
       onSubmit={onSubmit}
-      className={`relative justify-center items-center h-fit bg-white max-h-[100rem] py-4 px-2 gap-4`}
+      className={`relative justify-center items-center bg-white h-fit w-full max-h-[100rem] py-4 gap-4 center`}
     >
       {/* 닉네임 */}
       <SectionTemplate>
         <UserInfoH2>닉네임</UserInfoH2>
         <ModalEmptyDiv>
           <fieldset className="flex gap-2 w-full">
-            <div className="flex flex-col items-start gap-1 w-full">
-              <div className="relative flex justify-between w-full">
+            <div className="relative flex justify-between w-full">
+              <div className="flex flex-col w-full">
                 <input
                   className={`peer px-1 text-center border-b-[1px] text-sm bg-white outline-none w-5/6 text-blue-600`}
                   value={mainInfo.nickname}
@@ -304,23 +304,23 @@ const UserInfoPage = () => {
                   autoComplete="on"
                   onChange={mainInfoChange}
                 />
-                <button
-                  type="button"
-                  onClick={doubleCheck}
-                  className="absolute w-2/6 text-xs top-0.5 right-[-25px] hover:text-blue-600"
-                >
-                  중복확인
-                </button>
+                <span className="hidden peer-invalid:block">
+                  {mainInfo.nickname === "" ? (
+                    <></>
+                  ) : (
+                    <span className="text-danger text-xs">
+                      1~8자의 올바른 닉네임을 입력하세요
+                    </span>
+                  )}
+                </span>
               </div>
-              <span className="hidden peer-invalid:block">
-                {mainInfo.nickname === "" ? (
-                  <></>
-                ) : (
-                  <span className="text-danger text-xs">
-                    1~8자의 올바른 닉네임을 입력하세요
-                  </span>
-                )}
-              </span>
+              <button
+                type="button"
+                onClick={doubleCheck}
+                className="absolute w-2/6 text-xs top-0.5 right-[-25px] hover:text-blue-600"
+              >
+                중복확인
+              </button>
             </div>
           </fieldset>
         </ModalEmptyDiv>
@@ -364,6 +364,7 @@ const UserInfoPage = () => {
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
+          className="flex flex-wrap justify-center h-fit items-center w-full gap-4"
         >
           {/* 지역 */}
           <SectionTemplate>
@@ -406,7 +407,7 @@ const UserInfoPage = () => {
       {/* Step2 : 체중, 키, 혈액형 */}
       {stepIndex >= 2 && (
         <motion.div
-          className="flex flex-col justify-center gap-4"
+          className="flex flex-wrap justify-center h-fit items-center w-full gap-4"
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -496,7 +497,7 @@ const UserInfoPage = () => {
       {/* Step3 : 음주여부, 흡연여부 */}
       {stepIndex >= 3 && (
         <motion.div
-          className="flex flex-col justify-center gap-4"
+          className="flex flex-wrap justify-center h-fit items-center w-full gap-4"
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -548,7 +549,7 @@ const UserInfoPage = () => {
       {/* Step4 : 직업, 직업상세 */}
       {stepIndex >= 4 && (
         <motion.div
-          className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
+          className="flex flex-wrap justify-center h-fit items-center w-full gap-4"
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -594,7 +595,7 @@ const UserInfoPage = () => {
       {/* Step5 : 결혼유무, 결혼계획 */}
       {stepIndex >= 5 && (
         <motion.div
-          className="flex flex-col justify-center gap-4"
+          className="flex flex-wrap justify-center h-fit items-center w-full gap-4"
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -650,7 +651,7 @@ const UserInfoPage = () => {
       {/* Step6 : 종교, 학력 */}
       {stepIndex >= 6 && (
         <motion.div
-          className="flex flex-col justify-center checked-bg:bg-blue-100 gap-4"
+          className="flex flex-wrap justify-center h-fit items-center w-full gap-4"
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -705,7 +706,7 @@ const UserInfoPage = () => {
       {/* Step7 : 연봉, 자산, 차량 */}
       {stepIndex >= 7 && (
         <motion.div
-          className="flex flex-col justify-center gap-4"
+          className="flex flex-wrap justify-center h-fit items-center w-full gap-4"
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -779,7 +780,7 @@ const UserInfoPage = () => {
       {/* Step9: 건강, 취미  */}
       {stepIndex >= 8 && (
         <motion.div
-          className="flex flex-col justify-center gap-4"
+          className="flex flex-wrap justify-center h-fit items-center w-full gap-4"
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -831,7 +832,7 @@ const UserInfoPage = () => {
       {/* Step8 : 남성 스타일  (스타일 선택 모달창) */}
       {man && stepIndex >= 9 && (
         <motion.div
-          className="flex flex-col justify-center gap-4"
+          className="flex flex-wrap justify-center h-fit items-center w-full gap-4"
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -975,7 +976,7 @@ const UserInfoPage = () => {
       {/* Step8 : 여성 스타일  (스타일 선택 모달창) */}
       {woman && stepIndex >= 9 && (
         <motion.div
-          className="flex flex-col justify-center gap-4"
+          className="flex flex-wrap justify-center h-fit items-center w-full gap-4"
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -1135,6 +1136,7 @@ const UserInfoPage = () => {
           initial={{ translateY: 20, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1.0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
+          className="flex flex-wrap justify-center h-fit items-center w-full gap-4"
         >
           <button
             type="submit"

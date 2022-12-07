@@ -147,6 +147,7 @@ const UserInfoPage = () => {
   // axios API
   function onSubmit() {
     const userEmail = client.getUserEmail();
+    !check && alert("닉네임 중복을 확인하세요!");
     axios
       .put(`${URL}${INPUT}`, {
         ...mainInfo,
@@ -262,6 +263,7 @@ const UserInfoPage = () => {
   };
 
   // 유저의 성별에 따라 성격 설문 구분
+  const [check, setCheck] = useState<boolean>(false);
   const man = mainInfo.gender === "m";
   const woman = mainInfo.gender === "f";
 
@@ -274,6 +276,7 @@ const UserInfoPage = () => {
         !check.doubleCheck
           ? alert("닉네임이 중복되었습니다")
           : alert("사용 가능한 닉네임 입니다!");
+        setCheck(check.doubleCheck);
       })
       .catch(console.error);
     console.log("보내는 값: ", { nickname: mainInfo.nickname });

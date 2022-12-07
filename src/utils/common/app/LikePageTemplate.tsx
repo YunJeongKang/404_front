@@ -10,8 +10,8 @@ interface LikePageInterface {
   username: string;
   job: string;
   region: string;
-  education: string;
-  salary: string;
+  married: string;
+  marriagePlan: string;
 }
 
 const LikePageTemplate = ({
@@ -19,8 +19,8 @@ const LikePageTemplate = ({
   username,
   job,
   region,
-  education,
-  salary,
+  married,
+  marriagePlan,
 }: LikePageInterface) => {
   const client = useClient();
   const [checkUsername, setCheckUsername] = useState<string>("");
@@ -78,8 +78,8 @@ const LikePageTemplate = ({
             </span>
             {/* 학력, 연봉 */}
             <div className="flex gap-1.5">
-              <span>#{education}</span>
-              <span>#{salary}</span>
+              <span>#{married}</span>
+              <span>#{marriagePlan}</span>
             </div>
           </div>
           {/* 버튼 영역 */}

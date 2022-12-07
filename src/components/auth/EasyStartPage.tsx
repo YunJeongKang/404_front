@@ -24,6 +24,16 @@ const EasyStartPage = () => {
       await Kakao.init(jsKey);
       console.log(`카카오 초기화 ${Kakao.isInitialized()}`);
     }
+    axios
+      .post(`${URL}${EASY_AUTH}`, {
+        email: kakaoEmail,
+        password: idToken,
+      })
+      .then((res) => {
+        console.log(res.data);
+        res.data.isReady && auth.setReady(true);
+        res.data.isReady && navigate(`${URL}${INPUT}`);
+      });
   };
   const Kakao = (window as any).Kakao;
   const kakaoLogin = async () => {
@@ -57,17 +67,7 @@ const EasyStartPage = () => {
 
   useEffect(() => {
     InitKakao();
-    axios
-      .post(`${URL}${EASY_AUTH}`, {
-        email: kakaoEmail,
-        password: idToken,
-      })
-      .then((res) => {
-        console.log(res.data);
-        res.data.isReady && auth.setReady(true);
-        res.data.isReady && navigate(`${URL}${INPUT}`);
-      });
-  }, [kakaoEmail, idToken]);
+  }, []);
 
   return (
     <div className={`flex flex-col h-full w-full items-center select-none`}>

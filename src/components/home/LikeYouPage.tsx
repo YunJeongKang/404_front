@@ -1,5 +1,5 @@
 import useClient from "@store/useClient";
-import LikeYouPageTemplate from "@utils/common/app/LikeYouPage";
+import LikeYouPageTemplate from "@utils/common/app/LikeYouPageTemplate";
 import LoadingSpinner from "@utils/common/app/LoadingSpinner";
 import PATH from "@utils/routes/PATH";
 import axios from "axios";

@@ -23,7 +23,6 @@ const LikeYouPageTemplate = ({
 }: LikePageInterface) => {
   const { URL, LIKE_YOU } = PATH;
   const client = useClient();
-  const [checkUsername, setCheckUsername] = useState<string>("");
   const [pass, setPass] = useState<boolean>(false);
 
   const passClick = () => {
@@ -36,10 +35,7 @@ const LikeYouPageTemplate = ({
       .then((res) => res.data)
       .then((data) => {
         console.log("들어오는 데이터 :", data);
-        setCheckUsername(data);
       });
-
-    setCheckUsername("최예나");
     console.log("보내는 값 :", {
       email: client.getUserEmail(),
       username: username,

@@ -93,7 +93,7 @@ const UserSettingPage = () => {
   return (
     <div
       className="relative flex flex-col flex-wrap justify-center items-center 
-      w-[26rem] h-[42rem] gap-4 -z-30 select-none"
+      w-[26rem] h-[50rem] gap-4 -z-30 select-none"
     >
       {isLoading && (
         <LoadingSpinner className="bg-white opacity-50 z-50" color="black" />

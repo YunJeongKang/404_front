@@ -11,7 +11,7 @@ interface SettingButtonInterface {
 
 export const SettingButton = ({ onClick }: SettingButtonInterface) => {
   return (
-    <div className="w-[90%] h-[10%] flex justify-between">
+    <div className="absolute top-4 w-[90%] h-[19%] flex justify-between">
       <div></div>
       {/* 설정 창 */}
       <FiSettings
@@ -94,7 +94,7 @@ export const UserSettingInfo = ({
   const { LIKE_YOU: LIKE_ME } = PATH;
   return (
     <div
-      className=" items-start bg-white rounded-lg w-[92%] h-[82%] -z-20"
+      className="absolute top-40 items-start bg-white rounded-lg w-[92%] h-[78%] -z-20"
       onClick={onClick}
     >
       {/* 프레임 조정 */}

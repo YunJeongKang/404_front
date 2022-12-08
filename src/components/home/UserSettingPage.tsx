@@ -44,7 +44,7 @@ const UserSettingPage = () => {
           type: "linear",
         }}
         exit={{ x: 50, opacity: 0 }}
-        className="absolute font-eland top-14 right-3 flex flex-col justify-center w-[6rem] h-[4.5rem] shadow-md
+        className="absolute font-eland top-14 z-10 right-3 flex flex-col justify-center w-[6rem] h-[4.5rem] shadow-md
         drop-shadow rounded-md bg-white"
       >
         <button

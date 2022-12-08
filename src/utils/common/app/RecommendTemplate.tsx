@@ -25,7 +25,7 @@ const RecUserTemplate = ({
 }: RecommendTemplateInterface) => {
   return (
     <motion.div
-      className={`relative ml-4 h-[33%] w-[75%] rounded-t-2xl flex justify-center ${className}`}
+      className={`absolute ml-4 h-[33%] w-[75%] rounded-t-2xl flex justify-center ${className}`}
       initial={initial}
       animate={animate}
       transition={transition}

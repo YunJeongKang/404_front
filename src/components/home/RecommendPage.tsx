@@ -55,7 +55,7 @@ const RecommendPage = () => {
               </span>
               님과 가장 어울리는 회원님은{" "}
               <span className="text-white bg-pink-500 rounded-sm p-0.5">
-                {username}
+                {username[0]}
               </span>
               님 입니다.
             </p>
@@ -84,11 +84,11 @@ const RecommendPage = () => {
       })
       .then((res) => res.data)
       .then((user) => {
-        console.log("받아오는 값 :", { ...user });
-        setUsername([user.nickname]);
-        setRegion([user.region]);
-        setJob([user.job]);
-        setImage([user.image]);
+        console.log("받아오는 값 :", user);
+        setUsername([...user.map((items: any) => items.nickname)]);
+        setRegion([...user.map((items: any) => items.region)]);
+        setJob([...user.map((items: any) => items.job)]);
+        setImage([...user.map((items: any) => items.image)]);
         setMyName(user.myName);
       });
     console.log("보내는 값 :", { email: userEmail });
@@ -166,11 +166,11 @@ const RecommendPage = () => {
                   />
                 </>
               }
-              img="Hyewoon.jpg"
-              job="배우"
-              region="모름"
-              username="김혜인?"
-              className="!ml-14"
+              img={image[1] === "default" ? `${image[1]}.png` : image[1]}
+              job={job[1]}
+              region={region[1]}
+              username={username[1]}
+              className="top-40 left-8"
             />
             <RecommendTemplate
               initial={{ opacity: 0, translateY: 50 }}
@@ -192,11 +192,11 @@ const RecommendPage = () => {
                   />
                 </>
               }
-              img="Jien.jpg"
-              job="배우"
-              region="천원짜리"
-              username="변호사"
-              className="!ml-24"
+              img={image[2] === "default" ? `${image[2]}.png` : image[2]}
+              job={job[2]}
+              region={region[2]}
+              username={username[2]}
+              className="top-80 left-16"
             />
           </div>
         )}

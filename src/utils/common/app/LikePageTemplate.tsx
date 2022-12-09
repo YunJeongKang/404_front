@@ -28,6 +28,20 @@ const LikePageTemplate = ({
 
   const passClick = () => {
     setPass(true);
+    axios
+      .put(`${URL}${LIKE}`, {
+        email: client.getUserEmail(),
+        username: username,
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        console.log("들어오는 데이터 :", data);
+        setCheckUsername(data);
+      });
+    console.log("보내는 값 :", {
+      email: client.getUserEmail(),
+      username: username,
+    });
   };
 
   const heartClick = () => {

@@ -17,7 +17,7 @@ const LikePage = () => {
       .then((res) => res.data)
       .then((data) => {
         console.log("받아오는 값:", data);
-        setData(data);
+        setData(data[0]);
       })
       .catch(console.error);
     console.log("보내는 값: ", { email: client.getUserEmail() });

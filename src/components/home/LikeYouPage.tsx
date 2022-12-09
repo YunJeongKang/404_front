@@ -17,7 +17,7 @@ const LikeYouPage = () => {
       .then((res) => res.data)
       .then((data) => {
         console.log("받아오는 값:", data);
-        setData(data);
+        setData(data[0]);
       })
       .catch(console.error);
     console.log("보내는 값: ", { email: client.getUserEmail() });
@@ -28,7 +28,7 @@ const LikeYouPage = () => {
       initial={{ x: 100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.2 }}
-      className="flex flex-wrap justify-start items-start place-content-start w-full h-full max-h-[1000rem] gap-2"
+      className="flex flex-wrap justify-start items-start place-content-start w-full h-full max-h-[1000rem]"
     >
       {!data && <LoadingSpinner />}
       {data &&

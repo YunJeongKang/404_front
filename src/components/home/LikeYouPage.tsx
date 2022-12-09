@@ -10,6 +10,7 @@ const LikeYouPage = () => {
   const { URL, LIKE_YOU } = PATH;
   const client = useClient();
   const [data, setData] = useState<any>();
+  const [isLoading, setLoading] = useState<boolean>();
 
   useLayoutEffect(() => {
     axios
@@ -18,6 +19,7 @@ const LikeYouPage = () => {
       .then((data) => {
         console.log("받아오는 값:", data);
         setData(data[0]);
+        setLoading(data[1].false);
       })
       .catch(console.error);
     console.log("보내는 값: ", { email: client.getUserEmail() });
@@ -30,7 +32,13 @@ const LikeYouPage = () => {
       transition={{ duration: 0.2 }}
       className="flex flex-wrap justify-start items-start place-content-start w-full h-full max-h-[1000rem]"
     >
-      {!data && <LoadingSpinner />}
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <span className="absolute flex justify-center items-center w-full h-full text-lg">
+          상대방에게 관심을 표현해보세요👍
+        </span>
+      )}
       {data &&
         data.map(
           ({ married, image, job, region, marriagePlan, nickname }: any) => (

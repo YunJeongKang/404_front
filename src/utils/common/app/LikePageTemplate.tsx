@@ -32,6 +32,7 @@ const LikePageTemplate = ({
       .put(`${URL}${LIKE}`, {
         email: client.getUserEmail(),
         username: username,
+        like: true,
       })
       .then((res) => res.data)
       .then((data) => {
@@ -49,6 +50,7 @@ const LikePageTemplate = ({
       .put(`${URL}${LIKE}`, {
         email: client.getUserEmail(),
         username: username,
+        unlike: false,
       })
       .then((res) => res.data)
       .then((data) => {

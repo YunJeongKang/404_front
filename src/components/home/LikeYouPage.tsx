@@ -13,15 +13,22 @@ const LikeYouPage = () => {
   const [isLoading, setLoading] = useState<boolean>();
 
   useLayoutEffect(() => {
-    axios
-      .post(`${URL}${LIKE_YOU}`, { email: client.getUserEmail() })
-      .then((res) => res.data)
-      .then((data) => {
-        console.log("받아오는 값:", data);
-        setData(data[0]);
-        setLoading(data[1].false);
-      })
-      .catch(console.error);
+    const likeYouAxios = async () => {
+      try {
+        setLoading(true);
+        await axios
+          .post(`${URL}${LIKE_YOU}`, { email: client.getUserEmail() })
+          .then((res) => res.data)
+          .then((data) => {
+            console.log("받아오는 값:", data);
+            setData(data);
+          });
+      } catch (err) {
+        console.error(err);
+      }
+      setLoading(false);
+    };
+    likeYouAxios();
     console.log("보내는 값: ", { email: client.getUserEmail() });
   }, []);
 
@@ -33,11 +40,18 @@ const LikeYouPage = () => {
       className="flex flex-wrap justify-start items-start place-content-start w-full h-full max-h-[1000rem]"
     >
       {isLoading ? (
-        <span className="absolute flex justify-center items-center w-full h-full text-lg">
-          상대방에게 관심을 표현해보세요👍
-        </span>
+        <LoadingSpinner />
       ) : (
-        !data && <LoadingSpinner />
+        !data && (
+          <motion.span
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.2 }}
+            className="absolute flex justify-center items-center w-full h-full text-lg"
+          >
+            상대방에게 관심표현을 해보세요👍
+          </motion.span>
+        )
       )}
       {data &&
         data.map(

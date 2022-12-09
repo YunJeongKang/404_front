@@ -13,6 +13,8 @@ interface MainPageTemplateState {
   personality: string;
   introSelf: string;
   wanted: string;
+  myIntro?: string;
+  myWanted?: string;
 }
 
 const MainPageTemplate = ({
@@ -24,6 +26,8 @@ const MainPageTemplate = ({
   personality,
   introSelf,
   wanted,
+  myIntro = "저는 이런 사람이에요",
+  myWanted = "저는 이런사람이 이상형이에요",
 }: MainPageTemplateState) => {
   const [heart, setHeart] = useState<boolean | null>(null);
   const { URL, HOME } = PATH;
@@ -87,7 +91,7 @@ const MainPageTemplate = ({
         {/* 자기소개 */}
         <div className="relative flex flex-col items-start h-[48%] w-[97%] rounded-lg border-2 shadow-md">
           <span className="text-sm m-0.5 left-4 top-1 z-10 underline underline-offset-[3px]">
-            저는 이런 사람이에요
+            {myIntro}
           </span>
           <p className="w-[95%] h-[90%] text-xs pl-1 text-gray-500">
             {`${introSelf.slice(0, 115)}${introSelf.length > 115 ? "..." : ""}`}
@@ -96,7 +100,7 @@ const MainPageTemplate = ({
         {/* 원하는 이상형 정보 */}
         <div className="relative flex flex-col items-start h-[50%] w-[97%] rounded-lg border-2 shadow-md">
           <span className="text-sm m-0.5 left-4 top-1 z-10 underline underline-offset-[3px]">
-            저는 이런사람이 이상형이에요
+            {myWanted}
           </span>
           <p className="w-[95%] h-[90%] text-xs pl-1 text-gray-500">{`${wanted.slice(
             0,

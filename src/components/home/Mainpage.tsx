@@ -23,26 +23,50 @@ function MainPage() {
   return (
     <div className="flex flex-wrap w-full h-full gap-6 max-h-[1000rem] font-eland select-none">
       {!data && <LoadingSpinner />}
-      {/* <MainPageTemplate
-        age="26"
-        appearance="이쁨"
-        img="fromise9.jpg"
-        introSelf="저는 이새롬 입니당"
-        personality="조용함"
-        region="서울"
-        username="이새롬"
-        wanted="노래, 춤추기"
+      <MainPageTemplate
+        age="24"
+        appearance="AI모델링"
+        img="yoon.jpg"
+        introSelf=""
+        personality="팀장"
+        region="광주"
+        username="강윤정"
+        myIntro="저의 장점은"
+        wanted=""
+      />
+      <MainPageTemplate
+        age="25"
+        appearance="Back/DB"
+        img="inho.jpg"
+        introSelf=""
+        personality="팀원"
+        region="광주"
+        username="김인호"
+        myIntro="저의 장점은"
+        wanted=""
       />
       <MainPageTemplate
         age="24"
-        appearance="귀여움"
-        img="yena.jpg"
-        introSelf="저는 최예나 입니당"
-        personality="천상오리"
-        region="서울"
-        username="예나최"
-        wanted="오큘러스 하는 남자"
-      /> */}
+        appearance="Infra/Front"
+        img="yongho.jpg"
+        introSelf=""
+        personality="팀원"
+        region="광주"
+        username="장용호"
+        wanted=""
+        myIntro="저의 장점은"
+      />
+      <MainPageTemplate
+        age="32"
+        appearance="Back/DB"
+        img="sungmin.jpg"
+        introSelf=""
+        personality="팀원"
+        region="광주"
+        username="허성민"
+        myIntro="저의 장점은"
+        wanted=""
+      />
       {data &&
         data.map(
           ({

@@ -10,36 +10,46 @@ import { motion } from "framer-motion";
 const LikePage = () => {
   const { URL, LIKE } = PATH;
   const client = useClient();
-  const [isLoading, setLoading] = useState<boolean>();
+  const [isLoading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState<any>(null);
 
-  const [data, setData] = useState<any>();
   useLayoutEffect(() => {
-    axios
-      .post(`${URL}${LIKE}`, { email: client.getUserEmail() })
-      .then((res) => res.data)
-      .then((data) => {
-        console.log("받아오는 값:", data);
-        setLoading(data[1].loading);
-        setData(data[0]);
-      })
-      .catch(console.error);
+    const likeAxios = async () => {
+      try {
+        setLoading(true);
+        await axios
+          .post(`${URL}${LIKE}`, { email: client.getUserEmail() })
+          .then((res) => res.data)
+          .then((data) => {
+            console.log("받아오는 값:", data);
+            setData(data);
+            // setLoading(data[1].loading);
+          });
+      } catch (err) {
+        console.error(err);
+      }
+      setLoading(false);
+    };
+    likeAxios();
     console.log("보내는 값: ", { email: client.getUserEmail() });
   }, []);
 
   return (
     <div className="flex flex-wrap justify-start items-start place-content-start w-full h-full max-h-[1000rem] gap-2">
-      {isLoading
-        ? !data && <LoadingSpinner />
-        : !data && (
-            <motion.span
-              initial={{ x: 100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.2 }}
-              className="absolute flex justify-center items-center w-full h-full text-lg"
-            >
-              받은 관심표현이 없습니다😓
-            </motion.span>
-          )}
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        !data && (
+          <motion.span
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.2 }}
+            className="absolute flex justify-center items-center w-full h-full text-lg"
+          >
+            받은 관심표현이 없습니다😓
+          </motion.span>
+        )
+      )}
       {data &&
         data.map(
           ({ married, image, job, region, marriagePlan, nickname }: any) => (

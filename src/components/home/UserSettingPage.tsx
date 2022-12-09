@@ -85,7 +85,7 @@ const UserSettingPage = () => {
       .then((res) => res.data)
       .then((data) => {
         console.log("내가 받아오는 데이터:", data);
-        data.map((items: any) => setData([{ ...items }]));
+        setData(data);
       });
     console.log("보내는 데이터 :", { email: client.getUserEmail() });
   }, []);

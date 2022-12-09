@@ -59,11 +59,11 @@ function MainPage() {
               age={birth ? birth : ""}
               appearance={style ? style : ""}
               img={image[0] === "default" ? "default.png" : image[0]}
-              introSelf={profile ? profile : ""}
+              introSelf={profile === "None" ? "" : profile}
               personality={character ? character : ""}
               region={region ? region : ""}
               username={nick ? nick : ""}
-              wanted={ideal ? ideal : ""}
+              wanted={ideal === "None" ? "" : ideal}
             />
           )
         )}

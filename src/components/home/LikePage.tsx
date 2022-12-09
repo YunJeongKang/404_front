@@ -26,11 +26,10 @@ const LikePage = () => {
     console.log("보내는 값: ", { email: client.getUserEmail() });
   }, []);
 
-  console.log(isLoading);
   return (
     <div className="flex flex-wrap justify-start items-start place-content-start w-full h-full max-h-[1000rem] gap-2">
       {isLoading ? (
-        <LoadingSpinner />
+        !data && <LoadingSpinner />
       ) : (
         <motion.span
           initial={{ x: 100, opacity: 0 }}

@@ -31,11 +31,12 @@ const LikePageTemplate = ({
     axios.put(`${URL}${LIKE}`, {
       email: client.getUserEmail(),
       username: username,
-      like: true,
+      like: "True",
     });
     console.log("보내는 값 :", {
       email: client.getUserEmail(),
       username: username,
+      like: "True",
     });
   };
 
@@ -43,11 +44,12 @@ const LikePageTemplate = ({
     axios.put(`${URL}${LIKE}`, {
       email: client.getUserEmail(),
       username: username,
-      unlike: false,
+      unlike: "False",
     });
     console.log("보내는 값 :", {
       email: client.getUserEmail(),
       username: username,
+      unlike: "False",
     });
   };
 

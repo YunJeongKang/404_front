@@ -33,11 +33,11 @@ const LikeYouPage = () => {
       className="flex flex-wrap justify-start items-start place-content-start w-full h-full max-h-[1000rem]"
     >
       {isLoading ? (
-        !data && <LoadingSpinner />
-      ) : (
         <span className="absolute flex justify-center items-center w-full h-full text-lg">
           상대방에게 관심을 표현해보세요👍
         </span>
+      ) : (
+        !data && <LoadingSpinner />
       )}
       {data &&
         data.map(

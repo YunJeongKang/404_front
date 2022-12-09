@@ -85,11 +85,11 @@ const RecommendPage = () => {
       .then((res) => res.data)
       .then((user) => {
         console.log("받아오는 값 :", user);
-        setUsername([...user.map((items: any) => items.nickname)]);
-        setRegion([...user.map((items: any) => items.region)]);
-        setJob([...user.map((items: any) => items.job)]);
-        setImage([...user.map((items: any) => items.image)]);
-        setMyName(user[3].myName);
+        setUsername([...user["0"].map((items: any) => items.nickname)]);
+        setRegion([...user["0"].map((items: any) => items.region)]);
+        setJob([...user["0"].map((items: any) => items.job)]);
+        setImage([...user["0"].map((items: any) => items.image)]);
+        setMyName(user["1"].myName);
       });
     console.log("보내는 값 :", { email: userEmail });
   };
@@ -113,7 +113,7 @@ const RecommendPage = () => {
         {isClick && (
           <HiOutlineInformationCircle
             className="absolute right-5 top-2 cursor-help"
-            size="25"
+            size="35"
             color="#1e88e5"
             onClick={InfoClick}
           />

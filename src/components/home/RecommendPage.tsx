@@ -51,7 +51,7 @@ const RecommendPage = () => {
               </div>
               인공지능이 추천해주는{" "}
               <span className="text-white bg-sky-500 rounded-sm p-0.5">
-                {myName}용고
+                {myName}
               </span>
               님과 가장 어울리는 회원님은{" "}
               <span className="text-white bg-pink-500 rounded-sm p-0.5">
@@ -89,7 +89,7 @@ const RecommendPage = () => {
         setRegion([...user.map((items: any) => items.region)]);
         setJob([...user.map((items: any) => items.job)]);
         setImage([...user.map((items: any) => items.image)]);
-        setMyName(user.myName);
+        setMyName(user[3].myName);
       });
     console.log("보내는 값 :", { email: userEmail });
   };

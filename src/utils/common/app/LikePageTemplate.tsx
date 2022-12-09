@@ -41,8 +41,6 @@ const LikePageTemplate = ({
         console.log("들어오는 데이터 :", data);
         setCheckUsername(data);
       });
-
-    setCheckUsername("최예나");
     console.log("보내는 값 :", {
       email: client.getUserEmail(),
       username: username,

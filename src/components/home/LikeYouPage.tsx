@@ -44,14 +44,6 @@ const LikeYouPage = () => {
             />
           )
         )}
-      <LikeYouPageTemplate
-        img="saerom6.png"
-        job="가수"
-        marriagePlan="6달이내"
-        married="초혼"
-        region="서울"
-        username="이새롬"
-      />
     </motion.div>
   );
 };

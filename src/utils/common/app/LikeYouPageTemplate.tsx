@@ -27,15 +27,10 @@ const LikeYouPageTemplate = ({
 
   const passClick = () => {
     setPass(true);
-    axios
-      .put(`${URL}${LIKE_YOU}`, {
-        email: client.getUserEmail(),
-        username: username,
-      })
-      .then((res) => res.data)
-      .then((data) => {
-        console.log("들어오는 데이터 :", data);
-      });
+    axios.put(`${URL}${LIKE_YOU}`, {
+      email: client.getUserEmail(),
+      username: username,
+    });
     console.log("보내는 값 :", {
       email: client.getUserEmail(),
       username: username,

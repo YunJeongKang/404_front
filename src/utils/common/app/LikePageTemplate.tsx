@@ -28,17 +28,11 @@ const LikePageTemplate = ({
 
   const passClick = () => {
     setPass(true);
-    axios
-      .put(`${URL}${LIKE}`, {
-        email: client.getUserEmail(),
-        username: username,
-        like: true,
-      })
-      .then((res) => res.data)
-      .then((data) => {
-        console.log("들어오는 데이터 :", data);
-        setCheckUsername(data);
-      });
+    axios.put(`${URL}${LIKE}`, {
+      email: client.getUserEmail(),
+      username: username,
+      like: true,
+    });
     console.log("보내는 값 :", {
       email: client.getUserEmail(),
       username: username,
@@ -46,17 +40,11 @@ const LikePageTemplate = ({
   };
 
   const heartClick = () => {
-    axios
-      .put(`${URL}${LIKE}`, {
-        email: client.getUserEmail(),
-        username: username,
-        unlike: false,
-      })
-      .then((res) => res.data)
-      .then((data) => {
-        console.log("들어오는 데이터 :", data);
-        setCheckUsername(data);
-      });
+    axios.put(`${URL}${LIKE}`, {
+      email: client.getUserEmail(),
+      username: username,
+      unlike: false,
+    });
     console.log("보내는 값 :", {
       email: client.getUserEmail(),
       username: username,

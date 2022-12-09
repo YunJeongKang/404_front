@@ -1,6 +1,6 @@
 import useModal from "@store/useModal";
 import { CommonDivProps } from "@utils/common/props";
-import { FunctionComponent as FC, useLayoutEffect } from "react";
+import { FunctionComponent as FC, useLayoutEffect, useRef } from "react";
 
 interface ManAppearModalProps extends CommonDivProps {
   isAppearanceOpen: boolean;
@@ -165,12 +165,35 @@ export const ModalProvider: FC<ModalProviderProps> = ({ children: app }) => {
     isWomanFashionModal,
   } = useModal();
 
+  const currentOverflowRef = useRef<any>();
+  useLayoutEffect(() => {
+    if (
+      isAppearanceOpen ||
+      isPersonalityOpen ||
+      isFashionOpen ||
+      isWomanAppearanceOpen ||
+      isWomanPersonalityOpen ||
+      isWomanFashionOpen
+    ) {
+      document.body.style.overflow = currentOverflowRef.current;
+      return;
+    }
+
+    currentOverflowRef.current = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = currentOverflowRef.current;
+    };
+  }, [isAppearanceOpen]);
   return (
     <>
       <div className="relative z-0 min-h-screen">
         <div className="z-0">{app}</div>
         {isAppearanceOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[10]" />
+          <aside
+            className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[10]"
+            ref={currentOverflowRef}
+          />
         )}
         {isAppearanceOpen && (
           <aside className="absolute left-0 right-0 top-0 bottom-0 z-[11]">
@@ -178,7 +201,10 @@ export const ModalProvider: FC<ModalProviderProps> = ({ children: app }) => {
           </aside>
         )}
         {isPersonalityOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[12]" />
+          <aside
+            ref={currentOverflowRef}
+            className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[12]"
+          />
         )}
         {isPersonalityOpen && (
           <aside className="absolute left-0 right-0 top-0 bottom-0 z-[13]">
@@ -186,7 +212,10 @@ export const ModalProvider: FC<ModalProviderProps> = ({ children: app }) => {
           </aside>
         )}
         {isFashionOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[14]" />
+          <aside
+            ref={currentOverflowRef}
+            className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[14]"
+          />
         )}
         {isFashionOpen && (
           <aside className="absolute left-0 right-0 top-0 bottom-0 z-[15]">
@@ -194,7 +223,10 @@ export const ModalProvider: FC<ModalProviderProps> = ({ children: app }) => {
           </aside>
         )}
         {isWomanAppearanceOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[16]" />
+          <aside
+            ref={currentOverflowRef}
+            className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[16]"
+          />
         )}
         {isWomanAppearanceOpen && (
           <aside className="absolute left-0 right-0 top-0 bottom-0 z-[17]">
@@ -202,7 +234,10 @@ export const ModalProvider: FC<ModalProviderProps> = ({ children: app }) => {
           </aside>
         )}
         {isWomanPersonalityOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[18]" />
+          <aside
+            ref={currentOverflowRef}
+            className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[18]"
+          />
         )}
         {isWomanPersonalityOpen && (
           <aside className="absolute left-0 right-0 top-0 bottom-0 z-[19]">
@@ -210,7 +245,10 @@ export const ModalProvider: FC<ModalProviderProps> = ({ children: app }) => {
           </aside>
         )}
         {isWomanFashionOpen && (
-          <aside className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[20]" />
+          <aside
+            ref={currentOverflowRef}
+            className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-30 z-[20]"
+          />
         )}
         {isWomanFashionOpen && (
           <aside className="absolute left-0 right-0 top-0 bottom-0 z-[21]">

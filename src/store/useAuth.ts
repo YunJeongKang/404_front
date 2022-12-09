@@ -1,3 +1,5 @@
+import storageManager from "@utils/storage-manager";
+import StorageKey from "@utils/storage-manager/storage-key";
 import create from "zustand";
 
 interface AuthState {
@@ -5,7 +7,6 @@ interface AuthState {
   password: string;
   isAuthenticated: boolean;
   isCompleted: boolean;
-  isReady: boolean;
 
   setUserName: (username: string) => void;
   setPassword: (password: string) => void;
@@ -15,9 +16,6 @@ interface AuthState {
 
   setAutoLogin: (isAuthenticated: boolean) => void;
   isAutoLogin: () => boolean;
-
-  setReady: (isReady: boolean) => void;
-  getReady: () => boolean;
 
   setKakaoToken: (token: string) => void;
 }
@@ -30,7 +28,6 @@ const useAuth = create<AuthState>((set, get) => {
     password: "",
     isAuthenticated: false,
     isCompleted: false,
-    isReady: false,
 
     setUserName: (username) => set({ username }),
     setPassword: (password) => set({ password }),
@@ -50,25 +47,24 @@ const useAuth = create<AuthState>((set, get) => {
 
     logout: () => {
       set({ isAuthenticated: false });
-      localStorage.clear();
+      storageManager.clear();
     },
 
     setAutoLogin: (isAuthenticated) => {
-      localStorage.setItem("AutoLogin", JSON.stringify(isAuthenticated));
+      storageManager.setItem(
+        StorageKey.AUTO_LOGIN,
+        JSON.stringify(isAuthenticated)
+      );
       set({ isAuthenticated });
     },
 
-    isAutoLogin: () => localStorage.getItem("AutoLogin") === "true",
+    isAutoLogin: () => storageManager.getItem(StorageKey.AUTO_LOGIN) === "true",
 
-    setReady: (isReady) => {
-      set({ isReady });
-      localStorage.setItem("isReady", JSON.stringify(isReady));
-    },
-
-    getReady: () => localStorage.getItem("isReady") === "true",
-
-    setKakaoToken: (kkaoToken) => {
-      localStorage.setItem("kakaoToken", JSON.stringify(kkaoToken));
+    setKakaoToken: (kakaoToken) => {
+      storageManager.setItem(
+        StorageKey.KAKAO_TOKEN,
+        JSON.stringify(kakaoToken)
+      );
     },
     // End of create
   };

@@ -10,13 +10,11 @@ import {
 } from "@styles/authPage/AnySettingTemplate";
 import API_PATH from "@utils/routes/api/API_PATH";
 import useClient from "@store/useClient";
-import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "@utils/common/app/LoadingSpinner";
 
 const UserSettingPage = () => {
-  const { MODIFY, USER, EASY_AUTH } = PATH;
+  const { USER } = PATH;
   const { URL } = API_PATH;
-  const navigate = useNavigate();
   const auth = useAuth();
   const client = useClient();
 
@@ -50,7 +48,6 @@ const UserSettingPage = () => {
         <button
           onClick={() => {
             setLoading(true);
-            navigate(`${URL}${EASY_AUTH}`);
             auth.logout();
           }}
         >
@@ -66,7 +63,6 @@ const UserSettingPage = () => {
                 data: { email: client.getUserEmail() },
               })
               .then((res) => {
-                navigate(`${URL}${EASY_AUTH}`);
                 auth.logout();
                 console.log(res.data);
               })

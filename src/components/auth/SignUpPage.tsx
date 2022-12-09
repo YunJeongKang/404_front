@@ -4,14 +4,13 @@ import axios from "axios";
 import { useState } from "react";
 import PATH from "@utils/routes/PATH";
 import { AuthInterface } from "@models/user/UserDetail";
-import useAuth from "@store/useAuth";
 import useClient from "@store/useClient";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUnPage = () => {
-  const auth = useAuth();
   const client = useClient();
-  const { URL, SIGNUP, EASY_AUTH } = PATH;
+  const navigate = useNavigate();
+  const { URL, SIGNUP, EASY_AUTH, INPUT } = PATH;
 
   // value 상태관리
   const [values, setValues] = useState<AuthInterface>({
@@ -36,14 +35,12 @@ const SignUnPage = () => {
       .post(`${URL}${SIGNUP}`, { ...values })
       .then((res) => {
         console.log("넘어 온 값 :  ", res.data);
-        // isReady 상태변경
         !res.data.repeat && alert("이메일이 중복되었습니다.");
-        auth.setReady(res.data.isReady);
         const userEmail = res.data.email;
         client.setUserEmail(userEmail);
+        res.data.isReady && navigate(`${INPUT}`);
       })
       .catch(() => alert("서버나 인터넷의 연결이 불안정합니다"));
-
     console.log({ ...values, checkPW });
   }
 

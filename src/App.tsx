@@ -53,7 +53,7 @@ function App() {
                   ? authPageUI
                   : authOtherUI
                 : unAuthPageUI
-            } overflow-hidden overflow-y-scroll scrollbar-hide justify-center border bg-white`}
+            } overflow-hidden overflow-y-scroll scrollbar-hide border bg-white`}
           >
             {currentRoutes}
           </main>

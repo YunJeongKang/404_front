@@ -161,7 +161,7 @@ const UserInfoPage = () => {
       })
       .then((res) => {
         client.setComplete(res.data.isCompleted);
-        res.data.isCompleted && navigate(`${URL}${USER_IMAGE}`);
+        res.data.isCompleted && navigate(`${USER_IMAGE}`);
       });
 
     // 서버로 가는 데이터 확인
@@ -285,7 +285,7 @@ const UserInfoPage = () => {
   return (
     <UserInfoForm
       onSubmit={onSubmit}
-      className={`relative justify-center items-center bg-white h-fit w-full max-h-[100rem] py-4 gap-4 center`}
+      className={`flex-col justify-center items-center bg-white h-fit w-full max-h-fit py-4 gap-4`}
     >
       {/* 닉네임 */}
       <SectionTemplate>

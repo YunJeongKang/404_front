@@ -21,7 +21,7 @@ function MainPage() {
     console.log("보내는 데이터 :", { email: client.getUserEmail() });
   }, []);
   return (
-    <div className="flex flex-wrap w-full h-full gap-6 max-h-[1000rem] font-eland select-none">
+    <div className="flex flex-wrap w-full h-full gap-6 font-eland select-none">
       {!data && <LoadingSpinner />}
       <MainPageTemplate
         age="24"

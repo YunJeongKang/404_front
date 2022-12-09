@@ -134,7 +134,7 @@ export const UserSettingInfo = ({
               {personality}
             </div>
             {/* 패션스타일 */}
-            <div className="flex items-center h-1/4 gap-1 text-xs">
+            <div className="flex items-center h-fit gap-1 text-xs">
               <span className="w-5/6 text-base">패션 스타일</span>
               {fashion}
             </div>

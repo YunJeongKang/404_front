@@ -33,7 +33,7 @@ const RecommendPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         exit={{ opacity: 0, y: -50 }}
-        className="absolute flex flex-col items-center justify-center top-50 left-10 w-5/6 h-2/3 rounded-3xl shadow-md drop-shadow-xl bg-white opacity-10 z-30"
+        className="absolute flex flex-col items-center justify-center top-16 left-10 w-5/6 h-2/3 rounded-3xl shadow-md drop-shadow-xl bg-white opacity-10 z-30"
       >
         {/* 정보 박스 부분 */}
         <div className="flex flex-col w-[90%] justify-center items-center h-5/6">
@@ -75,8 +75,7 @@ const RecommendPage = () => {
     setInfo(true);
   };
 
-  const recommendClick = () => {
-    !isClick && setClick(true);
+  useLayoutEffect(() => {
     const userEmail = client.getUserEmail();
     axios
       .post(`${URL}${RECOMMEND}`, {
@@ -92,6 +91,10 @@ const RecommendPage = () => {
         setMyName(user[3].myName);
       });
     console.log("보내는 값 :", { email: userEmail });
+  }, []);
+
+  const recommendClick = () => {
+    !isClick && setClick(true);
   };
 
   return (
@@ -111,12 +114,22 @@ const RecommendPage = () => {
           천생연분
         </span>
         {isClick && (
-          <HiOutlineInformationCircle
+          <motion.div
+            initial={{ rotateY: 0 }}
+            animate={{ rotateY: 360 }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatDelay: 0.7,
+            }}
             className="absolute right-5 top-2 cursor-help"
-            size="35"
-            color="#1e88e5"
-            onClick={InfoClick}
-          />
+          >
+            <HiOutlineInformationCircle
+              size="35"
+              color="#1e88e5"
+              onClick={InfoClick}
+            />
+          </motion.div>
         )}
         {!isClick && (
           <span className="absolute text-xs top-12">위 글씨를 클릭하세요!</span>

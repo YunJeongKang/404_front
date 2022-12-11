@@ -47,7 +47,7 @@ const MainPageTemplate = ({
   }, [heart]);
 
   return (
-    <div className="flex flex-col items-center w-full h-[80%] bg-white rounded-xl text-xl my-2">
+    <div className="flex flex-col items-center w-full h-[80%] bg-white rounded-xl text-xl my-2 whitespace-pre-wrap">
       {/* 이미지 부분 */}
       <div className="relative w-[97%] h-[70%] bg-black rounded-xl m-1 bg-cover">
         <div className="relative rounded-t-xl w-full h-full rounded-b-xl z-0 overflow-hidden shadow">
@@ -87,21 +87,21 @@ const MainPageTemplate = ({
         </div>
       </div>
       {/* 텍스트 영역 */}
-      <div className="flex flex-col items-center h-1/3 w-full gap-1 mb-2">
+      <div className="flex flex-col items-center h-[35%] w-full gap-1 mb-2">
         {/* 자기소개 */}
-        <div className="relative flex flex-col items-start h-[48%] w-[97%] rounded-lg border-2 shadow-md">
-          <span className="text-sm m-0.5 left-4 top-1 z-10 underline underline-offset-[3px]">
+        <div className="relative flex flex-col items-start h-[49%] w-[97%] rounded-lg border-2 shadow-md">
+          <p className="text-sm m-0.5 left-4 top-1 z-10 underline underline-offset-[3px]">
             {myIntro}
-          </span>
-          <p className="w-[95%] h-[90%] text-xs pl-1 text-gray-500">
+          </p>
+          <p className="w-[95%] h-full text-xs pl-1 text-gray-500">
             {`${introSelf.slice(0, 115)}${introSelf.length > 115 ? "..." : ""}`}
           </p>
         </div>
         {/* 원하는 이상형 정보 */}
         <div className="relative flex flex-col items-start h-[50%] w-[97%] rounded-lg border-2 shadow-md">
-          <span className="text-sm m-0.5 left-4 top-1 z-10 underline underline-offset-[3px]">
+          <p className="text-sm m-0.5 left-4 top-1 z-10 underline underline-offset-[3px]">
             {myWanted}
-          </span>
+          </p>
           <p className="w-[95%] h-[90%] text-xs pl-1 text-gray-500">{`${wanted.slice(
             0,
             115

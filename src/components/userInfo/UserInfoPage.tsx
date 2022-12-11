@@ -285,7 +285,7 @@ const UserInfoPage = () => {
   return (
     <UserInfoForm
       onSubmit={onSubmit}
-      className={`flex-col justify-center items-center bg-white h-fit w-full max-h-fit py-4 gap-4`}
+      className={`flex-col justify-center items-center bg-white h-full w-full max-h-fit py-4 gap-4`}
     >
       {/* 닉네임 */}
       <SectionTemplate>

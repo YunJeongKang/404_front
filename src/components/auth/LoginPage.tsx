@@ -61,7 +61,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="w-[50vw] max-w-[24rem] flex flex-col items-center  gap-4">
+    <div className="w-[50vw] max-w-[24rem] h-full flex flex-col justify-center items-center gap-4">
       <section className="rounded-md px-8 py-2 max-w-[24rem] w-[100vw] bg-white">
         <form className="flex flex-col gap-y-2 " onSubmit={onSubmit}>
           <fieldset className="flex justify-between gap-2">

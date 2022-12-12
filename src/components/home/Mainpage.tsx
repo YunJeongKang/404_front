@@ -39,12 +39,12 @@ function MainPage() {
         age="25"
         appearance="Back/DB"
         img="inho.jpg"
-        introSelf=""
+        introSelf={`1 생각이 유연하여 다양한 시도를 주도합니다.\n2 쉽게 포기하지 않는 강한 멘탈을 가지고 있습니다.`}
         personality="팀원"
         region="광주"
         username="김인호"
         myIntro="저는 이런 사람이에요"
-        wanted="저는 이런 역할을 맡았어요"
+        wanted={`1 DB설계, 관리를 총괄했습니다.\n2 백엔드 Fastapi 서버를 담당했습니다.`}
         myWanted="저는 이런 역할을 맡았어요"
       />
       <MainPageTemplate
@@ -63,12 +63,12 @@ function MainPage() {
         age="32"
         appearance="Back/DB"
         img="sungmin.jpg"
-        introSelf=""
+        introSelf="1 무슨일이든 맡기면 책임감있게 처리합니다."
         personality="팀원"
         region="광주"
         username="허성민"
         myIntro="저는 이런 사람이에요"
-        wanted="저는 이런 역할을 맡았어요"
+        wanted={`1 Backend 총괄을 맡았습니다.\n2 DB보조를 맡았습니다.`}
         myWanted="저는 이런 역할을 맡았어요"
       />
       {data &&

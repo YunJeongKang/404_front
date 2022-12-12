@@ -231,7 +231,7 @@ const UserInfoModify = () => {
                 </div>
                 {/* 위치 */}
                 <div className="flex items-center h-1/4">
-                  <span className="w-full font-bold">위치</span>
+                  <span className="w-full font-bold">지역</span>
                   <span className="w-full text-blue-600">{items.region}</span>
                 </div>
               </div>

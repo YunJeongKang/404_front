@@ -33,12 +33,15 @@ const RecommendPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         exit={{ opacity: 0, y: -50 }}
-        className="absolute flex flex-col items-center justify-center top-24 left-10 w-5/6 h-1/2 rounded-3xl shadow-md drop-shadow-xl bg-white opacity-10 z-30"
+        className="absolute flex flex-col items-center justify-center top-32 left-10 w-5/6 h-1/2 rounded-3xl shadow-md drop-shadow-xl bg-white opacity-10 z-30"
       >
         {/* 정보 박스 부분 */}
         <div className="flex flex-col w-[90%] justify-center items-center h-5/6">
           <div className="flex items-start justify-start gap-1">
             <p>
+              <p className="whitespace-pre-wrap pb-5">
+                {`회원님이 열람하고 관심표현을 보낸\n상대회원 데이터를 기반으로 인공지능\n기술이 적용되었습니다.`}
+              </p>
               {/* 로고 부분 */}
               <div className="flex gap-1 items-start justify-start text-lg w-full h-1/2">
                 <span className="text-white font-medium drop-shadow-[0.08em_0.08em_0_rgba(0_0_0_/_0.8)] opacity-90">

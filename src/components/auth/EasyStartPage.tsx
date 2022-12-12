@@ -55,7 +55,7 @@ const EasyStartPage = () => {
                 console.log(res.data);
                 res.data.isLogin
                   ? auth.setAutoLogin(res.data.isLogin)
-                  : auth.setReady(true);
+                  : navigate(`${INPUT}`);
                 res.data.isReady && navigate(`${URL}${INPUT}`);
               });
           },

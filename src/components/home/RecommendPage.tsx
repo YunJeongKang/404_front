@@ -33,7 +33,7 @@ const RecommendPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         exit={{ opacity: 0, y: -50 }}
-        className="absolute flex flex-col items-center justify-center top-16 left-10 w-5/6 h-2/3 rounded-3xl shadow-md drop-shadow-xl bg-white opacity-10 z-30"
+        className="absolute flex flex-col items-center justify-center top-24 left-10 w-5/6 h-1/2 rounded-3xl shadow-md drop-shadow-xl bg-white opacity-10 z-30"
       >
         {/* 정보 박스 부분 */}
         <div className="flex flex-col w-[90%] justify-center items-center h-5/6">

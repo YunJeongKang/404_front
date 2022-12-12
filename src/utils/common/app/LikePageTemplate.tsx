@@ -26,6 +26,27 @@ const LikePageTemplate = ({
   const [checkUsername, setCheckUsername] = useState<string>("");
   const [pass, setPass] = useState<boolean>(false);
 
+  const heartClick = () => {
+    axios
+      .put(`${URL}${LIKE}`, {
+        email: client.getUserEmail(),
+        username: username,
+        like: true,
+        unlike: false,
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        console.log("받는 데이터:", data);
+        setCheckUsername(data.username);
+      });
+    console.log("보내는 값 :", {
+      email: client.getUserEmail(),
+      username: username,
+      like: true,
+      unlike: false,
+    });
+  };
+
   const passClick = () => {
     setPass(true);
     axios.put(`${URL}${LIKE}`, {
@@ -39,21 +60,6 @@ const LikePageTemplate = ({
       username: username,
       unlike: true,
       like: false,
-    });
-  };
-
-  const heartClick = () => {
-    axios.put(`${URL}${LIKE}`, {
-      email: client.getUserEmail(),
-      username: username,
-      like: true,
-      unlike: false,
-    });
-    console.log("보내는 값 :", {
-      email: client.getUserEmail(),
-      username: username,
-      like: true,
-      unlike: false,
     });
   };
 

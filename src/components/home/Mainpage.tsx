@@ -23,7 +23,7 @@ function MainPage() {
   return (
     <div className="flex flex-wrap w-full h-full gap-6 font-eland select-none">
       {!data && <LoadingSpinner />}
-      <MainPageTemplate
+      {/* <MainPageTemplate
         age="24"
         appearance="AI모델링"
         img="yoon.jpg"
@@ -70,7 +70,7 @@ function MainPage() {
         myIntro="저는 이런 사람이에요"
         wanted={`1 Backend 총괄을 맡았습니다.\n2 DB보조를 맡았습니다.`}
         myWanted="저는 이런 역할을 맡았어요"
-      />
+      /> */}
       {data &&
         data.map(
           ({
